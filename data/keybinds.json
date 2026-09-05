@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-05T17:03:28.985Z",
-    "sourceCommit": "6276a1d",
+    "generatedAt": "2026-09-05T17:14:49.283Z",
+    "sourceCommit": "9a5c5eb",
     "host": "box"
   },
   "apps": [
@@ -1366,6 +1366,1036 @@
               "keys": "Ctrl+Alt+Shift+J",
               "label": "Open screen file",
               "command": "write_screen_file:open,plain"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tmux",
+      "title": "tmux",
+      "tagline": "terminal multiplexer",
+      "description": "Prefix is Ctrl+Space. Stock tables are the tmux 3.7c defaults; resurrect/continuum keep sessions across reboots.",
+      "icon": "⊞",
+      "groups": [
+        {
+          "name": "Custom · tmux.conf",
+          "bindings": [
+            {
+              "keys": "Ctrl+Space Ctrl+Space",
+              "label": "Send prefix char to the pane (for nested tmux)",
+              "command": "send-prefix",
+              "source": "tmux.conf:18"
+            },
+            {
+              "keys": "Ctrl+Space Space",
+              "label": "Faster switch to last window",
+              "command": "last-window",
+              "source": "tmux.conf:21"
+            },
+            {
+              "keys": "Ctrl+Space l",
+              "label": "Next preset pane layout",
+              "command": "next-layout",
+              "source": "tmux.conf:22"
+            },
+            {
+              "keys": "Ctrl+Space c",
+              "label": "Create new windows with current path",
+              "command": "new-window -c \"#{pane_current_path}\"",
+              "source": "tmux.conf:37"
+            },
+            {
+              "keys": "Ctrl+Space |",
+              "label": "Split commands with better visual fit",
+              "command": "split-window -h -c \"#{pane_current_path}\"",
+              "source": "tmux.conf:40"
+            },
+            {
+              "keys": "Ctrl+Space _",
+              "label": "Split pane top/bottom, same cwd",
+              "command": "split-window -v -c \"#{pane_current_path}\"",
+              "source": "tmux.conf:41"
+            },
+            {
+              "keys": "Ctrl+Space x",
+              "label": "Don't promt before killing pane",
+              "command": "kill-pane",
+              "source": "tmux.conf:44"
+            },
+            {
+              "keys": "Ctrl+Space P",
+              "label": "Paste most recent buffer",
+              "command": "paste-buffer",
+              "source": "tmux.conf:49"
+            },
+            {
+              "keys": "Alt+h",
+              "label": "Focus pane left (no prefix needed)",
+              "command": "select-pane -L",
+              "source": "tmux.conf:55"
+            },
+            {
+              "keys": "Alt+l",
+              "label": "Focus pane right (no prefix needed)",
+              "command": "select-pane -R",
+              "source": "tmux.conf:56"
+            },
+            {
+              "keys": "Alt+k",
+              "label": "Focus pane up (no prefix needed)",
+              "command": "select-pane -U",
+              "source": "tmux.conf:57"
+            },
+            {
+              "keys": "Alt+j",
+              "label": "Focus pane down (no prefix needed)",
+              "command": "select-pane -D",
+              "source": "tmux.conf:58"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+h",
+              "label": "Resize pane left by 8 (repeatable: hold Ctrl and press again)",
+              "command": "resize-pane -L 8",
+              "source": "tmux.conf:59"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+l",
+              "label": "Resize pane right by 8 (repeatable: hold Ctrl and press again)",
+              "command": "resize-pane -R 8",
+              "source": "tmux.conf:60"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+k",
+              "label": "Resize pane up by 8 (repeatable: hold Ctrl and press again)",
+              "command": "resize-pane -U 8",
+              "source": "tmux.conf:61"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+j",
+              "label": "Resize pane down by 8 (repeatable: hold Ctrl and press again)",
+              "command": "resize-pane -D 8",
+              "source": "tmux.conf:62"
+            },
+            {
+              "keys": "Ctrl+Space m",
+              "label": "Mark pane with prefix m (toggles mark), jump back to it with prefix `",
+              "command": "select-pane -m",
+              "source": "tmux.conf:65"
+            },
+            {
+              "keys": "Ctrl+Space `",
+              "label": "Jump to the marked pane",
+              "command": "switch-client -t '{marked}'",
+              "source": "tmux.conf:66"
+            },
+            {
+              "keys": "Ctrl+Space j",
+              "label": "Horizontal",
+              "command": "choose-tree -w 'join-pane -h -s \"%%\"'",
+              "source": "tmux.conf:69"
+            },
+            {
+              "keys": "Ctrl+Space J",
+              "label": "Vertical",
+              "command": "choose-tree -w 'join-pane -s \"%%\"'",
+              "source": "tmux.conf:70"
+            },
+            {
+              "keys": "Ctrl+Space h",
+              "label": "Open scratch notes",
+              "command": "split-window -h \"nvim ~/scratch/notes.md\"",
+              "source": "tmux.conf:90"
+            },
+            {
+              "keys": "Ctrl+Space R",
+              "label": "Reload configuration",
+              "command": "source-file \"$HOME/.config/tmux/tmux.conf\" ; display 'Reloaded.'",
+              "source": "tmux.conf:93"
+            },
+            {
+              "keys": "Ctrl+Space g",
+              "label": "floating lazygit rooted at the pane's cwd",
+              "command": "display-popup -d \"#{pane_current_path}\" -w90% -h90% -E lazygit",
+              "source": "tmux.conf:136"
+            }
+          ]
+        },
+        {
+          "name": "Custom · copy mode (vi)",
+          "bindings": [
+            {
+              "keys": "v",
+              "label": "Begin selection",
+              "command": "send-keys -X begin-selection",
+              "source": "tmux.conf:50"
+            },
+            {
+              "keys": "y",
+              "label": "Copy selection and cancel",
+              "command": "send-keys -X copy-selection-and-cancel",
+              "source": "tmux.conf:51"
+            },
+            {
+              "keys": "r",
+              "label": "Rectangle toggle",
+              "command": "send-keys -X rectangle-toggle",
+              "source": "tmux.conf:52"
+            }
+          ]
+        },
+        {
+          "name": "Stock · prefix (Ctrl+Space then key)",
+          "bindings": [
+            {
+              "keys": "Ctrl+Space Space",
+              "label": "Next preset pane layout",
+              "command": "next-layout"
+            },
+            {
+              "keys": "Ctrl+Space !",
+              "label": "Break pane out into a new window",
+              "command": "break-pane"
+            },
+            {
+              "keys": "Ctrl+Space \"",
+              "label": "Split pane top/bottom",
+              "command": "split-window"
+            },
+            {
+              "keys": "Ctrl+Space #",
+              "label": "List paste buffers",
+              "command": "list-buffers"
+            },
+            {
+              "keys": "Ctrl+Space $",
+              "label": "Rename session",
+              "command": "command-prompt -I \"#S\" { rename-session \"%%\" }"
+            },
+            {
+              "keys": "Ctrl+Space %",
+              "label": "Split pane side by side",
+              "command": "split-window -h"
+            },
+            {
+              "keys": "Ctrl+Space &",
+              "label": " (with confirm)",
+              "command": "confirm-before -p \"kill-window #W? (y/n)\" kill-window"
+            },
+            {
+              "keys": "Ctrl+Space '",
+              "label": "Command prompt: run tmux command",
+              "command": "command-prompt -T window-target -p index { select-window -t \":%%\" }"
+            },
+            {
+              "keys": "Ctrl+Space (",
+              "label": "Previous session",
+              "command": "switch-client -p"
+            },
+            {
+              "keys": "Ctrl+Space )",
+              "label": "Next session",
+              "command": "switch-client -n"
+            },
+            {
+              "keys": "Ctrl+Space *",
+              "label": "New pane in current window",
+              "command": "new-pane"
+            },
+            {
+              "keys": "Ctrl+Space ,",
+              "label": "Rename window",
+              "command": "command-prompt -I \"#W\" { rename-window \"%%\" }"
+            },
+            {
+              "keys": "Ctrl+Space -",
+              "label": "Delete most recent buffer",
+              "command": "delete-buffer"
+            },
+            {
+              "keys": "Ctrl+Space .",
+              "label": "Command prompt: run tmux command",
+              "command": "command-prompt -T target { move-window -t \"%%\" }"
+            },
+            {
+              "keys": "Ctrl+Space /",
+              "label": "Command prompt: run tmux command",
+              "command": "command-prompt -k -p key { list-keys -1N \"%%\" }"
+            },
+            {
+              "keys": "Ctrl+Space 0",
+              "label": "Switch to window 0",
+              "command": "select-window -t :=0"
+            },
+            {
+              "keys": "Ctrl+Space 1",
+              "label": "Switch to window 1",
+              "command": "select-window -t :=1"
+            },
+            {
+              "keys": "Ctrl+Space 2",
+              "label": "Switch to window 2",
+              "command": "select-window -t :=2"
+            },
+            {
+              "keys": "Ctrl+Space 3",
+              "label": "Switch to window 3",
+              "command": "select-window -t :=3"
+            },
+            {
+              "keys": "Ctrl+Space 4",
+              "label": "Switch to window 4",
+              "command": "select-window -t :=4"
+            },
+            {
+              "keys": "Ctrl+Space 5",
+              "label": "Switch to window 5",
+              "command": "select-window -t :=5"
+            },
+            {
+              "keys": "Ctrl+Space 6",
+              "label": "Switch to window 6",
+              "command": "select-window -t :=6"
+            },
+            {
+              "keys": "Ctrl+Space 7",
+              "label": "Switch to window 7",
+              "command": "select-window -t :=7"
+            },
+            {
+              "keys": "Ctrl+Space 8",
+              "label": "Switch to window 8",
+              "command": "select-window -t :=8"
+            },
+            {
+              "keys": "Ctrl+Space 9",
+              "label": "Switch to window 9",
+              "command": "select-window -t :=9"
+            },
+            {
+              "keys": "Ctrl+Space :",
+              "label": "Command prompt: run tmux command",
+              "command": "command-prompt"
+            },
+            {
+              "keys": "Ctrl+Space ;",
+              "label": "Last used pane",
+              "command": "last-pane"
+            },
+            {
+              "keys": "Ctrl+Space <",
+              "label": "Context menu",
+              "command": "display-menu -T \"#[align=centre]#{window_index}:#{window_name}\" -x W -y W \"#{?#{>:#{sessio…"
+            },
+            {
+              "keys": "Ctrl+Space =",
+              "label": "Pick a paste buffer (zoomed modal)",
+              "command": "choose-buffer -Z"
+            },
+            {
+              "keys": "Ctrl+Space >",
+              "label": "Context menu",
+              "command": "display-menu -T \"#[align=centre]#{pane_index} (#{pane_id})\" -x P -y P \"#{?#{m/r:(copy|view…"
+            },
+            {
+              "keys": "Ctrl+Space ?",
+              "label": "List all key bindings (with notes)",
+              "command": "list-keys -N"
+            },
+            {
+              "keys": "Ctrl+Space C",
+              "label": "Interactive option editor (zoomed)",
+              "command": "customize-mode -Z"
+            },
+            {
+              "keys": "Ctrl+Space D",
+              "label": "Detach a client (picker)",
+              "command": "choose-client -Z"
+            },
+            {
+              "keys": "Ctrl+Space E",
+              "label": "Spread panes evenly",
+              "command": "select-layout -E"
+            },
+            {
+              "keys": "Ctrl+Space L",
+              "label": "Last used session",
+              "command": "switch-client -l"
+            },
+            {
+              "keys": "Ctrl+Space M",
+              "label": "Clear the marked pane",
+              "command": "select-pane -M"
+            },
+            {
+              "keys": "Ctrl+Space [",
+              "label": "Enter copy mode (vi keys)",
+              "command": "copy-mode"
+            },
+            {
+              "keys": "Ctrl+Space ]",
+              "label": "Paste buffer (bracketed paste)",
+              "command": "paste-buffer -p"
+            },
+            {
+              "keys": "Ctrl+Space c",
+              "label": "New window",
+              "command": "new-window"
+            },
+            {
+              "keys": "Ctrl+Space d",
+              "label": "Detach from session",
+              "command": "detach-client"
+            },
+            {
+              "keys": "Ctrl+Space f",
+              "label": "Command prompt: run tmux command",
+              "command": "command-prompt { find-window -Z \"%%\" }"
+            },
+            {
+              "keys": "Ctrl+Space i",
+              "label": "Show session info",
+              "command": "display-message"
+            },
+            {
+              "keys": "Ctrl+Space l",
+              "label": "Last used window",
+              "command": "last-window"
+            },
+            {
+              "keys": "Ctrl+Space m",
+              "label": "Mark pane (jump/swaps target it)",
+              "command": "select-pane -m"
+            },
+            {
+              "keys": "Ctrl+Space n",
+              "label": "Next window",
+              "command": "next-window"
+            },
+            {
+              "keys": "Ctrl+Space o",
+              "label": "Next pane in window",
+              "command": "select-pane -t :.+"
+            },
+            {
+              "keys": "Ctrl+Space p",
+              "label": "Previous window",
+              "command": "previous-window"
+            },
+            {
+              "keys": "Ctrl+Space q",
+              "label": "Show pane numbers (type digit to jump)",
+              "command": "display-panes"
+            },
+            {
+              "keys": "Ctrl+Space r",
+              "label": "Refresh client display",
+              "command": "refresh-client"
+            },
+            {
+              "keys": "Ctrl+Space s",
+              "label": "Interactive session/window/pane browser",
+              "command": "choose-tree -Zs"
+            },
+            {
+              "keys": "Ctrl+Space t",
+              "label": "Show a big clock",
+              "command": "clock-mode"
+            },
+            {
+              "keys": "Ctrl+Space w",
+              "label": "Interactive session/window/pane browser",
+              "command": "choose-tree -Zw"
+            },
+            {
+              "keys": "Ctrl+Space x",
+              "label": " (with confirm)",
+              "command": "confirm-before -p \"kill-pane #P? (y/n)\" kill-pane"
+            },
+            {
+              "keys": "Ctrl+Space z",
+              "label": "Toggle pane zoom",
+              "command": "resize-pane -Z"
+            },
+            {
+              "keys": "Ctrl+Space {",
+              "label": "Swap with previous pane",
+              "command": "swap-pane -U"
+            },
+            {
+              "keys": "Ctrl+Space }",
+              "label": "Swap with next pane",
+              "command": "swap-pane -D"
+            },
+            {
+              "keys": "Ctrl+Space ~",
+              "label": "Message / log history",
+              "command": "show-messages"
+            },
+            {
+              "keys": "Ctrl+Space Delete",
+              "label": "Force client resize",
+              "command": "refresh-client -c"
+            },
+            {
+              "keys": "Ctrl+Space PageUp",
+              "label": "Copy mode, scrolled half a page up",
+              "command": "copy-mode -u"
+            },
+            {
+              "keys": "Ctrl+Space Up",
+              "label": "Focus pane up",
+              "command": "select-pane -U"
+            },
+            {
+              "keys": "Ctrl+Space Down",
+              "label": "Focus pane down",
+              "command": "select-pane -D"
+            },
+            {
+              "keys": "Ctrl+Space Left",
+              "label": "Focus pane left",
+              "command": "select-pane -L"
+            },
+            {
+              "keys": "Ctrl+Space Right",
+              "label": "Focus pane right",
+              "command": "select-pane -R"
+            },
+            {
+              "keys": "Ctrl+Space Alt+1",
+              "label": "Layout: even horizontal",
+              "command": "select-layout even-horizontal"
+            },
+            {
+              "keys": "Ctrl+Space Alt+2",
+              "label": "Layout: even vertical",
+              "command": "select-layout even-vertical"
+            },
+            {
+              "keys": "Ctrl+Space Alt+3",
+              "label": "Layout: main horizontal",
+              "command": "select-layout main-horizontal"
+            },
+            {
+              "keys": "Ctrl+Space Alt+4",
+              "label": "Layout: main vertical",
+              "command": "select-layout main-vertical"
+            },
+            {
+              "keys": "Ctrl+Space Alt+5",
+              "label": "Layout: tiled",
+              "command": "select-layout tiled"
+            },
+            {
+              "keys": "Ctrl+Space Alt+6",
+              "label": "Layout: main horizontal mirrored",
+              "command": "select-layout main-horizontal-mirrored"
+            },
+            {
+              "keys": "Ctrl+Space Alt+7",
+              "label": "Layout: main vertical mirrored",
+              "command": "select-layout main-vertical-mirrored"
+            },
+            {
+              "keys": "Ctrl+Space Alt+n",
+              "label": "Next window with activity",
+              "command": "next-window -a"
+            },
+            {
+              "keys": "Ctrl+Space Alt+o",
+              "label": "Rotate panes within window (reverse)",
+              "command": "rotate-window -D"
+            },
+            {
+              "keys": "Ctrl+Space Alt+p",
+              "label": "Previous window with activity",
+              "command": "previous-window -a"
+            },
+            {
+              "keys": "Ctrl+Space Alt+Up",
+              "label": "Resize pane up by 5",
+              "command": "resize-pane -U 5"
+            },
+            {
+              "keys": "Ctrl+Space Alt+Down",
+              "label": "Resize pane down by 5",
+              "command": "resize-pane -D 5"
+            },
+            {
+              "keys": "Ctrl+Space Alt+Left",
+              "label": "Resize pane left by 5",
+              "command": "resize-pane -L 5"
+            },
+            {
+              "keys": "Ctrl+Space Alt+Right",
+              "label": "Resize pane right by 5",
+              "command": "resize-pane -R 5"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+b",
+              "label": "Send the prefix key to the pane (nested tmux)",
+              "command": "send-prefix"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+o",
+              "label": "Rotate panes within window",
+              "command": "rotate-window"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+z",
+              "label": "Suspend the tmux client",
+              "command": "suspend-client"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+Up",
+              "label": "Resize pane up by 1",
+              "command": "resize-pane -U"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+Down",
+              "label": "Resize pane down by 1",
+              "command": "resize-pane -D"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+Left",
+              "label": "Resize pane left by 1",
+              "command": "resize-pane -L"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+Right",
+              "label": "Resize pane right by 1",
+              "command": "resize-pane -R"
+            },
+            {
+              "keys": "Ctrl+Space Shift+Up",
+              "label": "Adjust client region up by 10",
+              "command": "refresh-client -U 10"
+            },
+            {
+              "keys": "Ctrl+Space Shift+Down",
+              "label": "Adjust client region down by 10",
+              "command": "refresh-client -D 10"
+            },
+            {
+              "keys": "Ctrl+Space Shift+Left",
+              "label": "Adjust client region left by 10",
+              "command": "refresh-client -L 10"
+            },
+            {
+              "keys": "Ctrl+Space Shift+Right",
+              "label": "Adjust client region right by 10",
+              "command": "refresh-client -R 10"
+            }
+          ]
+        },
+        {
+          "name": "Stock · copy mode (vi keys)",
+          "bindings": [
+            {
+              "keys": "Enter",
+              "label": "Copy selection & exit (to system clipboard)",
+              "command": "send-keys -X copy-pipe-and-cancel"
+            },
+            {
+              "keys": "Escape",
+              "label": "Clear selection",
+              "command": "send-keys -X clear-selection"
+            },
+            {
+              "keys": "Space",
+              "label": "Begin selection",
+              "command": "send-keys -X begin-selection"
+            },
+            {
+              "keys": "#",
+              "label": "Search backward for word under cursor",
+              "command": "send-keys -FX search-backward -- \"#{copy_cursor_word}\""
+            },
+            {
+              "keys": "$",
+              "label": "End of line",
+              "command": "send-keys -X end-of-line"
+            },
+            {
+              "keys": "%",
+              "label": "Next matching bracket",
+              "command": "send-keys -X next-matching-bracket"
+            },
+            {
+              "keys": "*",
+              "label": "Search forward for word under cursor",
+              "command": "send-keys -FX search-forward -- \"#{copy_cursor_word}\""
+            },
+            {
+              "keys": ",",
+              "label": "Repeat last jump motion, reversed",
+              "command": "send-keys -X jump-reverse"
+            },
+            {
+              "keys": "/",
+              "label": "Search forward (prompt for query)",
+              "command": "command-prompt -T search -p \"(search down)\" { send-keys -X search-forward -- \"%%\" }"
+            },
+            {
+              "keys": "0",
+              "label": "Start of line",
+              "command": "send-keys -X start-of-line"
+            },
+            {
+              "keys": "1",
+              "label": "Repeat-count digit 1 (argument for motions)",
+              "command": "command-prompt -N -I 1 -p (repeat) { send-keys -N \"%%\" }"
+            },
+            {
+              "keys": "2",
+              "label": "Repeat-count digit 2 (argument for motions)",
+              "command": "command-prompt -N -I 2 -p (repeat) { send-keys -N \"%%\" }"
+            },
+            {
+              "keys": "3",
+              "label": "Repeat-count digit 3 (argument for motions)",
+              "command": "command-prompt -N -I 3 -p (repeat) { send-keys -N \"%%\" }"
+            },
+            {
+              "keys": "4",
+              "label": "Repeat-count digit 4 (argument for motions)",
+              "command": "command-prompt -N -I 4 -p (repeat) { send-keys -N \"%%\" }"
+            },
+            {
+              "keys": "5",
+              "label": "Repeat-count digit 5 (argument for motions)",
+              "command": "command-prompt -N -I 5 -p (repeat) { send-keys -N \"%%\" }"
+            },
+            {
+              "keys": "6",
+              "label": "Repeat-count digit 6 (argument for motions)",
+              "command": "command-prompt -N -I 6 -p (repeat) { send-keys -N \"%%\" }"
+            },
+            {
+              "keys": "7",
+              "label": "Repeat-count digit 7 (argument for motions)",
+              "command": "command-prompt -N -I 7 -p (repeat) { send-keys -N \"%%\" }"
+            },
+            {
+              "keys": "8",
+              "label": "Repeat-count digit 8 (argument for motions)",
+              "command": "command-prompt -N -I 8 -p (repeat) { send-keys -N \"%%\" }"
+            },
+            {
+              "keys": "9",
+              "label": "Repeat-count digit 9 (argument for motions)",
+              "command": "command-prompt -N -I 9 -p (repeat) { send-keys -N \"%%\" }"
+            },
+            {
+              "keys": ":",
+              "label": "Go to line (prompt)",
+              "command": "command-prompt -p \"(goto line)\" { send-keys -X goto-line -- \"%%\" }"
+            },
+            {
+              "keys": ";",
+              "label": "Repeat last jump motion",
+              "command": "send-keys -X jump-again"
+            },
+            {
+              "keys": "?",
+              "label": "Search backward (prompt for query)",
+              "command": "command-prompt -T search -p \"(search up)\" { send-keys -X search-backward -- \"%%\" }"
+            },
+            {
+              "keys": "A",
+              "label": "Append selection and cancel",
+              "command": "send-keys -X append-selection-and-cancel"
+            },
+            {
+              "keys": "B",
+              "label": "Previous space",
+              "command": "send-keys -X previous-space"
+            },
+            {
+              "keys": "D",
+              "label": "Copy pipe end of line and cancel",
+              "command": "send-keys -X copy-pipe-end-of-line-and-cancel"
+            },
+            {
+              "keys": "E",
+              "label": "Next space end",
+              "command": "send-keys -X next-space-end"
+            },
+            {
+              "keys": "F",
+              "label": "Jump backward to char (prompt, like vim F)",
+              "command": "command-prompt -1 -p \"(jump backward)\" { send-keys -X jump-backward -- \"%%\" }"
+            },
+            {
+              "keys": "G",
+              "label": "History bottom",
+              "command": "send-keys -X history-bottom"
+            },
+            {
+              "keys": "H",
+              "label": "Top line",
+              "command": "send-keys -X top-line"
+            },
+            {
+              "keys": "J",
+              "label": "Scroll down",
+              "command": "send-keys -X scroll-down"
+            },
+            {
+              "keys": "K",
+              "label": "Scroll up",
+              "command": "send-keys -X scroll-up"
+            },
+            {
+              "keys": "L",
+              "label": "Bottom line",
+              "command": "send-keys -X bottom-line"
+            },
+            {
+              "keys": "M",
+              "label": "Middle line",
+              "command": "send-keys -X middle-line"
+            },
+            {
+              "keys": "N",
+              "label": "Search reverse",
+              "command": "send-keys -X search-reverse"
+            },
+            {
+              "keys": "P",
+              "label": "Toggle position",
+              "command": "send-keys -X toggle-position"
+            },
+            {
+              "keys": "T",
+              "label": "Jump until before char, backward (vim T)",
+              "command": "command-prompt -1 -p \"(jump to backward)\" { send-keys -X jump-to-backward -- \"%%\" }"
+            },
+            {
+              "keys": "V",
+              "label": "Select line",
+              "command": "send-keys -X select-line"
+            },
+            {
+              "keys": "W",
+              "label": "Next space",
+              "command": "send-keys -X next-space"
+            },
+            {
+              "keys": "X",
+              "label": "Set mark",
+              "command": "send-keys -X set-mark"
+            },
+            {
+              "keys": "^",
+              "label": "First non-blank char",
+              "command": "send-keys -X back-to-indentation"
+            },
+            {
+              "keys": "b",
+              "label": "Previous word",
+              "command": "send-keys -X previous-word"
+            },
+            {
+              "keys": "e",
+              "label": "Next word end",
+              "command": "send-keys -X next-word-end"
+            },
+            {
+              "keys": "f",
+              "label": "Jump forward to char (prompt, like vim f)",
+              "command": "command-prompt -1 -p \"(jump forward)\" { send-keys -X jump-forward -- \"%%\" }"
+            },
+            {
+              "keys": "g",
+              "label": "History top",
+              "command": "send-keys -X history-top"
+            },
+            {
+              "keys": "h",
+              "label": "Cursor left",
+              "command": "send-keys -X cursor-left"
+            },
+            {
+              "keys": "j",
+              "label": "Cursor down",
+              "command": "send-keys -X cursor-down"
+            },
+            {
+              "keys": "k",
+              "label": "Cursor up",
+              "command": "send-keys -X cursor-up"
+            },
+            {
+              "keys": "l",
+              "label": "Cursor right",
+              "command": "send-keys -X cursor-right"
+            },
+            {
+              "keys": "n",
+              "label": "Search again",
+              "command": "send-keys -X search-again"
+            },
+            {
+              "keys": "o",
+              "label": "Other end",
+              "command": "send-keys -X other-end"
+            },
+            {
+              "keys": "q",
+              "label": "Exit copy mode",
+              "command": "send-keys -X cancel"
+            },
+            {
+              "keys": "r",
+              "label": "Refresh from pane",
+              "command": "send-keys -X refresh-from-pane"
+            },
+            {
+              "keys": "t",
+              "label": "Jump until before char, forward (vim t)",
+              "command": "command-prompt -1 -p \"(jump to forward)\" { send-keys -X jump-to-forward -- \"%%\" }"
+            },
+            {
+              "keys": "v",
+              "label": "Toggle block/rectangle selection",
+              "command": "send-keys -X rectangle-toggle"
+            },
+            {
+              "keys": "w",
+              "label": "Next word",
+              "command": "send-keys -X next-word"
+            },
+            {
+              "keys": "z",
+              "label": "Scroll middle",
+              "command": "send-keys -X scroll-middle"
+            },
+            {
+              "keys": "{",
+              "label": "Previous paragraph",
+              "command": "send-keys -X previous-paragraph"
+            },
+            {
+              "keys": "}",
+              "label": "Next paragraph",
+              "command": "send-keys -X next-paragraph"
+            },
+            {
+              "keys": "Backspace",
+              "label": "Cursor left",
+              "command": "send-keys -X cursor-left"
+            },
+            {
+              "keys": "Home",
+              "label": "Start of line",
+              "command": "send-keys -X start-of-line"
+            },
+            {
+              "keys": "End",
+              "label": "End of line",
+              "command": "send-keys -X end-of-line"
+            },
+            {
+              "keys": "PageDown",
+              "label": "Page down",
+              "command": "send-keys -X page-down"
+            },
+            {
+              "keys": "PageUp",
+              "label": "Page up",
+              "command": "send-keys -X page-up"
+            },
+            {
+              "keys": "Up",
+              "label": "Cursor up",
+              "command": "send-keys -X cursor-up"
+            },
+            {
+              "keys": "Down",
+              "label": "Cursor down",
+              "command": "send-keys -X cursor-down"
+            },
+            {
+              "keys": "Left",
+              "label": "Cursor left",
+              "command": "send-keys -X cursor-left"
+            },
+            {
+              "keys": "Right",
+              "label": "Cursor right",
+              "command": "send-keys -X cursor-right"
+            },
+            {
+              "keys": "Alt+x",
+              "label": "Jump to mark",
+              "command": "send-keys -X jump-to-mark"
+            },
+            {
+              "keys": "Ctrl+[",
+              "label": "Clear selection",
+              "command": "send-keys -X clear-selection"
+            },
+            {
+              "keys": "Ctrl+b",
+              "label": "Page up",
+              "command": "send-keys -X page-up"
+            },
+            {
+              "keys": "Ctrl+c",
+              "label": "Exit copy mode",
+              "command": "send-keys -X cancel"
+            },
+            {
+              "keys": "Ctrl+d",
+              "label": "Halfpage down",
+              "command": "send-keys -X halfpage-down"
+            },
+            {
+              "keys": "Ctrl+e",
+              "label": "Scroll down",
+              "command": "send-keys -X scroll-down"
+            },
+            {
+              "keys": "Ctrl+f",
+              "label": "Page down",
+              "command": "send-keys -X page-down"
+            },
+            {
+              "keys": "Ctrl+h",
+              "label": "Cursor left",
+              "command": "send-keys -X cursor-left"
+            },
+            {
+              "keys": "Ctrl+j",
+              "label": "Copy selection & exit (to system clipboard)",
+              "command": "send-keys -X copy-pipe-and-cancel"
+            },
+            {
+              "keys": "Ctrl+u",
+              "label": "Halfpage up",
+              "command": "send-keys -X halfpage-up"
+            },
+            {
+              "keys": "Ctrl+v",
+              "label": "Toggle block/rectangle selection",
+              "command": "send-keys -X rectangle-toggle"
+            },
+            {
+              "keys": "Ctrl+y",
+              "label": "Scroll up",
+              "command": "send-keys -X scroll-up"
+            },
+            {
+              "keys": "Ctrl+Up",
+              "label": "Scroll up",
+              "command": "send-keys -X scroll-up"
+            },
+            {
+              "keys": "Ctrl+Down",
+              "label": "Scroll down",
+              "command": "send-keys -X scroll-down"
             }
           ]
         }

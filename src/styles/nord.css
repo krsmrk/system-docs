@@ -20,33 +20,47 @@
   --frost-dim: #5e81ac; /* nord10 */
   --kbd-bg: #434c5e;
   --kbd-border: #4c566a;
+  --kbd-edge: color-mix(in srgb, #2e3440 60%, #4c566a); /* keycap bottom ridge */
+  --kbd-mod: #8fbcbb;   /* modifier text inside keycaps */
+  --kbd-island: #343b48; /* color-mix(in srgb, #2e3440 35%, #3b4252) */
+  --on-accent: #2e3440; /* text on accent fills */
+  --header-bg: rgba(46, 52, 64, 0.78);
+  --border-strong: color-mix(in srgb, #eceff4 20%, #4c566a);
   --mark: rgba(136, 192, 208, 0.35);
 }
 
 :root[data-theme="light"] {
   color-scheme: light;
-  /* Nord light = Snow Storm surfaces with Polar Night text. Backgrounds run
-     nord6 → nord5 → nord4 (each layer slightly darker), borders use a
-     stronger derived shade so panels/chips don't wash out. */
-  --bg: #eceff4;        /* nord6 */
-  --bg-panel: #e5e9f0;  /* nord5 */
-  --bg-raised: #d8dee9; /* nord4 */
-  --border: #a8b5c8;    /* derived: nord3↔nord4 halfway */
-  --fg: #3b4252;        /* nord1 */
-  --fg-bright: #2e3440; /* nord0 */
+  /* Strict Nord palette (nordtheme.com): Snow Storm surfaces (nord5 page →
+     nord6 cards → nord4 insets/borders), Polar Night text (nord0 / nord3),
+     Frost accents (nord10 links+nord9, the official light-bg Frost colors),
+     Aurora semantics. The only derived shades are color-mix()es of pure
+     palette colors. */
+  --bg: #e5e9f0;        /* nord5, page */
+  --bg-panel: #eceff4;  /* nord6, cards/panels */
+  --bg-raised: #d8dee9; /* nord4, chips */
+  --border: #d8dee9;    /* nord4 */
+  --border-strong: color-mix(in srgb, #4c566a 38%, #eceff4);
+  --fg: #2e3440;        /* nord0 */
+  --fg-bright: #2e3440;
   --fg-dim: #4c566a;    /* nord3 */
-  --accent: #5e81ac;    /* nord10 */
-  --accent-2: #5e81ac;  /* nord10 */
-  --link: #48678c;      /* derived: nord10 darkened for contrast on snow */
-  --warn: #8f6f2e;      /* derived: nord13 darkened */
+  --accent: #5e81ac;    /* nord10: primary action/fill on snow */
+  --accent-2: #81a1c1;  /* nord9 */
+  --link: #5e81ac;      /* nord10, per spec the link color on light */
+  --on-accent: #eceff4;
+  --warn: #d08770;      /* nord12 */
   --error: #bf616a;     /* nord11 */
-  --ok: #6d8852;        /* derived: nord14 darkened */
-  --purple: #8a6884;    /* derived: nord15 darkened */
-  --teal: #3f7f7b;      /* derived: nord7 darkened (mod chips) */
+  --ok: #a3be8c;        /* nord14 */
+  --purple: #b48ead;    /* nord15 */
+  --teal: #8fbcbb;      /* nord7 */
   --frost-dim: #81a1c1; /* nord9 */
-  --kbd-bg: #f4f6f9;    /* derived: snow-bright keycap tops */
-  --kbd-border: #96a4bb; /* derived: strong keycap edge */
-  --mark: rgba(94, 129, 172, 0.28);
+  --kbd-bg: #eceff4;
+  --kbd-border: #d8dee9;
+  --kbd-edge: color-mix(in srgb, #4c566a 32%, #d8dee9);
+  --kbd-mod: #5e81ac;   /* nord10: modifier text inside keycaps */
+  --kbd-island: color-mix(in srgb, #4c566a 18%, #d8dee9);
+  --mark: rgba(136, 192, 208, 0.45); /* nord8 alpha */
+  --header-bg: rgba(236, 239, 244, 0.82);
 }
 
 * { box-sizing: border-box; }
@@ -92,33 +106,71 @@ a:hover { text-decoration: underline; }
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.6rem 1.25rem;
-  background: var(--bg-panel);
+  z-index: 40;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
   border-bottom: 1px solid var(--border);
 }
+.site-header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
 .site-header .site-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: -0.015em;
   color: var(--fg-bright);
   white-space: nowrap;
 }
-.site-header .site-title span.dim { color: var(--fg-dim); font-weight: 400; }
-.site-header nav { display: flex; gap: 1rem; flex: 1; }
-.site-header nav a { color: var(--fg); }
-.site-header nav a:hover, .site-header nav a[aria-current] { color: var(--accent); }
-[data-theme-toggle] {
-  background: var(--bg-raised);
-  color: var(--fg-bright);
+.site-header .site-title:hover { text-decoration: none; color: var(--accent); }
+.site-header .brand-mark { display: inline-flex; color: var(--accent); }
+.site-header nav {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: color-mix(in srgb, var(--bg-panel) 72%, transparent);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 0.2rem 0.55rem;
-  cursor: pointer;
-  font-size: 1rem;
+  border-radius: 999px;
 }
-[data-theme-toggle]:hover { border-color: var(--accent); }
+.site-header nav a {
+  padding: 0.3rem 0.95rem;
+  border-radius: 999px;
+  color: var(--fg-dim);
+  font-weight: 600;
+  font-size: 0.86rem;
+  transition: color 0.12s ease, background-color 0.12s ease;
+}
+.site-header nav a:hover {
+  color: var(--fg-bright);
+  background: var(--bg-raised);
+  text-decoration: none;
+}
+.site-header nav a[aria-current] {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+[data-theme-toggle] {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: color-mix(in srgb, var(--bg-panel) 72%, transparent);
+  color: var(--fg-dim);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+[data-theme-toggle]:hover { border-color: var(--accent); color: var(--accent); }
 
 main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
 
@@ -243,7 +295,7 @@ kbd {
   line-height: 1.45;
   color: var(--fg-bright);
 }
-kbd .mod { color: var(--teal); }
+kbd .mod { color: var(--kbd-mod); }
 kbd .key { color: var(--fg-bright); }
 .kb-plus { color: var(--fg-dim); }
 .kb-seq { color: var(--fg-dim); } /* space between chord steps (zsh ^X b) */
@@ -265,16 +317,18 @@ kbd .key { color: var(--fg-bright); }
 .kb-layer-chip[aria-pressed="true"] {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--bg);
+  color: var(--on-accent);
   font-weight: 600;
 }
+.kb-layer-chip:hover { border-color: var(--accent); color: var(--accent); }
+.kb-layer-chip[aria-pressed="true"]:hover { color: var(--on-accent); }
 .kb-board {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
   overflow-x: auto;
   padding: 0.75rem;
-  background: var(--bg-panel);
+  background: var(--kbd-island);
   border: 1px solid var(--border);
   border-radius: 10px;
 }
@@ -284,15 +338,16 @@ kbd .key { color: var(--fg-bright); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.15rem;
-  height: 2.15rem;
-  padding: 0 0.3rem;
+  min-width: 2.2rem;
+  height: 2.2rem;
+  padding: 0 0.32rem;
   background: var(--kbd-bg);
   border: 1px solid var(--kbd-border);
-  border-bottom-width: 3px;
-  border-radius: 5px;
-  font-family: "Iosevka Skiouros", ui-monospace, Menlo, monospace;
+  border-bottom: 3px solid var(--kbd-edge);
+  border-radius: 7px;
+  font-family: "JetBrains Mono Variable", "Iosevka Skiouros", ui-monospace, Menlo, monospace;
   font-size: 0.78rem;
+  font-weight: 500;
   color: var(--fg);
   user-select: none;
 }
@@ -310,13 +365,13 @@ kbd .key { color: var(--fg-bright); }
 .kb-key.active {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--bg);
+  color: var(--on-accent);
   font-weight: 700;
   cursor: pointer;
 }
 .kb-key.spacer { visibility: hidden; border: none; background: transparent; }
 .kb-key .sub { display: block; font-size: 0.6rem; color: var(--fg-dim); }
-.kb-key.active .sub { color: var(--bg); }
+.kb-key.active .sub { color: var(--on-accent); }
 
 .kb-tooltip {
   position: fixed;
@@ -409,16 +464,6 @@ article img { max-width: 100%; }
 }
 .skip-link:focus { left: 0; color: #eceff4; text-decoration: none; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
-
-/* sticky header */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  background: var(--bg);
-}
-.site-header .brand-mark { color: var(--accent); margin-right: 0.2ch; }
-.site-header .site-title { font-weight: 700; }
 
 /* hero: stats row */
 .hero { margin-bottom: 1.75rem; }

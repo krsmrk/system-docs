@@ -198,9 +198,19 @@ Needs `permissions: pages: write, id-token: write`, environment `github-pages`.
 ## Updating data (sync flow)
 
 The extractor lives in nixos_config: `scripts/extract-keybinds.mjs` +
-`scripts/extract/lib/{keys,parseNiri,parseWaybar,parseYazi,parseZsh}.mjs`.
+`scripts/extract/lib/{keys,parseNiri,parseWaybar,parseYazi,parseZsh,parseTmux}.mjs`.
 `just update-docs` there writes `data/keybinds.json` here, commits and pushes.
 This repo's CI (`.github/workflows/pages.yml`) rebuilds + deploys on `main`.
+
+### Light-theme tokens (strict Nord)
+
+`--bg` nord5, `--bg-panel` nord6, `--bg-raised`/`--border` nord4,
+`--fg` nord0, `--fg-dim` nord3, fill accent nord10 (`--accent`) with
+`--on-accent` nord6 text, `--accent-2` nord9, `--link` nord10. Keyboard:
+page nord5 → card nord6 → `.kb-board` island `--kbd-island`
+(color-mix nord3 18% + nord4) → caps `--kbd-bg` nord6 with `--kbd-edge`
+ridge; modifier text `--kbd-mod` nord10. Aurora `warn/error/ok/purple` kept
+pure; only `--border-strong`/ridges/island are color-mix derived.
 
 ## Non-goals
 

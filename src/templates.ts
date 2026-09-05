@@ -84,12 +84,14 @@ export function page(o: PageOptions): string {
 <body data-page="${esc(o.page)}"${appAttr}>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" id="top">
+    <div class="site-header-inner">
     <a class="site-title" href="${rel}index.html"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="4"/><path d="M6.8 8.5l4 3.5-4 3.5"/><line x1="13" y1="15.5" x2="17.5" y2="15.5"/></svg></span> box manual</a>
-    <nav>
+    <nav aria-label="Site">
       <a href="${rel}index.html" data-nav="index">Overview</a>
       <a href="${rel}index.html#guides" data-nav="guides">Guides</a>
     </nav>
     <button data-theme-toggle type="button" aria-label="Toggle dark/light theme">☾</button>
+    </div>
   </header>
   <main id="main">
 ${o.body}
