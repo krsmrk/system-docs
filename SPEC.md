@@ -109,6 +109,13 @@ Curated stock defaults (research agents, official docs — files in
   prefers-color-scheme); skip-link; footer has ↑ top link. `@media print`
   forces a light ink-saving palette and hides interactive chrome.
 
+## Themes & assets
+
+Fonts are bundled woff2 (Inter + JetBrains Mono variable, latin subsets,
+from @fontsource-variable/*) with local "Iosevka Skiouros" preferred for
+mono when installed. App icons are consistent inline SVG (24px stroke,
+currentColor) defined in build.mts, with the data `icon` glyph as fallback.
+
 ## Widgets (src/widgets/, bundled to assets/app.js)
 
 1. **filter.ts** — on `body[data-page="app"]`: attach to `.kb-filter`.

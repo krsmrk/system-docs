@@ -76,6 +76,24 @@ interface GuideDoc {
 /** Landing-page card order (SPEC "Build pipeline"); unknown ids sort last. */
 const APP_ORDER = ["niri", "waybar", "fuzzel", "ghostty", "yazi", "zathura", "zsh"];
 
+// Consistent inline-SVG icons (24px, stroke style, currentColor). The data
+// schema's `icon` glyph remains the fallback for ids not listed here.
+const S = (inner: string): string =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
+const APP_SVG: Record<string, string> = {
+  niri: S('<rect x="3" y="4" width="5" height="16" rx="1"/><rect x="9.5" y="4" width="5" height="16" rx="1"/><rect x="16" y="4" width="5" height="16" rx="1"/>'),
+  waybar: S('<rect x="2.5" y="5.5" width="19" height="3.4" rx="1.7" fill="currentColor" stroke="none"/><rect x="2.5" y="12" width="5.5" height="2.6" rx="1.3" fill="currentColor" stroke="none" opacity="0.5"/><rect x="9.3" y="12" width="5.5" height="2.6" rx="1.3" fill="currentColor" stroke="none" opacity="0.5"/><rect x="16" y="12" width="5.5" height="2.6" rx="1.3" fill="currentColor" stroke="none" opacity="0.5"/>'),
+  fuzzel: S('<circle cx="10" cy="10" r="6.5"/><line x1="14.8" y1="14.8" x2="20.6" y2="20.6" stroke-width="2.2"/>'),
+  ghostty: S('<rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M7 9.5l3 2.5-3 2.5"/><line x1="12.5" y1="14.5" x2="17.5" y2="14.5"/>'),
+  yazi: S('<path d="M3 6.5a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>'),
+  zathura: S('<path d="M6 3h8l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M13.5 3v5h5"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="16.5" x2="14" y2="16.5"/>'),
+  zsh: S('<path d="M5 7l6 5-6 5"/><line x1="13.5" y1="17.5" x2="20" y2="17.5" stroke-width="2.2"/>'),
+};
+
+function appIcon(app: App): string {
+  return APP_SVG[app.id] ?? esc(app.icon);
+}
+
 function fail(msg: string): never {
   console.error(`build: fatal: ${msg}`);
   process.exit(1);
@@ -300,7 +318,7 @@ function renderIndexBody(data: KeybindsFile, guides: GuideDoc[]): string {
         .join("");
       const keysLine = preview !== "" ? `      <div class="card-keys" aria-hidden="true">${preview}</div>\n` : "";
       return `    <a class="app-card" href="apps/${esc(app.id)}.html">
-      <span class="card-icon" aria-hidden="true">${esc(app.icon)}</span>
+      <span class="card-icon" aria-hidden="true">${appIcon(app)}</span>
       <h3>${esc(app.title)}</h3>
       <p class="tagline">${esc(app.tagline)}</p>
 ${keysLine}      <div class="card-meta"><span class="count">${total} ${total === 1 ? "binding" : "bindings"}</span><span>${app.groups.length} ${app.groups.length === 1 ? "group" : "groups"}</span></div>
@@ -361,7 +379,7 @@ function renderAppBody(app: App, guideBySlug: ReadonlyMap<string, GuideDoc>): st
     : "";
 
   const header = `<div class="app-header">
-  <h1><span class="app-icon" aria-hidden="true">${esc(app.icon)}</span> ${esc(app.title)}</h1>
+  <h1><span class="app-icon" aria-hidden="true">${appIcon(app)}</span> ${esc(app.title)}</h1>
   <p class="tagline">${esc(app.tagline)}</p>
   <p class="app-desc">${esc(app.description)}</p>${relatedGuide}
 </div>`;

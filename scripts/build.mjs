@@ -63,6 +63,10 @@ if (run.status !== 0) process.exit(run.status ?? 1);
 // 4. stylesheet + favicon
 await copyFile(join(root, "src/styles/nord.css"), join(dist, "assets/app.css"));
 await copyFile(join(root, "src/assets/favicon.svg"), join(dist, "assets/favicon.svg"));
+await mkdir(join(dist, "assets/fonts"), { recursive: true });
+for (const f of ["inter-latin-wght-normal.woff2", "jetbrains-mono-latin-wght-normal.woff2"]) {
+  await copyFile(join(root, "src/assets/fonts", f), join(dist, "assets/fonts", f));
+}
 
 console.log("✓ built dist/");
 
