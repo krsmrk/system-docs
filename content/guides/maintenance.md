@@ -22,6 +22,7 @@ anywhere (`j` / `j --list` are aliased in zsh).
 | `just fmt` | treefmt over the repo (nix + shell) |
 | `just check` | full gate: fmt + shellcheck of wrappers + eval/build of the toplevel |
 | `just rollback` | roll back to the previous generation, set as boot default |
+| `just update-docs` | extract keybindings from the live config and push them to [system-docs](https://github.com/krsmrk/system-docs) (this site) |
 
 Bare `nh os switch` also works from any directory (`NH_FLAKE` is set system-wide),
 same for `nh os build`, `nh os test`, `nh os rollback`. The classic spelling is
