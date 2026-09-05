@@ -506,16 +506,8 @@ article img { max-width: 100%; }
 .hero-stats .stat strong { color: var(--accent); font-weight: 700; }
 .hero-stats .stat.dim { background: transparent; border-style: dashed; color: var(--fg-dim); }
 
-/* app cards: keycap preview */
-.app-card .card-keys { display: flex; gap: 0.25rem; margin-top: 0.4rem; min-height: 1.2rem; flex-wrap: wrap; }
-.app-card .card-keys kbd {
-  font-size: 0.68rem;
-  padding: 0.05rem 0.3rem;
-  min-width: 0;
-  opacity: 0.9;
-}
-
 /* app page header + guide chip */
+
 .app-header h1 { font-size: 2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
 .app-header .tagline { font-size: 1rem; }
 .app-header .app-desc { max-width: 70ch; }

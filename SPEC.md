@@ -96,9 +96,7 @@ Curated stock defaults (research agents, official docs - files in
 
 - Landing page: `body[data-page="index"]`, hero with site stats
   (`.hero-stats`: bindings/apps/guides/generated-date chips), grid of
-  `.app-card` elements each with a `.card-keys` keycap preview (curated
-  signature combos per app via `CARD_HINTS` in build.mts; unknown ids fall
-  back to the first three plain-key bindings), plus a guide
+  `.app-card` elements (icon, title, tagline, counts), plus a guide
   list. No widgets required on index (pure CSS grid).
 - Guide pages: `body[data-page="guide"]`, `<article>` + `<nav class="toc">`
   built from h2/h3 headings at build time.
