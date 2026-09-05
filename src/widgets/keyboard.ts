@@ -320,6 +320,12 @@ export function initKeyboard(): void {
     for (const btn of keyEls.values()) {
       btn.classList.remove("bound", "active");
     }
+    // modifiers of the selected layer stay visually held down
+    const held = selected === "none" ? [] : selected.split("+");
+    for (const [token, els] of keyElsAll) {
+      if (!MOD_SET.has(token)) continue;
+      for (const el of els) el.classList.toggle("held", held.includes(token));
+    }
     for (const [token, list] of tokenChords) {
       const els = keysForToken(token);
       if (els.length === 0) continue;

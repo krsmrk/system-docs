@@ -96,7 +96,9 @@ Curated stock defaults (research agents, official docs - files in
 
 - Landing page: `body[data-page="index"]`, hero with site stats
   (`.hero-stats`: bindings/apps/guides/generated-date chips), grid of
-  `.app-card` elements each with a `.card-keys` keycap preview, plus a guide
+  `.app-card` elements each with a `.card-keys` keycap preview (curated
+  signature combos per app via `CARD_HINTS` in build.mts; unknown ids fall
+  back to the first three plain-key bindings), plus a guide
   list. No widgets required on index (pure CSS grid).
 - Guide pages: `body[data-page="guide"]`, `<article>` + `<nav class="toc">`
   built from h2/h3 headings at build time.
@@ -106,12 +108,14 @@ Curated stock defaults (research agents, official docs - files in
 - All pages share one sticky header: site title "box manual", nav
   links (Overview, Guides; active one gets `aria-current="page"`), Nord theme
   toggle (dark/light, persists localStorage, default dark, respects
-  prefers-color-scheme); skip-link; footer has ↑ top link. `@media print`
+  prefers-color-scheme); skip-link; footer has ↑ top link (JS smooth-scroll;
+  the bare `#top` anchor is a silent no-op on a second click once the hash
+  is already set, so main.ts intercepts it). `@media print`
   forces a light ink-saving palette and hides interactive chrome.
 
 ## Themes & assets
 
-Fonts are bundled woff2 (Inter + JetBrains Mono variable, latin subsets,
+Fonts are bundled woff2 (Roboto Condensed + JetBrains Mono variable, latin subsets,
 from @fontsource-variable/*) with local "Iosevka Skiouros" preferred for
 mono when installed. App icons are consistent inline SVG (24px stroke,
 currentColor) defined in build.mts, with the data `icon` glyph as fallback.
@@ -130,10 +134,12 @@ currentColor) defined in build.mts, with the data `icon` glyph as fallback.
    (105-key, backslash/pipe key between Left-Shift and Z, big Enter) as a
    <div> grid. Layer chips above it derived from modifier combos present in
    the app's bindings (e.g. `none`, `Mod`, `Mod+Shift`, `Ctrl`, `Mod+Ctrl`).
-   Selecting a layer highlights bound keys (accent color nord8), stronger
-   highlight for `Mod+Shift` etc. Chips show per-layer binding counts
-   (`Mod 41`). Hovering a highlighted key shows a tooltip with label(s). Clicking a key scrolls to & flashes the first matching
-   `.kb-row`. Keys used by any layer get a persistent dot marker.
+   Selecting a layer highlights bound keys (accent fill) and keeps the
+   physical modifier keycaps of that layer pressed down (`.held`: inset,
+   accent border). Keys press on hover and deeper on mouse-down. Chips show
+   per-layer binding counts (`Mod 41`). Hovering a highlighted key shows a
+   tooltip with label(s). Clicking a key scrolls to & flashes the first
+   matching `.kb-row`. Keys used by any layer get a persistent dot marker.
    Skip pointer pseudo-keys (Mouse/Scroll) in the keyboard.
 3. **theme.ts** - dark/light toggle, localStorage `sd-theme`, sets
    `data-theme` on <html>. Auto-init everywhere.

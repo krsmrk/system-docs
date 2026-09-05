@@ -67,8 +67,8 @@
 
 /* ---------- font loading (bundled, offline-safe) ---------- */
 @font-face {
-  font-family: "Inter Opt";
-  src: url("fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
+  font-family: "Roboto Condensed";
+  src: url("fonts/roboto-condensed-latin-wght-normal.woff2") format("woff2-variations");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -85,7 +85,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: "Inter Opt", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Roboto Condensed", "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -350,7 +350,27 @@ kbd .key { color: var(--fg-bright); }
   font-weight: 500;
   color: var(--fg);
   user-select: none;
+  transition: transform 0.07s ease, background-color 0.07s ease, border-color 0.07s ease,
+    box-shadow 0.07s ease;
 }
+/* keys read as physically pressed: hover presses, mouse-down presses deeper,
+   and the modifiers of the selected layer stay held down */
+.kb-key:not(.spacer):hover {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
+}
+.kb-key:not(.spacer):active {
+  transform: translateY(3px);
+  border-bottom-width: 1px;
+}
+.kb-key.held {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: inset 0 2px 5px color-mix(in srgb, var(--bg) 35%, transparent);
+}
+.kb-key.held .sub { color: var(--accent); }
 .kb-key.bound { border-color: var(--accent-2); color: var(--fg-bright); }
 .kb-key.bound::after {
   content: "";

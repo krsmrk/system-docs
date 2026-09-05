@@ -17,3 +17,10 @@ const navKey = document.body.dataset.page === "guide" ? "guides" : "index";
 for (const a of document.querySelectorAll<HTMLAnchorElement>(".site-header nav a")) {
   if (a.dataset.nav === navKey) a.setAttribute("aria-current", "page");
 }
+
+// footer back-to-top: a plain #top anchor is a silent no-op once the hash is
+// already #top (second click scrolls nowhere) - always smooth-scroll instead.
+document.querySelector(".site-footer .to-top")?.addEventListener("click", (e) => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});

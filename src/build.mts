@@ -76,6 +76,20 @@ interface GuideDoc {
 /** Landing-page card order (SPEC "Build pipeline"); unknown ids sort last. */
 const APP_ORDER = ["niri", "waybar", "fuzzel", "ghostty", "tmux", "yazi", "zathura", "zsh"];
 
+/** Landing-card keycap previews: signature bindings per app, hand-picked so
+ *  cards advertise combos people actually reach for instead of whatever
+ *  happens to sit in the first three rows of the data file. */
+const CARD_HINTS: Record<string, string[]> = {
+  niri: ["Mod+Return", "Mod+D", "Mod+L"],
+  waybar: ["Mouse Left Click", "Mouse Right Click", "Scroll Up"],
+  fuzzel: ["Return", "Tab", "Escape"],
+  ghostty: ["F11", "Ctrl+Shift+T", "Ctrl+Shift+V"],
+  tmux: ["Ctrl+Space c", "Ctrl+Space |", "Alt+h"],
+  yazi: ["E", "Y", "P"],
+  zathura: ["J", "+", "/"],
+  zsh: ["Ctrl+R", "Shift+Tab", "Ctrl+X B"],
+};
+
 // Consistent inline-SVG icons (24px, stroke style, currentColor). The data
 // schema's `icon` glyph remains the fallback for ids not listed here.
 const S = (inner: string): string =>
@@ -311,12 +325,17 @@ function renderIndexBody(data: KeybindsFile, guides: GuideDoc[]): string {
   const cards = ranked
     .map(({ app }) => {
       const total = app.groups.reduce((n, g) => n + g.bindings.length, 0);
-      // keycap preview: first 3 bindings of the first group (usually custom)
-      const preview = (app.groups[0]?.bindings ?? [])
-        .slice(0, 3)
-        .filter((b) => b.keys !== "")
-        .map((b) => kbdChips(b.keys))
-        .join("");
+      // keycap preview: curated signature combos (CARD_HINTS); unknown apps
+      // fall back to the first three plain-key bindings of the first group.
+      const all = app.groups.flatMap((g) => g.bindings);
+      let picked: Binding[] = [];
+      for (const k of CARD_HINTS[app.id] ?? []) {
+        const b = all.find((x) => x.keys === k);
+        if (b) picked.push(b);
+      }
+      if (picked.length === 0)
+        picked = (app.groups[0]?.bindings ?? []).filter((b) => b.keys !== "").slice(0, 3);
+      const preview = picked.map((b) => kbdChips(b.keys)).join("");
       const keysLine = preview !== "" ? `      <div class="card-keys" aria-hidden="true">${preview}</div>\n` : "";
       return `    <a class="app-card" href="apps/${esc(app.id)}.html">
       <span class="card-icon" aria-hidden="true">${appIcon(app)}</span>
@@ -339,8 +358,8 @@ ${keysLine}      <div class="card-meta"><span class="count">${total} ${total ===
 
   const genDate = data.meta.generatedAt.slice(0, 10);
   return `<div class="hero">
-  <h1>Every keybinding on box, searchable.</h1>
-  <p class="hero-sub">Keybinding cheat sheets + usage guides for this NixOS system (${esc(data.meta.host)}). Generated from the live config, not typed by hand.</p>
+  <h1>Keybindings and guides for ${esc(data.meta.host)}</h1>
+  <p class="hero-sub">Cheat sheets are generated from the live NixOS configuration. Guides are hand-written.</p>
   <p class="hero-stats">
     <span class="stat"><strong>${totalBindings}</strong> bindings</span>
     <span class="stat"><strong>${data.apps.length}</strong> apps</span>
