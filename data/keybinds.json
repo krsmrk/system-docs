@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-05T15:42:28.155Z",
-    "sourceCommit": "684e3a1",
+    "generatedAt": "2026-09-05T16:15:40.233Z",
+    "sourceCommit": "6276a1d",
     "host": "box"
   },
   "apps": [
@@ -693,6 +693,685 @@
       ]
     },
     {
+      "id": "fuzzel",
+      "title": "fuzzel",
+      "tagline": "application launcher",
+      "icon": "⌕",
+      "description": "dmenu-style launcher; also drives the btmenu/netmenu/volmenu fold-out menus. Bindings are stock defaults.",
+      "groups": [
+        {
+          "name": "Stock · selection & execute",
+          "bindings": [
+            {
+              "keys": "Return",
+              "label": "Execute selected entry",
+              "command": "execute"
+            },
+            {
+              "keys": "KP_Enter",
+              "label": "Execute selected entry (keypad)",
+              "command": "execute"
+            },
+            {
+              "keys": "Ctrl+Y",
+              "label": "Execute selected entry",
+              "command": "execute"
+            },
+            {
+              "keys": "Shift+Return",
+              "label": "Execute raw input as typed",
+              "command": "execute-input"
+            },
+            {
+              "keys": "Shift+KP_Enter",
+              "label": "Execute raw input as typed (keypad)",
+              "command": "execute-input"
+            },
+            {
+              "keys": "Tab",
+              "label": "Execute if single match, else next",
+              "command": "execute-or-next"
+            },
+            {
+              "keys": "Ctrl+Tab",
+              "label": "Insert selected entry into prompt",
+              "command": "insert-selected"
+            },
+            {
+              "keys": "Up",
+              "label": "Previous item",
+              "command": "prev"
+            },
+            {
+              "keys": "Ctrl+P",
+              "label": "Previous item",
+              "command": "prev"
+            },
+            {
+              "keys": "Shift+Tab",
+              "label": "Previous item (wrap)",
+              "command": "prev-with-wrap"
+            },
+            {
+              "keys": "Down",
+              "label": "Next item",
+              "command": "next"
+            },
+            {
+              "keys": "Ctrl+N",
+              "label": "Next item",
+              "command": "next"
+            },
+            {
+              "keys": "PageUp",
+              "label": "Previous page",
+              "command": "prev-page"
+            },
+            {
+              "keys": "KP_PageUp",
+              "label": "Previous page (keypad)",
+              "command": "prev-page"
+            },
+            {
+              "keys": "PageDown",
+              "label": "Next page",
+              "command": "next-page"
+            },
+            {
+              "keys": "KP_PageDown",
+              "label": "Next page (keypad)",
+              "command": "next-page"
+            },
+            {
+              "keys": "Ctrl+Home",
+              "label": "First entry, first page",
+              "command": "first"
+            },
+            {
+              "keys": "Ctrl+End",
+              "label": "Last entry, last page",
+              "command": "last"
+            }
+          ]
+        },
+        {
+          "name": "Stock · input editing",
+          "bindings": [
+            {
+              "keys": "Left",
+              "label": "Cursor left",
+              "command": "cursor-left"
+            },
+            {
+              "keys": "Ctrl+B",
+              "label": "Cursor left",
+              "command": "cursor-left"
+            },
+            {
+              "keys": "Ctrl+Left",
+              "label": "Cursor left one word",
+              "command": "cursor-left-word"
+            },
+            {
+              "keys": "Alt+B",
+              "label": "Cursor left one word",
+              "command": "cursor-left-word"
+            },
+            {
+              "keys": "Right",
+              "label": "Cursor right",
+              "command": "cursor-right"
+            },
+            {
+              "keys": "Ctrl+F",
+              "label": "Cursor right",
+              "command": "cursor-right"
+            },
+            {
+              "keys": "Ctrl+Right",
+              "label": "Cursor right one word",
+              "command": "cursor-right-word"
+            },
+            {
+              "keys": "Alt+F",
+              "label": "Cursor right one word",
+              "command": "cursor-right-word"
+            },
+            {
+              "keys": "Home",
+              "label": "Cursor to beginning of input",
+              "command": "cursor-home"
+            },
+            {
+              "keys": "Ctrl+A",
+              "label": "Cursor to beginning of input",
+              "command": "cursor-home"
+            },
+            {
+              "keys": "End",
+              "label": "Cursor to end of input",
+              "command": "cursor-end"
+            },
+            {
+              "keys": "Ctrl+E",
+              "label": "Cursor to end of input",
+              "command": "cursor-end"
+            },
+            {
+              "keys": "Backspace",
+              "label": "Delete character before cursor",
+              "command": "delete-prev"
+            },
+            {
+              "keys": "Ctrl+H",
+              "label": "Delete character before cursor",
+              "command": "delete-prev"
+            },
+            {
+              "keys": "Alt+Backspace",
+              "label": "Delete word before cursor",
+              "command": "delete-prev-word"
+            },
+            {
+              "keys": "Ctrl+Backspace",
+              "label": "Delete word before cursor",
+              "command": "delete-prev-word"
+            },
+            {
+              "keys": "Ctrl+W",
+              "label": "Delete word before cursor",
+              "command": "delete-prev-word"
+            },
+            {
+              "keys": "Delete",
+              "label": "Delete character after cursor",
+              "command": "delete-next"
+            },
+            {
+              "keys": "Alt+D",
+              "label": "Delete word after cursor",
+              "command": "delete-next-word"
+            },
+            {
+              "keys": "Ctrl+Delete",
+              "label": "Delete word after cursor",
+              "command": "delete-next-word"
+            },
+            {
+              "keys": "Ctrl+U",
+              "label": "Delete everything before cursor",
+              "command": "delete-line-backward"
+            },
+            {
+              "keys": "Ctrl+K",
+              "label": "Delete everything after cursor",
+              "command": "delete-line-forward"
+            },
+            {
+              "keys": "Ctrl+Shift+Backspace",
+              "label": "Delete entire input",
+              "command": "delete-line"
+            },
+            {
+              "keys": "Ctrl+V",
+              "label": "Paste from clipboard",
+              "command": "clipboard-paste"
+            },
+            {
+              "keys": "XF86Paste",
+              "label": "Paste from clipboard",
+              "command": "clipboard-paste"
+            },
+            {
+              "keys": "Shift+Insert",
+              "label": "Paste from primary selection",
+              "command": "primary-paste"
+            },
+            {
+              "keys": "Shift+KP_Insert",
+              "label": "Paste from primary selection",
+              "command": "primary-paste"
+            },
+            {
+              "keys": "Shift+Delete",
+              "label": "Remove entry from launch cache",
+              "command": "expunge"
+            }
+          ]
+        },
+        {
+          "name": "Stock · quit & custom actions",
+          "bindings": [
+            {
+              "keys": "Escape",
+              "label": "Quit without executing",
+              "command": "cancel"
+            },
+            {
+              "keys": "Ctrl+G",
+              "label": "Quit without executing",
+              "command": "cancel"
+            },
+            {
+              "keys": "Ctrl+C",
+              "label": "Quit without executing",
+              "command": "cancel"
+            },
+            {
+              "keys": "Ctrl+BracketLeft",
+              "label": "Quit without executing",
+              "command": "cancel"
+            },
+            {
+              "keys": "Alt+1",
+              "label": "Execute selected, exit code 10",
+              "command": "custom-1"
+            },
+            {
+              "keys": "Alt+2",
+              "label": "Execute selected, exit code 11",
+              "command": "custom-2"
+            },
+            {
+              "keys": "Alt+3",
+              "label": "Execute selected, exit code 12",
+              "command": "custom-3"
+            },
+            {
+              "keys": "Alt+4",
+              "label": "Execute selected, exit code 13",
+              "command": "custom-4"
+            },
+            {
+              "keys": "Alt+5",
+              "label": "Execute selected, exit code 14",
+              "command": "custom-5"
+            },
+            {
+              "keys": "Alt+6",
+              "label": "Execute selected, exit code 15",
+              "command": "custom-6"
+            },
+            {
+              "keys": "Alt+7",
+              "label": "Execute selected, exit code 16",
+              "command": "custom-7"
+            },
+            {
+              "keys": "Alt+8",
+              "label": "Execute selected, exit code 17",
+              "command": "custom-8"
+            },
+            {
+              "keys": "Alt+9",
+              "label": "Execute selected, exit code 18",
+              "command": "custom-9"
+            },
+            {
+              "keys": "Alt+0",
+              "label": "Execute selected, exit code 19 (Mod1+0)",
+              "command": "custom-10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ghostty",
+      "title": "ghostty",
+      "tagline": "terminal emulator",
+      "icon": "▮",
+      "description": "Terminal emulator (Nordfox theme). Bindings are the stock Linux defaults; F11 is additionally bound to toggle_fullscreen via user config.",
+      "groups": [
+        {
+          "name": "Stock · clipboard & scrollback",
+          "bindings": [
+            {
+              "keys": "Ctrl+Shift+C",
+              "label": "Copy selection",
+              "command": "copy_to_clipboard:mixed"
+            },
+            {
+              "keys": "Ctrl+Shift+V",
+              "label": "Paste from clipboard",
+              "command": "paste_from_clipboard"
+            },
+            {
+              "keys": "Ctrl+Insert",
+              "label": "Copy selection",
+              "command": "copy_to_clipboard:mixed"
+            },
+            {
+              "keys": "Shift+Insert",
+              "label": "Paste from selection",
+              "command": "paste_from_selection"
+            },
+            {
+              "keys": "Shift+PageUp",
+              "label": "Scroll page up",
+              "command": "scroll_page_up"
+            },
+            {
+              "keys": "Shift+PageDown",
+              "label": "Scroll page down",
+              "command": "scroll_page_down"
+            },
+            {
+              "keys": "Shift+Home",
+              "label": "Scroll to top",
+              "command": "scroll_to_top"
+            },
+            {
+              "keys": "Shift+End",
+              "label": "Scroll to bottom",
+              "command": "scroll_to_bottom"
+            },
+            {
+              "keys": "Ctrl+Shift+PageUp",
+              "label": "Jump to previous prompt",
+              "command": "jump_to_prompt:-1"
+            },
+            {
+              "keys": "Ctrl+Shift+PageDown",
+              "label": "Jump to next prompt",
+              "command": "jump_to_prompt:1"
+            },
+            {
+              "keys": "Ctrl+Shift+A",
+              "label": "Select all",
+              "command": "select_all"
+            },
+            {
+              "keys": "Shift+Left",
+              "label": "Adjust selection left",
+              "command": "adjust_selection:left"
+            },
+            {
+              "keys": "Shift+Right",
+              "label": "Adjust selection right",
+              "command": "adjust_selection:right"
+            },
+            {
+              "keys": "Shift+Up",
+              "label": "Adjust selection up",
+              "command": "adjust_selection:up"
+            },
+            {
+              "keys": "Shift+Down",
+              "label": "Adjust selection down",
+              "command": "adjust_selection:down"
+            }
+          ]
+        },
+        {
+          "name": "Stock · font size",
+          "bindings": [
+            {
+              "keys": "Ctrl+Equal",
+              "label": "Increase font size",
+              "command": "increase_font_size:1"
+            },
+            {
+              "keys": "Ctrl+Plus",
+              "label": "Increase font size",
+              "command": "increase_font_size:1"
+            },
+            {
+              "keys": "Ctrl+Minus",
+              "label": "Decrease font size",
+              "command": "decrease_font_size:1"
+            },
+            {
+              "keys": "Ctrl+0",
+              "label": "Reset font size",
+              "command": "reset_font_size"
+            }
+          ]
+        },
+        {
+          "name": "Stock · tabs & windows",
+          "bindings": [
+            {
+              "keys": "Ctrl+Shift+T",
+              "label": "New tab",
+              "command": "new_tab"
+            },
+            {
+              "keys": "Ctrl+Shift+N",
+              "label": "New window",
+              "command": "new_window"
+            },
+            {
+              "keys": "Ctrl+Shift+W",
+              "label": "Close tab",
+              "command": "close_tab:this"
+            },
+            {
+              "keys": "Alt+F4",
+              "label": "Close window",
+              "command": "close_window"
+            },
+            {
+              "keys": "Ctrl+Shift+Q",
+              "label": "Quit ghostty",
+              "command": "quit"
+            },
+            {
+              "keys": "Ctrl+Tab",
+              "label": "Next tab",
+              "command": "next_tab"
+            },
+            {
+              "keys": "Ctrl+Shift+Tab",
+              "label": "Previous tab",
+              "command": "previous_tab"
+            },
+            {
+              "keys": "Ctrl+Shift+Right",
+              "label": "Next tab",
+              "command": "next_tab"
+            },
+            {
+              "keys": "Ctrl+Shift+Left",
+              "label": "Previous tab",
+              "command": "previous_tab"
+            },
+            {
+              "keys": "Ctrl+PageDown",
+              "label": "Next tab",
+              "command": "next_tab"
+            },
+            {
+              "keys": "Ctrl+PageUp",
+              "label": "Previous tab",
+              "command": "previous_tab"
+            },
+            {
+              "keys": "Alt+1",
+              "label": "Go to tab 1",
+              "command": "goto_tab:1"
+            },
+            {
+              "keys": "Alt+2",
+              "label": "Go to tab 2",
+              "command": "goto_tab:2"
+            },
+            {
+              "keys": "Alt+3",
+              "label": "Go to tab 3",
+              "command": "goto_tab:3"
+            },
+            {
+              "keys": "Alt+4",
+              "label": "Go to tab 4",
+              "command": "goto_tab:4"
+            },
+            {
+              "keys": "Alt+5",
+              "label": "Go to tab 5",
+              "command": "goto_tab:5"
+            },
+            {
+              "keys": "Alt+6",
+              "label": "Go to tab 6",
+              "command": "goto_tab:6"
+            },
+            {
+              "keys": "Alt+7",
+              "label": "Go to tab 7",
+              "command": "goto_tab:7"
+            },
+            {
+              "keys": "Alt+8",
+              "label": "Go to tab 8",
+              "command": "goto_tab:8"
+            },
+            {
+              "keys": "Alt+9",
+              "label": "Go to last tab",
+              "command": "last_tab"
+            }
+          ]
+        },
+        {
+          "name": "Stock · splits",
+          "bindings": [
+            {
+              "keys": "Ctrl+Shift+O",
+              "label": "New split right",
+              "command": "new_split:right"
+            },
+            {
+              "keys": "Ctrl+Shift+E",
+              "label": "New split down",
+              "command": "new_split:down"
+            },
+            {
+              "keys": "Ctrl+Alt+Up",
+              "label": "Go to split up",
+              "command": "goto_split:up"
+            },
+            {
+              "keys": "Ctrl+Alt+Down",
+              "label": "Go to split down",
+              "command": "goto_split:down"
+            },
+            {
+              "keys": "Ctrl+Alt+Left",
+              "label": "Go to split left",
+              "command": "goto_split:left"
+            },
+            {
+              "keys": "Ctrl+Alt+Right",
+              "label": "Go to split right",
+              "command": "goto_split:right"
+            },
+            {
+              "keys": "Mod+Ctrl+BracketLeft",
+              "label": "Go to previous split",
+              "command": "goto_split:previous"
+            },
+            {
+              "keys": "Mod+Ctrl+BracketRight",
+              "label": "Go to next split",
+              "command": "goto_split:next"
+            },
+            {
+              "keys": "Mod+Ctrl+Shift+Up",
+              "label": "Resize split up",
+              "command": "resize_split:up,10"
+            },
+            {
+              "keys": "Mod+Ctrl+Shift+Down",
+              "label": "Resize split down",
+              "command": "resize_split:down,10"
+            },
+            {
+              "keys": "Mod+Ctrl+Shift+Left",
+              "label": "Resize split left",
+              "command": "resize_split:left,10"
+            },
+            {
+              "keys": "Mod+Ctrl+Shift+Right",
+              "label": "Resize split right",
+              "command": "resize_split:right,10"
+            },
+            {
+              "keys": "Ctrl+Shift+Return",
+              "label": "Toggle split zoom",
+              "command": "toggle_split_zoom"
+            }
+          ]
+        },
+        {
+          "name": "Stock · misc",
+          "bindings": [
+            {
+              "keys": "Ctrl+Shift+F",
+              "label": "Start scrollback search",
+              "command": "start_search"
+            },
+            {
+              "keys": "Escape",
+              "label": "End scrollback search",
+              "command": "end_search"
+            },
+            {
+              "keys": "Ctrl+Shift+I",
+              "label": "Toggle inspector",
+              "command": "inspector:toggle"
+            },
+            {
+              "keys": "Ctrl+Shift+P",
+              "label": "Toggle command palette",
+              "command": "toggle_command_palette"
+            },
+            {
+              "keys": "Ctrl+Comma",
+              "label": "Open config",
+              "command": "open_config"
+            },
+            {
+              "keys": "Ctrl+Shift+Comma",
+              "label": "Reload config",
+              "command": "reload_config"
+            },
+            {
+              "keys": "Ctrl+Return",
+              "label": "Toggle fullscreen",
+              "command": "toggle_fullscreen"
+            },
+            {
+              "keys": "Mod+Ctrl+Shift+J",
+              "label": "Copy screen to file",
+              "command": "write_screen_file:copy,plain"
+            },
+            {
+              "keys": "Ctrl+Shift+J",
+              "label": "Paste screen to file",
+              "command": "write_screen_file:paste,plain"
+            },
+            {
+              "keys": "Ctrl+Alt+Shift+J",
+              "label": "Open screen file",
+              "command": "write_screen_file:open,plain"
+            }
+          ]
+        },
+        {
+          "name": "Custom",
+          "bindings": [
+            {
+              "keys": "F11",
+              "label": "Toggle fullscreen",
+              "command": "toggle_fullscreen",
+              "source": "~/.config/ghostty/config:19"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "yazi",
       "title": "yazi",
       "tagline": "terminal file manager",
@@ -708,6 +1387,1355 @@
               "label": "Extract archive here",
               "command": "plugin extract-here",
               "source": "keymap.toml:7"
+            }
+          ]
+        },
+        {
+          "name": "Stock · navigation",
+          "bindings": [
+            {
+              "keys": "K",
+              "label": "Previous file",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "J",
+              "label": "Next file",
+              "command": "arrow next"
+            },
+            {
+              "keys": "Up",
+              "label": "Previous file",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "Down",
+              "label": "Next file",
+              "command": "arrow next"
+            },
+            {
+              "keys": "G G",
+              "label": "Go to top",
+              "command": "arrow top"
+            },
+            {
+              "keys": "G",
+              "label": "Go to bottom",
+              "command": "arrow bot"
+            },
+            {
+              "keys": "Home",
+              "label": "Go to top",
+              "command": "arrow top"
+            },
+            {
+              "keys": "End",
+              "label": "Go to bottom",
+              "command": "arrow bot"
+            },
+            {
+              "keys": "Ctrl+U",
+              "label": "Move cursor up half page",
+              "command": "arrow -50%"
+            },
+            {
+              "keys": "Ctrl+D",
+              "label": "Move cursor down half page",
+              "command": "arrow 50%"
+            },
+            {
+              "keys": "Ctrl+B",
+              "label": "Move cursor up one page",
+              "command": "arrow -100%"
+            },
+            {
+              "keys": "Ctrl+F",
+              "label": "Move cursor down one page",
+              "command": "arrow 100%"
+            },
+            {
+              "keys": "Shift+PageUp",
+              "label": "Move cursor up half page",
+              "command": "arrow -50%"
+            },
+            {
+              "keys": "Shift+PageDown",
+              "label": "Move cursor down half page",
+              "command": "arrow 50%"
+            },
+            {
+              "keys": "PageUp",
+              "label": "Move cursor up one page",
+              "command": "arrow -100%"
+            },
+            {
+              "keys": "PageDown",
+              "label": "Move cursor down one page",
+              "command": "arrow 100%"
+            },
+            {
+              "keys": "H",
+              "label": "Back to the parent directory",
+              "command": "leave"
+            },
+            {
+              "keys": "L",
+              "label": "Enter the child directory",
+              "command": "enter"
+            },
+            {
+              "keys": "Left",
+              "label": "Back to the parent directory",
+              "command": "leave"
+            },
+            {
+              "keys": "Right",
+              "label": "Enter the child directory",
+              "command": "enter"
+            },
+            {
+              "keys": "Shift+H",
+              "label": "Back to previous directory",
+              "command": "back"
+            },
+            {
+              "keys": "Shift+L",
+              "label": "Forward to next directory",
+              "command": "forward"
+            },
+            {
+              "keys": "Shift+K",
+              "label": "Seek up 5 units in the preview",
+              "command": "seek -5"
+            },
+            {
+              "keys": "Shift+J",
+              "label": "Seek down 5 units in the preview",
+              "command": "seek 5"
+            },
+            {
+              "keys": "Tab",
+              "label": "Spot hovered file",
+              "command": "spot"
+            },
+            {
+              "keys": "G H",
+              "label": "Go home",
+              "command": "cd ~"
+            },
+            {
+              "keys": "G C",
+              "label": "Go to ~/.config",
+              "command": "cd ~/.config"
+            },
+            {
+              "keys": "G D",
+              "label": "Go to ~/Downloads",
+              "command": "cd ~/Downloads"
+            },
+            {
+              "keys": "G T",
+              "label": "Go to trash bin",
+              "command": "plugin trash"
+            },
+            {
+              "keys": "G Space",
+              "label": "Jump interactively",
+              "command": "cd --interactive"
+            },
+            {
+              "keys": "G F",
+              "label": "Follow hovered symlink",
+              "command": "follow"
+            },
+            {
+              "keys": "Z",
+              "label": "Jump to a file/directory via fzf",
+              "command": "plugin fzf"
+            },
+            {
+              "keys": "Shift+Z",
+              "label": "Jump to a directory via zoxide",
+              "command": "plugin zoxide"
+            }
+          ]
+        },
+        {
+          "name": "Stock · file operations",
+          "bindings": [
+            {
+              "keys": "O",
+              "label": "Open selected files",
+              "command": "open"
+            },
+            {
+              "keys": "Shift+O",
+              "label": "Open selected files interactively",
+              "command": "open --interactive"
+            },
+            {
+              "keys": "Return",
+              "label": "Open selected files",
+              "command": "open"
+            },
+            {
+              "keys": "Shift+Return",
+              "label": "Open selected files interactively",
+              "command": "open --interactive"
+            },
+            {
+              "keys": "Y",
+              "label": "Yank selected files (copy)",
+              "command": "yank"
+            },
+            {
+              "keys": "X",
+              "label": "Yank selected files (cut)",
+              "command": "yank --cut"
+            },
+            {
+              "keys": "P",
+              "label": "Paste yanked files",
+              "command": "paste"
+            },
+            {
+              "keys": "Shift+P",
+              "label": "Paste yanked files (overwrite if the destination exists)",
+              "command": "paste --force"
+            },
+            {
+              "keys": "-",
+              "label": "Symlink the absolute path of yanked files",
+              "command": "link"
+            },
+            {
+              "keys": "_",
+              "label": "Symlink the relative path of yanked files",
+              "command": "link --relative"
+            },
+            {
+              "keys": "Ctrl+-",
+              "label": "Hardlink yanked files",
+              "command": "hardlink"
+            },
+            {
+              "keys": "Shift+Y",
+              "label": "Cancel the yank status",
+              "command": "unyank"
+            },
+            {
+              "keys": "Shift+X",
+              "label": "Cancel the yank status",
+              "command": "unyank"
+            },
+            {
+              "keys": "D",
+              "label": "Trash selected files",
+              "command": "remove"
+            },
+            {
+              "keys": "Shift+D",
+              "label": "Permanently delete selected files",
+              "command": "remove --permanently"
+            },
+            {
+              "keys": "A",
+              "label": "Create a file (ends with / for directories)",
+              "command": "create"
+            },
+            {
+              "keys": "Shift+A",
+              "label": "Bulk create files",
+              "command": "bulk_create"
+            },
+            {
+              "keys": "R",
+              "label": "Rename selected file(s)",
+              "command": "rename --cursor=before_ext"
+            },
+            {
+              "keys": ";",
+              "label": "Run a shell command",
+              "command": "shell --interactive"
+            },
+            {
+              "keys": ":",
+              "label": "Run a shell command (block until finishes)",
+              "command": "shell --block --interactive"
+            },
+            {
+              "keys": "C C",
+              "label": "Copy file path",
+              "command": "copy path"
+            },
+            {
+              "keys": "C Shift+C",
+              "label": "Copy file URL",
+              "command": "copy url"
+            },
+            {
+              "keys": "C D",
+              "label": "Copy directory path",
+              "command": "copy dirpath"
+            },
+            {
+              "keys": "C Shift+D",
+              "label": "Copy directory URL",
+              "command": "copy dirurl"
+            },
+            {
+              "keys": "C F",
+              "label": "Copy filename",
+              "command": "copy filename"
+            },
+            {
+              "keys": "C N",
+              "label": "Copy filename without extension",
+              "command": "copy name_without_ext"
+            }
+          ]
+        },
+        {
+          "name": "Stock · tabs",
+          "bindings": [
+            {
+              "keys": "T T",
+              "label": "Create a new tab in CWD",
+              "command": "tab_create --current"
+            },
+            {
+              "keys": "T R",
+              "label": "Rename current tab",
+              "command": "tab_rename --interactive"
+            },
+            {
+              "keys": "1",
+              "label": "Switch to first tab",
+              "command": "tab_switch 0"
+            },
+            {
+              "keys": "2",
+              "label": "Switch to second tab",
+              "command": "tab_switch 1"
+            },
+            {
+              "keys": "3",
+              "label": "Switch to third tab",
+              "command": "tab_switch 2"
+            },
+            {
+              "keys": "4",
+              "label": "Switch to fourth tab",
+              "command": "tab_switch 3"
+            },
+            {
+              "keys": "5",
+              "label": "Switch to fifth tab",
+              "command": "tab_switch 4"
+            },
+            {
+              "keys": "6",
+              "label": "Switch to sixth tab",
+              "command": "tab_switch 5"
+            },
+            {
+              "keys": "7",
+              "label": "Switch to seventh tab",
+              "command": "tab_switch 6"
+            },
+            {
+              "keys": "8",
+              "label": "Switch to eighth tab",
+              "command": "tab_switch 7"
+            },
+            {
+              "keys": "9",
+              "label": "Switch to ninth tab",
+              "command": "tab_switch 8"
+            },
+            {
+              "keys": "[",
+              "label": "Switch to previous tab",
+              "command": "tab_switch -1 --relative"
+            },
+            {
+              "keys": "]",
+              "label": "Switch to next tab",
+              "command": "tab_switch 1 --relative"
+            },
+            {
+              "keys": "{",
+              "label": "Swap current tab with previous tab",
+              "command": "tab_swap -1"
+            },
+            {
+              "keys": "}",
+              "label": "Swap current tab with next tab",
+              "command": "tab_swap 1"
+            }
+          ]
+        },
+        {
+          "name": "Stock · find & filter",
+          "bindings": [
+            {
+              "keys": "F",
+              "label": "Filter files",
+              "command": "filter --smart"
+            },
+            {
+              "keys": "/",
+              "label": "Find next file",
+              "command": "find --smart"
+            },
+            {
+              "keys": "?",
+              "label": "Find previous file",
+              "command": "find --previous --smart"
+            },
+            {
+              "keys": "N",
+              "label": "Next found",
+              "command": "find_arrow"
+            },
+            {
+              "keys": "Shift+N",
+              "label": "Previous found",
+              "command": "find_arrow --previous"
+            },
+            {
+              "keys": "S",
+              "label": "Search files by name via fd",
+              "command": "search --via=fd"
+            },
+            {
+              "keys": "Shift+S",
+              "label": "Search files by content via ripgrep",
+              "command": "search --via=rg"
+            },
+            {
+              "keys": "Ctrl+S",
+              "label": "Cancel the ongoing search",
+              "command": "escape --search"
+            }
+          ]
+        },
+        {
+          "name": "Stock · view & misc",
+          "bindings": [
+            {
+              "keys": "Escape",
+              "label": "Exit visual mode, clear selection, or cancel search",
+              "command": "escape"
+            },
+            {
+              "keys": "Ctrl+[",
+              "label": "Exit visual mode, clear selection, or cancel search",
+              "command": "escape"
+            },
+            {
+              "keys": "Q",
+              "label": "Quit the process",
+              "command": "quit"
+            },
+            {
+              "keys": "Shift+Q",
+              "label": "Quit without outputting cwd-file",
+              "command": "quit --no-cwd-file"
+            },
+            {
+              "keys": "Ctrl+C",
+              "label": "Close the current tab, or quit if it's last",
+              "command": "close"
+            },
+            {
+              "keys": "Ctrl+Z",
+              "label": "Suspend the process",
+              "command": "suspend"
+            },
+            {
+              "keys": "Space",
+              "label": "Toggle the current selection state",
+              "command": "toggle, arrow 1"
+            },
+            {
+              "keys": "Ctrl+A",
+              "label": "Select all files",
+              "command": "toggle_all --state=on"
+            },
+            {
+              "keys": "Ctrl+R",
+              "label": "Invert selection of all files",
+              "command": "toggle_all"
+            },
+            {
+              "keys": "V",
+              "label": "Enter visual mode (selection mode)",
+              "command": "visual_mode"
+            },
+            {
+              "keys": "Shift+V",
+              "label": "Enter visual mode (unset mode)",
+              "command": "visual_mode --unset"
+            },
+            {
+              "keys": "M S",
+              "label": "Linemode: size",
+              "command": "linemode size"
+            },
+            {
+              "keys": "M P",
+              "label": "Linemode: permissions",
+              "command": "linemode permissions"
+            },
+            {
+              "keys": "M B",
+              "label": "Linemode: btime",
+              "command": "linemode btime"
+            },
+            {
+              "keys": "M M",
+              "label": "Linemode: mtime",
+              "command": "linemode mtime"
+            },
+            {
+              "keys": "M O",
+              "label": "Linemode: owner",
+              "command": "linemode owner"
+            },
+            {
+              "keys": "M N",
+              "label": "Linemode: none",
+              "command": "linemode none"
+            },
+            {
+              "keys": ", M",
+              "label": "Sort by modified time",
+              "command": "sort mtime --reverse=no, linemode mtime"
+            },
+            {
+              "keys": ", Shift+M",
+              "label": "Sort by modified time (reverse)",
+              "command": "sort mtime --reverse=yes, linemode mtime"
+            },
+            {
+              "keys": ", B",
+              "label": "Sort by birth time",
+              "command": "sort btime --reverse=no, linemode btime"
+            },
+            {
+              "keys": ", Shift+B",
+              "label": "Sort by birth time (reverse)",
+              "command": "sort btime --reverse=yes, linemode btime"
+            },
+            {
+              "keys": ", E",
+              "label": "Sort by extension",
+              "command": "sort extension --reverse=no"
+            },
+            {
+              "keys": ", Shift+E",
+              "label": "Sort by extension (reverse)",
+              "command": "sort extension --reverse=yes"
+            },
+            {
+              "keys": ", A",
+              "label": "Sort alphabetically",
+              "command": "sort alphabetical --reverse=no"
+            },
+            {
+              "keys": ", Shift+A",
+              "label": "Sort alphabetically (reverse)",
+              "command": "sort alphabetical --reverse=yes"
+            },
+            {
+              "keys": ", N",
+              "label": "Sort naturally",
+              "command": "sort natural --reverse=no"
+            },
+            {
+              "keys": ", Shift+N",
+              "label": "Sort naturally (reverse)",
+              "command": "sort natural --reverse=yes"
+            },
+            {
+              "keys": ", S",
+              "label": "Sort by size",
+              "command": "sort size --reverse=no, linemode size"
+            },
+            {
+              "keys": ", Shift+S",
+              "label": "Sort by size (reverse)",
+              "command": "sort size --reverse=yes, linemode size"
+            },
+            {
+              "keys": ", R",
+              "label": "Sort randomly",
+              "command": "sort random --reverse=no"
+            },
+            {
+              "keys": ".",
+              "label": "Toggle the visibility of hidden files",
+              "command": "hidden toggle"
+            },
+            {
+              "keys": "W",
+              "label": "Show task manager",
+              "command": "tasks:show"
+            },
+            {
+              "keys": "~",
+              "label": "Open help",
+              "command": "help"
+            },
+            {
+              "keys": "F1",
+              "label": "Open help",
+              "command": "help"
+            }
+          ]
+        },
+        {
+          "name": "Stock · input",
+          "bindings": [
+            {
+              "keys": "Ctrl+C",
+              "label": "Cancel input",
+              "command": "close"
+            },
+            {
+              "keys": "Return",
+              "label": "Submit input",
+              "command": "close --submit"
+            },
+            {
+              "keys": "Escape",
+              "label": "Back to normal mode, or cancel input",
+              "command": "escape"
+            },
+            {
+              "keys": "I",
+              "label": "Enter insert mode",
+              "command": "insert"
+            },
+            {
+              "keys": "Shift+I",
+              "label": "Move to the BOL, and enter insert mode",
+              "command": "move first-char, insert"
+            },
+            {
+              "keys": "A",
+              "label": "Enter append mode",
+              "command": "insert --append"
+            },
+            {
+              "keys": "Shift+A",
+              "label": "Move to the EOL, and enter append mode",
+              "command": "move eol, insert --append"
+            },
+            {
+              "keys": "V",
+              "label": "Enter visual mode",
+              "command": "visual"
+            },
+            {
+              "keys": "R",
+              "label": "Replace a single character",
+              "command": "replace"
+            },
+            {
+              "keys": "H",
+              "label": "Move back a character",
+              "command": "move -1"
+            },
+            {
+              "keys": "L",
+              "label": "Move forward a character",
+              "command": "move 1"
+            },
+            {
+              "keys": "Left",
+              "label": "Move back a character",
+              "command": "move -1"
+            },
+            {
+              "keys": "Right",
+              "label": "Move forward a character",
+              "command": "move 1"
+            },
+            {
+              "keys": "Ctrl+B",
+              "label": "Move back a character",
+              "command": "move -1"
+            },
+            {
+              "keys": "Ctrl+F",
+              "label": "Move forward a character",
+              "command": "move 1"
+            },
+            {
+              "keys": "B",
+              "label": "Move back to the start of the current or previous word",
+              "command": "backward"
+            },
+            {
+              "keys": "Shift+B",
+              "label": "Move back to the start of the current or previous WORD",
+              "command": "backward wide"
+            },
+            {
+              "keys": "W",
+              "label": "Move forward to the start of the next word",
+              "command": "forward"
+            },
+            {
+              "keys": "Shift+W",
+              "label": "Move forward to the start of the next WORD",
+              "command": "forward wide"
+            },
+            {
+              "keys": "E",
+              "label": "Move forward to the end of the current or next word",
+              "command": "forward --end-of-word"
+            },
+            {
+              "keys": "Shift+E",
+              "label": "Move forward to the end of the current or next WORD",
+              "command": "forward wide --end-of-word"
+            },
+            {
+              "keys": "Alt+B",
+              "label": "Move back to the start of the current or previous word",
+              "command": "backward lean"
+            },
+            {
+              "keys": "Alt+F",
+              "label": "Move forward to the end of the current or next word",
+              "command": "forward lean --end-of-word"
+            },
+            {
+              "keys": "Ctrl+Left",
+              "label": "Move back to the start of the current or previous word",
+              "command": "backward lean"
+            },
+            {
+              "keys": "Ctrl+Right",
+              "label": "Move forward to the end of the current or next word",
+              "command": "forward lean --end-of-word"
+            },
+            {
+              "keys": "0",
+              "label": "Move to the BOL",
+              "command": "move bol"
+            },
+            {
+              "keys": "$",
+              "label": "Move to the EOL",
+              "command": "move eol"
+            },
+            {
+              "keys": "^",
+              "label": "Move to the first non-whitespace character",
+              "command": "move first-char"
+            },
+            {
+              "keys": "Ctrl+A",
+              "label": "Move to the BOL",
+              "command": "move bol"
+            },
+            {
+              "keys": "Ctrl+E",
+              "label": "Move to the EOL",
+              "command": "move eol"
+            },
+            {
+              "keys": "Home",
+              "label": "Move to the BOL",
+              "command": "move bol"
+            },
+            {
+              "keys": "End",
+              "label": "Move to the EOL",
+              "command": "move eol"
+            },
+            {
+              "keys": "Backspace",
+              "label": "Delete the character before the cursor",
+              "command": "backspace"
+            },
+            {
+              "keys": "Delete",
+              "label": "Delete the character under the cursor",
+              "command": "backspace --under"
+            },
+            {
+              "keys": "Ctrl+H",
+              "label": "Delete the character before the cursor",
+              "command": "backspace"
+            },
+            {
+              "keys": "Ctrl+D",
+              "label": "Delete the character under the cursor",
+              "command": "backspace --under"
+            },
+            {
+              "keys": "Ctrl+U",
+              "label": "Kill backwards to the BOL",
+              "command": "kill bol"
+            },
+            {
+              "keys": "Ctrl+K",
+              "label": "Kill forwards to the EOL",
+              "command": "kill eol"
+            },
+            {
+              "keys": "Ctrl+W",
+              "label": "Kill backwards to the start of the current word",
+              "command": "kill backward"
+            },
+            {
+              "keys": "Alt+D",
+              "label": "Kill forwards to the end of the current word",
+              "command": "kill forward"
+            },
+            {
+              "keys": "Ctrl+Backspace",
+              "label": "Kill backwards to the start of the current word",
+              "command": "kill backward"
+            },
+            {
+              "keys": "Ctrl+Delete",
+              "label": "Kill forwards to the end of the current word",
+              "command": "kill forward"
+            },
+            {
+              "keys": "D",
+              "label": "Cut selected characters",
+              "command": "delete --cut"
+            },
+            {
+              "keys": "Shift+D",
+              "label": "Cut until EOL",
+              "command": "delete --cut, move eol"
+            },
+            {
+              "keys": "C",
+              "label": "Cut selected characters, and enter insert mode",
+              "command": "delete --cut --insert"
+            },
+            {
+              "keys": "Shift+C",
+              "label": "Cut until EOL, and enter insert mode",
+              "command": "delete --cut --insert, move eol"
+            },
+            {
+              "keys": "X",
+              "label": "Cut current character",
+              "command": "delete --cut, move 1 --in-operating"
+            },
+            {
+              "keys": "Y",
+              "label": "Copy selected characters",
+              "command": "yank"
+            },
+            {
+              "keys": "P",
+              "label": "Paste copied characters after the cursor",
+              "command": "paste"
+            },
+            {
+              "keys": "Shift+P",
+              "label": "Paste copied characters before the cursor",
+              "command": "paste --before"
+            },
+            {
+              "keys": "U",
+              "label": "Undo, or lowercase if in visual mode",
+              "command": "undo, casefy lower"
+            },
+            {
+              "keys": "Shift+U",
+              "label": "Uppercase",
+              "command": "casefy upper"
+            },
+            {
+              "keys": "Ctrl+R",
+              "label": "Redo the last operation",
+              "command": "redo"
+            },
+            {
+              "keys": "K",
+              "label": "Recall previous input",
+              "command": "recall -1"
+            },
+            {
+              "keys": "J",
+              "label": "Recall next input",
+              "command": "recall 1"
+            },
+            {
+              "keys": "Up",
+              "label": "Recall previous input",
+              "command": "recall -1"
+            },
+            {
+              "keys": "Down",
+              "label": "Recall next input",
+              "command": "recall 1"
+            },
+            {
+              "keys": "Ctrl+P",
+              "label": "Recall previous input",
+              "command": "recall -1"
+            },
+            {
+              "keys": "Ctrl+N",
+              "label": "Recall next input",
+              "command": "recall 1"
+            }
+          ]
+        },
+        {
+          "name": "Stock · confirm & completion",
+          "bindings": [
+            {
+              "keys": "Escape",
+              "label": "Cancel the confirm",
+              "command": "close"
+            },
+            {
+              "keys": "Return",
+              "label": "Submit the confirm",
+              "command": "close --submit"
+            },
+            {
+              "keys": "N",
+              "label": "Cancel the confirm",
+              "command": "close"
+            },
+            {
+              "keys": "Y",
+              "label": "Submit the confirm",
+              "command": "close --submit"
+            },
+            {
+              "keys": "K",
+              "label": "Previous line",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "J",
+              "label": "Next line",
+              "command": "arrow next"
+            },
+            {
+              "keys": "Ctrl+C",
+              "label": "Cancel completion",
+              "command": "close"
+            },
+            {
+              "keys": "Tab",
+              "label": "Submit the completion",
+              "command": "close --submit"
+            },
+            {
+              "keys": "Return",
+              "label": "Complete and submit the input",
+              "command": "close --submit, input:close --submit"
+            },
+            {
+              "keys": "Alt+K",
+              "label": "Previous item",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "Alt+J",
+              "label": "Next item",
+              "command": "arrow next"
+            },
+            {
+              "keys": "Up",
+              "label": "Previous item",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "Down",
+              "label": "Next item",
+              "command": "arrow next"
+            },
+            {
+              "keys": "Ctrl+P",
+              "label": "Previous item",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "Ctrl+N",
+              "label": "Next item",
+              "command": "arrow next"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zathura",
+      "title": "zathura",
+      "tagline": "keyboard-driven PDF viewer",
+      "icon": "▥",
+      "description": "Document viewer; all bindings are stock defaults.",
+      "groups": [
+        {
+          "name": "Stock · navigation",
+          "bindings": [
+            {
+              "keys": "J",
+              "label": "Go to next page",
+              "command": "navigate next"
+            },
+            {
+              "keys": "PageDown",
+              "label": "Go to next page",
+              "command": "navigate next"
+            },
+            {
+              "keys": "K",
+              "label": "Go to previous page",
+              "command": "navigate previous"
+            },
+            {
+              "keys": "PageUp",
+              "label": "Go to previous page",
+              "command": "navigate previous"
+            },
+            {
+              "keys": "H",
+              "label": "Scroll left",
+              "command": "scroll left"
+            },
+            {
+              "keys": "J",
+              "label": "Scroll down",
+              "command": "scroll down"
+            },
+            {
+              "keys": "K",
+              "label": "Scroll up",
+              "command": "scroll up"
+            },
+            {
+              "keys": "L",
+              "label": "Scroll right",
+              "command": "scroll right"
+            },
+            {
+              "keys": "Left",
+              "label": "Scroll left",
+              "command": "scroll left"
+            },
+            {
+              "keys": "Down",
+              "label": "Scroll down",
+              "command": "scroll down"
+            },
+            {
+              "keys": "Up",
+              "label": "Scroll up",
+              "command": "scroll up"
+            },
+            {
+              "keys": "Right",
+              "label": "Scroll right",
+              "command": "scroll right"
+            },
+            {
+              "keys": "g g",
+              "label": "Go to first page",
+              "command": "goto top"
+            },
+            {
+              "keys": "G",
+              "label": "Go to last page",
+              "command": "goto bottom"
+            },
+            {
+              "keys": "n G",
+              "label": "Go to nth page",
+              "command": "goto"
+            },
+            {
+              "keys": "P",
+              "label": "Snap to current page",
+              "command": "snap_to_page"
+            },
+            {
+              "keys": "H",
+              "label": "Go to top of current page",
+              "command": "scroll page-top"
+            },
+            {
+              "keys": "L",
+              "label": "Go to bottom of current page",
+              "command": "scroll page-bottom"
+            }
+          ]
+        },
+        {
+          "name": "Stock · scrolling",
+          "bindings": [
+            {
+              "keys": "Ctrl+t",
+              "label": "Scroll half page left",
+              "command": "scroll half-left"
+            },
+            {
+              "keys": "Ctrl+d",
+              "label": "Scroll half page down",
+              "command": "scroll half-down"
+            },
+            {
+              "keys": "Ctrl+u",
+              "label": "Scroll half page up",
+              "command": "scroll half-up"
+            },
+            {
+              "keys": "Ctrl+y",
+              "label": "Scroll half page right",
+              "command": "scroll half-right"
+            },
+            {
+              "keys": "T",
+              "label": "Scroll full page left",
+              "command": "scroll full-left"
+            },
+            {
+              "keys": "Ctrl+f",
+              "label": "Scroll full page down",
+              "command": "scroll full-down"
+            },
+            {
+              "keys": "Space",
+              "label": "Scroll full page down",
+              "command": "scroll full-down"
+            },
+            {
+              "keys": "Ctrl+b",
+              "label": "Scroll full page up",
+              "command": "scroll full-up"
+            },
+            {
+              "keys": "Y",
+              "label": "Scroll full page right",
+              "command": "scroll full-right"
+            }
+          ]
+        },
+        {
+          "name": "Stock · zoom & view",
+          "bindings": [
+            {
+              "keys": "+",
+              "label": "Zoom in",
+              "command": "zoom in"
+            },
+            {
+              "keys": "-",
+              "label": "Zoom out",
+              "command": "zoom out"
+            },
+            {
+              "keys": "=",
+              "label": "Zoom to original size",
+              "command": "zoom default"
+            },
+            {
+              "keys": "z I",
+              "label": "Zoom in",
+              "command": "zoom in"
+            },
+            {
+              "keys": "z O",
+              "label": "Zoom out",
+              "command": "zoom out"
+            },
+            {
+              "keys": "z 0",
+              "label": "Zoom to original size",
+              "command": "zoom default"
+            },
+            {
+              "keys": "n =",
+              "label": "Zoom to size n",
+              "command": "zoom specific"
+            },
+            {
+              "keys": "A",
+              "label": "Adjust window to best-fit",
+              "command": "adjust_window best-fit"
+            },
+            {
+              "keys": "S",
+              "label": "Adjust window to page width",
+              "command": "adjust_window width"
+            },
+            {
+              "keys": "D",
+              "label": "Toggle dual page view",
+              "command": "toggle_page_mode"
+            },
+            {
+              "keys": "D",
+              "label": "Cycle first column in dual view",
+              "command": "cycle_first_column"
+            },
+            {
+              "keys": "R",
+              "label": "Rotate by 90 degrees",
+              "command": "rotate"
+            },
+            {
+              "keys": "Ctrl+r",
+              "label": "Recolor (grayscale and invert)",
+              "command": "recolor"
+            },
+            {
+              "keys": "R",
+              "label": "Reload document",
+              "command": "reload"
+            },
+            {
+              "keys": "F5",
+              "label": "Toggle presentation mode",
+              "command": "toggle_presentation"
+            },
+            {
+              "keys": "F11",
+              "label": "Toggle fullscreen",
+              "command": "toggle_fullscreen"
+            },
+            {
+              "keys": "Tab",
+              "label": "Show index",
+              "command": "toggle_index"
+            }
+          ]
+        },
+        {
+          "name": "Stock · search & links",
+          "bindings": [
+            {
+              "keys": "/",
+              "label": "Search forward",
+              "command": "focus_inputbar /"
+            },
+            {
+              "keys": "?",
+              "label": "Search backward",
+              "command": "focus_inputbar ?"
+            },
+            {
+              "keys": "N",
+              "label": "Search next result",
+              "command": "search forward"
+            },
+            {
+              "keys": "N",
+              "label": "Search previous result",
+              "command": "search backward"
+            },
+            {
+              "keys": "F",
+              "label": "Follow links",
+              "command": "follow"
+            },
+            {
+              "keys": "F",
+              "label": "Display link target",
+              "command": "display_link"
+            },
+            {
+              "keys": "C",
+              "label": "Copy link target",
+              "command": "copy_link"
+            },
+            {
+              "keys": "O",
+              "label": "Open document",
+              "command": "focus_inputbar :open "
+            },
+            {
+              "keys": "O",
+              "label": "Open document (inputbar)",
+              "command": "focus_inputbar :open "
+            }
+          ]
+        },
+        {
+          "name": "Stock · marks & jumps",
+          "bindings": [
+            {
+              "keys": "m X",
+              "label": "Set quickmark X",
+              "command": "mark_add"
+            },
+            {
+              "keys": "' X",
+              "label": "Go to quickmark X",
+              "command": "mark_evaluate"
+            },
+            {
+              "keys": "Ctrl+o",
+              "label": "Move backward in jumplist",
+              "command": "jumplist backward"
+            },
+            {
+              "keys": "Ctrl+i",
+              "label": "Move forward in jumplist",
+              "command": "jumplist forward"
+            },
+            {
+              "keys": "Ctrl+j",
+              "label": "Bisect forward between jumps",
+              "command": "bisect forward"
+            },
+            {
+              "keys": "Ctrl+k",
+              "label": "Bisect backward between jumps",
+              "command": "bisect backward"
+            }
+          ]
+        },
+        {
+          "name": "Stock · misc",
+          "bindings": [
+            {
+              "keys": ":",
+              "label": "Enter command",
+              "command": "focus_inputbar :"
+            },
+            {
+              "keys": "Q",
+              "label": "Quit",
+              "command": "quit"
+            },
+            {
+              "keys": "Ctrl+c",
+              "label": "Abort",
+              "command": "abort"
+            },
+            {
+              "keys": "Escape",
+              "label": "Abort",
+              "command": "abort"
+            },
+            {
+              "keys": "Ctrl+m",
+              "label": "Toggle inputbar",
+              "command": "toggle_inputbar"
+            },
+            {
+              "keys": "Ctrl+n",
+              "label": "Toggle statusbar",
+              "command": "toggle_statusbar"
             }
           ]
         }

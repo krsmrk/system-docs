@@ -74,7 +74,7 @@ interface GuideDoc {
 // ---------------------------------------------------------------------------
 
 /** Landing-page card order (SPEC "Build pipeline"); unknown ids sort last. */
-const APP_ORDER = ["niri", "waybar", "yazi", "zsh", "zathura", "fuzzel"];
+const APP_ORDER = ["niri", "waybar", "fuzzel", "ghostty", "yazi", "zathura", "zsh"];
 
 function fail(msg: string): never {
   console.error(`build: fatal: ${msg}`);

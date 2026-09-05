@@ -25,19 +25,28 @@
 
 :root[data-theme="light"] {
   color-scheme: light;
+  /* Nord light = Snow Storm surfaces with Polar Night text. Backgrounds run
+     nord6 → nord5 → nord4 (each layer slightly darker), borders use a
+     stronger derived shade so panels/chips don't wash out. */
   --bg: #eceff4;        /* nord6 */
   --bg-panel: #e5e9f0;  /* nord5 */
   --bg-raised: #d8dee9; /* nord4 */
-  --border: #b8c1cf;
-  --fg: #2e3440;
-  --fg-bright: #2e3440;
-  --fg-dim: #4c566a;
+  --border: #a8b5c8;    /* derived: nord3↔nord4 halfway */
+  --fg: #3b4252;        /* nord1 */
+  --fg-bright: #2e3440; /* nord0 */
+  --fg-dim: #4c566a;    /* nord3 */
   --accent: #5e81ac;    /* nord10 */
-  --accent-2: #81a1c1;
-  --link: #5e81ac;
-  --kbd-bg: #d8dee9;
-  --kbd-border: #b8c1cf;
-  --mark: rgba(94, 129, 172, 0.3);
+  --accent-2: #5e81ac;  /* nord10 */
+  --link: #48678c;      /* derived: nord10 darkened for contrast on snow */
+  --warn: #8f6f2e;      /* derived: nord13 darkened */
+  --error: #bf616a;     /* nord11 */
+  --ok: #6d8852;        /* derived: nord14 darkened */
+  --purple: #8a6884;    /* derived: nord15 darkened */
+  --teal: #3f7f7b;      /* derived: nord7 darkened (mod chips) */
+  --frost-dim: #81a1c1; /* nord9 */
+  --kbd-bg: #f4f6f9;    /* derived: snow-bright keycap tops */
+  --kbd-border: #96a4bb; /* derived: strong keycap edge */
+  --mark: rgba(94, 129, 172, 0.28);
 }
 
 * { box-sizing: border-box; }

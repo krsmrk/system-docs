@@ -67,10 +67,12 @@ chord steps separated by `<span class="kb-seq"> </span>`.
 
 ## Apps covered (ids)
 
-`niri` (binds, gestures, media keys), `waybar` (click/scroll actions),
-`yazi` (keymap.toml + note about stock defaults), `zsh` (vi-mode bindkeys).
-`zathura` and `fuzzel` bindings are stock-only → covered inside the guides
-(niri-workflows / yazi), not as app pages.
+Extracted from live config: `niri` (binds, media keys), `waybar`
+(click/scroll), `yazi` (custom keymap), `zsh` (vi-mode bindkeys).
+Curated stock defaults (research agents, official docs — files in
+`nixos_config/scripts/extract/curated/*.json`, merged by the extractor):
+`yazi` stock groups appended, plus stock-only apps `zathura`, `fuzzel`,
+`ghostty` (+ its custom F11 bind as curated overlay).
 
 ## DOM contracts (build emits this; widgets consume it)
 
