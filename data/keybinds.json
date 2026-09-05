@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "generatedAt": "2026-09-05T12:00:00Z",
+    "sourceCommit": "seed",
+    "host": "box"
+  },
+  "apps": [
+    {
+      "id": "niri",
+      "title": "niri",
+      "tagline": "scrollable-tiling compositor",
+      "description": "Window management, workspaces, screenshots and session control.",
+      "icon": "▦",
+      "guide": "niri-workflows",
+      "groups": [
+        {
+          "name": "Apps",
+          "bindings": [
+            { "keys": "Mod+Return", "label": "Spawn terminal (ghostty)", "command": "spawn \"ghostty\"", "source": "config.kdl:110" },
+            { "keys": "Mod+D", "label": "App launcher (fuzzel)", "command": "spawn \"fuzzel\"", "source": "config.kdl:112" },
+            { "keys": "Mod+B", "label": "Browser (firefox)", "command": "spawn \"firefox\"", "source": "config.kdl:113" }
+          ]
+        },
+        {
+          "name": "Focus & movement",
+          "bindings": [
+            { "keys": "Mod+H", "label": "Focus column left (wraps)", "command": "focus-column-left-or-last", "source": "config.kdl:158" },
+            { "keys": "Mod+L", "label": "Focus column right (wraps)", "command": "focus-column-right-or-first", "source": "config.kdl:146" },
+            { "keys": "Mod+J", "label": "Focus window down", "command": "focus-window-down", "source": "config.kdl:161" },
+            { "keys": "Mod+Shift+H", "label": "Move column left", "command": "move-column-left", "source": "config.kdl:168" }
+          ]
+        },
+        {
+          "name": "Screenshots",
+          "bindings": [
+            { "keys": "Print", "label": "Interactive screenshot UI", "command": "screenshot", "source": "config.kdl:137" },
+            { "keys": "Ctrl+Print", "label": "Screenshot focused window", "command": "screenshot-window", "source": "config.kdl:138" },
+            { "keys": "Mod+Shift+S", "label": "Region → clipboard (grim+slurp)", "command": "spawn-sh \"grim -g …\"", "source": "config.kdl:143" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "waybar",
+      "title": "waybar",
+      "tagline": "status bar interactions",
+      "description": "Click and scroll actions on bar modules.",
+      "icon": "▬",
+      "groups": [
+        {
+          "name": "Modules",
+          "bindings": [
+            { "keys": "Scroll Up", "label": "Focus workspace up (on workspace module)", "command": "niri msg action focus-workspace-up" },
+            { "keys": "Mouse Left Click", "label": "Toggle swaync control center (on bell)", "command": "swaync-client -t -sw" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yazi",
+      "title": "yazi",
+      "tagline": "terminal file manager",
+      "description": "Custom keymap additions; stock bindings apply too.",
+      "icon": "▤",
+      "guide": "yazi",
+      "groups": [
+        {
+          "name": "Custom",
+          "bindings": [
+            { "keys": "E", "label": "Extract archive here", "command": "plugin extract-here", "source": "keymap.toml:7" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zsh",
+      "title": "zsh",
+      "tagline": "shell (vi mode)",
+      "description": "Line-editing bindings on top of vi mode.",
+      "icon": "❯",
+      "guide": "shell-tricks",
+      "groups": [
+        {
+          "name": "History & completion",
+          "bindings": [
+            { "keys": "Ctrl+R", "label": "Atuin history search (vicmd)", "command": "atuin-search", "source": ".zshrc:124" },
+            { "keys": "Ctrl+X B", "label": "Copy buffer to system clipboard", "command": "copybuffer", "source": ".zshrc:217" }
+          ]
+        }
+      ]
+    }
+  ]
+}

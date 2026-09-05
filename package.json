@@ -1,0 +1,21 @@
+{
+  "name": "system-docs",
+  "version": "0.1.0",
+  "description": "Web docs for Stefan's NixOS system: keybindings (generated) + usage guides. Nord-themed static site.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs --serve",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^24.0.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.8.0"
+  }
+}
