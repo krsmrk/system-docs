@@ -284,14 +284,26 @@ function renderIndexBody(data: KeybindsFile, guides: GuideDoc[]): string {
     })
     .sort((a, b) => a.rank - b.rank);
 
+  const totalBindings = data.apps.reduce(
+    (n, a) => n + a.groups.reduce((m, g) => m + g.bindings.length, 0),
+    0,
+  );
+
   const cards = ranked
     .map(({ app }) => {
       const total = app.groups.reduce((n, g) => n + g.bindings.length, 0);
+      // keycap preview: first 3 bindings of the first group (usually custom)
+      const preview = (app.groups[0]?.bindings ?? [])
+        .slice(0, 3)
+        .filter((b) => b.keys !== "")
+        .map((b) => kbdChips(b.keys))
+        .join("");
+      const keysLine = preview !== "" ? `      <div class="card-keys" aria-hidden="true">${preview}</div>\n` : "";
       return `    <a class="app-card" href="apps/${esc(app.id)}.html">
       <span class="card-icon" aria-hidden="true">${esc(app.icon)}</span>
       <h3>${esc(app.title)}</h3>
       <p class="tagline">${esc(app.tagline)}</p>
-      <div class="card-meta"><span class="count">${total} ${total === 1 ? "binding" : "bindings"}</span><span>${app.groups.length} ${app.groups.length === 1 ? "group" : "groups"}</span></div>
+${keysLine}      <div class="card-meta"><span class="count">${total} ${total === 1 ? "binding" : "bindings"}</span><span>${app.groups.length} ${app.groups.length === 1 ? "group" : "groups"}</span></div>
     </a>`;
     })
     .join("\n");
@@ -306,9 +318,16 @@ function renderIndexBody(data: KeybindsFile, guides: GuideDoc[]): string {
           )
           .join("\n");
 
+  const genDate = data.meta.generatedAt.slice(0, 10);
   return `<div class="hero">
-  <h1>system-docs</h1>
-  <p>Keybinding cheat sheets + usage guides for this NixOS system (${esc(data.meta.host)}).</p>
+  <h1>Every keybinding on box, searchable.</h1>
+  <p class="hero-sub">Keybinding cheat sheets + usage guides for this NixOS system (${esc(data.meta.host)}) — generated from the live config, not typed by hand.</p>
+  <p class="hero-stats">
+    <span class="stat"><strong>${totalBindings}</strong> bindings</span>
+    <span class="stat"><strong>${data.apps.length}</strong> apps</span>
+    <span class="stat"><strong>${guides.length}</strong> guides</span>
+    <span class="stat dim">generated ${esc(genDate)}</span>
+  </p>
 </div>
 
 <div class="card-grid">
@@ -326,7 +345,8 @@ function renderRow(b: Binding): string {
     b.source !== undefined
       ? `\n      <td class="kb-source" title="${esc(b.source)}">∴</td>`
       : "";
-  return `    <tr class="kb-row" data-keys="${esc(b.keys)}">
+  const cmdAttr = b.command !== undefined ? ` data-cmd="${esc(b.command.toLowerCase())}"` : "";
+  return `    <tr class="kb-row" data-keys="${esc(b.keys)}"${cmdAttr}>
       <td class="kb-keys">${kbdChips(b.keys)}</td>
       <td class="kb-label">${esc(b.label)}</td>
       <td class="kb-command">${b.command !== undefined ? `<code>${esc(b.command)}</code>` : ""}</td>${sourceCell}
@@ -337,24 +357,26 @@ function renderAppBody(app: App, guideBySlug: ReadonlyMap<string, GuideDoc>): st
   const total = app.groups.reduce((n, g) => n + g.bindings.length, 0);
   const related = app.guide !== undefined ? guideBySlug.get(app.guide) : undefined;
   const relatedGuide = related
-    ? `\n  <p class="related-guide">Guide: <a href="../guides/${esc(related.slug)}.html">${esc(related.title)}</a></p>`
+    ? `\n  <p class="related-guide"><a class="chip-link" href="../guides/${esc(related.slug)}.html">guide → ${esc(related.title)}</a></p>`
     : "";
 
   const header = `<div class="app-header">
-  <h1>${esc(app.title)}</h1>
+  <h1><span class="app-icon" aria-hidden="true">${esc(app.icon)}</span> ${esc(app.title)}</h1>
   <p class="tagline">${esc(app.tagline)}</p>
   <p class="app-desc">${esc(app.description)}</p>${relatedGuide}
 </div>`;
 
-  const filterBar = `<div class="filter-bar">
-  <input class="kb-filter" type="search" placeholder="Filter bindings…" aria-label="Filter bindings">
-  <span class="kb-counter">${total} ${total === 1 ? "binding" : "bindings"}</span>
-</div>`;
+  const tocChips = app.groups
+    .map(
+      (g, i) =>
+        `  <a class="toc-chip" href="#g-${i}">${esc(g.name)} <span class="chip-count">${g.bindings.length}</span></a>`,
+    )
+    .join("\n");
 
   const groups = app.groups
     .map(
-      (g) => `<section class="kb-group">
-  <h3>${esc(g.name)}</h3>
+      (g, i) => `<section class="kb-group" id="g-${i}">
+  <h3>${esc(g.name)} <span class="group-count">${g.bindings.length}</span></h3>
   <table class="kb-table"><tbody>
 ${g.bindings.map(renderRow).join("\n")}
   </tbody></table>
@@ -364,7 +386,14 @@ ${g.bindings.map(renderRow).join("\n")}
 
   return `${header}
 
-${filterBar}
+<div class="filter-bar">
+  <input class="kb-filter" type="search" placeholder="Filter by key, action or command… (press /)" aria-label="Filter bindings">
+  <span class="kb-counter">${total} ${total === 1 ? "binding" : "bindings"}</span>
+</div>
+
+<nav class="kb-toc" aria-label="Groups">
+${tocChips}
+</nav>
 
 <div class="kb-keyboard"></div>
 

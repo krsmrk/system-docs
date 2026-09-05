@@ -224,10 +224,19 @@ export function initKeyboard(): void {
 
   const chips = new Map<string, HTMLButtonElement>();
   for (const combo of comboList) {
+    const n = chords.filter((c) => c.mods === combo).length;
+    const label = combo === "none" ? "no modifier" : combo;
     const chip = document.createElement("button");
     chip.type = "button";
     chip.className = "kb-layer-chip";
-    chip.textContent = combo === "none" ? "no modifier" : combo;
+    const labelSpan = document.createElement("span");
+    labelSpan.textContent = label;
+    chip.appendChild(labelSpan);
+    const countSpan = document.createElement("span");
+    countSpan.className = "count";
+    countSpan.textContent = ` ${n}`;
+    chip.appendChild(countSpan);
+    chip.title = `${label} — ${n} ${n === 1 ? "binding" : "bindings"} on this layer`;
     chip.setAttribute("aria-pressed", combo === selected ? "true" : "false");
     chip.addEventListener("click", () => {
       selected = combo;

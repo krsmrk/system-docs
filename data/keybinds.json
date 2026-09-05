@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-05T16:15:40.233Z",
+    "generatedAt": "2026-09-05T16:38:34.748Z",
     "sourceCommit": "6276a1d",
     "host": "box"
   },
@@ -626,7 +626,7 @@
       "icon": "▬",
       "groups": [
         {
-          "name": "Modules",
+          "name": "Modules · click & scroll",
           "bindings": [
             {
               "keys": "Scroll Up",
@@ -1024,6 +1024,17 @@
       "description": "Terminal emulator (Nordfox theme). Bindings are the stock Linux defaults; F11 is additionally bound to toggle_fullscreen via user config.",
       "groups": [
         {
+          "name": "Custom",
+          "bindings": [
+            {
+              "keys": "F11",
+              "label": "Toggle fullscreen",
+              "command": "toggle_fullscreen",
+              "source": "~/.config/ghostty/config:19"
+            }
+          ]
+        },
+        {
           "name": "Stock · clipboard & scrollback",
           "bindings": [
             {
@@ -1357,17 +1368,6 @@
               "command": "write_screen_file:open,plain"
             }
           ]
-        },
-        {
-          "name": "Custom",
-          "bindings": [
-            {
-              "keys": "F11",
-              "label": "Toggle fullscreen",
-              "command": "toggle_fullscreen",
-              "source": "~/.config/ghostty/config:19"
-            }
-          ]
         }
       ]
     },
@@ -1380,7 +1380,7 @@
       "guide": "yazi",
       "groups": [
         {
-          "name": "mgr · prepend",
+          "name": "Custom · mgr prepend",
           "bindings": [
             {
               "keys": "E",
@@ -2750,7 +2750,7 @@
       "guide": "shell-tricks",
       "groups": [
         {
-          "name": "main",
+          "name": "vi insert & global",
           "bindings": [
             {
               "keys": "Ctrl+Alt+Escape",
@@ -2809,7 +2809,7 @@
           ]
         },
         {
-          "name": "vicmd",
+          "name": "vi normal mode",
           "bindings": [
             {
               "keys": "Ctrl+R",

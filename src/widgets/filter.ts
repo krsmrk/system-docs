@@ -3,6 +3,8 @@
 // ("DOM contracts" + "Widgets / 1. filter.ts"). Progressive enhancement:
 // without JS everything stays visible; this code only adds behavior.
 // Creates at most two nodes: .kb-counter and .kb-empty.
+// Round-2 additions: matched chars in labels are wrapped in <mark>,
+// "?q=" URL round-trip, "/" focuses, Escape clears.
 
 import { fuzzyScore } from "./fuzzy";
 
@@ -10,6 +12,44 @@ interface Row {
   el: HTMLTableRowElement;
   group: HTMLElement | null;
   haystack: string;
+  labelCell: HTMLTableCellElement | null;
+  labelText: string;
+  labelHTML: string;
+}
+
+/** Match needle as a subsequence of text; return matched char indexes. */
+function matchPositions(needle: string, text: string): number[] | null {
+  const n = needle.toLowerCase();
+  const h = text.toLowerCase();
+  const pos: number[] = [];
+  for (let j = 0, i = 0; j < h.length && i < n.length; j++) {
+    if (h[j] === n[i]) {
+      pos.push(j);
+      i += 1;
+      if (i === n.length) return pos;
+    }
+  }
+  return null;
+}
+
+/** Wrap matched character ranges of a plain-text label in <mark> spans. */
+function highlight(text: string, positions: number[]): string {
+  let out = "";
+  let inMark = false;
+  const at = new Set(positions);
+  for (let i = 0; i < text.length; i++) {
+    const hit = at.has(i);
+    if (hit && !inMark) {
+      out += "<mark>";
+      inMark = true;
+    } else if (!hit && inMark) {
+      out += "</mark>";
+      inMark = false;
+    }
+    out += text[i].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+  }
+  if (inMark) out += "</mark>";
+  return out;
 }
 
 export function initFilter(): void {
@@ -25,8 +65,8 @@ export function initFilter(): void {
     document.querySelectorAll<HTMLTableRowElement>("tr.kb-row"),
   ).map((el) => {
     const keys = el.dataset.keys ?? "";
-    const label =
-      el.querySelector<HTMLTableCellElement>("td.kb-label")?.textContent?.trim() ?? "";
+    const labelCell = el.querySelector<HTMLTableCellElement>("td.kb-label");
+    const labelText = labelCell?.textContent?.trim() ?? "";
     const command =
       el.querySelector<HTMLTableCellElement>("td.kb-command")?.textContent?.trim() ?? "";
     const group = el.closest<HTMLElement>("section.kb-group");
@@ -34,7 +74,10 @@ export function initFilter(): void {
     return {
       el,
       group,
-      haystack: `${keys} ${label} ${command} ${groupName}`.toLowerCase(),
+      labelCell,
+      labelText,
+      labelHTML: labelCell?.innerHTML ?? "",
+      haystack: `${keys} ${labelText} ${command} ${groupName}`.toLowerCase(),
     };
   });
 
@@ -73,13 +116,30 @@ export function initFilter(): void {
   };
   const empty = ensureEmpty();
 
+  const bindingsWord = (n: number): string => `${n} ${n === 1 ? "binding" : "bindings"}`;
+
+  // ?q= round-trip: shareable filtered views.
+  const syncUrl = (query: string): void => {
+    try {
+      const url = new URL(window.location.href);
+      if (query === "") url.searchParams.delete("q");
+      else url.searchParams.set("q", query);
+      window.history.replaceState(null, "", url);
+    } catch {
+      /* file:// or odd environments — ignore */
+    }
+  };
+
   const applyFilter = (): void => {
     const query = input.value;
     const total = rows.length;
     let visible: number;
 
     if (query === "") {
-      for (const row of rows) row.el.classList.remove("hidden");
+      for (const row of rows) {
+        row.el.classList.remove("hidden");
+        if (row.labelCell) row.labelCell.innerHTML = row.labelHTML;
+      }
       for (const group of groups) group.classList.remove("hidden");
       visible = total;
     } else {
@@ -90,6 +150,10 @@ export function initFilter(): void {
         } else {
           row.el.classList.remove("hidden");
           visible += 1;
+          if (row.labelCell) {
+            const pos = matchPositions(query, row.labelText);
+            row.labelCell.innerHTML = pos === null ? row.labelHTML : highlight(row.labelText, pos);
+          }
         }
       }
       for (const group of groups) {
@@ -100,12 +164,23 @@ export function initFilter(): void {
       }
     }
 
-    counter.textContent = query === "" ? `${total} bindings` : `${visible} of ${total}`;
+    counter.textContent =
+      query === "" ? bindingsWord(total) : `${bindingsWord(visible)} of ${total}`;
 
     const showEmpty = visible === 0 && query !== "";
     if (showEmpty) empty.textContent = `No bindings match “${query}”.`;
     empty.hidden = !showEmpty;
+
+    syncUrl(query);
   };
+
+  // Honor an incoming ?q= before the initial paint pass.
+  try {
+    const initial = new URLSearchParams(window.location.search).get("q");
+    if (initial !== null) input.value = initial;
+  } catch {
+    /* ignore */
+  }
 
   input.addEventListener("input", () => applyFilter());
   applyFilter(); // initial state (also covers restored input values on bfcache)

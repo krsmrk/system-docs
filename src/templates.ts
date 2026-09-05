@@ -74,26 +74,30 @@ export function page(o: PageOptions): string {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Keybinding cheat sheets and usage guides for box — a NixOS system: niri, waybar, fuzzel, ghostty, yazi, zathura, zsh.">
+  <meta name="theme-color" content="#2e3440">
   <title>${esc(o.title)} · system-docs</title>
   <link rel="stylesheet" href="${rel}assets/app.css">
   <link rel="icon" type="image/svg+xml" href="${rel}assets/favicon.svg">
   <script src="${rel}assets/app.js" defer></script>${extraHead}
 </head>
 <body data-page="${esc(o.page)}"${appAttr}>
-  <header class="site-header">
-    <a class="site-title" href="${rel}index.html">system-docs <span class="dim">— box</span></a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="top">
+    <a class="site-title" href="${rel}index.html"><span class="brand-mark" aria-hidden="true">▦</span> system-docs <span class="dim">— box</span></a>
     <nav>
-      <a href="${rel}index.html">Overview</a>
-      <a href="${rel}index.html#guides">Guides</a>
+      <a href="${rel}index.html" data-nav="index">Overview</a>
+      <a href="${rel}index.html#guides" data-nav="guides">Guides</a>
     </nav>
     <button data-theme-toggle type="button" aria-label="Toggle dark/light theme">☾</button>
   </header>
-  <main>
+  <main id="main">
 ${o.body}
   </main>
   <footer class="site-footer">
     <span>${o.footerLeft}</span>
     <span>${o.footerRight}</span>
+    <a class="to-top" href="#top" aria-label="Back to top">↑ top</a>
   </footer>
 </body>
 </html>

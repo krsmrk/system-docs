@@ -11,3 +11,9 @@ if (document.body.dataset.page === "app") {
   initFilter();
   initKeyboard();
 }
+
+// nav active state (aria-current): app pages live under "Overview"
+const navKey = document.body.dataset.page === "guide" ? "guides" : "index";
+for (const a of document.querySelectorAll<HTMLAnchorElement>(".site-header nav a")) {
+  if (a.dataset.nav === navKey) a.setAttribute("aria-current", "page");
+}

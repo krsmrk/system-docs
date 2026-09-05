@@ -94,30 +94,38 @@ Curated stock defaults (research agents, official docs — files in
   <script type="application/json" id="app-data"> { ...this app object... } </script>
 ```
 
-- Landing page: `body[data-page="index"]`, grid of `.app-card` elements plus a
-  guides index. No widgets required on index (pure CSS grid).
+- Landing page: `body[data-page="index"]`, hero with site stats
+  (`.hero-stats`: bindings/apps/guides/generated-date chips), grid of
+  `.app-card` elements each with a `.card-keys` keycap preview, plus a guide
+  list. No widgets required on index (pure CSS grid).
 - Guide pages: `body[data-page="guide"]`, `<article>` + `<nav class="toc">`
   built from h2/h3 headings at build time.
-- All pages share one header: site title "system-docs — box", nav links
-  (Overview, Guides), Nord theme toggle (dark/light, persists localStorage,
-  default dark, respects prefers-color-scheme).
+- App-page extras (round-2): `.kb-toc` chip row links to section ids
+  `#g-0..n`; `h3` shows `.group-count`; rows carry `data-cmd` (lowercased
+  command) for command search; app headers show icon + `.chip-link` guide chip.
+- All pages share one sticky header: site title "system-docs — box", nav
+  links (Overview, Guides; active one gets `aria-current="page"`), Nord theme
+  toggle (dark/light, persists localStorage, default dark, respects
+  prefers-color-scheme); skip-link; footer has ↑ top link. `@media print`
+  forces a light ink-saving palette and hides interactive chrome.
 
 ## Widgets (src/widgets/, bundled to assets/app.js)
 
 1. **filter.ts** — on `body[data-page="app"]`: attach to `.kb-filter`.
    Fuzzy match (subsequence, case-insensitive, rank by tightness) over each
-   `.kb-row`'s keys+label+command. Live-filter on input: hide non-matching
-   rows, hide groups with no visible rows, show "N of M" counter next to
-   input. Keyboard: `/` focuses input (unless already in an input),
-   `Esc` clears+blurs. Highlight matched chars with `<mark>`? NO — keep it
-   simple, just show/hide. Empty state message when 0 matches.
+   `.kb-row`'s keys+label+command+group. Live-filter on input: hide
+   non-matching rows, hide groups with no visible rows, show "N bindings" /
+   "X of N" counter (singular-aware) next to input. Matched chars in labels
+   are wrapped in `<mark>`. Query round-trips through `?q=` (replaceState),
+   so filtered views are shareable. Keyboard: `/` focuses input (unless
+   already in an input), `Esc` clears+blurs. Empty state when 0 matches.
 2. **keyboard.ts** — on `body[data-page="app"]`: render ISO/DE keyboard
    (105-key, backslash/pipe key between Left-Shift and Z, big Enter) as a
    <div> grid. Layer chips above it derived from modifier combos present in
    the app's bindings (e.g. `none`, `Mod`, `Mod+Shift`, `Ctrl`, `Mod+Ctrl`).
    Selecting a layer highlights bound keys (accent color nord8), stronger
-   highlight for `Mod+Shift` etc. Hovering a highlighted key shows a tooltip
-   with label(s). Clicking a key scrolls to & flashes the first matching
+   highlight for `Mod+Shift` etc. Chips show per-layer binding counts
+   (`Mod 41`). Hovering a highlighted key shows a tooltip with label(s). Clicking a key scrolls to & flashes the first matching
    `.kb-row`. Keys used by any layer get a persistent dot marker.
    Skip pointer pseudo-keys (Mouse/Scroll) in the keyboard.
 3. **theme.ts** — dark/light toggle, localStorage `sd-theme`, sets
