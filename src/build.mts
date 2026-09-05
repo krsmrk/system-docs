@@ -1,9 +1,9 @@
 // Site renderer for system-docs. Reads data/keybinds.json and
 // content/guides/*.md, then writes:
-//   dist/index.html            — landing page (hero + app cards + guides)
-//   dist/apps/<id>.html        — keybinding pages (DOM contract in SPEC.md)
-//   dist/guides/<slug>.html    — markdown guides with TOC
-//   dist/404.html              — Nord-styled not-found page
+//   dist/index.html            - landing page (hero + app cards + guides)
+//   dist/apps/<id>.html        - keybinding pages (DOM contract in SPEC.md)
+//   dist/guides/<slug>.html    - markdown guides with TOC
+//   dist/404.html              - Nord-styled not-found page
 // Runs from the repo root (esbuild-bundled + spawned by scripts/build.mjs).
 
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
@@ -107,7 +107,7 @@ function isStr(v: unknown): v is string {
   return typeof v === "string";
 }
 
-/** JSON for <script type="application/json"> — `<` and friends made html-safe. */
+/** JSON for <script type="application/json"> - `<` and friends made html-safe. */
 function jsonForScript(value: unknown): string {
   return JSON.stringify(value)
     .replaceAll("<", "\\u003c")
@@ -164,9 +164,9 @@ function validateKeybinds(raw: unknown): KeybindsFile {
         if (!isStr(label) || label.trim() === "")
           fail(`${bwhere}: every binding needs a non-empty "label"`);
         if (!isStr(keys))
-          fail(`${bwhere}: every binding needs a "keys" string (empty allowed only when "command" is present) — label: "${label}"`);
+          fail(`${bwhere}: every binding needs a "keys" string (empty allowed only when "command" is present) - label: "${label}"`);
         if (keys === "" && !(isStr(command) && command.trim() !== ""))
-          fail(`${bwhere}: keys may be "" only when "command" is present — label: "${label}"`);
+          fail(`${bwhere}: keys may be "" only when "command" is present - label: "${label}"`);
         if (command !== undefined && !isStr(command))
           fail(`${bwhere}: "command" must be a string`);
         if (source !== undefined && !isStr(source))
@@ -267,7 +267,7 @@ async function loadGuides(root: string): Promise<GuideDoc[]> {
   try {
     files = (await readdir(dir)).filter((f) => f.endsWith(".md")).sort();
   } catch {
-    return []; // no content/guides dir yet — index shows the empty state
+    return []; // no content/guides dir yet - index shows the empty state
   }
   const docs: GuideDoc[] = [];
   for (const [i, file] of files.entries()) {
@@ -339,7 +339,7 @@ ${keysLine}      <div class="card-meta"><span class="count">${total} ${total ===
   const genDate = data.meta.generatedAt.slice(0, 10);
   return `<div class="hero">
   <h1>Every keybinding on box, searchable.</h1>
-  <p class="hero-sub">Keybinding cheat sheets + usage guides for this NixOS system (${esc(data.meta.host)}) — generated from the live config, not typed by hand.</p>
+  <p class="hero-sub">Keybinding cheat sheets + usage guides for this NixOS system (${esc(data.meta.host)}). Generated from the live config, not typed by hand.</p>
   <p class="hero-stats">
     <span class="stat"><strong>${totalBindings}</strong> bindings</span>
     <span class="stat"><strong>${data.apps.length}</strong> apps</span>
@@ -526,7 +526,7 @@ async function main(): Promise<void> {
       rel: "",
       page: "404",
       body: `<div class="hero">
-  <h1>404 — page not found</h1>
+  <h1>404: page not found</h1>
   <p>Nothing lives at this URL. Head back to the <a href="index.html">overview</a> or browse the <a href="index.html#guides">guides</a>.</p>
 </div>`,
       footerLeft,

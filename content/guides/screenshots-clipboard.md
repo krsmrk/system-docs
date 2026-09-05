@@ -15,25 +15,25 @@ Three homes for screenshots in the niri config (`modules/home/niri.nix`):
 | `Ctrl+Print` | screenshot the focused window (niri UI) |
 | `Shift+Print` | screenshot the whole screen (niri UI) |
 | `Mod+G` / `Mod+Ctrl+G` / `Mod+Shift+G` | same three actions, for boards without a Print key |
-| `Mod+Shift+S` | zero-UI fast lane: `grim -g "$(slurp)"` piped to `wl-copy` — region straight to clipboard, no preview |
+| `Mod+Shift+S` | zero-UI fast lane: `grim -g "$(slurp)"` piped to `wl-copy` - region straight to clipboard, no preview |
 
 The Print and Mod+G families are the same niri actions on two key clusters, so the
 muscle memory works on any board. `grim` + `slurp` back the fast lane.
 
 **Where files land:** niri writes to `~/Pictures/Screenshots/` with timestamped
-names — `Screenshot from %Y-%m-%d %H-%M-%S.png` (created on first shot, so
+names - `Screenshot from %Y-%m-%d %H-%M-%S.png` (created on first shot, so
 history is just the directory listing sorted by name).
 
 ## Clipboard: opt-in recording
 
-Nothing watches your clipboard by default — copied passwords are never silently
+Nothing watches your clipboard by default - copied passwords are never silently
 archived (this was the security-review fix). The stack is `cliphist` (store),
 `wl-clip-persist` (keeps the *live* clipboard alive when the source app exits),
 and `cliprec` (the opt-in recorder).
 
 | keys | action |
 |---|---|
-| `Mod+Ctrl+V` | `cliprec menu` — arm/disarm recording |
+| `Mod+Ctrl+V` | `cliprec menu` - arm/disarm recording |
 | `Mod+Shift+V` | recall history: `cliphist list` → fuzzel dmenu → `cliphist decode` → `wl-copy` |
 
 The cliprec menu (a fuzzel dmenu, prompt shows current status like
@@ -51,7 +51,7 @@ recorded while armed.
 History never outlives the moment it was needed. It is wiped:
 
 - at **session start** (`cliphist wipe` in niri's autostart),
-- on **lock** — every lock path goes through the `lock` script
+- on **lock** - every lock path goes through the `lock` script
   (`swaylock -f` + `cliphist wipe`): `Ctrl+Alt+L`, `Mod+Escape`, the session
   menu, swayidle's 15-min timeout, and suspend (before-sleep event).
 
@@ -72,8 +72,7 @@ swaync, so they land in the control-center history too (`Mod+Shift+N`).
 ## Lock interplay
 
 Because `lock` wipes the archive, the flow is: arm recording (`Mod+Ctrl+V`) →
-copy what you need → `Mod+Shift+V` recall. Walk away / lock, and it's gone —
-that is the point. The live clipboard still persists across app exits
+copy what you need → `Mod+Shift+V` recall. Walk away / lock, and it's gone;that is the point. The live clipboard still persists across app exits
 (wl-clip-persist), it's just not archived.
 
 See also: the niri app page for the bind table

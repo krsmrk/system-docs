@@ -1,4 +1,4 @@
-// filter.ts — live RANKED fuzzy filtering for app pages (body[data-page="app"]).
+// filter.ts - live RANKED fuzzy filtering for app pages (body[data-page="app"]).
 // Wires input.kb-filter to the .kb-row tables, per SPEC.md
 // ("DOM contracts" + "Widgets / 1. filter.ts"). Progressive enhancement:
 // without JS everything stays visible; this code only adds behavior.
@@ -167,7 +167,7 @@ export function initFilter(): void {
       else url.searchParams.set("q", query);
       window.history.replaceState(null, "", url);
     } catch {
-      /* file:// or odd environments — ignore */
+      /* file:// or odd environments - ignore */
     }
   };
 

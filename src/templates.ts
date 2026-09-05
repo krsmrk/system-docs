@@ -1,9 +1,9 @@
-// Shared HTML templates for system-docs — pure string builders, no I/O.
+// Shared HTML templates for system-docs - pure string builders, no I/O.
 //
 // `rel` is the path prefix from the current page to the site root:
 // "" for index.html, "../" for apps/*.html and guides/*.html. Every asset
 // and page href is emitted relative to that prefix because GitHub Pages
-// serves the site under /system-docs/ — never use leading "/".
+// serves the site under /system-docs/ - never use leading "/".
 
 const MODIFIER_TOKENS = new Set(["Mod", "Ctrl", "Alt", "Shift"]);
 
@@ -52,15 +52,15 @@ export interface PageOptions {
   rel: string;
   /** Value for <body data-page="…">: "index" | "app" | "guide" | "404". */
   page: string;
-  /** App id — renders <body data-app="…"> on app pages. */
+  /** App id - renders <body data-app="…"> on app pages. */
   app?: string;
   /** Verbatim extra markup appended at the end of <head>. */
   extraHead?: string;
   /** Inner markup for <main>. */
   body: string;
-  /** Footer left slot — build passes pre-escaped text/HTML. */
+  /** Footer left slot - build passes pre-escaped text/HTML. */
   footerLeft: string;
-  /** Footer right slot — build passes pre-escaped text/HTML. */
+  /** Footer right slot - build passes pre-escaped text/HTML. */
   footerRight: string;
 }
 
@@ -74,9 +74,9 @@ export function page(o: PageOptions): string {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Keybinding cheat sheets and usage guides for box — a NixOS system: niri, waybar, fuzzel, ghostty, yazi, zathura, zsh.">
+  <meta name="description" content="The box manual: keybinding cheat sheets and usage guides for this NixOS system (niri, waybar, fuzzel, ghostty, yazi, zathura, zsh).">
   <meta name="theme-color" content="#2e3440">
-  <title>${esc(o.title)} · system-docs</title>
+  <title>${esc(o.title)} · box manual</title>
   <link rel="stylesheet" href="${rel}assets/app.css">
   <link rel="icon" type="image/svg+xml" href="${rel}assets/favicon.svg">
   <script src="${rel}assets/app.js" defer></script>${extraHead}
@@ -84,7 +84,7 @@ export function page(o: PageOptions): string {
 <body data-page="${esc(o.page)}"${appAttr}>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" id="top">
-    <a class="site-title" href="${rel}index.html"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="4"/><path d="M6.8 8.5l4 3.5-4 3.5"/><line x1="13" y1="15.5" x2="17.5" y2="15.5"/></svg></span> system-docs <span class="dim">— box</span></a>
+    <a class="site-title" href="${rel}index.html"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="4"/><path d="M6.8 8.5l4 3.5-4 3.5"/><line x1="13" y1="15.5" x2="17.5" y2="15.5"/></svg></span> box manual</a>
     <nav>
       <a href="${rel}index.html" data-nav="index">Overview</a>
       <a href="${rel}index.html#guides" data-nav="guides">Guides</a>

@@ -1,4 +1,4 @@
-// Theme toggle — dark/light, persists to localStorage("sd-theme").
+// Theme toggle - dark/light, persists to localStorage("sd-theme").
 // Default: dark, unless the user prefers light. Sets data-theme on <html>.
 
 const KEY = "sd-theme";

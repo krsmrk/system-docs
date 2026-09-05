@@ -1,4 +1,4 @@
-# system-docs — SPEC (binding contracts for all tasks)
+# system-docs - SPEC (binding contracts for all tasks)
 
 Web-based documentation for Stefan's NixOS system ("box"). Fully custom static
 site: **keybindings generated from live config** + hand-written usage guides.
@@ -61,7 +61,7 @@ chord steps separated by `<span class="kb-seq"> </span>`.
 - zsh: `^R` → `Ctrl+R`; `^[f` (Meta) → `Alt+F`; `^[^[` → `Ctrl+Alt+Escape`;
   `^Xb` → `Ctrl+X B` (two-step: keep space-separated tail; still normalized mods).
 - Pointer/wheel pseudo-keys: `Mouse Left Click`, `Mouse Right Click`,
-  `Scroll Up`, `Scroll Down` — used by waybar.
+  `Scroll Up`, `Scroll Down` - used by waybar.
 - Every binding MUST have `keys` and `label`. `keys` may be `""` only for
   prose-only rows; widgets must tolerate that.
 
@@ -69,7 +69,7 @@ chord steps separated by `<span class="kb-seq"> </span>`.
 
 Extracted from live config: `niri` (binds, media keys), `waybar`
 (click/scroll), `yazi` (custom keymap), `zsh` (vi-mode bindkeys).
-Curated stock defaults (research agents, official docs — files in
+Curated stock defaults (research agents, official docs - files in
 `nixos_config/scripts/extract/curated/*.json`, merged by the extractor):
 `yazi` stock groups appended, plus stock-only apps `zathura`, `fuzzel`,
 `ghostty` (+ its custom F11 bind as curated overlay).
@@ -103,7 +103,7 @@ Curated stock defaults (research agents, official docs — files in
 - App-page extras (round-2): `.kb-toc` chip row links to section ids
   `#g-0..n`; `h3` shows `.group-count`; rows carry `data-cmd` (lowercased
   command) for command search; app headers show icon + `.chip-link` guide chip.
-- All pages share one sticky header: site title "system-docs — box", nav
+- All pages share one sticky header: site title "box manual", nav
   links (Overview, Guides; active one gets `aria-current="page"`), Nord theme
   toggle (dark/light, persists localStorage, default dark, respects
   prefers-color-scheme); skip-link; footer has ↑ top link. `@media print`
@@ -118,7 +118,7 @@ currentColor) defined in build.mts, with the data `icon` glyph as fallback.
 
 ## Widgets (src/widgets/, bundled to assets/app.js)
 
-1. **filter.ts** — on `body[data-page="app"]`: attach to `.kb-filter`.
+1. **filter.ts** - on `body[data-page="app"]`: attach to `.kb-filter`.
    Fuzzy match (subsequence, case-insensitive, rank by tightness) over each
    `.kb-row`'s keys+label+command+group. Live-filter on input: hide
    non-matching rows, hide groups with no visible rows, show "N bindings" /
@@ -126,7 +126,7 @@ currentColor) defined in build.mts, with the data `icon` glyph as fallback.
    are wrapped in `<mark>`. Query round-trips through `?q=` (replaceState),
    so filtered views are shareable. Keyboard: `/` focuses input (unless
    already in an input), `Esc` clears+blurs. Empty state when 0 matches.
-2. **keyboard.ts** — on `body[data-page="app"]`: render ISO/DE keyboard
+2. **keyboard.ts** - on `body[data-page="app"]`: render ISO/DE keyboard
    (105-key, backslash/pipe key between Left-Shift and Z, big Enter) as a
    <div> grid. Layer chips above it derived from modifier combos present in
    the app's bindings (e.g. `none`, `Mod`, `Mod+Shift`, `Ctrl`, `Mod+Ctrl`).
@@ -135,7 +135,7 @@ currentColor) defined in build.mts, with the data `icon` glyph as fallback.
    (`Mod 41`). Hovering a highlighted key shows a tooltip with label(s). Clicking a key scrolls to & flashes the first matching
    `.kb-row`. Keys used by any layer get a persistent dot marker.
    Skip pointer pseudo-keys (Mouse/Scroll) in the keyboard.
-3. **theme.ts** — dark/light toggle, localStorage `sd-theme`, sets
+3. **theme.ts** - dark/light toggle, localStorage `sd-theme`, sets
    `data-theme` on <html>. Auto-init everywhere.
 
 ## Markdown guides (content/guides/*.md)
@@ -184,14 +184,14 @@ highlight. kbd chips: nord2 bg, rounded, mono font. Font stack: system-ui +
 
 ## Repo scripts
 
-- `npm run build` — bundle widgets + bundle & run build.mts → dist/
-- `npm run dev` — build + serve dist/ on http://localhost:4321 (node http,
+- `npm run build` - bundle widgets + bundle & run build.mts → dist/
+- `npm run dev` - build + serve dist/ on http://localhost:4321 (node http,
   ~30 lines, no dep)
-- `npm run check` — tsc --noEmit
+- `npm run check` - tsc --noEmit
 
 ## CI
 
-`.github/workflows/pages.yml`: on push to `main` — npm ci, npm run build,
+`.github/workflows/pages.yml`: on push to `main` - npm ci, npm run build,
 upload dist/ via actions/upload-pages-artifact + actions/deploy-pages.
 Needs `permissions: pages: write, id-token: write`, environment `github-pages`.
 

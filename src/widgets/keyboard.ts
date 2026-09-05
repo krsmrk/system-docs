@@ -1,4 +1,4 @@
-// Keyboard widget — ISO/DE layout with modifier layers, tooltips, click-to-row.
+// Keyboard widget - ISO/DE layout with modifier layers, tooltips, click-to-row.
 // Contract: SPEC.md "DOM contracts" + "Widgets / 2. keyboard.ts".
 
 export function initKeyboard(): void {
@@ -236,7 +236,7 @@ export function initKeyboard(): void {
     countSpan.className = "count";
     countSpan.textContent = ` ${n}`;
     chip.appendChild(countSpan);
-    chip.title = `${label} — ${n} ${n === 1 ? "binding" : "bindings"} on this layer`;
+    chip.title = `${label} - ${n} ${n === 1 ? "binding" : "bindings"} on this layer`;
     chip.setAttribute("aria-pressed", combo === selected ? "true" : "false");
     chip.addEventListener("click", () => {
       selected = combo;
@@ -387,7 +387,7 @@ export function initKeyboard(): void {
       if (row) break;
     }
     if (!row) {
-      // Row may be hidden by the filter — clear it so the row reappears.
+      // Row may be hidden by the filter - clear it so the row reappears.
       const filter = document.querySelector<HTMLInputElement>(".kb-filter");
       if (filter && filter.value !== "") {
         filter.value = "";

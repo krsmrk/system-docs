@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-05T16:38:34.748Z",
+    "generatedAt": "2026-09-05T17:03:28.985Z",
     "sourceCommit": "6276a1d",
     "host": "box"
   },
@@ -84,7 +84,7 @@
             },
             {
               "keys": "Mod+Ctrl+V",
-              "label": "Arm/disarm clipboard recording (opt-in — modules/home/clipboard.nix)",
+              "label": "Arm/disarm clipboard recording (opt-in: modules/home/clipboard.nix)",
               "command": "spawn \"cliprec\" \"menu\"",
               "source": "config.kdl:117"
             }
@@ -154,7 +154,7 @@
             },
             {
               "keys": "Mod+Escape",
-              "label": "Fast lock — one hand, no mnemonic needed",
+              "label": "Fast lock: one hand, no mnemonic needed",
               "command": "spawn \"lock\"",
               "source": "config.kdl:135"
             },
@@ -178,7 +178,7 @@
             },
             {
               "keys": "Mod+P",
-              "label": "Alias — P = Power, pairs with Mod+Shift+P above",
+              "label": "Alias: P = Power, pairs with Mod+Shift+P above",
               "command": "spawn \"ghostty\" \"-e\" \"session-menu\"",
               "source": "config.kdl:139"
             },

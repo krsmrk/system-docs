@@ -9,13 +9,13 @@ Live: <https://krsmrk.github.io/system-docs>
 
 ## Layout
 
-- `data/keybinds.json` — generated binding data (see `SPEC.md` for the schema).
+- `data/keybinds.json` - generated binding data (see `SPEC.md` for the schema).
   Pushed from `nixos_config` via `just update-docs`.
-- `content/guides/*.md` — hand-written guides (front matter: title, slug,
+- `content/guides/*.md` - hand-written guides (front matter: title, slug,
   summary, order).
-- `src/` — build script, widgets (per-app filter, ISO/DE keyboard visual,
+- `src/` - build script, widgets (per-app filter, ISO/DE keyboard visual,
   theme toggle), Nord stylesheet.
-- `dist/` — build output (deployed to GitHub Pages).
+- `dist/` - build output (deployed to GitHub Pages).
 
 ## Develop
 

@@ -1,5 +1,5 @@
 ---
-title: yazi — terminal file manager
+title: yazi: terminal file manager
 slug: yazi
 summary: vim-key file manager with Nord flavor, rich previews, and one custom key.
 order: 4
@@ -8,7 +8,7 @@ order: 4
 ## Launching
 
 Start it with `y` from any terminal (ghostty, `Mod+Return`). `y` is a wrapper
-function in `~/.zshrc`: on quit, the shell `cd`s to the directory yazi exited in —
+function in `~/.zshrc`: on quit, the shell `cd`s to the directory yazi exited in;
 the plain `yazi` command opens the same UI but leaves your shell where it was.
 `q` quits; `Q` quits without the cd-on-exit.
 
@@ -22,7 +22,7 @@ the plain `yazi` command opens the same UI but leaves your shell where it was.
 | `~/.config/yazi/plugins/` | home-manager | preview plugins + `extract-here.yazi` |
 
 The flavor is set via `theme.flavor.dark = "nord"` (the `flavor.use` key was
-removed upstream — setting it silently loads nothing). Icon colors are a
+removed upstream - setting it silently loads nothing). Icon colors are a
 regenerated Nord-mapped icon set, built by
 `modules/home/icons-nord-gen.py` → `icons-nord.toml`.
 
@@ -31,7 +31,7 @@ regenerated Nord-mapped icon set, built by
 yazi's builtin extract plugin is only reachable programmatically, so
 `plugins/extract-here.yazi` bridges it. Hover or select an archive and press:
 
-- `E` — extract archive here
+- `E` - extract archive here
 
 That's the entire keymap addition (`prepend_keymap` in
 `~/.config/yazi/keymap.toml`); everything else is stock v26 behavior.
@@ -48,7 +48,7 @@ That's the entire keymap addition (`prepend_keymap` in
 | `y` / `x` / `p` / `P` | yank (copy) / cut / paste / paste-overwrite |
 | `d` / `D` | trash / delete permanently |
 | `a` / `A` | create file (trailing `/` = dir) / bulk create |
-| `r` | rename (bulk rename when multiple files are selected — opens `$EDITOR` with the names) |
+| `r` | rename (bulk rename when multiple files are selected - opens `$EDITOR` with the names) |
 | `o` / `O` | open selected / open interactively |
 | `/`, `n`, `N` | find by name, next/previous match (`?` = previous) |
 | `s` / `S` | search filenames (fd) / search content (ripgrep) |
@@ -59,7 +59,7 @@ That's the entire keymap addition (`prepend_keymap` in
 | `w` | task manager (watch/cancel running ops) |
 | `K` / `J` | scroll the preview pane |
 | `;` / `:` | shell command (async / blocking) |
-| `~` | help — the full stock keymap |
+| `~` | help - the full stock keymap |
 
 Selection + `r` is the bulk-rename flow: edit the list in your editor, save, yazi
 applies the renames.

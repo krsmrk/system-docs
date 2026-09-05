@@ -51,7 +51,7 @@ function bestWindow(n: string, h: string, startAt: number): FuzzyHit | null {
     }
     const span = tight[qlen - 1] - tight[0] + 1;
     if (best === null || span < best.span) best = { score: 0, span, positions: tight };
-    if (span === qlen) break; // earliest contiguous hit — optimal
+    if (span === qlen) break; // earliest contiguous hit - optimal
     start = tight[0] + 1;
   }
   return best;
@@ -66,7 +66,7 @@ export function fuzzyMatch(needle: string, haystack: string): FuzzyHit | null {
   if (hit === null) return null;
 
   // gate: 1-2 char queries get a small fuzzy budget; queries of 3+ chars
-  // must be contiguous substrings — near-contiguous cross-word weaves
+  // must be contiguous substrings - near-contiguous cross-word weaves
   // ("palette stock") are garbage for real-world queries.
   if (n.length >= 3 ? hit.span !== n.length : hit.span > 6) return null;
 

@@ -6,7 +6,7 @@ order: 2
 ---
 
 Source of truth: `/home/stefan/nixos_config/modules/home/niri.nix` →
-`~/.config/niri/config.kdl` (nix-managed — edit the module, rebuild, don't edit
+`~/.config/niri/config.kdl` (nix-managed - edit the module, rebuild, don't edit
 the file). In-app cheat sheet: `Mod+Shift+/` (hotkey overlay). `niri msg`
 introspects the running session.
 
@@ -14,7 +14,7 @@ introspects the running session.
 
 Each **workspace** is a horizontal strip of **columns**; windows stack vertically
 inside a column. Workspaces themselves scroll vertically. Workspaces are created
-on demand — config declares three persistent ones named `1`–`3` so the bar always
+on demand - config declares three persistent ones named `1`–`3` so the bar always
 shows three. Gaps 8 px, default column width 50%, presets ⅓ / ½ / ⅔.
 
 ## Focus & movement
@@ -72,7 +72,7 @@ mic mute deliberately requires unlock.
 
 ## Keyboard layout
 
-`us,de` is configured in xkb (plain XKB — no IBus/fcitx5, niri shows an
+`us,de` is configured in xkb (plain XKB - no IBus/fcitx5, niri shows an
 indicator). `Mod+Space` switches to the next layout; `us` is the default. The
 layout indicator reacts to capslock remapping done by **keyd** (capslock →
 ctrl/esc), which works in both niri and GNOME sessions.
