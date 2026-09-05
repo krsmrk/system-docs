@@ -50,6 +50,9 @@ Nord theme. Hosted on GitHub Pages (`krsmrk.github.io/system-docs`).
 
 ### Key normalization contract
 
+Note: kbd chips render `+` separators as `<span class="kb-plus">+</span>` and
+chord steps separated by `<span class="kb-seq"> </span>`.
+
 - Modifiers, in this order: `Mod`, `Ctrl`, `Alt`, `Shift`. (niri `Mod` = Super.)
 - Then the key token: letters uppercased (`H`), named keys TitleCase
   (`Return`, `Left`, `BracketLeft`, `Print`, `Minus`, `Escape`, `Space`,
@@ -65,9 +68,9 @@ Nord theme. Hosted on GitHub Pages (`krsmrk.github.io/system-docs`).
 ## Apps covered (ids)
 
 `niri` (binds, gestures, media keys), `waybar` (click/scroll actions),
-`yazi` (keymap.toml + note about stock defaults), `zsh` (vi-mode bindkeys),
-`zathura`, `fuzzel` (stock dmenu bindings), plus `session` group for
-lock/idle/media if relevant.
+`yazi` (keymap.toml + note about stock defaults), `zsh` (vi-mode bindkeys).
+`zathura` and `fuzzel` bindings are stock-only → covered inside the guides
+(niri-workflows / yazi), not as app pages.
 
 ## DOM contracts (build emits this; widgets consume it)
 
@@ -174,6 +177,13 @@ highlight. kbd chips: nord2 bg, rounded, mono font. Font stack: system-ui +
 `.github/workflows/pages.yml`: on push to `main` — npm ci, npm run build,
 upload dist/ via actions/upload-pages-artifact + actions/deploy-pages.
 Needs `permissions: pages: write, id-token: write`, environment `github-pages`.
+
+## Updating data (sync flow)
+
+The extractor lives in nixos_config: `scripts/extract-keybinds.mjs` +
+`scripts/extract/lib/{keys,parseNiri,parseWaybar,parseYazi,parseZsh}.mjs`.
+`just update-docs` there writes `data/keybinds.json` here, commits and pushes.
+This repo's CI (`.github/workflows/pages.yml`) rebuilds + deploys on `main`.
 
 ## Non-goals
 

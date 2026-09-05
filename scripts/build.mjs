@@ -60,8 +60,9 @@ const run = spawnSync(process.execPath, [join(cache, "build.mjs")], {
 });
 if (run.status !== 0) process.exit(run.status ?? 1);
 
-// 4. stylesheet
+// 4. stylesheet + favicon
 await copyFile(join(root, "src/styles/nord.css"), join(dist, "assets/app.css"));
+await copyFile(join(root, "src/assets/favicon.svg"), join(dist, "assets/favicon.svg"));
 
 console.log("✓ built dist/");
 
