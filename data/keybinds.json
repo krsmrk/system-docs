@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-13T15:11:12.380Z",
-    "sourceCommit": "ee00c4c",
+    "generatedAt": "2026-09-13T17:16:29.678Z",
+    "sourceCommit": "811555a",
     "host": "box"
   },
   "apps": [
@@ -713,67 +713,67 @@
               "keys": ",d",
               "label": "Toggle page color scheme hint (dark/light)",
               "command": "config-cycle colors.webpage.preferred_color_scheme dark light",
-              "source": "modules/home/qutebrowser.nix:165"
+              "source": "modules/home/qutebrowser.nix:168"
             },
             {
               "keys": ",b",
               "label": "Toggle statusbar",
               "command": "config-cycle statusbar.show always never",
-              "source": "modules/home/qutebrowser.nix:167"
+              "source": "modules/home/qutebrowser.nix:170"
             },
             {
               "keys": ",u",
               "label": "Toggle ad blocking for this site",
               "command": "config-cycle -u *://{url:host}/* content.blocking.enabled true false ;; reload",
-              "source": "modules/home/qutebrowser.nix:173"
+              "source": "modules/home/qutebrowser.nix:176"
             },
             {
               "keys": ";j",
               "label": "Toggle JavaScript for this site",
               "command": "config-cycle -u *://{url:host}/* content.javascript.enabled true false ;; reload",
-              "source": "modules/home/qutebrowser.nix:174"
+              "source": "modules/home/qutebrowser.nix:177"
             },
             {
               "keys": ",m",
               "label": "Play the page's videos in mpv (page stays usable)",
               "command": "spawn --userscript view_in_mpv",
-              "source": "modules/home/qutebrowser.nix:179"
+              "source": "modules/home/qutebrowser.nix:182"
             },
             {
               "keys": ",r",
               "label": "Reader mode (Nord fork of upstream readability)",
               "command": "spawn --userscript readability",
-              "source": "modules/home/qutebrowser.nix:180"
+              "source": "modules/home/qutebrowser.nix:183"
             },
             {
               "keys": ",q",
               "label": "Show QR code of the current URL (phone handoff)",
               "command": "spawn --userscript qr",
-              "source": "modules/home/qutebrowser.nix:181"
+              "source": "modules/home/qutebrowser.nix:184"
             },
             {
               "keys": "zl",
               "label": "Fill login from pass store (fuzzel picker)",
               "command": "spawn --userscript qute-pass",
-              "source": "modules/home/qutebrowser.nix:184"
+              "source": "modules/home/qutebrowser.nix:187"
             },
             {
               "keys": "zul",
               "label": "Fill username from pass store",
               "command": "spawn --userscript qute-pass --username-only",
-              "source": "modules/home/qutebrowser.nix:185"
+              "source": "modules/home/qutebrowser.nix:188"
             },
             {
               "keys": "zpl",
               "label": "Fill password from pass store",
               "command": "spawn --userscript qute-pass --password-only",
-              "source": "modules/home/qutebrowser.nix:186"
+              "source": "modules/home/qutebrowser.nix:189"
             },
             {
               "keys": "zol",
               "label": "Fill OTP code from pass store",
               "command": "spawn --userscript qute-pass --otp-only",
-              "source": "modules/home/qutebrowser.nix:187"
+              "source": "modules/home/qutebrowser.nix:190"
             }
           ]
         },
