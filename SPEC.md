@@ -67,12 +67,26 @@ chord steps separated by `<span class="kb-seq"> </span>`.
 
 ## Apps covered (ids)
 
-Extracted from live config: `niri` (binds, media keys), `waybar`
-(click/scroll), `yazi` (custom keymap), `zsh` (vi-mode bindkeys).
+Extracted from live config / repo modules: `niri` (binds, media keys),
+`waybar` (click/scroll, module file), `qutebrowser` (custom binds parsed
+from `modules/home/qutebrowser.nix` keyBindings — NOT the generated
+config.py, which goes stale between a change and the next switch),
+`yazi` (custom keymap), `zsh` (vi-mode bindkeys), `tmux` (config + stock
+tables).
 Curated stock defaults (research agents, official docs - files in
 `nixos_config/scripts/extract/curated/*.json`, merged by the extractor):
 `yazi` stock groups appended, plus stock-only apps `zathura`, `fuzzel`,
-`ghostty` (+ its custom F11 bind as curated overlay).
+`ghostty` (+ its custom F11 bind as curated overlay), `tmux` stock tables,
+`qutebrowser` full stock reference (all modes, generated from the 3.7.0
+`bindings.default` section).
+
+### qutebrowser keychain spelling (documented deviation)
+
+qutebrowser chains keep the exact qutebrowser spelling instead of
+normalizing letters: `yy`, `gC`, `;b`, `tsh` are single chips, because case
+IS the binding (`yy` ≠ `yY`, `o` ≠ `O`) and the keyboard widget skips
+multi-key sequences anyway. Only `<tag>` keys are normalized
+(`<Ctrl-T>` → `Ctrl+T`, `<back>` → `Mouse Back` pseudo-key).
 
 ## DOM contracts (build emits this; widgets consume it)
 

@@ -74,7 +74,7 @@ interface GuideDoc {
 // ---------------------------------------------------------------------------
 
 /** Landing-page card order (SPEC "Build pipeline"); unknown ids sort last. */
-const APP_ORDER = ["niri", "waybar", "fuzzel", "ghostty", "tmux", "yazi", "zathura", "zsh"];
+const APP_ORDER = ["niri", "waybar", "qutebrowser", "fuzzel", "ghostty", "tmux", "yazi", "zathura", "zsh"];
 
 // Consistent inline-SVG icons (24px, stroke style, currentColor). The data
 // schema's `icon` glyph remains the fallback for ids not listed here.
@@ -86,6 +86,7 @@ const APP_SVG: Record<string, string> = {
   fuzzel: S('<circle cx="10" cy="10" r="6.5"/><line x1="14.8" y1="14.8" x2="20.6" y2="20.6" stroke-width="2.2"/>'),
   ghostty: S('<rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M7 9.5l3 2.5-3 2.5"/><line x1="12.5" y1="14.5" x2="17.5" y2="14.5"/>'),
   tmux: S('<rect x="3" y="4.5" width="18" height="15" rx="2"/><line x1="12" y1="4.5" x2="12" y2="19.5"/><line x1="12" y1="11.75" x2="21" y2="11.75"/>'),
+  qutebrowser: S('<circle cx="12" cy="12" r="8.5"/><ellipse cx="12" cy="12" rx="3.8" ry="8.5"/><line x1="3.5" y1="12" x2="20.5" y2="12"/>'),
   yazi: S('<path d="M3 6.5a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>'),
   zathura: S('<path d="M6 3h8l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M13.5 3v5h5"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="16.5" x2="14" y2="16.5"/>'),
   zsh: S('<path d="M5 7l6 5-6 5"/><line x1="13.5" y1="17.5" x2="20" y2="17.5" stroke-width="2.2"/>'),
