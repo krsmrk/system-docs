@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-06T19:05:36.188Z",
-    "sourceCommit": "9a5c5eb",
+    "generatedAt": "2026-09-13T15:11:12.380Z",
+    "sourceCommit": "ee00c4c",
     "host": "box"
   },
   "apps": [
@@ -41,52 +41,58 @@
               "source": "config.kdl:100"
             },
             {
+              "keys": "Mod+Q",
+              "label": "Qutebrowser",
+              "command": "spawn \"qutebrowser\"",
+              "source": "config.kdl:104"
+            },
+            {
               "keys": "Mod+Shift+B",
               "label": "Bluetooth: power/scan/pair/connect",
               "command": "spawn \"btmenu\"",
-              "source": "config.kdl:103"
+              "source": "config.kdl:107"
             },
             {
               "keys": "Mod+Shift+W",
               "label": "Network: Wi-Fi scan+connect, saved profiles, radio",
               "command": "spawn \"netmenu\"",
-              "source": "config.kdl:104"
+              "source": "config.kdl:108"
             },
             {
               "keys": "Mod+Shift+A",
               "label": "Audio: default sink/source, per-app streams",
               "command": "spawn \"volmenu\"",
-              "source": "config.kdl:105"
+              "source": "config.kdl:109"
             },
             {
               "keys": "Mod+N",
               "label": "Toggle do-not-disturb",
               "command": "spawn \"swaync-client\" \"-d\"",
-              "source": "config.kdl:108"
+              "source": "config.kdl:112"
             },
             {
               "keys": "Mod+Shift+N",
               "label": "Control center: history + actions",
               "command": "spawn \"swaync-client\" \"-t\"",
-              "source": "config.kdl:109"
+              "source": "config.kdl:113"
             },
             {
               "keys": "Mod+E",
               "label": "Launch nautilus",
               "command": "spawn \"nautilus\"",
-              "source": "config.kdl:110"
+              "source": "config.kdl:114"
             },
             {
               "keys": "Mod+Shift+V",
               "label": "Clipboard history recall",
               "command": "spawn-sh \"cliphist list | fuzzel --dmenu | cliphist decode | wl-copy\"",
-              "source": "config.kdl:114"
+              "source": "config.kdl:118"
             },
             {
               "keys": "Mod+Ctrl+V",
               "label": "Arm/disarm clipboard recording (opt-in: modules/home/clipboard.nix)",
               "command": "spawn \"cliprec\" \"menu\"",
-              "source": "config.kdl:117"
+              "source": "config.kdl:121"
             }
           ]
         },
@@ -97,43 +103,43 @@
               "keys": "Print",
               "label": "Niri's UI: pick region/window/screen + clipboard/file per shot",
               "command": "screenshot",
-              "source": "config.kdl:124"
+              "source": "config.kdl:128"
             },
             {
               "keys": "Ctrl+Print",
               "label": "Screenshot window",
               "command": "screenshot-window",
-              "source": "config.kdl:125"
+              "source": "config.kdl:129"
             },
             {
               "keys": "Shift+Print",
               "label": "Screenshot screen",
               "command": "screenshot-screen",
-              "source": "config.kdl:126"
+              "source": "config.kdl:130"
             },
             {
               "keys": "Mod+G",
               "label": "Screenshot",
               "command": "screenshot",
-              "source": "config.kdl:127"
+              "source": "config.kdl:131"
             },
             {
               "keys": "Mod+Ctrl+G",
               "label": "Screenshot window",
               "command": "screenshot-window",
-              "source": "config.kdl:128"
+              "source": "config.kdl:132"
             },
             {
               "keys": "Mod+Shift+G",
               "label": "Screenshot screen",
               "command": "screenshot-screen",
-              "source": "config.kdl:129"
+              "source": "config.kdl:133"
             },
             {
               "keys": "Mod+Shift+S",
               "label": "Zero-UI region → clipboard",
               "command": "spawn-sh \"grim -g \\\"$(slurp)\\\" - | wl-copy\"",
-              "source": "config.kdl:130"
+              "source": "config.kdl:134"
             }
           ]
         },
@@ -144,49 +150,49 @@
               "keys": "Mod+L",
               "label": "Vim-style; wraps to the first column at the strip edge",
               "command": "focus-column-right-or-first",
-              "source": "config.kdl:133"
+              "source": "config.kdl:137"
             },
             {
               "keys": "Ctrl+Alt+L",
               "label": "`lock` = swaylock -f + cliphist wipe",
               "command": "spawn \"lock\"",
-              "source": "config.kdl:134"
+              "source": "config.kdl:138"
             },
             {
               "keys": "Mod+Escape",
               "label": "Fast lock: one hand, no mnemonic needed",
               "command": "spawn \"lock\"",
-              "source": "config.kdl:135"
+              "source": "config.kdl:139"
             },
             {
               "keys": "Mod+X",
               "label": "Close window",
               "command": "close-window",
-              "source": "config.kdl:136"
+              "source": "config.kdl:140"
             },
             {
               "keys": "Mod+Shift+Q",
               "label": "Quit",
               "command": "quit",
-              "source": "config.kdl:137"
+              "source": "config.kdl:141"
             },
             {
               "keys": "Mod+Shift+P",
               "label": "Power off monitors",
               "command": "power-off-monitors",
-              "source": "config.kdl:138"
+              "source": "config.kdl:142"
             },
             {
               "keys": "Mod+P",
               "label": "Alias: P = Power, pairs with Mod+Shift+P above",
               "command": "spawn \"ghostty\" \"-e\" \"session-menu\"",
-              "source": "config.kdl:139"
+              "source": "config.kdl:143"
             },
             {
               "keys": "Mod+Shift+U",
               "label": "Gum system-ops menu (hosts/box)",
               "command": "spawn \"ghostty\" \"-e\" \"sysmenu\"",
-              "source": "config.kdl:140"
+              "source": "config.kdl:144"
             }
           ]
         },
@@ -197,115 +203,115 @@
               "keys": "Mod+H",
               "label": "Focus column left or last",
               "command": "focus-column-left-or-last",
-              "source": "config.kdl:145"
+              "source": "config.kdl:149"
             },
             {
               "keys": "Mod+Left",
               "label": "Focus column left or last",
               "command": "focus-column-left-or-last",
-              "source": "config.kdl:146"
+              "source": "config.kdl:150"
             },
             {
               "keys": "Mod+Right",
               "label": "Focus column right or first",
               "command": "focus-column-right-or-first",
-              "source": "config.kdl:147"
+              "source": "config.kdl:151"
             },
             {
               "keys": "Mod+J",
               "label": "Focus window down",
               "command": "focus-window-down",
-              "source": "config.kdl:148"
+              "source": "config.kdl:152"
             },
             {
               "keys": "Mod+Down",
               "label": "Focus window down",
               "command": "focus-window-down",
-              "source": "config.kdl:149"
+              "source": "config.kdl:153"
             },
             {
               "keys": "Mod+K",
               "label": "Focus window up",
               "command": "focus-window-up",
-              "source": "config.kdl:150"
+              "source": "config.kdl:154"
             },
             {
               "keys": "Mod+Up",
               "label": "Focus window up",
               "command": "focus-window-up",
-              "source": "config.kdl:151"
+              "source": "config.kdl:155"
             },
             {
               "keys": "Mod+BracketLeft",
               "label": "Focus column or monitor left",
               "command": "focus-column-or-monitor-left",
-              "source": "config.kdl:152"
+              "source": "config.kdl:156"
             },
             {
               "keys": "Mod+BracketRight",
               "label": "Focus column or monitor right",
               "command": "focus-column-or-monitor-right",
-              "source": "config.kdl:153"
+              "source": "config.kdl:157"
             },
             {
               "keys": "Mod+Shift+H",
               "label": "Move column left",
               "command": "move-column-left",
-              "source": "config.kdl:155"
+              "source": "config.kdl:159"
             },
             {
               "keys": "Mod+Shift+L",
               "label": "Move column right",
               "command": "move-column-right",
-              "source": "config.kdl:156"
+              "source": "config.kdl:160"
             },
             {
               "keys": "Mod+Shift+J",
               "label": "Move window down",
               "command": "move-window-down",
-              "source": "config.kdl:157"
+              "source": "config.kdl:161"
             },
             {
               "keys": "Mod+Shift+K",
               "label": "Move window up",
               "command": "move-window-up",
-              "source": "config.kdl:158"
+              "source": "config.kdl:162"
             },
             {
               "keys": "Mod+Shift+Left",
               "label": "Move column left",
               "command": "move-column-left",
-              "source": "config.kdl:159"
+              "source": "config.kdl:163"
             },
             {
               "keys": "Mod+Shift+Right",
               "label": "Move column right",
               "command": "move-column-right",
-              "source": "config.kdl:160"
+              "source": "config.kdl:164"
             },
             {
               "keys": "Mod+Shift+Down",
               "label": "Move window down",
               "command": "move-window-down",
-              "source": "config.kdl:161"
+              "source": "config.kdl:165"
             },
             {
               "keys": "Mod+Shift+Up",
               "label": "Move window up",
               "command": "move-window-up",
-              "source": "config.kdl:162"
+              "source": "config.kdl:166"
             },
             {
               "keys": "Mod+Shift+BracketLeft",
               "label": "Move column to monitor left",
               "command": "move-column-to-monitor-left",
-              "source": "config.kdl:163"
+              "source": "config.kdl:167"
             },
             {
               "keys": "Mod+Shift+BracketRight",
               "label": "Move column to monitor right",
               "command": "move-column-to-monitor-right",
-              "source": "config.kdl:164"
+              "source": "config.kdl:168"
             }
           ]
         },
@@ -316,85 +322,85 @@
               "keys": "Mod+V",
               "label": "Switch preset column width",
               "command": "switch-preset-column-width",
-              "source": "config.kdl:167"
+              "source": "config.kdl:171"
             },
             {
               "keys": "Mod+W",
               "label": "Expand column to available width",
               "command": "expand-column-to-available-width",
-              "source": "config.kdl:168"
+              "source": "config.kdl:172"
             },
             {
               "keys": "Mod+F",
               "label": "Maximizes the window to the screen edges",
               "command": "maximize-window-to-edges",
-              "source": "config.kdl:171"
+              "source": "config.kdl:175"
             },
             {
               "keys": "Mod+Shift+F",
               "label": "Fullscreen window",
               "command": "fullscreen-window",
-              "source": "config.kdl:172"
+              "source": "config.kdl:176"
             },
             {
               "keys": "Mod+O",
               "label": "Toggle overview",
               "command": "toggle-overview",
-              "source": "config.kdl:173"
+              "source": "config.kdl:177"
             },
             {
               "keys": "Mod+C",
               "label": "Center column",
               "command": "center-column",
-              "source": "config.kdl:174"
+              "source": "config.kdl:178"
             },
             {
               "keys": "Mod+Minus",
               "label": "Set column width -10%",
               "command": "set-column-width \"-10%\"",
-              "source": "config.kdl:175"
+              "source": "config.kdl:179"
             },
             {
               "keys": "Mod+Equal",
               "label": "Set column width +10%",
               "command": "set-column-width \"+10%\"",
-              "source": "config.kdl:176"
+              "source": "config.kdl:180"
             },
             {
               "keys": "Mod+Shift+Minus",
               "label": "Heights matter once windows stack vertically inside one column",
               "command": "set-window-height \"-10%\"",
-              "source": "config.kdl:178"
+              "source": "config.kdl:182"
             },
             {
               "keys": "Mod+Shift+Equal",
               "label": "Set window height +10%",
               "command": "set-window-height \"+10%\"",
-              "source": "config.kdl:179"
+              "source": "config.kdl:183"
             },
             {
               "keys": "Mod+Comma",
               "label": "Consume window into column",
               "command": "consume-window-into-column",
-              "source": "config.kdl:180"
+              "source": "config.kdl:184"
             },
             {
               "keys": "Mod+Period",
               "label": "Expel window from column",
               "command": "expel-window-from-column",
-              "source": "config.kdl:181"
+              "source": "config.kdl:185"
             },
             {
               "keys": "Mod+Alt+S",
               "label": "Toggle window floating",
               "command": "toggle-window-floating",
-              "source": "config.kdl:182"
+              "source": "config.kdl:186"
             },
             {
               "keys": "Mod+Shift+Space",
               "label": "Switch focus between floating and tiling",
               "command": "switch-focus-between-floating-and-tiling",
-              "source": "config.kdl:183"
+              "source": "config.kdl:187"
             }
           ]
         },
@@ -405,7 +411,7 @@
               "keys": "Mod+Space",
               "label": "Switch layout next",
               "command": "switch-layout \"next\"",
-              "source": "config.kdl:186"
+              "source": "config.kdl:190"
             }
           ]
         },
@@ -416,133 +422,133 @@
               "keys": "Mod+U",
               "label": "Focus workspace down",
               "command": "focus-workspace-down",
-              "source": "config.kdl:189"
+              "source": "config.kdl:193"
             },
             {
               "keys": "Mod+I",
               "label": "Focus workspace up",
               "command": "focus-workspace-up",
-              "source": "config.kdl:190"
+              "source": "config.kdl:194"
             },
             {
               "keys": "Mod+Ctrl+U",
               "label": "Move column to workspace down",
               "command": "move-column-to-workspace-down",
-              "source": "config.kdl:191"
+              "source": "config.kdl:195"
             },
             {
               "keys": "Mod+Ctrl+I",
               "label": "Move column to workspace up",
               "command": "move-column-to-workspace-up",
-              "source": "config.kdl:192"
+              "source": "config.kdl:196"
             },
             {
               "keys": "Mod+1",
               "label": "Focus workspace",
               "command": "focus-workspace 1",
-              "source": "config.kdl:193"
+              "source": "config.kdl:197"
             },
             {
               "keys": "Mod+2",
               "label": "Focus workspace",
               "command": "focus-workspace 2",
-              "source": "config.kdl:194"
+              "source": "config.kdl:198"
             },
             {
               "keys": "Mod+3",
               "label": "Focus workspace",
               "command": "focus-workspace 3",
-              "source": "config.kdl:195"
+              "source": "config.kdl:199"
             },
             {
               "keys": "Mod+4",
               "label": "Focus workspace",
               "command": "focus-workspace 4",
-              "source": "config.kdl:196"
+              "source": "config.kdl:200"
             },
             {
               "keys": "Mod+5",
               "label": "Focus workspace",
               "command": "focus-workspace 5",
-              "source": "config.kdl:197"
+              "source": "config.kdl:201"
             },
             {
               "keys": "Mod+6",
               "label": "Focus workspace",
               "command": "focus-workspace 6",
-              "source": "config.kdl:198"
+              "source": "config.kdl:202"
             },
             {
               "keys": "Mod+7",
               "label": "Focus workspace",
               "command": "focus-workspace 7",
-              "source": "config.kdl:199"
+              "source": "config.kdl:203"
             },
             {
               "keys": "Mod+8",
               "label": "Focus workspace",
               "command": "focus-workspace 8",
-              "source": "config.kdl:200"
+              "source": "config.kdl:204"
             },
             {
               "keys": "Mod+9",
               "label": "Focus workspace",
               "command": "focus-workspace 9",
-              "source": "config.kdl:201"
+              "source": "config.kdl:205"
             },
             {
               "keys": "Mod+Shift+1",
               "label": "Move column to workspace",
               "command": "move-column-to-workspace 1",
-              "source": "config.kdl:202"
+              "source": "config.kdl:206"
             },
             {
               "keys": "Mod+Shift+2",
               "label": "Move column to workspace",
               "command": "move-column-to-workspace 2",
-              "source": "config.kdl:203"
+              "source": "config.kdl:207"
             },
             {
               "keys": "Mod+Shift+3",
               "label": "Move column to workspace",
               "command": "move-column-to-workspace 3",
-              "source": "config.kdl:204"
+              "source": "config.kdl:208"
             },
             {
               "keys": "Mod+Shift+4",
               "label": "Move column to workspace",
               "command": "move-column-to-workspace 4",
-              "source": "config.kdl:205"
+              "source": "config.kdl:209"
             },
             {
               "keys": "Mod+Shift+5",
               "label": "Move column to workspace",
               "command": "move-column-to-workspace 5",
-              "source": "config.kdl:206"
+              "source": "config.kdl:210"
             },
             {
               "keys": "Mod+Shift+6",
               "label": "Move column to workspace",
               "command": "move-column-to-workspace 6",
-              "source": "config.kdl:207"
+              "source": "config.kdl:211"
             },
             {
               "keys": "Mod+Shift+7",
               "label": "Move column to workspace",
               "command": "move-column-to-workspace 7",
-              "source": "config.kdl:208"
+              "source": "config.kdl:212"
             },
             {
               "keys": "Mod+Shift+8",
               "label": "Move column to workspace",
               "command": "move-column-to-workspace 8",
-              "source": "config.kdl:209"
+              "source": "config.kdl:213"
             },
             {
               "keys": "Mod+Shift+9",
               "label": "Move column to workspace",
               "command": "move-column-to-workspace 9",
-              "source": "config.kdl:210"
+              "source": "config.kdl:214"
             }
           ]
         },
@@ -553,7 +559,7 @@
               "keys": "Mod+Ctrl+Shift+I",
               "label": "(inhibits niri's own binds until toggled off again; cf. VM_SETUP_ISSUE.md)",
               "command": "toggle-keyboard-shortcuts-inhibit",
-              "source": "config.kdl:214"
+              "source": "config.kdl:218"
             }
           ]
         },
@@ -564,55 +570,55 @@
               "keys": "XF86AudioRaiseVolume",
               "label": "Launch swayosd-client --output-volume +5",
               "command": "spawn \"swayosd-client\" \"--output-volume\" \"+5\"",
-              "source": "config.kdl:219"
+              "source": "config.kdl:223"
             },
             {
               "keys": "XF86AudioLowerVolume",
               "label": "Launch swayosd-client --output-volume -5",
               "command": "spawn \"swayosd-client\" \"--output-volume\" \"-5\"",
-              "source": "config.kdl:220"
+              "source": "config.kdl:224"
             },
             {
               "keys": "XF86AudioMute",
               "label": "Launch swayosd-client --output-volume mute-toggle",
               "command": "spawn \"swayosd-client\" \"--output-volume\" \"mute-toggle\"",
-              "source": "config.kdl:221"
+              "source": "config.kdl:225"
             },
             {
               "keys": "XF86AudioMicMute",
               "label": "Mic deliberately requires unlock: a lock screen shouldn't toggle mic state",
               "command": "spawn \"swayosd-client\" \"--input-volume\" \"mute-toggle\"",
-              "source": "config.kdl:223"
+              "source": "config.kdl:227"
             },
             {
               "keys": "XF86AudioPlay",
               "label": "Launch swayosd-client --playerctl play-pause",
               "command": "spawn \"swayosd-client\" \"--playerctl\" \"play-pause\"",
-              "source": "config.kdl:224"
+              "source": "config.kdl:228"
             },
             {
               "keys": "XF86AudioNext",
               "label": "Launch swayosd-client --playerctl next",
               "command": "spawn \"swayosd-client\" \"--playerctl\" \"next\"",
-              "source": "config.kdl:225"
+              "source": "config.kdl:229"
             },
             {
               "keys": "XF86AudioPrev",
               "label": "Launch swayosd-client --playerctl previous",
               "command": "spawn \"swayosd-client\" \"--playerctl\" \"previous\"",
-              "source": "config.kdl:226"
+              "source": "config.kdl:230"
             },
             {
               "keys": "XF86MonBrightnessUp",
               "label": "Launch swayosd-client --brightness raise",
               "command": "spawn \"swayosd-client\" \"--brightness\" \"raise\"",
-              "source": "config.kdl:227"
+              "source": "config.kdl:231"
             },
             {
               "keys": "XF86MonBrightnessDown",
               "label": "Launch swayosd-client --brightness lower",
               "command": "spawn \"swayosd-client\" \"--brightness\" \"lower\"",
-              "source": "config.kdl:228"
+              "source": "config.kdl:232"
             }
           ]
         }
@@ -687,6 +693,1647 @@
               "label": "clock: tz_up",
               "command": "tz_up",
               "source": "modules/home/waybar.nix:442"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "qutebrowser",
+      "title": "qutebrowser",
+      "tagline": "keyboard-driven browser · daily driver",
+      "description": "Nord-themed daily driver (Mod+Q): Brave-ABP + StevenBlack blocking, pass-store logins. Custom binds from the live config; stock defaults below.",
+      "icon": "◍",
+      "guide": "qutebrowser",
+      "groups": [
+        {
+          "name": "Custom · userscripts & quick toggles",
+          "bindings": [
+            {
+              "keys": ",d",
+              "label": "Toggle page color scheme hint (dark/light)",
+              "command": "config-cycle colors.webpage.preferred_color_scheme dark light",
+              "source": "modules/home/qutebrowser.nix:165"
+            },
+            {
+              "keys": ",b",
+              "label": "Toggle statusbar",
+              "command": "config-cycle statusbar.show always never",
+              "source": "modules/home/qutebrowser.nix:167"
+            },
+            {
+              "keys": ",u",
+              "label": "Toggle ad blocking for this site",
+              "command": "config-cycle -u *://{url:host}/* content.blocking.enabled true false ;; reload",
+              "source": "modules/home/qutebrowser.nix:173"
+            },
+            {
+              "keys": ";j",
+              "label": "Toggle JavaScript for this site",
+              "command": "config-cycle -u *://{url:host}/* content.javascript.enabled true false ;; reload",
+              "source": "modules/home/qutebrowser.nix:174"
+            },
+            {
+              "keys": ",m",
+              "label": "Play the page's videos in mpv (page stays usable)",
+              "command": "spawn --userscript view_in_mpv",
+              "source": "modules/home/qutebrowser.nix:179"
+            },
+            {
+              "keys": ",r",
+              "label": "Reader mode (Nord fork of upstream readability)",
+              "command": "spawn --userscript readability",
+              "source": "modules/home/qutebrowser.nix:180"
+            },
+            {
+              "keys": ",q",
+              "label": "Show QR code of the current URL (phone handoff)",
+              "command": "spawn --userscript qr",
+              "source": "modules/home/qutebrowser.nix:181"
+            },
+            {
+              "keys": "zl",
+              "label": "Fill login from pass store (fuzzel picker)",
+              "command": "spawn --userscript qute-pass",
+              "source": "modules/home/qutebrowser.nix:184"
+            },
+            {
+              "keys": "zul",
+              "label": "Fill username from pass store",
+              "command": "spawn --userscript qute-pass --username-only",
+              "source": "modules/home/qutebrowser.nix:185"
+            },
+            {
+              "keys": "zpl",
+              "label": "Fill password from pass store",
+              "command": "spawn --userscript qute-pass --password-only",
+              "source": "modules/home/qutebrowser.nix:186"
+            },
+            {
+              "keys": "zol",
+              "label": "Fill OTP code from pass store",
+              "command": "spawn --userscript qute-pass --otp-only",
+              "source": "modules/home/qutebrowser.nix:187"
+            }
+          ]
+        },
+        {
+          "name": "Stock · open & URL",
+          "bindings": [
+            {
+              "keys": "o",
+              "label": "Open URL in current tab (statusbar prompt)",
+              "command": "cmd-set-text -s :open"
+            },
+            {
+              "keys": ":",
+              "label": "Enter command mode (statusbar prompt)",
+              "command": "cmd-set-text :"
+            },
+            {
+              "keys": "go",
+              "label": "Edit and re-open current URL",
+              "command": "cmd-set-text :open {url:pretty}"
+            },
+            {
+              "keys": "O",
+              "label": "Open URL in new tab",
+              "command": "cmd-set-text -s :open -t"
+            },
+            {
+              "keys": "gO",
+              "label": "Edit and open current URL in new tab",
+              "command": "cmd-set-text :open -t -r {url:pretty}"
+            },
+            {
+              "keys": "xo",
+              "label": "Open URL in new background tab",
+              "command": "cmd-set-text -s :open -b"
+            },
+            {
+              "keys": "xO",
+              "label": "Edit and open current URL in background tab",
+              "command": "cmd-set-text :open -b -r {url:pretty}"
+            },
+            {
+              "keys": "wo",
+              "label": "Open URL in new window",
+              "command": "cmd-set-text -s :open -w"
+            },
+            {
+              "keys": "wO",
+              "label": "Edit and open current URL in new window",
+              "command": "cmd-set-text :open -w {url:pretty}"
+            },
+            {
+              "keys": "H",
+              "label": "History back",
+              "command": "back"
+            },
+            {
+              "keys": "L",
+              "label": "History forward",
+              "command": "forward"
+            },
+            {
+              "keys": "Mouse Back",
+              "label": "Mouse back button: history back",
+              "command": "back"
+            },
+            {
+              "keys": "Mouse Forward",
+              "label": "Mouse forward button: history forward",
+              "command": "forward"
+            },
+            {
+              "keys": "th",
+              "label": "Back in new tab",
+              "command": "back -t"
+            },
+            {
+              "keys": "tl",
+              "label": "Forward in new tab",
+              "command": "forward -t"
+            },
+            {
+              "keys": "wh",
+              "label": "Back in new window",
+              "command": "back -w"
+            },
+            {
+              "keys": "wl",
+              "label": "Forward in new window",
+              "command": "forward -w"
+            },
+            {
+              "keys": "r",
+              "label": "Reload",
+              "command": "reload"
+            },
+            {
+              "keys": "F5",
+              "label": "Reload",
+              "command": "reload"
+            },
+            {
+              "keys": "R",
+              "label": "Force reload (skip cache)",
+              "command": "reload -f"
+            },
+            {
+              "keys": "Ctrl+F5",
+              "label": "Force reload (skip cache)",
+              "command": "reload -f"
+            },
+            {
+              "keys": "Ctrl+H",
+              "label": "Home page",
+              "command": "home"
+            },
+            {
+              "keys": "Ctrl+S",
+              "label": "Stop loading",
+              "command": "stop"
+            },
+            {
+              "keys": "[[",
+              "label": "Previous page (rel/prev link)",
+              "command": "navigate prev"
+            },
+            {
+              "keys": "]]",
+              "label": "Next page (rel/next link)",
+              "command": "navigate next"
+            },
+            {
+              "keys": "{{",
+              "label": "Previous page in new tab",
+              "command": "navigate prev -t"
+            },
+            {
+              "keys": "}}",
+              "label": "Next page in new tab",
+              "command": "navigate next -t"
+            },
+            {
+              "keys": "gu",
+              "label": "Go up one URL path level",
+              "command": "navigate up"
+            },
+            {
+              "keys": "gU",
+              "label": "Go up one URL path level, new tab",
+              "command": "navigate up -t"
+            },
+            {
+              "keys": "Ctrl+A",
+              "label": "Increment number in URL",
+              "command": "navigate increment"
+            },
+            {
+              "keys": "Ctrl+X",
+              "label": "Decrement number in URL",
+              "command": "navigate decrement"
+            }
+          ]
+        },
+        {
+          "name": "Stock · tabs",
+          "bindings": [
+            {
+              "keys": "ga",
+              "label": "New empty tab",
+              "command": "open -t"
+            },
+            {
+              "keys": "Ctrl+T",
+              "label": "New empty tab",
+              "command": "open -t"
+            },
+            {
+              "keys": "Ctrl+N",
+              "label": "Open new window",
+              "command": "open -w"
+            },
+            {
+              "keys": "Ctrl+Shift+N",
+              "label": "Open URL in new private window",
+              "command": "open -p"
+            },
+            {
+              "keys": "d",
+              "label": "Close tab",
+              "command": "tab-close"
+            },
+            {
+              "keys": "Ctrl+W",
+              "label": "Close tab",
+              "command": "tab-close"
+            },
+            {
+              "keys": "Ctrl+Shift+W",
+              "label": "Close window",
+              "command": "close"
+            },
+            {
+              "keys": "D",
+              "label": "Close tab, focus previously focused",
+              "command": "tab-close -o"
+            },
+            {
+              "keys": "co",
+              "label": "Close all other tabs",
+              "command": "tab-only"
+            },
+            {
+              "keys": "u",
+              "label": "Reopen last closed tab",
+              "command": "undo"
+            },
+            {
+              "keys": "U",
+              "label": "Reopen last closed tab in new window",
+              "command": "undo -w"
+            },
+            {
+              "keys": "Ctrl+Shift+T",
+              "label": "Reopen last closed tab",
+              "command": "undo"
+            },
+            {
+              "keys": "J",
+              "label": "Next tab",
+              "command": "tab-next"
+            },
+            {
+              "keys": "K",
+              "label": "Previous tab",
+              "command": "tab-prev"
+            },
+            {
+              "keys": "Ctrl+PageDown",
+              "label": "Next tab",
+              "command": "tab-next"
+            },
+            {
+              "keys": "Ctrl+PageUp",
+              "label": "Previous tab",
+              "command": "tab-prev"
+            },
+            {
+              "keys": "Ctrl+Tab",
+              "label": "Last active tab",
+              "command": "tab-focus last"
+            },
+            {
+              "keys": "Ctrl+^",
+              "label": "Last active tab",
+              "command": "tab-focus last"
+            },
+            {
+              "keys": "gt",
+              "label": "Focus tab by number (prompt)",
+              "command": "cmd-set-text -s :tab-select"
+            },
+            {
+              "keys": "T",
+              "label": "Focus tab by title/URL search",
+              "command": "cmd-set-text -sr :tab-focus"
+            },
+            {
+              "keys": "Alt+1",
+              "label": "Focus tab 1",
+              "command": "tab-focus 1"
+            },
+            {
+              "keys": "Alt+2",
+              "label": "Focus tab 2",
+              "command": "tab-focus 2"
+            },
+            {
+              "keys": "Alt+3",
+              "label": "Focus tab 3",
+              "command": "tab-focus 3"
+            },
+            {
+              "keys": "Alt+4",
+              "label": "Focus tab 4",
+              "command": "tab-focus 4"
+            },
+            {
+              "keys": "Alt+5",
+              "label": "Focus tab 5",
+              "command": "tab-focus 5"
+            },
+            {
+              "keys": "Alt+6",
+              "label": "Focus tab 6",
+              "command": "tab-focus 6"
+            },
+            {
+              "keys": "Alt+7",
+              "label": "Focus tab 7",
+              "command": "tab-focus 7"
+            },
+            {
+              "keys": "Alt+8",
+              "label": "Focus tab 8",
+              "command": "tab-focus 8"
+            },
+            {
+              "keys": "Alt+9",
+              "label": "Focus last tab",
+              "command": "tab-focus -1"
+            },
+            {
+              "keys": "g0",
+              "label": "First tab",
+              "command": "tab-focus 1"
+            },
+            {
+              "keys": "g^",
+              "label": "First tab",
+              "command": "tab-focus 1"
+            },
+            {
+              "keys": "g$",
+              "label": "Last tab",
+              "command": "tab-focus -1"
+            },
+            {
+              "keys": "gm",
+              "label": "Move tab (prompt)",
+              "command": "tab-move"
+            },
+            {
+              "keys": "gJ",
+              "label": "Move tab left",
+              "command": "tab-move +"
+            },
+            {
+              "keys": "gK",
+              "label": "Move tab right",
+              "command": "tab-move -"
+            },
+            {
+              "keys": "gC",
+              "label": "Clone tab",
+              "command": "tab-clone"
+            },
+            {
+              "keys": "Ctrl+P",
+              "label": "Pin tab",
+              "command": "tab-pin"
+            },
+            {
+              "keys": "Alt+M",
+              "label": "Mute tab",
+              "command": "tab-mute"
+            },
+            {
+              "keys": "gD",
+              "label": "Detach tab into new window",
+              "command": "tab-give"
+            },
+            {
+              "keys": "Ctrl+Shift+Tab",
+              "label": "Reserved (nop, stock placeholder)",
+              "command": "nop"
+            }
+          ]
+        },
+        {
+          "name": "Stock · scrolling & marks",
+          "bindings": [
+            {
+              "keys": "h",
+              "label": "Scroll left",
+              "command": "scroll left"
+            },
+            {
+              "keys": "j",
+              "label": "Scroll down",
+              "command": "scroll down"
+            },
+            {
+              "keys": "k",
+              "label": "Scroll up",
+              "command": "scroll up"
+            },
+            {
+              "keys": "l",
+              "label": "Scroll right",
+              "command": "scroll right"
+            },
+            {
+              "keys": "gg",
+              "label": "Scroll to top",
+              "command": "scroll-to-perc 0"
+            },
+            {
+              "keys": "G",
+              "label": "Scroll to bottom (or N%)",
+              "command": "scroll-to-perc"
+            },
+            {
+              "keys": "Ctrl+F",
+              "label": "Page down",
+              "command": "scroll-page 0 1"
+            },
+            {
+              "keys": "Ctrl+B",
+              "label": "Page up",
+              "command": "scroll-page 0 -1"
+            },
+            {
+              "keys": "Ctrl+D",
+              "label": "Half page down",
+              "command": "scroll-page 0 0.5"
+            },
+            {
+              "keys": "Ctrl+U",
+              "label": "Half page up",
+              "command": "scroll-page 0 -0.5"
+            },
+            {
+              "keys": "`",
+              "label": "Set scroll mark",
+              "command": "mode-enter set_mark"
+            },
+            {
+              "keys": "'",
+              "label": "Jump to scroll mark",
+              "command": "mode-enter jump_mark"
+            },
+            {
+              "keys": "Return",
+              "label": "Follow text selection",
+              "command": "selection-follow"
+            },
+            {
+              "keys": "Ctrl+Return",
+              "label": "Follow text selection in new tab",
+              "command": "selection-follow -t"
+            }
+          ]
+        },
+        {
+          "name": "Stock · hints",
+          "bindings": [
+            {
+              "keys": "f",
+              "label": "Hint: open in current tab",
+              "command": "hint"
+            },
+            {
+              "keys": "F",
+              "label": "Hint: open in new tab",
+              "command": "hint all tab"
+            },
+            {
+              "keys": ";b",
+              "label": "Hint: open in background tab",
+              "command": "hint all tab-bg"
+            },
+            {
+              "keys": ";f",
+              "label": "Hint: open in new foreground tab",
+              "command": "hint all tab-fg"
+            },
+            {
+              "keys": "wf",
+              "label": "Hint: open in new window",
+              "command": "hint all window"
+            },
+            {
+              "keys": ";h",
+              "label": "Hint: hover element",
+              "command": "hint all hover"
+            },
+            {
+              "keys": ";i",
+              "label": "Hint: images",
+              "command": "hint images"
+            },
+            {
+              "keys": ";I",
+              "label": "Hint: images in new tab",
+              "command": "hint images tab"
+            },
+            {
+              "keys": ";o",
+              "label": "Hint: fill :open prompt with URL",
+              "command": "hint links fill :open {hint-url}"
+            },
+            {
+              "keys": ";O",
+              "label": "Hint: fill :open prompt, new tab",
+              "command": "hint links fill :open -t -r {hint-url}"
+            },
+            {
+              "keys": ";y",
+              "label": "Hint: yank URL",
+              "command": "hint links yank"
+            },
+            {
+              "keys": ";Y",
+              "label": "Hint: yank URL to primary",
+              "command": "hint links yank-primary"
+            },
+            {
+              "keys": ";r",
+              "label": "Hint: many links to background tabs (rapid)",
+              "command": "hint --rapid links tab-bg"
+            },
+            {
+              "keys": ";R",
+              "label": "Hint: many links to windows (rapid)",
+              "command": "hint --rapid links window"
+            },
+            {
+              "keys": ";d",
+              "label": "Hint: download",
+              "command": "hint links download"
+            },
+            {
+              "keys": ";t",
+              "label": "Hint: form inputs",
+              "command": "hint inputs"
+            },
+            {
+              "keys": "gi",
+              "label": "Hint: focus first input",
+              "command": "hint inputs --first"
+            }
+          ]
+        },
+        {
+          "name": "Stock · yank & paste",
+          "bindings": [
+            {
+              "keys": "yy",
+              "label": "Yank URL",
+              "command": "yank"
+            },
+            {
+              "keys": "yY",
+              "label": "Yank URL to primary",
+              "command": "yank -s"
+            },
+            {
+              "keys": "yt",
+              "label": "Yank page title",
+              "command": "yank title"
+            },
+            {
+              "keys": "yT",
+              "label": "Yank title to primary",
+              "command": "yank title -s"
+            },
+            {
+              "keys": "yd",
+              "label": "Yank domain",
+              "command": "yank domain"
+            },
+            {
+              "keys": "yD",
+              "label": "Yank domain to primary",
+              "command": "yank domain -s"
+            },
+            {
+              "keys": "yp",
+              "label": "Yank pretty URL",
+              "command": "yank pretty-url"
+            },
+            {
+              "keys": "yP",
+              "label": "Yank pretty URL to primary",
+              "command": "yank pretty-url -s"
+            },
+            {
+              "keys": "ym",
+              "label": "Yank URL as markdown link",
+              "command": "yank inline [{title}]({url:yank})"
+            },
+            {
+              "keys": "yM",
+              "label": "Yank markdown link to primary",
+              "command": "yank inline [{title}]({url:yank}) -s"
+            },
+            {
+              "keys": "pp",
+              "label": "Open URL from clipboard",
+              "command": "open -- {clipboard}"
+            },
+            {
+              "keys": "pP",
+              "label": "Open URL from primary selection",
+              "command": "open -- {primary}"
+            },
+            {
+              "keys": "Pp",
+              "label": "Open clipboard URL in new tab",
+              "command": "open -t -- {clipboard}"
+            },
+            {
+              "keys": "PP",
+              "label": "Open primary URL in new tab",
+              "command": "open -t -- {primary}"
+            },
+            {
+              "keys": "wp",
+              "label": "Open clipboard URL in new window",
+              "command": "open -w -- {clipboard}"
+            },
+            {
+              "keys": "wP",
+              "label": "Open primary URL in new window",
+              "command": "open -w -- {primary}"
+            }
+          ]
+        },
+        {
+          "name": "Stock · find & zoom",
+          "bindings": [
+            {
+              "keys": "/",
+              "label": "Search in page",
+              "command": "cmd-set-text /"
+            },
+            {
+              "keys": "?",
+              "label": "Search in page (backwards)",
+              "command": "cmd-set-text ?"
+            },
+            {
+              "keys": "n",
+              "label": "Next search match",
+              "command": "search-next"
+            },
+            {
+              "keys": "N",
+              "label": "Previous search match",
+              "command": "search-prev"
+            },
+            {
+              "keys": "-",
+              "label": "Zoom out",
+              "command": "zoom-out"
+            },
+            {
+              "keys": "+",
+              "label": "Zoom in",
+              "command": "zoom-in"
+            },
+            {
+              "keys": "=",
+              "label": "Reset zoom",
+              "command": "zoom"
+            }
+          ]
+        },
+        {
+          "name": "Stock · bookmarks, quickmarks & history",
+          "bindings": [
+            {
+              "keys": "m",
+              "label": "Save quickmark",
+              "command": "quickmark-save"
+            },
+            {
+              "keys": "M",
+              "label": "Bookmark page",
+              "command": "bookmark-add"
+            },
+            {
+              "keys": "b",
+              "label": "Load quickmark (prompt)",
+              "command": "cmd-set-text -s :quickmark-load"
+            },
+            {
+              "keys": "B",
+              "label": "Load quickmark in new tab",
+              "command": "cmd-set-text -s :quickmark-load -t"
+            },
+            {
+              "keys": "wb",
+              "label": "Load quickmark in new window",
+              "command": "cmd-set-text -s :quickmark-load -w"
+            },
+            {
+              "keys": "gb",
+              "label": "Load bookmark (prompt)",
+              "command": "cmd-set-text -s :bookmark-load"
+            },
+            {
+              "keys": "gB",
+              "label": "Load bookmark in new tab",
+              "command": "cmd-set-text -s :bookmark-load -t"
+            },
+            {
+              "keys": "wB",
+              "label": "Load bookmark in new window",
+              "command": "cmd-set-text -s :bookmark-load -w"
+            },
+            {
+              "keys": "Sb",
+              "label": "Bookmarks (GUI, jump)",
+              "command": "bookmark-list --jump"
+            },
+            {
+              "keys": "Sq",
+              "label": "Bookmarks and quickmarks (GUI)",
+              "command": "bookmark-list"
+            },
+            {
+              "keys": "Sh",
+              "label": "History (GUI)",
+              "command": "history"
+            }
+          ]
+        },
+        {
+          "name": "Stock · config, save & quit",
+          "bindings": [
+            {
+              "keys": "sf",
+              "label": "Save config and session to disk",
+              "command": "save"
+            },
+            {
+              "keys": "ss",
+              "label": "Set an option (prompt)",
+              "command": "cmd-set-text -s :set"
+            },
+            {
+              "keys": "sl",
+              "label": "Set an option (GUI)",
+              "command": "cmd-set-text -s :set -t"
+            },
+            {
+              "keys": "sk",
+              "label": "Bind a key (prompt)",
+              "command": "cmd-set-text -s :bind"
+            },
+            {
+              "keys": "Ss",
+              "label": "Options (GUI)",
+              "command": "set"
+            },
+            {
+              "keys": "ZZ",
+              "label": "Quit with session save (for restore-quit)",
+              "command": "quit --save"
+            },
+            {
+              "keys": "ZQ",
+              "label": "Quit without saving",
+              "command": "quit"
+            },
+            {
+              "keys": "Ctrl+Q",
+              "label": "Quit",
+              "command": "quit"
+            }
+          ]
+        },
+        {
+          "name": "Stock · downloads & devtools",
+          "bindings": [
+            {
+              "keys": "gd",
+              "label": "Download page",
+              "command": "download"
+            },
+            {
+              "keys": "ad",
+              "label": "Cancel last download",
+              "command": "download-cancel"
+            },
+            {
+              "keys": "cd",
+              "label": "Clear download list",
+              "command": "download-clear"
+            },
+            {
+              "keys": "gf",
+              "label": "View page source",
+              "command": "view-source"
+            },
+            {
+              "keys": "wi",
+              "label": "Toggle devtools",
+              "command": "devtools"
+            },
+            {
+              "keys": "wIh",
+              "label": "Devtools left",
+              "command": "devtools left"
+            },
+            {
+              "keys": "wIj",
+              "label": "Devtools bottom",
+              "command": "devtools bottom"
+            },
+            {
+              "keys": "wIk",
+              "label": "Devtools top",
+              "command": "devtools top"
+            },
+            {
+              "keys": "wIl",
+              "label": "Devtools right",
+              "command": "devtools right"
+            },
+            {
+              "keys": "wIw",
+              "label": "Devtools in own window",
+              "command": "devtools window"
+            },
+            {
+              "keys": "wIf",
+              "label": "Focus devtools",
+              "command": "devtools-focus"
+            }
+          ]
+        },
+        {
+          "name": "Stock · per-site toggles",
+          "bindings": [
+            {
+              "keys": "tsh",
+              "label": "JavaScript: toggle for this host (temp)",
+              "command": "config-cycle -p -t -u *://{url:host}/* content.javascript.enabled"
+            },
+            {
+              "keys": "tSh",
+              "label": "JavaScript: toggle for this host (saved)",
+              "command": "config-cycle -p -u *://{url:host}/* content.javascript.enabled"
+            },
+            {
+              "keys": "tsH",
+              "label": "JavaScript: toggle for host and subdomains (temp)",
+              "command": "config-cycle -p -t -u *://*.{url:host}/* content.javascript.enabled"
+            },
+            {
+              "keys": "tSH",
+              "label": "JavaScript: toggle for host and subdomains (saved)",
+              "command": "config-cycle -p -u *://*.{url:host}/* content.javascript.enabled"
+            },
+            {
+              "keys": "tsu",
+              "label": "JavaScript: toggle for exact URL (temp, reloads)",
+              "command": "config-cycle -p -t -u {url} content.javascript.enabled ;; reload"
+            },
+            {
+              "keys": "tSu",
+              "label": "JavaScript: toggle for exact URL (saved, reloads)",
+              "command": "config-cycle -p -u {url} content.javascript.enabled ;; reload"
+            },
+            {
+              "keys": "tph",
+              "label": "Plugins: toggle for this host (temp)",
+              "command": "config-cycle -p -t -u *://{url:host}/* content.plugins ;; reload"
+            },
+            {
+              "keys": "tPh",
+              "label": "Plugins: toggle for this host (saved)",
+              "command": "config-cycle -p -u *://{url:host}/* content.plugins ;; reload"
+            },
+            {
+              "keys": "tpH",
+              "label": "Plugins: toggle for host and subdomains (temp)",
+              "command": "config-cycle -p -t -u *://*.{url:host}/* content.plugins ;; reload"
+            },
+            {
+              "keys": "tPH",
+              "label": "Plugins: toggle for host and subdomains (saved)",
+              "command": "config-cycle -p -u *://*.{url:host}/* content.plugins ;; reload"
+            },
+            {
+              "keys": "tpu",
+              "label": "Plugins: toggle for exact URL (temp, reloads)",
+              "command": "config-cycle -p -t -u {url} content.plugins ;; reload"
+            },
+            {
+              "keys": "tPu",
+              "label": "Plugins: toggle for exact URL (saved, reloads)",
+              "command": "config-cycle -p -u {url} content.plugins ;; reload"
+            },
+            {
+              "keys": "tih",
+              "label": "Images: toggle for this host (temp)",
+              "command": "config-cycle -p -t -u *://{url:host}/* content.images ;; reload"
+            },
+            {
+              "keys": "tIh",
+              "label": "Images: toggle for this host (saved)",
+              "command": "config-cycle -p -u *://{url:host}/* content.images ;; reload"
+            },
+            {
+              "keys": "tiH",
+              "label": "Images: toggle for host and subdomains (temp)",
+              "command": "config-cycle -p -t -u *://*.{url:host}/* content.images ;; reload"
+            },
+            {
+              "keys": "tIH",
+              "label": "Images: toggle for host and subdomains (saved)",
+              "command": "config-cycle -p -u *://*.{url:host}/* content.images ;; reload"
+            },
+            {
+              "keys": "tiu",
+              "label": "Images: toggle for exact URL (temp, reloads)",
+              "command": "config-cycle -p -t -u {url} content.images ;; reload"
+            },
+            {
+              "keys": "tIu",
+              "label": "Images: toggle for exact URL (saved, reloads)",
+              "command": "config-cycle -p -u {url} content.images ;; reload"
+            },
+            {
+              "keys": "tch",
+              "label": "Cookie policy: toggle for this host (temp)",
+              "command": "config-cycle -p -t -u *://{url:host}/* content.cookies.accept"
+            },
+            {
+              "keys": "tCh",
+              "label": "Cookie policy: toggle for this host (saved)",
+              "command": "config-cycle -p -u *://{url:host}/* content.cookies.accept"
+            },
+            {
+              "keys": "tcH",
+              "label": "Cookie policy: toggle for host and subdomains (temp)",
+              "command": "config-cycle -p -t -u *://*.{url:host}/* content.cookies.accept"
+            },
+            {
+              "keys": "tCH",
+              "label": "Cookie policy: toggle for host and subdomains (saved)",
+              "command": "config-cycle -p -u *://*.{url:host}/* content.cookies.accept"
+            },
+            {
+              "keys": "tcu",
+              "label": "Cookie policy: toggle for exact URL (temp, reloads)",
+              "command": "config-cycle -p -t -u {url} content.cookies.accept"
+            },
+            {
+              "keys": "tCu",
+              "label": "Cookie policy: toggle for exact URL (saved, reloads)",
+              "command": "config-cycle -p -u {url} content.cookies.accept"
+            }
+          ]
+        },
+        {
+          "name": "Stock · macros & misc",
+          "bindings": [
+            {
+              "keys": "q",
+              "label": "Record macro into a register",
+              "command": "macro-record"
+            },
+            {
+              "keys": "@",
+              "label": "Run macro from register",
+              "command": "macro-run"
+            },
+            {
+              "keys": ".",
+              "label": "Repeat last command",
+              "command": "cmd-repeat-last"
+            },
+            {
+              "keys": "Ctrl+Alt+P",
+              "label": "Print page",
+              "command": "print"
+            },
+            {
+              "keys": "F11",
+              "label": "Fullscreen",
+              "command": "fullscreen"
+            }
+          ]
+        },
+        {
+          "name": "Stock · modes",
+          "bindings": [
+            {
+              "keys": "Escape",
+              "label": "Clear keychain, search, leave fullscreen",
+              "command": "clear-keychain ;; search ;; fullscreen --leave"
+            },
+            {
+              "keys": "i",
+              "label": "Insert mode: type into form fields",
+              "command": "mode-enter insert"
+            },
+            {
+              "keys": "v",
+              "label": "Caret mode: keyboard text selection",
+              "command": "mode-enter caret"
+            },
+            {
+              "keys": "V",
+              "label": "Caret mode with line selection",
+              "command": "mode-enter caret ;; selection-toggle --line"
+            },
+            {
+              "keys": "Ctrl+V",
+              "label": "Passthrough mode: all keys go to the page",
+              "command": "mode-enter passthrough"
+            },
+            {
+              "keys": "Shift+Escape",
+              "label": "Passthrough: leave mode",
+              "command": "mode-leave"
+            }
+          ]
+        },
+        {
+          "name": "Stock · insert mode",
+          "bindings": [
+            {
+              "keys": "Ctrl+E",
+              "label": "Edit field in external editor (ghostty + nvim here)",
+              "command": "edit-text"
+            },
+            {
+              "keys": "Shift+Ins",
+              "label": "Insert primary selection",
+              "command": "insert-text -- {primary}"
+            },
+            {
+              "keys": "Escape",
+              "label": "Leave insert mode",
+              "command": "mode-leave"
+            },
+            {
+              "keys": "Shift+Escape",
+              "label": "Fake Escape key to page",
+              "command": "fake-key <Escape>"
+            }
+          ]
+        },
+        {
+          "name": "Stock · hint mode",
+          "bindings": [
+            {
+              "keys": "Return",
+              "label": "Follow hinted element",
+              "command": "hint-follow"
+            },
+            {
+              "keys": "Ctrl+R",
+              "label": "Rapid: many links to background tabs",
+              "command": "hint --rapid links tab-bg"
+            },
+            {
+              "keys": "Ctrl+F",
+              "label": "Hint links",
+              "command": "hint links"
+            },
+            {
+              "keys": "Ctrl+B",
+              "label": "Hint: background tab",
+              "command": "hint all tab-bg"
+            },
+            {
+              "keys": "Escape",
+              "label": "Leave hint mode",
+              "command": "mode-leave"
+            }
+          ]
+        },
+        {
+          "name": "Stock · command mode",
+          "bindings": [
+            {
+              "keys": "Ctrl+P",
+              "label": "Previous command history",
+              "command": "command-history-prev"
+            },
+            {
+              "keys": "Ctrl+N",
+              "label": "Next command history",
+              "command": "command-history-next"
+            },
+            {
+              "keys": "Tab",
+              "label": "Next completion item",
+              "command": "completion-item-focus next"
+            },
+            {
+              "keys": "Shift+Tab",
+              "label": "Previous completion item",
+              "command": "completion-item-focus prev"
+            },
+            {
+              "keys": "Ctrl+Tab",
+              "label": "Next completion category",
+              "command": "completion-item-focus next-category"
+            },
+            {
+              "keys": "Ctrl+Shift+Tab",
+              "label": "Previous completion category",
+              "command": "completion-item-focus prev-category"
+            },
+            {
+              "keys": "PageDown",
+              "label": "Completion page down",
+              "command": "completion-item-focus next-page"
+            },
+            {
+              "keys": "PageUp",
+              "label": "Completion page up",
+              "command": "completion-item-focus prev-page"
+            },
+            {
+              "keys": "Down",
+              "label": "Next completion item",
+              "command": "completion-item-focus --history next"
+            },
+            {
+              "keys": "Up",
+              "label": "Previous completion item",
+              "command": "completion-item-focus --history prev"
+            },
+            {
+              "keys": "Return",
+              "label": "Accept",
+              "command": "command-accept"
+            },
+            {
+              "keys": "Ctrl+Return",
+              "label": "Accept (rapid: prompt stays open)",
+              "command": "command-accept --rapid"
+            },
+            {
+              "keys": "Ctrl+D",
+              "label": "Delete completion item",
+              "command": "completion-item-del"
+            },
+            {
+              "keys": "Shift+Delete",
+              "label": "Delete completion item",
+              "command": "completion-item-del"
+            },
+            {
+              "keys": "Ctrl+C",
+              "label": "Yank completion item",
+              "command": "completion-item-yank"
+            },
+            {
+              "keys": "Ctrl+Shift+C",
+              "label": "Yank item to primary",
+              "command": "completion-item-yank --sel"
+            },
+            {
+              "keys": "Ctrl+B",
+              "label": "Cursor back",
+              "command": "rl-backward-char"
+            },
+            {
+              "keys": "Ctrl+F",
+              "label": "Cursor forward",
+              "command": "rl-forward-char"
+            },
+            {
+              "keys": "Alt+B",
+              "label": "Back one word",
+              "command": "rl-backward-word"
+            },
+            {
+              "keys": "Alt+F",
+              "label": "Forward one word",
+              "command": "rl-forward-word"
+            },
+            {
+              "keys": "Ctrl+A",
+              "label": "To line start",
+              "command": "rl-beginning-of-line"
+            },
+            {
+              "keys": "Ctrl+E",
+              "label": "To line end",
+              "command": "rl-end-of-line"
+            },
+            {
+              "keys": "Ctrl+U",
+              "label": "Clear line",
+              "command": "rl-unix-line-discard"
+            },
+            {
+              "keys": "Ctrl+K",
+              "label": "Delete to line end",
+              "command": "rl-kill-line"
+            },
+            {
+              "keys": "Alt+D",
+              "label": "Delete word forward",
+              "command": "rl-kill-word"
+            },
+            {
+              "keys": "Ctrl+W",
+              "label": "Delete word backwards",
+              "command": "rl-rubout \" \""
+            },
+            {
+              "keys": "Ctrl+Shift+W",
+              "label": "Delete path segment backwards",
+              "command": "rl-filename-rubout"
+            },
+            {
+              "keys": "Alt+Backspace",
+              "label": "Delete word backwards",
+              "command": "rl-backward-kill-word"
+            },
+            {
+              "keys": "Ctrl+Y",
+              "label": "Paste deleted text",
+              "command": "rl-yank"
+            },
+            {
+              "keys": "Ctrl+?",
+              "label": "Delete character",
+              "command": "rl-delete-char"
+            },
+            {
+              "keys": "Ctrl+H",
+              "label": "Backspace",
+              "command": "rl-backward-delete-char"
+            },
+            {
+              "keys": "Escape",
+              "label": "Leave mode",
+              "command": "mode-leave"
+            }
+          ]
+        },
+        {
+          "name": "Stock · prompt mode",
+          "bindings": [
+            {
+              "keys": "Return",
+              "label": "Accept prompt",
+              "command": "prompt-accept"
+            },
+            {
+              "keys": "Ctrl+X",
+              "label": "Download prompted file",
+              "command": "prompt-open-download"
+            },
+            {
+              "keys": "Ctrl+P",
+              "label": "Download and open in PDF.js",
+              "command": "prompt-open-download --pdfjs"
+            },
+            {
+              "keys": "Alt+E",
+              "label": "External file picker (yazi)",
+              "command": "prompt-fileselect-external"
+            },
+            {
+              "keys": "Alt+Y",
+              "label": "Yank prompt value",
+              "command": "prompt-yank"
+            },
+            {
+              "keys": "Alt+Shift+Y",
+              "label": "Yank prompt value to primary",
+              "command": "prompt-yank --sel"
+            },
+            {
+              "keys": "Escape",
+              "label": "Cancel prompt",
+              "command": "mode-leave"
+            },
+            {
+              "keys": "Tab",
+              "label": "Next completion item",
+              "command": "prompt-item-focus next"
+            },
+            {
+              "keys": "Shift+Tab",
+              "label": "Previous completion item",
+              "command": "prompt-item-focus prev"
+            },
+            {
+              "keys": "Down",
+              "label": "Next completion item",
+              "command": "prompt-item-focus next"
+            },
+            {
+              "keys": "Up",
+              "label": "Previous completion item",
+              "command": "prompt-item-focus prev"
+            },
+            {
+              "keys": "Ctrl+B",
+              "label": "Cursor back",
+              "command": "rl-backward-char"
+            },
+            {
+              "keys": "Ctrl+F",
+              "label": "Cursor forward",
+              "command": "rl-forward-char"
+            },
+            {
+              "keys": "Alt+B",
+              "label": "Back one word",
+              "command": "rl-backward-word"
+            },
+            {
+              "keys": "Alt+F",
+              "label": "Forward one word",
+              "command": "rl-forward-word"
+            },
+            {
+              "keys": "Ctrl+A",
+              "label": "To line start",
+              "command": "rl-beginning-of-line"
+            },
+            {
+              "keys": "Ctrl+E",
+              "label": "To line end",
+              "command": "rl-end-of-line"
+            },
+            {
+              "keys": "Ctrl+U",
+              "label": "Clear line",
+              "command": "rl-unix-line-discard"
+            },
+            {
+              "keys": "Ctrl+K",
+              "label": "Delete to line end",
+              "command": "rl-kill-line"
+            },
+            {
+              "keys": "Alt+D",
+              "label": "Delete word forward",
+              "command": "rl-kill-word"
+            },
+            {
+              "keys": "Ctrl+W",
+              "label": "Delete word backwards",
+              "command": "rl-rubout \" \""
+            },
+            {
+              "keys": "Ctrl+Shift+W",
+              "label": "Delete path segment backwards",
+              "command": "rl-filename-rubout"
+            },
+            {
+              "keys": "Alt+Backspace",
+              "label": "Delete word backwards",
+              "command": "rl-backward-kill-word"
+            },
+            {
+              "keys": "Ctrl+Y",
+              "label": "Paste deleted text",
+              "command": "rl-yank"
+            },
+            {
+              "keys": "Ctrl+?",
+              "label": "Delete character",
+              "command": "rl-delete-char"
+            },
+            {
+              "keys": "Ctrl+H",
+              "label": "Backspace",
+              "command": "rl-backward-delete-char"
+            }
+          ]
+        },
+        {
+          "name": "Stock · yes/no mode",
+          "bindings": [
+            {
+              "keys": "Return",
+              "label": "Accept default answer",
+              "command": "prompt-accept"
+            },
+            {
+              "keys": "y",
+              "label": "Answer yes",
+              "command": "prompt-accept yes"
+            },
+            {
+              "keys": "n",
+              "label": "Answer no",
+              "command": "prompt-accept no"
+            },
+            {
+              "keys": "Y",
+              "label": "Answer yes and remember",
+              "command": "prompt-accept --save yes"
+            },
+            {
+              "keys": "N",
+              "label": "Answer no and remember",
+              "command": "prompt-accept --save no"
+            },
+            {
+              "keys": "Alt+Y",
+              "label": "Yank prompt value",
+              "command": "prompt-yank"
+            },
+            {
+              "keys": "Alt+Shift+Y",
+              "label": "Yank to primary",
+              "command": "prompt-yank --sel"
+            },
+            {
+              "keys": "Escape",
+              "label": "Cancel",
+              "command": "mode-leave"
+            }
+          ]
+        },
+        {
+          "name": "Stock · caret mode",
+          "bindings": [
+            {
+              "keys": "v",
+              "label": "Toggle selection",
+              "command": "selection-toggle"
+            },
+            {
+              "keys": "V",
+              "label": "Toggle line selection",
+              "command": "selection-toggle --line"
+            },
+            {
+              "keys": "Space",
+              "label": "Toggle selection",
+              "command": "selection-toggle"
+            },
+            {
+              "keys": "Ctrl+Space",
+              "label": "Drop selection",
+              "command": "selection-drop"
+            },
+            {
+              "keys": "c",
+              "label": "Back to normal mode",
+              "command": "mode-enter normal"
+            },
+            {
+              "keys": "h",
+              "label": "Move left",
+              "command": "move-to-prev-char"
+            },
+            {
+              "keys": "l",
+              "label": "Move right",
+              "command": "move-to-next-char"
+            },
+            {
+              "keys": "k",
+              "label": "Move up",
+              "command": "move-to-prev-line"
+            },
+            {
+              "keys": "j",
+              "label": "Move down",
+              "command": "move-to-next-line"
+            },
+            {
+              "keys": "w",
+              "label": "Next word start",
+              "command": "move-to-next-word"
+            },
+            {
+              "keys": "e",
+              "label": "Next word end",
+              "command": "move-to-end-of-word"
+            },
+            {
+              "keys": "b",
+              "label": "Previous word",
+              "command": "move-to-prev-word"
+            },
+            {
+              "keys": "0",
+              "label": "Line start",
+              "command": "move-to-start-of-line"
+            },
+            {
+              "keys": "$",
+              "label": "Line end",
+              "command": "move-to-end-of-line"
+            },
+            {
+              "keys": "gg",
+              "label": "Document start",
+              "command": "move-to-start-of-document"
+            },
+            {
+              "keys": "G",
+              "label": "Document end",
+              "command": "move-to-end-of-document"
+            },
+            {
+              "keys": "[",
+              "label": "Start of previous block",
+              "command": "move-to-start-of-prev-block"
+            },
+            {
+              "keys": "]",
+              "label": "Start of next block",
+              "command": "move-to-start-of-next-block"
+            },
+            {
+              "keys": "{",
+              "label": "End of previous block",
+              "command": "move-to-end-of-prev-block"
+            },
+            {
+              "keys": "}",
+              "label": "End of next block",
+              "command": "move-to-end-of-next-block"
+            },
+            {
+              "keys": "o",
+              "label": "Flip selection direction",
+              "command": "selection-reverse"
+            },
+            {
+              "keys": "y",
+              "label": "Yank selection",
+              "command": "yank selection"
+            },
+            {
+              "keys": "Y",
+              "label": "Yank selection to primary",
+              "command": "yank selection -s"
+            },
+            {
+              "keys": "Return",
+              "label": "Yank selection",
+              "command": "yank selection"
+            },
+            {
+              "keys": "H",
+              "label": "Scroll left",
+              "command": "scroll left"
+            },
+            {
+              "keys": "J",
+              "label": "Scroll down",
+              "command": "scroll down"
+            },
+            {
+              "keys": "K",
+              "label": "Scroll up",
+              "command": "scroll up"
+            },
+            {
+              "keys": "L",
+              "label": "Scroll right",
+              "command": "scroll right"
+            },
+            {
+              "keys": "Escape",
+              "label": "Leave caret mode",
+              "command": "mode-leave"
             }
           ]
         }
