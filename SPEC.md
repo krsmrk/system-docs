@@ -62,7 +62,11 @@ chord steps separated by `<span class="kb-seq"> </span>`.
 - zsh: `^R` → `Ctrl+R`; `^[f` (Meta) → `Alt+F`; `^[^[` → `Ctrl+Alt+Escape`;
   `^Xb` → `Ctrl+X B` (two-step: keep space-separated tail; still normalized mods).
 - Pointer/wheel pseudo-keys: `Mouse Left Click`, `Mouse Right Click`,
-  `Scroll Up`, `Scroll Down` - used by waybar.
+  `Mouse Down`, `Mouse Drag`, `Mouse Up`, `Mouse Double Click`,
+  `Mouse Triple Click`, `Scroll Up`, `Scroll Down`, `Wheel Up`,
+  `Wheel Down`, `Forward`, `Back` - used by waybar (clicks) and the tmux
+  copy-mode mouse binds. Multi-word keys render as chip sequences; the
+  keyboard widget skips them.
 - keyd rows are physical-key remaps, not chords: `keys` names the physical key
   as a single token (`CapsLock`, `LeftCtrl`); `[global]` settings surface one
   row each with a PascalCase token (`OverloadTapTimeout`) and the live value
@@ -80,11 +84,15 @@ from `modules/home/qutebrowser.nix` keyBindings — NOT the generated
 config.py, which goes stale between a change and the next switch),
 `yazi` (custom keymap), `zsh` (vi-mode bindkeys), `tmux` (config + stock
 tables).
-Curated stock defaults (research agents, official docs - files in
-`nixos_config/scripts/extract/curated/*.json`, merged by the extractor):
-`yazi` stock groups appended, plus stock-only apps `zathura`, `fuzzel`,
-`ghostty` (+ its custom F11 bind as curated overlay), `tmux` stock tables,
-`qutebrowser` full stock reference (all modes, generated from the 3.7.0
+Curated stock defaults (files in `nixos_config/scripts/extract/curated/*.json`,
+merged by the extractor) - thematically grouped with prose descriptions,
+verified against authoritative sources:
+`yazi` (all eight upstream modes, case-exact, from keymap-default.toml),
+`zathura` (from upstream config.c, incl. index mode), `fuzzel`,
+`ghostty` (verified with `ghostty +list-keybinds`; its custom F11 rides a
+curated overlay), `tmux` stock tables (verified against a pristine
+`tmux -f /dev/null list-keys`, incl. copy-mode mouse binds),
+`qutebrowser` full stock reference (all modes, from the 3.7.0
 `bindings.default` section).
 
 ### qutebrowser keychain spelling (documented deviation)

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-09-20T08:22:42.491Z",
+    "generatedAt": "2026-09-20T09:00:34.526Z",
     "sourceCommit": "b5a52ab",
     "host": "box"
   },
@@ -889,7 +889,7 @@
           "description": "Upstream's qute-pass fill scheme: z l is the full login, and u/p/o narrow it to just the username, password, or OTP. Entries are picked with fuzzel; pass-otp supplies the codes."
         },
         {
-          "name": "Stock · open & URL",
+          "name": "Stock · open: the prompt family",
           "bindings": [
             {
               "keys": "o",
@@ -935,7 +935,13 @@
               "keys": "wO",
               "label": "Edit and open current URL in new window",
               "command": "cmd-set-text :open -w {url:pretty}"
-            },
+            }
+          ],
+          "description": "o prompts in the current tab; capital O opens a new tab, w-prefixed forms open a new window, x-prefixed stay in the background. The g-forms (go, gO) pre-fill the prompt with the current URL for editing. : enters raw command mode."
+        },
+        {
+          "name": "Stock · open: history back & forward",
+          "bindings": [
             {
               "keys": "H",
               "label": "History back",
@@ -975,7 +981,13 @@
               "keys": "wl",
               "label": "Forward in new window",
               "command": "forward -w"
-            },
+            }
+          ],
+          "description": "H/L walk history; t-prefixed clones the target into a new tab, w- into a new window. The mouse side buttons mirror H/L."
+        },
+        {
+          "name": "Stock · open: reload, stop & home",
+          "bindings": [
             {
               "keys": "r",
               "label": "Reload",
@@ -1005,7 +1017,13 @@
               "keys": "Ctrl+S",
               "label": "Stop loading",
               "command": "stop"
-            },
+            }
+          ],
+          "description": "r reloads, R skips the cache; F5 forms mirror them. Ctrl+S stops loading, Ctrl+H goes home."
+        },
+        {
+          "name": "Stock · open: prev/next & URL path",
+          "bindings": [
             {
               "keys": "[[",
               "label": "Previous page (rel/prev link)",
@@ -1046,10 +1064,11 @@
               "label": "Decrement number in URL",
               "command": "navigate decrement"
             }
-          ]
+          ],
+          "description": "[[/]] follow the page's rel prev/next links ({{/}} open them in tabs); gu climbs one URL-path level (gU in a tab). Ctrl+A/X bump/decrement a number inside the URL - gallery pagination without the mouse."
         },
         {
-          "name": "Stock · tabs",
+          "name": "Stock · tabs: open, close & reopen",
           "bindings": [
             {
               "keys": "ga",
@@ -1062,16 +1081,6 @@
               "command": "open -t"
             },
             {
-              "keys": "Ctrl+N",
-              "label": "Open new window",
-              "command": "open -w"
-            },
-            {
-              "keys": "Ctrl+Shift+N",
-              "label": "Open URL in new private window",
-              "command": "open -p"
-            },
-            {
               "keys": "d",
               "label": "Close tab",
               "command": "tab-close"
@@ -1080,11 +1089,6 @@
               "keys": "Ctrl+W",
               "label": "Close tab",
               "command": "tab-close"
-            },
-            {
-              "keys": "Ctrl+Shift+W",
-              "label": "Close window",
-              "command": "close"
             },
             {
               "keys": "D",
@@ -1111,6 +1115,32 @@
               "label": "Reopen last closed tab",
               "command": "undo"
             },
+            {
+              "keys": "Ctrl+N",
+              "label": "Open new window",
+              "command": "open -w"
+            },
+            {
+              "keys": "Ctrl+Shift+N",
+              "label": "Open URL in new private window",
+              "command": "open -p"
+            },
+            {
+              "keys": "Ctrl+Shift+W",
+              "label": "Close window",
+              "command": "close"
+            },
+            {
+              "keys": "Ctrl+Shift+Tab",
+              "label": "Reserved (nop, stock placeholder)",
+              "command": "nop"
+            }
+          ],
+          "description": "d closes (D closes and focuses the previously focused tab), u reopens the last closed one (U in a new window, Ctrl+Shift+T stock form), co closes all others. Windows: Ctrl+N opens one, Ctrl+Shift+N private, Ctrl+Shift+W closes it. Ctrl+Shift+Tab is a stock nop - reserved."
+        },
+        {
+          "name": "Stock · tabs: navigate",
+          "bindings": [
             {
               "keys": "J",
               "label": "Next tab",
@@ -1210,7 +1240,13 @@
               "keys": "g$",
               "label": "Last tab",
               "command": "tab-focus -1"
-            },
+            }
+          ],
+          "description": "J/K and Ctrl+PageDown/Up walk, Ctrl+Tab flips to the last active tab (Ctrl+^ too); Alt+digits jump (Alt+9 = last), g0/g^/g$ first and last. gt prompts for a number, T searches by title/URL."
+        },
+        {
+          "name": "Stock · tabs: organize",
+          "bindings": [
             {
               "keys": "gm",
               "label": "Move tab (prompt)",
@@ -1245,16 +1281,12 @@
               "keys": "gD",
               "label": "Detach tab into new window",
               "command": "tab-give"
-            },
-            {
-              "keys": "Ctrl+Shift+Tab",
-              "label": "Reserved (nop, stock placeholder)",
-              "command": "nop"
             }
-          ]
+          ],
+          "description": "gm moves by prompt, gJ/gK one slot, gC clones, gD detaches the tab into its own window. Ctrl+P pins, Alt+M mutes."
         },
         {
-          "name": "Stock · scrolling & marks",
+          "name": "Stock · scrolling",
           "bindings": [
             {
               "keys": "h",
@@ -1305,7 +1337,13 @@
               "keys": "Ctrl+U",
               "label": "Half page up",
               "command": "scroll-page 0 -0.5"
-            },
+            }
+          ],
+          "description": "The vi home row scrolls; gg/G go to top/bottom (G takes a percent), Ctrl+D/U half pages, Ctrl+F/B full pages."
+        },
+        {
+          "name": "Stock · marks & text selection",
+          "bindings": [
             {
               "keys": "`",
               "label": "Set scroll mark",
@@ -1326,10 +1364,11 @@
               "label": "Follow text selection in new tab",
               "command": "selection-follow -t"
             }
-          ]
+          ],
+          "description": "The backtick sets a scroll mark, the apostrophe jumps back to it. Return follows the page's text selection (Ctrl+Return in a new tab)."
         },
         {
-          "name": "Stock · hints",
+          "name": "Stock · hints: open links",
           "bindings": [
             {
               "keys": "f",
@@ -1360,7 +1399,13 @@
               "keys": ";h",
               "label": "Hint: hover element",
               "command": "hint all hover"
-            },
+            }
+          ],
+          "description": "f hints everything (open in current tab), F opens in a new tab, ;b in a background tab, ;f in a foreground tab, wf in a new window. ;h only hovers - for menus that need a mouse-over."
+        },
+        {
+          "name": "Stock · hints: media & forms",
+          "bindings": [
             {
               "keys": ";i",
               "label": "Hint: images",
@@ -1371,6 +1416,22 @@
               "label": "Hint: images in new tab",
               "command": "hint images tab"
             },
+            {
+              "keys": ";t",
+              "label": "Hint: form inputs",
+              "command": "hint inputs"
+            },
+            {
+              "keys": "gi",
+              "label": "Hint: focus first input",
+              "command": "hint inputs --first"
+            }
+          ],
+          "description": ";i opens images (capital form in a tab), ;t picks form inputs, gi jumps straight to the first one."
+        },
+        {
+          "name": "Stock · hints: yank, download & rapid",
+          "bindings": [
             {
               "keys": ";o",
               "label": "Hint: fill :open prompt with URL",
@@ -1392,6 +1453,11 @@
               "command": "hint links yank-primary"
             },
             {
+              "keys": ";d",
+              "label": "Hint: download",
+              "command": "hint links download"
+            },
+            {
               "keys": ";r",
               "label": "Hint: many links to background tabs (rapid)",
               "command": "hint --rapid links tab-bg"
@@ -1400,26 +1466,53 @@
               "keys": ";R",
               "label": "Hint: many links to windows (rapid)",
               "command": "hint --rapid links window"
-            },
-            {
-              "keys": ";d",
-              "label": "Hint: download",
-              "command": "hint links download"
-            },
-            {
-              "keys": ";t",
-              "label": "Hint: form inputs",
-              "command": "hint inputs"
-            },
-            {
-              "keys": "gi",
-              "label": "Hint: focus first input",
-              "command": "hint inputs --first"
             }
-          ]
+          ],
+          "description": ";y yanks the hinted URL, ;o puts it in the :open prompt, ;d downloads it. ;r/;R stay in hint mode and fire on many links in a row (background tabs / windows) - link harvesting without re-hinting."
         },
         {
-          "name": "Stock · yank & paste",
+          "name": "Stock · find & zoom",
+          "bindings": [
+            {
+              "keys": "/",
+              "label": "Search in page",
+              "command": "cmd-set-text /"
+            },
+            {
+              "keys": "?",
+              "label": "Search in page (backwards)",
+              "command": "cmd-set-text ?"
+            },
+            {
+              "keys": "n",
+              "label": "Next search match",
+              "command": "search-next"
+            },
+            {
+              "keys": "N",
+              "label": "Previous search match",
+              "command": "search-prev"
+            },
+            {
+              "keys": "-",
+              "label": "Zoom out",
+              "command": "zoom-out"
+            },
+            {
+              "keys": "+",
+              "label": "Zoom in",
+              "command": "zoom-in"
+            },
+            {
+              "keys": "=",
+              "label": "Reset zoom",
+              "command": "zoom"
+            }
+          ],
+          "description": "/ prompts for in-page search (backwards), n/N walk matches. - and + zoom, = resets."
+        },
+        {
+          "name": "Stock · yank: URL, title & markdown",
           "bindings": [
             {
               "keys": "yy",
@@ -1470,7 +1563,13 @@
               "keys": "yM",
               "label": "Yank markdown link to primary",
               "command": "yank inline [{title}]({url:yank}) -s"
-            },
+            }
+          ],
+          "description": "The y-family copies page metadata - URL, title, domain, pretty URL, or a [markdown](link). Lowercase goes to the clipboard, uppercase to the primary selection."
+        },
+        {
+          "name": "Stock · paste: open from clipboard",
+          "bindings": [
             {
               "keys": "pp",
               "label": "Open URL from clipboard",
@@ -1501,47 +1600,8 @@
               "label": "Open primary URL in new window",
               "command": "open -w -- {primary}"
             }
-          ]
-        },
-        {
-          "name": "Stock · find & zoom",
-          "bindings": [
-            {
-              "keys": "/",
-              "label": "Search in page",
-              "command": "cmd-set-text /"
-            },
-            {
-              "keys": "?",
-              "label": "Search in page (backwards)",
-              "command": "cmd-set-text ?"
-            },
-            {
-              "keys": "n",
-              "label": "Next search match",
-              "command": "search-next"
-            },
-            {
-              "keys": "N",
-              "label": "Previous search match",
-              "command": "search-prev"
-            },
-            {
-              "keys": "-",
-              "label": "Zoom out",
-              "command": "zoom-out"
-            },
-            {
-              "keys": "+",
-              "label": "Zoom in",
-              "command": "zoom-in"
-            },
-            {
-              "keys": "=",
-              "label": "Reset zoom",
-              "command": "zoom"
-            }
-          ]
+          ],
+          "description": "p opens what's in the clipboard: lowercase in the current tab, capital second letter = primary selection, P opens in a new tab, w- in a new window."
         },
         {
           "name": "Stock · bookmarks, quickmarks & history",
@@ -1601,10 +1661,11 @@
               "label": "History (GUI)",
               "command": "history"
             }
-          ]
+          ],
+          "description": "m saves a quickmark, M a bookmark; b/B load quickmarks, gb/gB bookmarks (w-prefixed forms open windows). The S-GUI pickers: Sb bookmarks, Sq bookmarks+quickmarks, Sh history."
         },
         {
-          "name": "Stock · config, save & quit",
+          "name": "Stock · settings & keybinds",
           "bindings": [
             {
               "keys": "sf",
@@ -1630,7 +1691,13 @@
               "keys": "Ss",
               "label": "Options (GUI)",
               "command": "set"
-            },
+            }
+          ],
+          "description": "The s-family configures: sf saves config and session, ss/sl set an option (prompt / GUI), sk binds a key; Ss opens the full options GUI."
+        },
+        {
+          "name": "Stock · quit & session save",
+          "bindings": [
             {
               "keys": "ZZ",
               "label": "Quit with session save (for restore-quit)",
@@ -1646,10 +1713,11 @@
               "label": "Quit",
               "command": "quit"
             }
-          ]
+          ],
+          "description": "ZZ quits and saves the session (for :session-load), ZQ quits without saving, Ctrl+Q quits."
         },
         {
-          "name": "Stock · downloads & devtools",
+          "name": "Stock · downloads",
           "bindings": [
             {
               "keys": "gd",
@@ -1665,7 +1733,13 @@
               "keys": "cd",
               "label": "Clear download list",
               "command": "download-clear"
-            },
+            }
+          ],
+          "description": "gd opens the download manager page, ad cancels the newest download, cd clears the list."
+        },
+        {
+          "name": "Stock · source & devtools",
+          "bindings": [
             {
               "keys": "gf",
               "label": "View page source",
@@ -1706,10 +1780,11 @@
               "label": "Focus devtools",
               "command": "devtools-focus"
             }
-          ]
+          ],
+          "description": "gf views the page source. wi toggles devtools, wI<h/j/k/l/w> docks them (left/bottom/top/right/own window), wIf focuses the devtools pane."
         },
         {
-          "name": "Stock · per-site toggles",
+          "name": "Stock · per-site toggles (the t-family)",
           "bindings": [
             {
               "keys": "tsh",
@@ -1831,7 +1906,8 @@
               "label": "Cookie policy: toggle for exact URL (saved, reloads)",
               "command": "config-cycle -p -u {url} content.cookies.accept"
             }
-          ]
+          ],
+          "description": "Grammar: t, then the feature - s JavaScript, p plugins, i images, c cookie policy - then the scope: h this host, H host plus subdomains, u exact URL. Capital second letter persists across restarts, lowercase is temporary for the session. (The config's own ,u and ;j are quick forms of the JavaScript rows.)"
         },
         {
           "name": "Stock · macros & misc",
@@ -1861,7 +1937,8 @@
               "label": "Fullscreen",
               "command": "fullscreen"
             }
-          ]
+          ],
+          "description": "q records a macro into a register, @ replays it, . repeats the last command; Ctrl+Alt+P prints the page, F11 fullscreen."
         },
         {
           "name": "Stock · modes",
@@ -1896,7 +1973,8 @@
               "label": "Passthrough: leave mode",
               "command": "mode-leave"
             }
-          ]
+          ],
+          "description": "i enters insert (form fields), v/V caret mode (V starts with whole-line selection), Ctrl+V passthrough - the page gets ALL keys until Shift+Escape. Escape clears keychains, search and fullscreen."
         },
         {
           "name": "Stock · insert mode",
@@ -1921,7 +1999,8 @@
               "label": "Fake Escape key to page",
               "command": "fake-key <Escape>"
             }
-          ]
+          ],
+          "description": "Inside form fields: Ctrl+E edits the field in $EDITOR (ghostty + nvim here, cursor preserved), Shift+Ins pastes the primary selection. Escape leaves; Shift+Escape sends a *fake* Esc to the page (some webapps swallow the real one)."
         },
         {
           "name": "Stock · hint mode",
@@ -1951,10 +2030,11 @@
               "label": "Leave hint mode",
               "command": "mode-leave"
             }
-          ]
+          ],
+          "description": "Once the hints are painted: Return follows the highlighted one, Ctrl+F re-hints links only, Ctrl+B opens in a background tab, Ctrl+R rapid-fires, Escape cancels."
         },
         {
-          "name": "Stock · command mode",
+          "name": "Stock · command mode: history, completion & accept",
           "bindings": [
             {
               "keys": "Ctrl+P",
@@ -2017,25 +2097,16 @@
               "command": "command-accept --rapid"
             },
             {
-              "keys": "Ctrl+D",
-              "label": "Delete completion item",
-              "command": "completion-item-del"
-            },
-            {
-              "keys": "Shift+Delete",
-              "label": "Delete completion item",
-              "command": "completion-item-del"
-            },
-            {
-              "keys": "Ctrl+C",
-              "label": "Yank completion item",
-              "command": "completion-item-yank"
-            },
-            {
-              "keys": "Ctrl+Shift+C",
-              "label": "Yank item to primary",
-              "command": "completion-item-yank --sel"
-            },
+              "keys": "Escape",
+              "label": "Leave mode",
+              "command": "mode-leave"
+            }
+          ],
+          "description": "Ctrl+P/N walk command history. Tab/Shift+Tab and arrows walk completions (Up/Down prefer history), Ctrl+Tab jumps between completion categories, PageUp/Down pages the list. Return accepts, Ctrl+Return accepts and keeps the prompt open, Escape closes it."
+        },
+        {
+          "name": "Stock · command mode: edit the line (readline)",
+          "bindings": [
             {
               "keys": "Ctrl+B",
               "label": "Cursor back",
@@ -2110,16 +2181,38 @@
               "keys": "Ctrl+H",
               "label": "Backspace",
               "command": "rl-backward-delete-char"
-            },
-            {
-              "keys": "Escape",
-              "label": "Leave mode",
-              "command": "mode-leave"
             }
-          ]
+          ],
+          "description": "The prompt is a readline: Ctrl+B/F chars, Alt+B/F words, Ctrl+A/E line ends. Ctrl+U/K kill to line start/end, Ctrl+W and Alt+Backspace kill words backwards, Alt+D forwards, Ctrl+Shift+W kills path segments. Ctrl+Y pastes the last kill back; Ctrl+?/Ctrl+H delete chars."
         },
         {
-          "name": "Stock · prompt mode",
+          "name": "Stock · command mode: act on completion items",
+          "bindings": [
+            {
+              "keys": "Ctrl+D",
+              "label": "Delete completion item",
+              "command": "completion-item-del"
+            },
+            {
+              "keys": "Shift+Delete",
+              "label": "Delete completion item",
+              "command": "completion-item-del"
+            },
+            {
+              "keys": "Ctrl+C",
+              "label": "Yank completion item",
+              "command": "completion-item-yank"
+            },
+            {
+              "keys": "Ctrl+Shift+C",
+              "label": "Yank item to primary",
+              "command": "completion-item-yank --sel"
+            }
+          ],
+          "description": "Delete suggested entries with Ctrl+D (Shift+Delete mirrors), or yank them to the clipboard/primary with Ctrl+C / Ctrl+Shift+C."
+        },
+        {
+          "name": "Stock · prompt mode: answer & file pickers",
           "bindings": [
             {
               "keys": "Return",
@@ -2155,7 +2248,13 @@
               "keys": "Escape",
               "label": "Cancel prompt",
               "command": "mode-leave"
-            },
+            }
+          ],
+          "description": "Return accepts. Download prompts: Ctrl+X opens the file, Ctrl+P renders it in PDF.js; Alt+E hands the file dialog to the external picker (yazi here). Alt+Y yanks the prompt value, Escape cancels."
+        },
+        {
+          "name": "Stock · prompt mode: completion",
+          "bindings": [
             {
               "keys": "Tab",
               "label": "Next completion item",
@@ -2175,7 +2274,13 @@
               "keys": "Up",
               "label": "Previous completion item",
               "command": "prompt-item-focus prev"
-            },
+            }
+          ],
+          "description": "Tab/Shift+Tab and the arrows walk the prompt's completion list."
+        },
+        {
+          "name": "Stock · prompt mode: edit the line (readline)",
+          "bindings": [
             {
               "keys": "Ctrl+B",
               "label": "Cursor back",
@@ -2251,7 +2356,8 @@
               "label": "Backspace",
               "command": "rl-backward-delete-char"
             }
-          ]
+          ],
+          "description": "Same readline grammar as command mode: chars, words, line ends, kills, re-paste."
         },
         {
           "name": "Stock · yes/no mode",
@@ -2296,36 +2402,12 @@
               "label": "Cancel",
               "command": "mode-leave"
             }
-          ]
+          ],
+          "description": "The confirmation dialog: y/n answer (Y/N answer AND remember for this site), Return takes the default. Alt+Y yanks the prompt text, Escape cancels."
         },
         {
-          "name": "Stock · caret mode",
+          "name": "Stock · caret mode: move the caret",
           "bindings": [
-            {
-              "keys": "v",
-              "label": "Toggle selection",
-              "command": "selection-toggle"
-            },
-            {
-              "keys": "V",
-              "label": "Toggle line selection",
-              "command": "selection-toggle --line"
-            },
-            {
-              "keys": "Space",
-              "label": "Toggle selection",
-              "command": "selection-toggle"
-            },
-            {
-              "keys": "Ctrl+Space",
-              "label": "Drop selection",
-              "command": "selection-drop"
-            },
-            {
-              "keys": "c",
-              "label": "Back to normal mode",
-              "command": "mode-enter normal"
-            },
             {
               "keys": "h",
               "label": "Move left",
@@ -2400,6 +2482,32 @@
               "keys": "}",
               "label": "End of next block",
               "command": "move-to-end-of-next-block"
+            }
+          ],
+          "description": "Full vim caret motions: chars and lines, words (w/e/b), line ends, document ends, and block starts/ends with brackets."
+        },
+        {
+          "name": "Stock · caret mode: select & yank",
+          "bindings": [
+            {
+              "keys": "v",
+              "label": "Toggle selection",
+              "command": "selection-toggle"
+            },
+            {
+              "keys": "V",
+              "label": "Toggle line selection",
+              "command": "selection-toggle --line"
+            },
+            {
+              "keys": "Space",
+              "label": "Toggle selection",
+              "command": "selection-toggle"
+            },
+            {
+              "keys": "Ctrl+Space",
+              "label": "Drop selection",
+              "command": "selection-drop"
             },
             {
               "keys": "o",
@@ -2420,7 +2528,13 @@
               "keys": "Return",
               "label": "Yank selection",
               "command": "yank selection"
-            },
+            }
+          ],
+          "description": "v/Space toggle the selection, V selects whole lines, o flips which end moves. y/Y yank to clipboard/primary (Return yanks too), Ctrl+Space drops the selection."
+        },
+        {
+          "name": "Stock · caret mode: scroll & exit",
+          "bindings": [
             {
               "keys": "H",
               "label": "Scroll left",
@@ -2442,11 +2556,17 @@
               "command": "scroll right"
             },
             {
+              "keys": "c",
+              "label": "Back to normal mode",
+              "command": "mode-enter normal"
+            },
+            {
               "keys": "Escape",
               "label": "Leave caret mode",
               "command": "mode-leave"
             }
-          ]
+          ],
+          "description": "Capital H/J/K/L scroll the VIEW while the caret stays put. c returns to normal mode, Escape leaves caret mode."
         }
       ]
     },
@@ -2459,6 +2579,7 @@
       "groups": [
         {
           "name": "Stock · selection & execute",
+          "description": "Pick with Up/Down or Ctrl+P/N (Shift+Tab wraps), pages with PageUp/Down, Home/End-style jumps with Ctrl+Home/Ctrl+End. Return executes; Shift+Return executes the raw input as typed (launch a command with arguments straight from the prompt), Tab completes-then-executes when the list is down to one entry, Ctrl+Tab inserts the selected entry into the prompt for editing.",
           "bindings": [
             {
               "keys": "Return",
@@ -2554,6 +2675,7 @@
         },
         {
           "name": "Stock · input editing",
+          "description": "The prompt is a readline: Ctrl+B/F chars, Alt+B/F or Ctrl+arrows words, Ctrl+A/E line ends. Backspace/Delete chars, Ctrl+W/Alt+Backspace kill words backwards, Alt+D/Ctrl+Delete forwards, Ctrl+U/K to line start/end, Ctrl+Shift+Backspace the whole line. Ctrl+V pastes the clipboard, Shift+Insert the primary selection; Shift+Delete expunges a mistyped entry from the launch cache.",
           "bindings": [
             {
               "keys": "Left",
@@ -2699,6 +2821,7 @@
         },
         {
           "name": "Stock · quit & custom actions",
+          "description": "Escape, Ctrl+C, Ctrl+G and Ctrl+[ all cancel. Alt+digits run one of fuzzel's ten custom actions (exit codes 10-19) - scripts driving fuzzel --dmenu can branch on them.",
           "bindings": [
             {
               "keys": "Escape",
@@ -2871,7 +2994,8 @@
               "label": "Adjust selection down",
               "command": "adjust_selection:down"
             }
-          ]
+          ],
+          "description": "Select with the mouse, copy with Ctrl+Shift+C (or Ctrl+Insert), paste with Ctrl+Shift+V. Shift+PageUp/Down scroll, Shift+Home/End jump to the ends; Ctrl+Shift+PageUp/Down jump between shell prompts (prompt-marking aware)."
         },
         {
           "name": "Stock · font size",
@@ -2896,10 +3020,11 @@
               "label": "Reset font size",
               "command": "reset_font_size"
             }
-          ]
+          ],
+          "description": "Ctrl+= and Ctrl+- grow and shrink, Ctrl+0 resets. (The plus on the main row works too.)"
         },
         {
-          "name": "Stock · tabs & windows",
+          "name": "Stock · tabs & windows: create, close, quit",
           "bindings": [
             {
               "keys": "Ctrl+Shift+T",
@@ -2925,7 +3050,13 @@
               "keys": "Ctrl+Shift+Q",
               "label": "Quit ghostty",
               "command": "quit"
-            },
+            }
+          ],
+          "description": "Ctrl+Shift+T new tab, Ctrl+Shift+N new window; Ctrl+Shift+W closes the tab, Alt+F4 the window, Ctrl+Shift+Q quits ghostty entirely."
+        },
+        {
+          "name": "Stock · tabs: switch",
+          "bindings": [
             {
               "keys": "Ctrl+Tab",
               "label": "Next tab",
@@ -3001,10 +3132,11 @@
               "label": "Go to last tab",
               "command": "last_tab"
             }
-          ]
+          ],
+          "description": "Ctrl+Tab flips to the last-used tab, Ctrl+Shift+Tab walks back; arrows and PageUp/Down do the same. Alt+digits jump straight to a tab (Alt+9 = last)."
         },
         {
-          "name": "Stock · splits",
+          "name": "Stock · splits: create, navigate, resize",
           "bindings": [
             {
               "keys": "Ctrl+Shift+O",
@@ -3071,10 +3203,11 @@
               "label": "Toggle split zoom",
               "command": "toggle_split_zoom"
             }
-          ]
+          ],
+          "description": "Ctrl+Shift+O splits right, Ctrl+Shift+E splits down. Ctrl+Alt+arrows move between splits, Ctrl+Super+brackets cycle them; Ctrl+Super+Shift+arrows resize, Ctrl+Shift+Enter zooms one split full-window."
         },
         {
-          "name": "Stock · misc",
+          "name": "Stock · search & inspector",
           "bindings": [
             {
               "keys": "Ctrl+Shift+F",
@@ -3090,7 +3223,13 @@
               "keys": "Ctrl+Shift+I",
               "label": "Toggle inspector",
               "command": "inspector:toggle"
-            },
+            }
+          ],
+          "description": "Ctrl+Shift+F opens scrollback search (Escape ends it), Ctrl+Shift+I toggles the GTK inspector."
+        },
+        {
+          "name": "Stock · command palette, config & screen",
+          "bindings": [
             {
               "keys": "Ctrl+Shift+P",
               "label": "Toggle command palette",
@@ -3113,20 +3252,21 @@
             },
             {
               "keys": "Mod+Ctrl+Shift+J",
-              "label": "Copy screen to file",
+              "label": "Write the pane contents to a file",
               "command": "write_screen_file:copy,plain"
             },
             {
               "keys": "Ctrl+Shift+J",
-              "label": "Paste screen to file",
+              "label": "Write the pane contents to the clipboard",
               "command": "write_screen_file:paste,plain"
             },
             {
               "keys": "Ctrl+Alt+Shift+J",
-              "label": "Open screen file",
+              "label": "Open the pane contents in $EDITOR",
               "command": "write_screen_file:open,plain"
             }
-          ]
+          ],
+          "description": "Ctrl+Shift+P is ghostty's command palette. Ctrl+Comma opens the config file, Ctrl+Shift+Comma reloads it. Ctrl+Enter toggles fullscreen (this config also binds F11), and the write_screen binds save the pane contents - to a file, the clipboard, or open it in $EDITOR."
         }
       ]
     },
@@ -3324,83 +3464,8 @@
           "description": "Copy mode is vi keys (mode-keys vi). Selections land in the tmux buffer and, via OSC52, in the system clipboard - Ghostty asks once for permission."
         },
         {
-          "name": "Stock · prefix (Ctrl+Space then key)",
+          "name": "Stock · prefix: windows — jump & browse",
           "bindings": [
-            {
-              "keys": "Ctrl+Space Space",
-              "label": "Next preset pane layout",
-              "command": "next-layout"
-            },
-            {
-              "keys": "Ctrl+Space !",
-              "label": "Break pane out into a new window",
-              "command": "break-pane"
-            },
-            {
-              "keys": "Ctrl+Space \"",
-              "label": "Split pane top/bottom",
-              "command": "split-window"
-            },
-            {
-              "keys": "Ctrl+Space #",
-              "label": "List paste buffers",
-              "command": "list-buffers"
-            },
-            {
-              "keys": "Ctrl+Space $",
-              "label": "Rename session",
-              "command": "command-prompt -I \"#S\" { rename-session \"%%\" }"
-            },
-            {
-              "keys": "Ctrl+Space %",
-              "label": "Split pane side by side",
-              "command": "split-window -h"
-            },
-            {
-              "keys": "Ctrl+Space &",
-              "label": " (with confirm)",
-              "command": "confirm-before -p \"kill-window #W? (y/n)\" kill-window"
-            },
-            {
-              "keys": "Ctrl+Space '",
-              "label": "Command prompt: run tmux command",
-              "command": "command-prompt -T window-target -p index { select-window -t \":%%\" }"
-            },
-            {
-              "keys": "Ctrl+Space (",
-              "label": "Previous session",
-              "command": "switch-client -p"
-            },
-            {
-              "keys": "Ctrl+Space )",
-              "label": "Next session",
-              "command": "switch-client -n"
-            },
-            {
-              "keys": "Ctrl+Space *",
-              "label": "New pane in current window",
-              "command": "new-pane"
-            },
-            {
-              "keys": "Ctrl+Space ,",
-              "label": "Rename window",
-              "command": "command-prompt -I \"#W\" { rename-window \"%%\" }"
-            },
-            {
-              "keys": "Ctrl+Space -",
-              "label": "Delete most recent buffer",
-              "command": "delete-buffer"
-            },
-            {
-              "keys": "Ctrl+Space .",
-              "label": "Command prompt: run tmux command",
-              "command": "command-prompt -T target { move-window -t \"%%\" }"
-            },
-            {
-              "keys": "Ctrl+Space /",
-              "label": "Command prompt: run tmux command",
-              "command": "command-prompt -k -p key { list-keys -1N \"%%\" }"
-            },
             {
               "keys": "Ctrl+Space 0",
               "label": "Switch to window 0",
@@ -3452,109 +3517,9 @@
               "command": "select-window -t :=9"
             },
             {
-              "keys": "Ctrl+Space :",
-              "label": "Command prompt: run tmux command",
-              "command": "command-prompt"
-            },
-            {
-              "keys": "Ctrl+Space ;",
-              "label": "Last used pane",
-              "command": "last-pane"
-            },
-            {
-              "keys": "Ctrl+Space <",
-              "label": "Context menu",
-              "command": "display-menu -T \"#[align=centre]#{window_index}:#{window_name}\" -x W -y W \"#{?#{>:#{sessio…"
-            },
-            {
-              "keys": "Ctrl+Space =",
-              "label": "Pick a paste buffer (zoomed modal)",
-              "command": "choose-buffer -Z"
-            },
-            {
-              "keys": "Ctrl+Space >",
-              "label": "Context menu",
-              "command": "display-menu -T \"#[align=centre]#{pane_index} (#{pane_id})\" -x P -y P \"#{?#{m/r:(copy|view…"
-            },
-            {
-              "keys": "Ctrl+Space ?",
-              "label": "List all key bindings (with notes)",
-              "command": "list-keys -N"
-            },
-            {
-              "keys": "Ctrl+Space C",
-              "label": "Interactive option editor (zoomed)",
-              "command": "customize-mode -Z"
-            },
-            {
-              "keys": "Ctrl+Space D",
-              "label": "Detach a client (picker)",
-              "command": "choose-client -Z"
-            },
-            {
-              "keys": "Ctrl+Space E",
-              "label": "Spread panes evenly",
-              "command": "select-layout -E"
-            },
-            {
-              "keys": "Ctrl+Space L",
-              "label": "Last used session",
-              "command": "switch-client -l"
-            },
-            {
-              "keys": "Ctrl+Space M",
-              "label": "Clear the marked pane",
-              "command": "select-pane -M"
-            },
-            {
-              "keys": "Ctrl+Space [",
-              "label": "Enter copy mode (vi keys)",
-              "command": "copy-mode"
-            },
-            {
-              "keys": "Ctrl+Space ]",
-              "label": "Paste buffer (bracketed paste)",
-              "command": "paste-buffer -p"
-            },
-            {
-              "keys": "Ctrl+Space c",
-              "label": "New window",
-              "command": "new-window"
-            },
-            {
-              "keys": "Ctrl+Space d",
-              "label": "Detach from session",
-              "command": "detach-client"
-            },
-            {
-              "keys": "Ctrl+Space f",
-              "label": "Command prompt: run tmux command",
-              "command": "command-prompt { find-window -Z \"%%\" }"
-            },
-            {
-              "keys": "Ctrl+Space i",
-              "label": "Show session info",
-              "command": "display-message"
-            },
-            {
-              "keys": "Ctrl+Space l",
-              "label": "Last used window",
-              "command": "last-window"
-            },
-            {
-              "keys": "Ctrl+Space m",
-              "label": "Mark pane (jump/swaps target it)",
-              "command": "select-pane -m"
-            },
-            {
               "keys": "Ctrl+Space n",
               "label": "Next window",
               "command": "next-window"
-            },
-            {
-              "keys": "Ctrl+Space o",
-              "label": "Next pane in window",
-              "command": "select-pane -t :.+"
             },
             {
               "keys": "Ctrl+Space p",
@@ -3562,24 +3527,9 @@
               "command": "previous-window"
             },
             {
-              "keys": "Ctrl+Space q",
-              "label": "Show pane numbers (type digit to jump)",
-              "command": "display-panes"
-            },
-            {
-              "keys": "Ctrl+Space r",
-              "label": "Refresh client display",
-              "command": "refresh-client"
-            },
-            {
-              "keys": "Ctrl+Space s",
-              "label": "Interactive session/window/pane browser",
-              "command": "choose-tree -Zs"
-            },
-            {
-              "keys": "Ctrl+Space t",
-              "label": "Show a big clock",
-              "command": "clock-mode"
+              "keys": "Ctrl+Space l",
+              "label": "Last used window",
+              "command": "last-window"
             },
             {
               "keys": "Ctrl+Space w",
@@ -3587,40 +3537,88 @@
               "command": "choose-tree -Zw"
             },
             {
+              "keys": "Ctrl+Space f",
+              "label": "Command prompt: run tmux command",
+              "command": "command-prompt { find-window -Z \"%%\" }"
+            },
+            {
+              "keys": "Ctrl+Space '",
+              "label": "Select window by index (prompt)",
+              "command": "command-prompt -T window-target -p index { select-window -t \":%%\" }"
+            },
+            {
+              "keys": "Ctrl+Space Alt+n",
+              "label": "Next window with activity",
+              "command": "next-window -a"
+            },
+            {
+              "keys": "Ctrl+Space Alt+p",
+              "label": "Previous window with activity",
+              "command": "previous-window -a"
+            }
+          ],
+          "description": "Digits jump, n/p walk, l flips between the two most recent windows. Alt+ variants skip straight to windows with activity; w opens the tree browser, f searches titles and contents, ' prompts for a window index."
+        },
+        {
+          "name": "Stock · prefix: windows — create, close, rename",
+          "bindings": [
+            {
+              "keys": "Ctrl+Space c",
+              "label": "New window",
+              "command": "new-window"
+            },
+            {
+              "keys": "Ctrl+Space &",
+              "label": "Kill the window (with confirmation)",
+              "command": "confirm-before -p \"kill-window #W? (y/n)\" kill-window"
+            },
+            {
+              "keys": "Ctrl+Space ,",
+              "label": "Rename window",
+              "command": "command-prompt -I \"#W\" { rename-window \"%%\" }"
+            },
+            {
+              "keys": "Ctrl+Space .",
+              "label": "Move window to an index (prompt)",
+              "command": "command-prompt -T target { move-window -t \"%%\" }"
+            }
+          ],
+          "description": "c creates, & kills (with confirm), , renames, . moves/renumbers via a prompt. This config rebinds Space (stock: layout) to flip windows, and adds its own c with inherited cwd."
+        },
+        {
+          "name": "Stock · prefix: panes — split, break, kill",
+          "bindings": [
+            {
+              "keys": "Ctrl+Space \"",
+              "label": "Split pane top/bottom",
+              "command": "split-window"
+            },
+            {
+              "keys": "Ctrl+Space %",
+              "label": "Split pane side by side",
+              "command": "split-window -h"
+            },
+            {
+              "keys": "Ctrl+Space !",
+              "label": "Break pane out into a new window",
+              "command": "break-pane"
+            },
+            {
               "keys": "Ctrl+Space x",
-              "label": " (with confirm)",
+              "label": "Kill the pane (with confirmation)",
               "command": "confirm-before -p \"kill-pane #P? (y/n)\" kill-pane"
             },
             {
-              "keys": "Ctrl+Space z",
-              "label": "Toggle pane zoom",
-              "command": "resize-pane -Z"
-            },
-            {
-              "keys": "Ctrl+Space {",
-              "label": "Swap with previous pane",
-              "command": "swap-pane -U"
-            },
-            {
-              "keys": "Ctrl+Space }",
-              "label": "Swap with next pane",
-              "command": "swap-pane -D"
-            },
-            {
-              "keys": "Ctrl+Space ~",
-              "label": "Message / log history",
-              "command": "show-messages"
-            },
-            {
-              "keys": "Ctrl+Space Delete",
-              "label": "Force client resize",
-              "command": "refresh-client -c"
-            },
-            {
-              "keys": "Ctrl+Space PageUp",
-              "label": "Copy mode, scrolled half a page up",
-              "command": "copy-mode -u"
-            },
+              "keys": "Ctrl+Space *",
+              "label": "New pane in current window",
+              "command": "new-pane"
+            }
+          ],
+          "description": "Splits are the shifted symbols: quotedot stacks, % sits side by side. ! breaks a pane out into its own window, x kills it (confirm), * spawns a new pane in place (tmux 3.7)."
+        },
+        {
+          "name": "Stock · prefix: panes — focus, swap, mark",
+          "bindings": [
             {
               "keys": "Ctrl+Space Up",
               "label": "Focus pane up",
@@ -3640,6 +3638,57 @@
               "keys": "Ctrl+Space Right",
               "label": "Focus pane right",
               "command": "select-pane -R"
+            },
+            {
+              "keys": "Ctrl+Space o",
+              "label": "Next pane in window",
+              "command": "select-pane -t :.+"
+            },
+            {
+              "keys": "Ctrl+Space ;",
+              "label": "Last used pane",
+              "command": "last-pane"
+            },
+            {
+              "keys": "Ctrl+Space q",
+              "label": "Show pane numbers (type digit to jump)",
+              "command": "display-panes"
+            },
+            {
+              "keys": "Ctrl+Space {",
+              "label": "Swap with previous pane",
+              "command": "swap-pane -U"
+            },
+            {
+              "keys": "Ctrl+Space }",
+              "label": "Swap with next pane",
+              "command": "swap-pane -D"
+            },
+            {
+              "keys": "Ctrl+Space m",
+              "label": "Mark pane (jump/swaps target it)",
+              "command": "select-pane -m"
+            },
+            {
+              "keys": "Ctrl+Space M",
+              "label": "Clear the marked pane",
+              "command": "select-pane -M"
+            }
+          ],
+          "description": "Arrows focus adjacent panes - this config replaces them with prefix-less Alt+H/J/K/L. o cycles, ; returns to the last pane, q paints numbers and jumps by digit, {/} swap positions, m/M set/clear the mark that the config's backtick bind jumps to."
+        },
+        {
+          "name": "Stock · prefix: panes — layout, zoom, resize",
+          "bindings": [
+            {
+              "keys": "Ctrl+Space Space",
+              "label": "Next preset pane layout",
+              "command": "next-layout"
+            },
+            {
+              "keys": "Ctrl+Space E",
+              "label": "Spread panes evenly",
+              "command": "select-layout -E"
             },
             {
               "keys": "Ctrl+Space Alt+1",
@@ -3677,9 +3726,9 @@
               "command": "select-layout main-vertical-mirrored"
             },
             {
-              "keys": "Ctrl+Space Alt+n",
-              "label": "Next window with activity",
-              "command": "next-window -a"
+              "keys": "Ctrl+Space Ctrl+o",
+              "label": "Rotate panes within window",
+              "command": "rotate-window"
             },
             {
               "keys": "Ctrl+Space Alt+o",
@@ -3687,9 +3736,9 @@
               "command": "rotate-window -D"
             },
             {
-              "keys": "Ctrl+Space Alt+p",
-              "label": "Previous window with activity",
-              "command": "previous-window -a"
+              "keys": "Ctrl+Space z",
+              "label": "Toggle pane zoom",
+              "command": "resize-pane -Z"
             },
             {
               "keys": "Ctrl+Space Alt+Up",
@@ -3712,21 +3761,6 @@
               "command": "resize-pane -R 5"
             },
             {
-              "keys": "Ctrl+Space Ctrl+b",
-              "label": "Send the prefix key to the pane (nested tmux)",
-              "command": "send-prefix"
-            },
-            {
-              "keys": "Ctrl+Space Ctrl+o",
-              "label": "Rotate panes within window",
-              "command": "rotate-window"
-            },
-            {
-              "keys": "Ctrl+Space Ctrl+z",
-              "label": "Suspend the tmux client",
-              "command": "suspend-client"
-            },
-            {
               "keys": "Ctrl+Space Ctrl+Up",
               "label": "Resize pane up by 1",
               "command": "resize-pane -U"
@@ -3745,6 +3779,94 @@
               "keys": "Ctrl+Space Ctrl+Right",
               "label": "Resize pane right by 1",
               "command": "resize-pane -R"
+            }
+          ],
+          "description": "Space cycles preset layouts, Alt+digits pick one directly (1-5 even/main/tiled, 6-7 mirrored), Ctrl+o and Alt+o rotate panes around, z zooms one pane to the full window. Arrows resize: Alt moves the edge by 5, Ctrl by 1 - both repeat while held (this config maps the same sizes onto prefix Ctrl+H/J/K/L)."
+        },
+        {
+          "name": "Stock · prefix: sessions",
+          "bindings": [
+            {
+              "keys": "Ctrl+Space $",
+              "label": "Rename session",
+              "command": "command-prompt -I \"#S\" { rename-session \"%%\" }"
+            },
+            {
+              "keys": "Ctrl+Space (",
+              "label": "Previous session",
+              "command": "switch-client -p"
+            },
+            {
+              "keys": "Ctrl+Space )",
+              "label": "Next session",
+              "command": "switch-client -n"
+            },
+            {
+              "keys": "Ctrl+Space L",
+              "label": "Last used session",
+              "command": "switch-client -l"
+            },
+            {
+              "keys": "Ctrl+Space d",
+              "label": "Detach from session",
+              "command": "detach-client"
+            },
+            {
+              "keys": "Ctrl+Space D",
+              "label": "Detach a client (picker)",
+              "command": "choose-client -Z"
+            },
+            {
+              "keys": "Ctrl+Space s",
+              "label": "Interactive session/window/pane browser",
+              "command": "choose-tree -Zs"
+            }
+          ],
+          "description": "( and ) walk sessions, L flips back to the last one, $ renames. d detaches, D picks which client to detach, s opens the session tree browser."
+        },
+        {
+          "name": "Stock · prefix: clipboard — copy mode & buffers",
+          "bindings": [
+            {
+              "keys": "Ctrl+Space [",
+              "label": "Enter copy mode (vi keys)",
+              "command": "copy-mode"
+            },
+            {
+              "keys": "Ctrl+Space ]",
+              "label": "Paste buffer (bracketed paste)",
+              "command": "paste-buffer -p"
+            },
+            {
+              "keys": "Ctrl+Space #",
+              "label": "List paste buffers",
+              "command": "list-buffers"
+            },
+            {
+              "keys": "Ctrl+Space =",
+              "label": "Pick a paste buffer (zoomed modal)",
+              "command": "choose-buffer -Z"
+            },
+            {
+              "keys": "Ctrl+Space -",
+              "label": "Delete most recent buffer",
+              "command": "delete-buffer"
+            }
+          ],
+          "description": "[ enters copy mode, ] pastes the top buffer with bracketed paste; # lists buffers, = picks one zoomed, - deletes the most recent. This config adds P for a quick paste."
+        },
+        {
+          "name": "Stock · prefix: client & display",
+          "bindings": [
+            {
+              "keys": "Ctrl+Space r",
+              "label": "Refresh client display",
+              "command": "refresh-client"
+            },
+            {
+              "keys": "Ctrl+Space Delete",
+              "label": "Force client resize",
+              "command": "refresh-client -c"
             },
             {
               "keys": "Ctrl+Space Shift+Up",
@@ -3765,31 +3887,133 @@
               "keys": "Ctrl+Space Shift+Right",
               "label": "Adjust client region right by 10",
               "command": "refresh-client -R 10"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+z",
+              "label": "Suspend the tmux client",
+              "command": "suspend-client"
+            },
+            {
+              "keys": "Ctrl+Space ~",
+              "label": "Message / log history",
+              "command": "show-messages"
+            },
+            {
+              "keys": "Ctrl+Space t",
+              "label": "Show a big clock",
+              "command": "clock-mode"
+            },
+            {
+              "keys": "Ctrl+Space i",
+              "label": "Show window/pane info (display-message)",
+              "command": "display-message"
             }
-          ]
+          ],
+          "description": "r refreshes the screen, Delete forces a resize after the terminal changes size, Shift+arrows pan the client region. Ctrl+z suspends the whole client, ~ shows the message log, t a big clock, i window/pane info."
         },
         {
-          "name": "Stock · copy mode (vi keys)",
+          "name": "Stock · prefix: help, prompts & menus",
           "bindings": [
             {
-              "keys": "Enter",
-              "label": "Copy selection & exit (to system clipboard)",
-              "command": "send-keys -X copy-pipe-and-cancel"
+              "keys": "Ctrl+Space :",
+              "label": "Command prompt: run tmux command",
+              "command": "command-prompt"
             },
             {
-              "keys": "Escape",
-              "label": "Clear selection",
-              "command": "send-keys -X clear-selection"
+              "keys": "Ctrl+Space /",
+              "label": "Describe a key binding (which command does it run)",
+              "command": "command-prompt -k -p key { list-keys -1N \"%%\" }"
             },
             {
-              "keys": "Space",
-              "label": "Begin selection",
-              "command": "send-keys -X begin-selection"
+              "keys": "Ctrl+Space ?",
+              "label": "List all key bindings (with notes)",
+              "command": "list-keys -N"
             },
             {
-              "keys": "#",
-              "label": "Search backward for word under cursor",
-              "command": "send-keys -FX search-backward -- \"#{copy_cursor_word}\""
+              "keys": "Ctrl+Space C",
+              "label": "Interactive option editor (zoomed)",
+              "command": "customize-mode -Z"
+            },
+            {
+              "keys": "Ctrl+Space <",
+              "label": "Context menu for the window",
+              "command": "display-menu -T \"#[align=centre]#{window_index}:#{window_name}\" -x W -y W \"#{?#{>:#{sessio…"
+            },
+            {
+              "keys": "Ctrl+Space >",
+              "label": "Context menu for the pane",
+              "command": "display-menu -T \"#[align=centre]#{pane_index} (#{pane_id})\" -x P -y P \"#{?#{m/r:(copy|view…"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+b",
+              "label": "Send the prefix key to the pane (nested tmux)",
+              "command": "send-prefix"
+            },
+            {
+              "keys": "Ctrl+Space PageUp",
+              "label": "Copy mode, scrolled half a page up",
+              "command": "copy-mode -u"
+            }
+          ],
+          "description": ": opens the command prompt, / describes a key, ? lists every bind, C the interactive option editor. < and > are context menus for window and pane, Ctrl+b sends a literal nested prefix, PageUp enters copy mode half a page up."
+        },
+        {
+          "name": "Stock · copy mode: cursor — chars & lines",
+          "bindings": [
+            {
+              "keys": "h",
+              "label": "Cursor left",
+              "command": "send-keys -X cursor-left"
+            },
+            {
+              "keys": "j",
+              "label": "Cursor down",
+              "command": "send-keys -X cursor-down"
+            },
+            {
+              "keys": "k",
+              "label": "Cursor up",
+              "command": "send-keys -X cursor-up"
+            },
+            {
+              "keys": "l",
+              "label": "Cursor right",
+              "command": "send-keys -X cursor-right"
+            },
+            {
+              "keys": "Backspace",
+              "label": "Cursor left",
+              "command": "send-keys -X cursor-left"
+            },
+            {
+              "keys": "Ctrl+h",
+              "label": "Cursor left",
+              "command": "send-keys -X cursor-left"
+            },
+            {
+              "keys": "Up",
+              "label": "Cursor up",
+              "command": "send-keys -X cursor-up"
+            },
+            {
+              "keys": "Down",
+              "label": "Cursor down",
+              "command": "send-keys -X cursor-down"
+            },
+            {
+              "keys": "Left",
+              "label": "Cursor left",
+              "command": "send-keys -X cursor-left"
+            },
+            {
+              "keys": "Right",
+              "label": "Cursor right",
+              "command": "send-keys -X cursor-right"
+            },
+            {
+              "keys": "0",
+              "label": "Start of line",
+              "command": "send-keys -X start-of-line"
             },
             {
               "keys": "$",
@@ -3797,9 +4021,197 @@
               "command": "send-keys -X end-of-line"
             },
             {
-              "keys": "%",
-              "label": "Next matching bracket",
-              "command": "send-keys -X next-matching-bracket"
+              "keys": "^",
+              "label": "First non-blank char",
+              "command": "send-keys -X back-to-indentation"
+            },
+            {
+              "keys": "Home",
+              "label": "Start of line",
+              "command": "send-keys -X start-of-line"
+            },
+            {
+              "keys": "End",
+              "label": "End of line",
+              "command": "send-keys -X end-of-line"
+            },
+            {
+              "keys": ":",
+              "label": "Go to line (prompt)",
+              "command": "command-prompt -p \"(goto line)\" { send-keys -X goto-line -- \"%%\" }"
+            }
+          ],
+          "description": "The vi home row plus arrow mirrors. 0/Home line start, $/End line end, ^ first non-blank, : prompts for a line number."
+        },
+        {
+          "name": "Stock · copy mode: cursor — words & paragraphs",
+          "bindings": [
+            {
+              "keys": "w",
+              "label": "Next word",
+              "command": "send-keys -X next-word"
+            },
+            {
+              "keys": "b",
+              "label": "Previous word",
+              "command": "send-keys -X previous-word"
+            },
+            {
+              "keys": "e",
+              "label": "Next word end",
+              "command": "send-keys -X next-word-end"
+            },
+            {
+              "keys": "W",
+              "label": "Next space",
+              "command": "send-keys -X next-space"
+            },
+            {
+              "keys": "B",
+              "label": "Previous space",
+              "command": "send-keys -X previous-space"
+            },
+            {
+              "keys": "E",
+              "label": "Next space end",
+              "command": "send-keys -X next-space-end"
+            },
+            {
+              "keys": "{",
+              "label": "Previous paragraph",
+              "command": "send-keys -X previous-paragraph"
+            },
+            {
+              "keys": "}",
+              "label": "Next paragraph",
+              "command": "send-keys -X next-paragraph"
+            }
+          ],
+          "description": "Lowercase hops words, uppercase hops space-separated WORDS, {/} hop paragraphs."
+        },
+        {
+          "name": "Stock · copy mode: screens & scrolling",
+          "bindings": [
+            {
+              "keys": "H",
+              "label": "Top line",
+              "command": "send-keys -X top-line"
+            },
+            {
+              "keys": "M",
+              "label": "Middle line",
+              "command": "send-keys -X middle-line"
+            },
+            {
+              "keys": "L",
+              "label": "Bottom line",
+              "command": "send-keys -X bottom-line"
+            },
+            {
+              "keys": "g",
+              "label": "History top",
+              "command": "send-keys -X history-top"
+            },
+            {
+              "keys": "G",
+              "label": "History bottom",
+              "command": "send-keys -X history-bottom"
+            },
+            {
+              "keys": "J",
+              "label": "Scroll down",
+              "command": "send-keys -X scroll-down"
+            },
+            {
+              "keys": "K",
+              "label": "Scroll up",
+              "command": "send-keys -X scroll-up"
+            },
+            {
+              "keys": "z",
+              "label": "Scroll middle",
+              "command": "send-keys -X scroll-middle"
+            },
+            {
+              "keys": "Ctrl+e",
+              "label": "Scroll down",
+              "command": "send-keys -X scroll-down"
+            },
+            {
+              "keys": "Ctrl+y",
+              "label": "Scroll up",
+              "command": "send-keys -X scroll-up"
+            },
+            {
+              "keys": "Ctrl+Up",
+              "label": "Scroll up",
+              "command": "send-keys -X scroll-up"
+            },
+            {
+              "keys": "Ctrl+Down",
+              "label": "Scroll down",
+              "command": "send-keys -X scroll-down"
+            },
+            {
+              "keys": "PageUp",
+              "label": "Page up",
+              "command": "send-keys -X page-up"
+            },
+            {
+              "keys": "PageDown",
+              "label": "Page down",
+              "command": "send-keys -X page-down"
+            },
+            {
+              "keys": "Ctrl+b",
+              "label": "Page up",
+              "command": "send-keys -X page-up"
+            },
+            {
+              "keys": "Ctrl+f",
+              "label": "Page down",
+              "command": "send-keys -X page-down"
+            },
+            {
+              "keys": "Ctrl+u",
+              "label": "Halfpage up",
+              "command": "send-keys -X halfpage-up"
+            },
+            {
+              "keys": "Ctrl+d",
+              "label": "Halfpage down",
+              "command": "send-keys -X halfpage-down"
+            }
+          ],
+          "description": "H/M/L jump to the visible top/middle/bottom line, g/G to history top/bottom, J/K scroll a line, Ctrl+u/d half a page, PageUp/PageDown and Ctrl+b/f a full page, Ctrl+e/y scroll one line, z centers on the cursor."
+        },
+        {
+          "name": "Stock · copy mode: search & jump",
+          "bindings": [
+            {
+              "keys": "/",
+              "label": "Search forward (prompt for query)",
+              "command": "command-prompt -T search -p \"(search down)\" { send-keys -X search-forward -- \"%%\" }"
+            },
+            {
+              "keys": "?",
+              "label": "Search backward (prompt for query)",
+              "command": "command-prompt -T search -p \"(search up)\" { send-keys -X search-backward -- \"%%\" }"
+            },
+            {
+              "keys": "n",
+              "label": "Search again",
+              "command": "send-keys -X search-again"
+            },
+            {
+              "keys": "N",
+              "label": "Search reverse",
+              "command": "send-keys -X search-reverse"
+            },
+            {
+              "keys": "#",
+              "label": "Search backward for word under cursor",
+              "command": "send-keys -FX search-backward -- \"#{copy_cursor_word}\""
             },
             {
               "keys": "*",
@@ -3807,20 +4219,67 @@
               "command": "send-keys -FX search-forward -- \"#{copy_cursor_word}\""
             },
             {
+              "keys": "f",
+              "label": "Jump forward to char (prompt, like vim f)",
+              "command": "command-prompt -1 -p \"(jump forward)\" { send-keys -X jump-forward -- \"%%\" }"
+            },
+            {
+              "keys": "F",
+              "label": "Jump backward to char (prompt, like vim F)",
+              "command": "command-prompt -1 -p \"(jump backward)\" { send-keys -X jump-backward -- \"%%\" }"
+            },
+            {
+              "keys": "t",
+              "label": "Jump until before char, forward (vim t)",
+              "command": "command-prompt -1 -p \"(jump to forward)\" { send-keys -X jump-to-forward -- \"%%\" }"
+            },
+            {
+              "keys": "T",
+              "label": "Jump until before char, backward (vim T)",
+              "command": "command-prompt -1 -p \"(jump to backward)\" { send-keys -X jump-to-backward -- \"%%\" }"
+            },
+            {
+              "keys": ";",
+              "label": "Repeat last jump motion",
+              "command": "send-keys -X jump-again"
+            },
+            {
               "keys": ",",
               "label": "Repeat last jump motion, reversed",
               "command": "send-keys -X jump-reverse"
             },
             {
-              "keys": "/",
-              "label": "Search forward (prompt for query)",
-              "command": "command-prompt -T search -p \"(search down)\" { send-keys -X search-forward -- \"%%\" }"
+              "keys": "%",
+              "label": "Next matching bracket",
+              "command": "send-keys -X next-matching-bracket"
+            }
+          ],
+          "description": "/ and ? prompt (down/up), n/N repeat and reverse, #/* search the word under the cursor. f/F/t/T are vim-style jumps (;/, repeat and reverse), % hops between matching brackets."
+        },
+        {
+          "name": "Stock · copy mode: marks & position",
+          "bindings": [
+            {
+              "keys": "X",
+              "label": "Set mark",
+              "command": "send-keys -X set-mark"
             },
             {
-              "keys": "0",
-              "label": "Start of line",
-              "command": "send-keys -X start-of-line"
+              "keys": "Alt+x",
+              "label": "Jump to mark",
+              "command": "send-keys -X jump-to-mark"
             },
+            {
+              "keys": "P",
+              "label": "Toggle position",
+              "command": "send-keys -X toggle-position"
+            }
+          ],
+          "description": "X sets a mark, Alt+x jumps to it, P flips the cursor between opposite corners."
+        },
+        {
+          "name": "Stock · copy mode: repeat counts",
+          "bindings": [
             {
               "keys": "1",
               "label": "Repeat-count digit 1 (argument for motions)",
@@ -3865,176 +4324,17 @@
               "keys": "9",
               "label": "Repeat-count digit 9 (argument for motions)",
               "command": "command-prompt -N -I 9 -p (repeat) { send-keys -N \"%%\" }"
-            },
+            }
+          ],
+          "description": "Type digits to build a count, then any motion: 5j = 5 lines down."
+        },
+        {
+          "name": "Stock · copy mode: selection & yank",
+          "bindings": [
             {
-              "keys": ":",
-              "label": "Go to line (prompt)",
-              "command": "command-prompt -p \"(goto line)\" { send-keys -X goto-line -- \"%%\" }"
-            },
-            {
-              "keys": ";",
-              "label": "Repeat last jump motion",
-              "command": "send-keys -X jump-again"
-            },
-            {
-              "keys": "?",
-              "label": "Search backward (prompt for query)",
-              "command": "command-prompt -T search -p \"(search up)\" { send-keys -X search-backward -- \"%%\" }"
-            },
-            {
-              "keys": "A",
-              "label": "Append selection and cancel",
-              "command": "send-keys -X append-selection-and-cancel"
-            },
-            {
-              "keys": "B",
-              "label": "Previous space",
-              "command": "send-keys -X previous-space"
-            },
-            {
-              "keys": "D",
-              "label": "Copy pipe end of line and cancel",
-              "command": "send-keys -X copy-pipe-end-of-line-and-cancel"
-            },
-            {
-              "keys": "E",
-              "label": "Next space end",
-              "command": "send-keys -X next-space-end"
-            },
-            {
-              "keys": "F",
-              "label": "Jump backward to char (prompt, like vim F)",
-              "command": "command-prompt -1 -p \"(jump backward)\" { send-keys -X jump-backward -- \"%%\" }"
-            },
-            {
-              "keys": "G",
-              "label": "History bottom",
-              "command": "send-keys -X history-bottom"
-            },
-            {
-              "keys": "H",
-              "label": "Top line",
-              "command": "send-keys -X top-line"
-            },
-            {
-              "keys": "J",
-              "label": "Scroll down",
-              "command": "send-keys -X scroll-down"
-            },
-            {
-              "keys": "K",
-              "label": "Scroll up",
-              "command": "send-keys -X scroll-up"
-            },
-            {
-              "keys": "L",
-              "label": "Bottom line",
-              "command": "send-keys -X bottom-line"
-            },
-            {
-              "keys": "M",
-              "label": "Middle line",
-              "command": "send-keys -X middle-line"
-            },
-            {
-              "keys": "N",
-              "label": "Search reverse",
-              "command": "send-keys -X search-reverse"
-            },
-            {
-              "keys": "P",
-              "label": "Toggle position",
-              "command": "send-keys -X toggle-position"
-            },
-            {
-              "keys": "T",
-              "label": "Jump until before char, backward (vim T)",
-              "command": "command-prompt -1 -p \"(jump to backward)\" { send-keys -X jump-to-backward -- \"%%\" }"
-            },
-            {
-              "keys": "V",
-              "label": "Select line",
-              "command": "send-keys -X select-line"
-            },
-            {
-              "keys": "W",
-              "label": "Next space",
-              "command": "send-keys -X next-space"
-            },
-            {
-              "keys": "X",
-              "label": "Set mark",
-              "command": "send-keys -X set-mark"
-            },
-            {
-              "keys": "^",
-              "label": "First non-blank char",
-              "command": "send-keys -X back-to-indentation"
-            },
-            {
-              "keys": "b",
-              "label": "Previous word",
-              "command": "send-keys -X previous-word"
-            },
-            {
-              "keys": "e",
-              "label": "Next word end",
-              "command": "send-keys -X next-word-end"
-            },
-            {
-              "keys": "f",
-              "label": "Jump forward to char (prompt, like vim f)",
-              "command": "command-prompt -1 -p \"(jump forward)\" { send-keys -X jump-forward -- \"%%\" }"
-            },
-            {
-              "keys": "g",
-              "label": "History top",
-              "command": "send-keys -X history-top"
-            },
-            {
-              "keys": "h",
-              "label": "Cursor left",
-              "command": "send-keys -X cursor-left"
-            },
-            {
-              "keys": "j",
-              "label": "Cursor down",
-              "command": "send-keys -X cursor-down"
-            },
-            {
-              "keys": "k",
-              "label": "Cursor up",
-              "command": "send-keys -X cursor-up"
-            },
-            {
-              "keys": "l",
-              "label": "Cursor right",
-              "command": "send-keys -X cursor-right"
-            },
-            {
-              "keys": "n",
-              "label": "Search again",
-              "command": "send-keys -X search-again"
-            },
-            {
-              "keys": "o",
-              "label": "Other end",
-              "command": "send-keys -X other-end"
-            },
-            {
-              "keys": "q",
-              "label": "Exit copy mode",
-              "command": "send-keys -X cancel"
-            },
-            {
-              "keys": "r",
-              "label": "Refresh from pane",
-              "command": "send-keys -X refresh-from-pane"
-            },
-            {
-              "keys": "t",
-              "label": "Jump until before char, forward (vim t)",
-              "command": "command-prompt -1 -p \"(jump to forward)\" { send-keys -X jump-to-forward -- \"%%\" }"
+              "keys": "Space",
+              "label": "Begin selection",
+              "command": "send-keys -X begin-selection"
             },
             {
               "keys": "v",
@@ -4042,109 +4342,34 @@
               "command": "send-keys -X rectangle-toggle"
             },
             {
-              "keys": "w",
-              "label": "Next word",
-              "command": "send-keys -X next-word"
+              "keys": "Ctrl+v",
+              "label": "Toggle block/rectangle selection",
+              "command": "send-keys -X rectangle-toggle"
             },
             {
-              "keys": "z",
-              "label": "Scroll middle",
-              "command": "send-keys -X scroll-middle"
+              "keys": "V",
+              "label": "Select line",
+              "command": "send-keys -X select-line"
             },
             {
-              "keys": "{",
-              "label": "Previous paragraph",
-              "command": "send-keys -X previous-paragraph"
+              "keys": "o",
+              "label": "Other end",
+              "command": "send-keys -X other-end"
             },
             {
-              "keys": "}",
-              "label": "Next paragraph",
-              "command": "send-keys -X next-paragraph"
+              "keys": "A",
+              "label": "Append selection and cancel",
+              "command": "send-keys -X append-selection-and-cancel"
             },
             {
-              "keys": "Backspace",
-              "label": "Cursor left",
-              "command": "send-keys -X cursor-left"
+              "keys": "D",
+              "label": "Copy pipe end of line and cancel",
+              "command": "send-keys -X copy-pipe-end-of-line-and-cancel"
             },
             {
-              "keys": "Home",
-              "label": "Start of line",
-              "command": "send-keys -X start-of-line"
-            },
-            {
-              "keys": "End",
-              "label": "End of line",
-              "command": "send-keys -X end-of-line"
-            },
-            {
-              "keys": "PageDown",
-              "label": "Page down",
-              "command": "send-keys -X page-down"
-            },
-            {
-              "keys": "PageUp",
-              "label": "Page up",
-              "command": "send-keys -X page-up"
-            },
-            {
-              "keys": "Up",
-              "label": "Cursor up",
-              "command": "send-keys -X cursor-up"
-            },
-            {
-              "keys": "Down",
-              "label": "Cursor down",
-              "command": "send-keys -X cursor-down"
-            },
-            {
-              "keys": "Left",
-              "label": "Cursor left",
-              "command": "send-keys -X cursor-left"
-            },
-            {
-              "keys": "Right",
-              "label": "Cursor right",
-              "command": "send-keys -X cursor-right"
-            },
-            {
-              "keys": "Alt+x",
-              "label": "Jump to mark",
-              "command": "send-keys -X jump-to-mark"
-            },
-            {
-              "keys": "Ctrl+[",
-              "label": "Clear selection",
-              "command": "send-keys -X clear-selection"
-            },
-            {
-              "keys": "Ctrl+b",
-              "label": "Page up",
-              "command": "send-keys -X page-up"
-            },
-            {
-              "keys": "Ctrl+c",
-              "label": "Exit copy mode",
-              "command": "send-keys -X cancel"
-            },
-            {
-              "keys": "Ctrl+d",
-              "label": "Halfpage down",
-              "command": "send-keys -X halfpage-down"
-            },
-            {
-              "keys": "Ctrl+e",
-              "label": "Scroll down",
-              "command": "send-keys -X scroll-down"
-            },
-            {
-              "keys": "Ctrl+f",
-              "label": "Page down",
-              "command": "send-keys -X page-down"
-            },
-            {
-              "keys": "Ctrl+h",
-              "label": "Cursor left",
-              "command": "send-keys -X cursor-left"
+              "keys": "Enter",
+              "label": "Copy selection & exit (to system clipboard)",
+              "command": "send-keys -X copy-pipe-and-cancel"
             },
             {
               "keys": "Ctrl+j",
@@ -4152,31 +4377,79 @@
               "command": "send-keys -X copy-pipe-and-cancel"
             },
             {
-              "keys": "Ctrl+u",
-              "label": "Halfpage up",
-              "command": "send-keys -X halfpage-up"
+              "keys": "Escape",
+              "label": "Clear the selection",
+              "command": "send-keys -X clear-selection"
             },
             {
-              "keys": "Ctrl+v",
-              "label": "Toggle block/rectangle selection",
-              "command": "send-keys -X rectangle-toggle"
-            },
-            {
-              "keys": "Ctrl+y",
-              "label": "Scroll up",
-              "command": "send-keys -X scroll-up"
-            },
-            {
-              "keys": "Ctrl+Up",
-              "label": "Scroll up",
-              "command": "send-keys -X scroll-up"
-            },
-            {
-              "keys": "Ctrl+Down",
-              "label": "Scroll down",
-              "command": "send-keys -X scroll-down"
+              "keys": "Ctrl+[",
+              "label": "Clear the selection",
+              "command": "send-keys -X clear-selection"
             }
-          ]
+          ],
+          "description": "Space begins a selection, V grabs whole lines, v/Ctrl+v flip rectangle mode, o swaps the cursor to the other end. Enter/Ctrl+j yank and leave (through to the system clipboard via OSC52), A appends the selection and cancels, D yanks to line end, Escape/Ctrl+[ just clears."
+        },
+        {
+          "name": "Stock · copy mode: exit & redraw",
+          "bindings": [
+            {
+              "keys": "q",
+              "label": "Exit copy mode",
+              "command": "send-keys -X cancel"
+            },
+            {
+              "keys": "Ctrl+c",
+              "label": "Exit copy mode",
+              "command": "send-keys -X cancel"
+            },
+            {
+              "keys": "r",
+              "label": "Refresh from pane",
+              "command": "send-keys -X refresh-from-pane"
+            }
+          ],
+          "description": "q and Ctrl+c leave copy mode, r refreshes the view from the live pane."
+        },
+        {
+          "name": "Stock · copy mode: mouse",
+          "bindings": [
+            {
+              "keys": "Mouse Down",
+              "label": "Click: focus the pane",
+              "command": "select-pane"
+            },
+            {
+              "keys": "Mouse Drag",
+              "label": "Drag: start the selection",
+              "command": "select-pane ; send-keys -X begin-selection"
+            },
+            {
+              "keys": "Mouse Up",
+              "label": "Release: copy the selection and leave",
+              "command": "send-keys -X copy-pipe-and-cancel"
+            },
+            {
+              "keys": "Wheel Up",
+              "label": "Wheel: scroll up 5 lines",
+              "command": "select-pane ; send-keys -X -N 5 scroll-up"
+            },
+            {
+              "keys": "Wheel Down",
+              "label": "Wheel: scroll down 5 lines",
+              "command": "select-pane ; send-keys -X -N 5 scroll-down"
+            },
+            {
+              "keys": "Mouse Double Click",
+              "label": "Double click: select the word, copy, leave",
+              "command": "select-pane ; send-keys -X select-word ; copy-pipe-and-cancel"
+            },
+            {
+              "keys": "Mouse Triple Click",
+              "label": "Triple click: select the line, copy, leave",
+              "command": "select-pane ; send-keys -X select-line ; copy-pipe-and-cancel"
+            }
+          ],
+          "description": "Click focuses and starts a drag selection; releasing copies. Double/triple click select a word/line and copy, the wheel scrolls 5 lines per tick."
         }
       ]
     },
@@ -4184,7 +4457,7 @@
       "id": "yazi",
       "title": "yazi",
       "tagline": "terminal file manager",
-      "description": "The keymap uses prepend_keymap, so this one addition merges over the stock bindings rather than replacing them - everything in the stock tables below still applies.",
+      "description": "The keymap uses prepend_keymap, so this one addition merges over the stock bindings rather than replacing them. Case is grammar in yazi: k/j walk files while K/J scroll the preview, h/l enter/leave while H/L walk history, and lowercase/capital forms are different binds throughout - as are the two-step chords (g jumps, m linemode, , sort, c copy, t tabs).",
       "icon": "▤",
       "guide": "yazi",
       "groups": [
@@ -4201,15 +4474,15 @@
           "description": "One addition: archive extraction. yazi's builtin extract plugin is only reachable as a DDS remote, so a local plugin bridges hovered/selected files to it."
         },
         {
-          "name": "Stock · navigation",
+          "name": "Stock · mgr: move the cursor",
           "bindings": [
             {
-              "keys": "K",
+              "keys": "k",
               "label": "Previous file",
               "command": "arrow prev"
             },
             {
-              "keys": "J",
+              "keys": "j",
               "label": "Next file",
               "command": "arrow next"
             },
@@ -4224,7 +4497,7 @@
               "command": "arrow next"
             },
             {
-              "keys": "G G",
+              "keys": "g g",
               "label": "Go to top",
               "command": "arrow top"
             },
@@ -4282,14 +4555,20 @@
               "keys": "PageDown",
               "label": "Move cursor down one page",
               "command": "arrow 100%"
-            },
+            }
+          ],
+          "description": "k/j (and the arrows) walk the list; g g and G jump to the very top/bottom (Home/End mirror them); Ctrl+U/D half pages, Ctrl+B/F and PageUp/PageDown full pages."
+        },
+        {
+          "name": "Stock · mgr: directories & history",
+          "bindings": [
             {
-              "keys": "H",
+              "keys": "h",
               "label": "Back to the parent directory",
               "command": "leave"
             },
             {
-              "keys": "L",
+              "keys": "l",
               "label": "Enter the child directory",
               "command": "enter"
             },
@@ -4304,22 +4583,64 @@
               "command": "enter"
             },
             {
-              "keys": "Shift+H",
+              "keys": "H",
               "label": "Back to previous directory",
               "command": "back"
             },
             {
-              "keys": "Shift+L",
+              "keys": "L",
               "label": "Forward to next directory",
               "command": "forward"
+            }
+          ],
+          "description": "h/l leave/enter directories (arrows mirror), H/L walk back/forward through visited directories."
+        },
+        {
+          "name": "Stock · mgr: goto chords (g …)",
+          "bindings": [
+            {
+              "keys": "g h",
+              "label": "Go home",
+              "command": "cd ~"
             },
             {
-              "keys": "Shift+K",
+              "keys": "g c",
+              "label": "Go to ~/.config",
+              "command": "cd ~/.config"
+            },
+            {
+              "keys": "g d",
+              "label": "Go to ~/Downloads",
+              "command": "cd ~/Downloads"
+            },
+            {
+              "keys": "g t",
+              "label": "Go to trash bin",
+              "command": "plugin trash"
+            },
+            {
+              "keys": "g Space",
+              "label": "Jump interactively",
+              "command": "cd --interactive"
+            },
+            {
+              "keys": "g f",
+              "label": "Follow hovered symlink",
+              "command": "follow"
+            }
+          ],
+          "description": "Two-step g jumps: home, config, downloads, the trash bin, an interactive fuzzy jump, and following the hovered symlink."
+        },
+        {
+          "name": "Stock · mgr: preview & spot",
+          "bindings": [
+            {
+              "keys": "K",
               "label": "Seek up 5 units in the preview",
               "command": "seek -5"
             },
             {
-              "keys": "Shift+J",
+              "keys": "J",
               "label": "Seek down 5 units in the preview",
               "command": "seek 5"
             },
@@ -4327,59 +4648,20 @@
               "keys": "Tab",
               "label": "Spot hovered file",
               "command": "spot"
-            },
-            {
-              "keys": "G H",
-              "label": "Go home",
-              "command": "cd ~"
-            },
-            {
-              "keys": "G C",
-              "label": "Go to ~/.config",
-              "command": "cd ~/.config"
-            },
-            {
-              "keys": "G D",
-              "label": "Go to ~/Downloads",
-              "command": "cd ~/Downloads"
-            },
-            {
-              "keys": "G T",
-              "label": "Go to trash bin",
-              "command": "plugin trash"
-            },
-            {
-              "keys": "G Space",
-              "label": "Jump interactively",
-              "command": "cd --interactive"
-            },
-            {
-              "keys": "G F",
-              "label": "Follow hovered symlink",
-              "command": "follow"
-            },
-            {
-              "keys": "Z",
-              "label": "Jump to a file/directory via fzf",
-              "command": "plugin fzf"
-            },
-            {
-              "keys": "Shift+Z",
-              "label": "Jump to a directory via zoxide",
-              "command": "plugin zoxide"
             }
-          ]
+          ],
+          "description": "The capitalized home row scrolls the PREVIEW (the file list stays put); Tab opens the spot panel with full file details."
         },
         {
-          "name": "Stock · file operations",
+          "name": "Stock · mgr: open & run",
           "bindings": [
             {
-              "keys": "O",
+              "keys": "o",
               "label": "Open selected files",
               "command": "open"
             },
             {
-              "keys": "Shift+O",
+              "keys": "O",
               "label": "Open selected files interactively",
               "command": "open --interactive"
             },
@@ -4394,22 +4676,38 @@
               "command": "open --interactive"
             },
             {
-              "keys": "Y",
+              "keys": ";",
+              "label": "Run a shell command",
+              "command": "shell --interactive"
+            },
+            {
+              "keys": ":",
+              "label": "Run a shell command (block until finishes)",
+              "command": "shell --block --interactive"
+            }
+          ],
+          "description": "o/Return open (O/Shift+Return pick the opener interactively); ; and : run shell commands - : blocks until they finish."
+        },
+        {
+          "name": "Stock · mgr: yank, paste & link",
+          "bindings": [
+            {
+              "keys": "y",
               "label": "Yank selected files (copy)",
               "command": "yank"
             },
             {
-              "keys": "X",
+              "keys": "x",
               "label": "Yank selected files (cut)",
               "command": "yank --cut"
             },
             {
-              "keys": "P",
+              "keys": "p",
               "label": "Paste yanked files",
               "command": "paste"
             },
             {
-              "keys": "Shift+P",
+              "keys": "P",
               "label": "Paste yanked files (overwrite if the destination exists)",
               "command": "paste --force"
             },
@@ -4429,92 +4727,299 @@
               "command": "hardlink"
             },
             {
-              "keys": "Shift+Y",
+              "keys": "Y",
               "label": "Cancel the yank status",
               "command": "unyank"
             },
             {
-              "keys": "Shift+X",
+              "keys": "X",
               "label": "Cancel the yank status",
               "command": "unyank"
-            },
+            }
+          ],
+          "description": "y copies, x cuts, p pastes (P overwrites); the dashed forms make symlinks/hardlinks instead of copies; Y/X cancel a pending yank."
+        },
+        {
+          "name": "Stock · mgr: create, rename & trash",
+          "bindings": [
             {
-              "keys": "D",
-              "label": "Trash selected files",
-              "command": "remove"
-            },
-            {
-              "keys": "Shift+D",
-              "label": "Permanently delete selected files",
-              "command": "remove --permanently"
-            },
-            {
-              "keys": "A",
+              "keys": "a",
               "label": "Create a file (ends with / for directories)",
               "command": "create"
             },
             {
-              "keys": "Shift+A",
+              "keys": "A",
               "label": "Bulk create files",
               "command": "bulk_create"
             },
             {
-              "keys": "R",
+              "keys": "r",
               "label": "Rename selected file(s)",
               "command": "rename --cursor=before_ext"
             },
             {
-              "keys": ";",
-              "label": "Run a shell command",
-              "command": "shell --interactive"
+              "keys": "d",
+              "label": "Trash selected files",
+              "command": "remove"
             },
             {
-              "keys": ":",
-              "label": "Run a shell command (block until finishes)",
-              "command": "shell --block --interactive"
-            },
+              "keys": "D",
+              "label": "Permanently delete selected files",
+              "command": "remove --permanently"
+            }
+          ],
+          "description": "a creates a file (trailing / for a directory), A bulk-creates, r renames, d trashes, D deletes permanently."
+        },
+        {
+          "name": "Stock · mgr: copy metadata (c …)",
+          "bindings": [
             {
-              "keys": "C C",
+              "keys": "c c",
               "label": "Copy file path",
               "command": "copy path"
             },
             {
-              "keys": "C Shift+C",
+              "keys": "c C",
               "label": "Copy file URL",
               "command": "copy url"
             },
             {
-              "keys": "C D",
+              "keys": "c d",
               "label": "Copy directory path",
               "command": "copy dirpath"
             },
             {
-              "keys": "C Shift+D",
+              "keys": "c D",
               "label": "Copy directory URL",
               "command": "copy dirurl"
             },
             {
-              "keys": "C F",
+              "keys": "c f",
               "label": "Copy filename",
               "command": "copy filename"
             },
             {
-              "keys": "C N",
+              "keys": "c n",
               "label": "Copy filename without extension",
               "command": "copy name_without_ext"
             }
-          ]
+          ],
+          "description": "Two-step c copies metadata to the system clipboard: the hovered file's path, URL, filename, or its directory's."
         },
         {
-          "name": "Stock · tabs",
+          "name": "Stock · mgr: find, filter & search",
           "bindings": [
             {
-              "keys": "T T",
+              "keys": "f",
+              "label": "Filter files",
+              "command": "filter --smart"
+            },
+            {
+              "keys": "/",
+              "label": "Find next file",
+              "command": "find --smart"
+            },
+            {
+              "keys": "?",
+              "label": "Find previous file",
+              "command": "find --previous --smart"
+            },
+            {
+              "keys": "n",
+              "label": "Next found",
+              "command": "find_arrow"
+            },
+            {
+              "keys": "N",
+              "label": "Previous found",
+              "command": "find_arrow --previous"
+            },
+            {
+              "keys": "s",
+              "label": "Search files by name via fd",
+              "command": "plugin fd"
+            },
+            {
+              "keys": "S",
+              "label": "Search files by content via ripgrep",
+              "command": "plugin rg"
+            },
+            {
+              "keys": "Ctrl+S",
+              "label": "Cancel the ongoing search",
+              "command": "escape --search"
+            },
+            {
+              "keys": "z",
+              "label": "Jump to a file/directory via fzf",
+              "command": "plugin fzf"
+            },
+            {
+              "keys": "Z",
+              "label": "Jump to a directory via zoxide",
+              "command": "plugin zoxide"
+            }
+          ],
+          "description": "f filters the list as you type; / and ? hop through a typed string, n/N repeat. s searches by name (fd), S by content (ripgrep), Ctrl+S cancels; z jumps via fzf, Z via zoxide."
+        },
+        {
+          "name": "Stock · mgr: selection & visual mode",
+          "bindings": [
+            {
+              "keys": "Space",
+              "label": "Toggle the current selection state",
+              "command": "toggle\", \"arrow 1"
+            },
+            {
+              "keys": "Ctrl+A",
+              "label": "Select all files",
+              "command": "toggle_all --state=on"
+            },
+            {
+              "keys": "Ctrl+R",
+              "label": "Invert selection of all files",
+              "command": "toggle_all"
+            },
+            {
+              "keys": "v",
+              "label": "Enter visual mode (selection mode)",
+              "command": "visual_mode"
+            },
+            {
+              "keys": "V",
+              "label": "Enter visual mode (unset mode)",
+              "command": "visual_mode --unset"
+            },
+            {
+              "keys": "Escape",
+              "label": "Exit visual mode, clear selection, or exit view",
+              "command": "escape"
+            },
+            {
+              "keys": "Ctrl+[",
+              "label": "Exit visual mode, clear selection, or exit view",
+              "command": "escape"
+            }
+          ],
+          "description": "Space toggles the file under the cursor and steps down, Ctrl+A selects all, Ctrl+R inverts; v starts visual (range) mode, V unselects; Escape/Ctrl+[ back out."
+        },
+        {
+          "name": "Stock · mgr: sort (, …)",
+          "bindings": [
+            {
+              "keys": ", m",
+              "label": "Sort by modified time",
+              "command": "sort mtime --reverse=no\", \"linemode mtime"
+            },
+            {
+              "keys": ", M",
+              "label": "Sort by modified time (reverse)",
+              "command": "sort mtime --reverse=yes\", \"linemode mtime"
+            },
+            {
+              "keys": ", b",
+              "label": "Sort by birth time",
+              "command": "sort btime --reverse=no\", \"linemode btime"
+            },
+            {
+              "keys": ", B",
+              "label": "Sort by birth time (reverse)",
+              "command": "sort btime --reverse=yes\", \"linemode btime"
+            },
+            {
+              "keys": ", e",
+              "label": "Sort by extension",
+              "command": "sort extension --reverse=no"
+            },
+            {
+              "keys": ", E",
+              "label": "Sort by extension (reverse)",
+              "command": "sort extension --reverse=yes"
+            },
+            {
+              "keys": ", a",
+              "label": "Sort alphabetically",
+              "command": "sort alphabetical --reverse=no"
+            },
+            {
+              "keys": ", A",
+              "label": "Sort alphabetically (reverse)",
+              "command": "sort alphabetical --reverse=yes"
+            },
+            {
+              "keys": ", n",
+              "label": "Sort naturally",
+              "command": "sort natural --reverse=no"
+            },
+            {
+              "keys": ", N",
+              "label": "Sort naturally (reverse)",
+              "command": "sort natural --reverse=yes"
+            },
+            {
+              "keys": ", s",
+              "label": "Sort by size",
+              "command": "sort size --reverse=no\", \"linemode size"
+            },
+            {
+              "keys": ", S",
+              "label": "Sort by size (reverse)",
+              "command": "sort size --reverse=yes\", \"linemode size"
+            },
+            {
+              "keys": ", r",
+              "label": "Sort randomly",
+              "command": "sort random --reverse=no"
+            }
+          ],
+          "description": "Two-step , picks the sort order - m modified, b birth, e extension, a alphabetical, n natural, s size, r random - and capital forms reverse it. The mtime/btime/size sorts also switch the linemode to match."
+        },
+        {
+          "name": "Stock · mgr: linemode (m …)",
+          "bindings": [
+            {
+              "keys": "m s",
+              "label": "Linemode: size",
+              "command": "linemode size"
+            },
+            {
+              "keys": "m p",
+              "label": "Linemode: permissions",
+              "command": "linemode permissions"
+            },
+            {
+              "keys": "m b",
+              "label": "Linemode: btime",
+              "command": "linemode btime"
+            },
+            {
+              "keys": "m m",
+              "label": "Linemode: mtime",
+              "command": "linemode mtime"
+            },
+            {
+              "keys": "m o",
+              "label": "Linemode: owner",
+              "command": "linemode owner"
+            },
+            {
+              "keys": "m n",
+              "label": "Linemode: none",
+              "command": "linemode none"
+            }
+          ],
+          "description": "Two-step m picks which size/timestamp column is shown per file."
+        },
+        {
+          "name": "Stock · mgr: tabs",
+          "bindings": [
+            {
+              "keys": "t t",
               "label": "Create a new tab in CWD",
               "command": "tab_create --current"
             },
             {
-              "keys": "T R",
+              "keys": "t r",
               "label": "Rename current tab",
               "command": "tab_rename --interactive"
             },
@@ -4583,73 +5088,19 @@
               "label": "Swap current tab with next tab",
               "command": "tab_swap 1"
             }
-          ]
+          ],
+          "description": "t t creates a tab in this cwd, t r renames one; digits 1-9 switch, [ and ] walk, { and } reorder."
         },
         {
-          "name": "Stock · find & filter",
+          "name": "Stock · mgr: quit & suspend",
           "bindings": [
             {
-              "keys": "F",
-              "label": "Filter files",
-              "command": "filter --smart"
-            },
-            {
-              "keys": "/",
-              "label": "Find next file",
-              "command": "find --smart"
-            },
-            {
-              "keys": "?",
-              "label": "Find previous file",
-              "command": "find --previous --smart"
-            },
-            {
-              "keys": "N",
-              "label": "Next found",
-              "command": "find_arrow"
-            },
-            {
-              "keys": "Shift+N",
-              "label": "Previous found",
-              "command": "find_arrow --previous"
-            },
-            {
-              "keys": "S",
-              "label": "Search files by name via fd",
-              "command": "search --via=fd"
-            },
-            {
-              "keys": "Shift+S",
-              "label": "Search files by content via ripgrep",
-              "command": "search --via=rg"
-            },
-            {
-              "keys": "Ctrl+S",
-              "label": "Cancel the ongoing search",
-              "command": "escape --search"
-            }
-          ]
-        },
-        {
-          "name": "Stock · view & misc",
-          "bindings": [
-            {
-              "keys": "Escape",
-              "label": "Exit visual mode, clear selection, or cancel search",
-              "command": "escape"
-            },
-            {
-              "keys": "Ctrl+[",
-              "label": "Exit visual mode, clear selection, or cancel search",
-              "command": "escape"
-            },
-            {
-              "keys": "Q",
+              "keys": "q",
               "label": "Quit the process",
               "command": "quit"
             },
             {
-              "keys": "Shift+Q",
+              "keys": "Q",
               "label": "Quit without outputting cwd-file",
               "command": "quit --no-cwd-file"
             },
@@ -4662,134 +5113,20 @@
               "keys": "Ctrl+Z",
               "label": "Suspend the process",
               "command": "suspend"
-            },
-            {
-              "keys": "Space",
-              "label": "Toggle the current selection state",
-              "command": "toggle, arrow 1"
-            },
-            {
-              "keys": "Ctrl+A",
-              "label": "Select all files",
-              "command": "toggle_all --state=on"
-            },
-            {
-              "keys": "Ctrl+R",
-              "label": "Invert selection of all files",
-              "command": "toggle_all"
-            },
-            {
-              "keys": "V",
-              "label": "Enter visual mode (selection mode)",
-              "command": "visual_mode"
-            },
-            {
-              "keys": "Shift+V",
-              "label": "Enter visual mode (unset mode)",
-              "command": "visual_mode --unset"
-            },
-            {
-              "keys": "M S",
-              "label": "Linemode: size",
-              "command": "linemode size"
-            },
-            {
-              "keys": "M P",
-              "label": "Linemode: permissions",
-              "command": "linemode permissions"
-            },
-            {
-              "keys": "M B",
-              "label": "Linemode: btime",
-              "command": "linemode btime"
-            },
-            {
-              "keys": "M M",
-              "label": "Linemode: mtime",
-              "command": "linemode mtime"
-            },
-            {
-              "keys": "M O",
-              "label": "Linemode: owner",
-              "command": "linemode owner"
-            },
-            {
-              "keys": "M N",
-              "label": "Linemode: none",
-              "command": "linemode none"
-            },
-            {
-              "keys": ", M",
-              "label": "Sort by modified time",
-              "command": "sort mtime --reverse=no, linemode mtime"
-            },
-            {
-              "keys": ", Shift+M",
-              "label": "Sort by modified time (reverse)",
-              "command": "sort mtime --reverse=yes, linemode mtime"
-            },
-            {
-              "keys": ", B",
-              "label": "Sort by birth time",
-              "command": "sort btime --reverse=no, linemode btime"
-            },
-            {
-              "keys": ", Shift+B",
-              "label": "Sort by birth time (reverse)",
-              "command": "sort btime --reverse=yes, linemode btime"
-            },
-            {
-              "keys": ", E",
-              "label": "Sort by extension",
-              "command": "sort extension --reverse=no"
-            },
-            {
-              "keys": ", Shift+E",
-              "label": "Sort by extension (reverse)",
-              "command": "sort extension --reverse=yes"
-            },
-            {
-              "keys": ", A",
-              "label": "Sort alphabetically",
-              "command": "sort alphabetical --reverse=no"
-            },
-            {
-              "keys": ", Shift+A",
-              "label": "Sort alphabetically (reverse)",
-              "command": "sort alphabetical --reverse=yes"
-            },
-            {
-              "keys": ", N",
-              "label": "Sort naturally",
-              "command": "sort natural --reverse=no"
-            },
-            {
-              "keys": ", Shift+N",
-              "label": "Sort naturally (reverse)",
-              "command": "sort natural --reverse=yes"
-            },
-            {
-              "keys": ", S",
-              "label": "Sort by size",
-              "command": "sort size --reverse=no, linemode size"
-            },
-            {
-              "keys": ", Shift+S",
-              "label": "Sort by size (reverse)",
-              "command": "sort size --reverse=yes, linemode size"
-            },
-            {
-              "keys": ", R",
-              "label": "Sort randomly",
-              "command": "sort random --reverse=no"
-            },
+            }
+          ],
+          "description": "q quits and prints the cwd-file (so the calling shell can cd along), Q skips that; Ctrl+C closes the current tab - or quits on the last - and Ctrl+Z suspends the process."
+        },
+        {
+          "name": "Stock · mgr: view, tasks & help",
+          "bindings": [
             {
               "keys": ".",
               "label": "Toggle the visibility of hidden files",
               "command": "hidden toggle"
             },
             {
-              "keys": "W",
+              "keys": "w",
               "label": "Show task manager",
               "command": "tasks:show"
             },
@@ -4803,10 +5140,11 @@
               "label": "Open help",
               "command": "help"
             }
-          ]
+          ],
+          "description": ". flips hidden files; w opens the background-task manager; ~ / F1 the help."
         },
         {
-          "name": "Stock · input",
+          "name": "Stock · input: modes",
           "bindings": [
             {
               "keys": "Ctrl+C",
@@ -4824,42 +5162,74 @@
               "command": "escape"
             },
             {
-              "keys": "I",
+              "keys": "Ctrl+[",
+              "label": "Back to normal mode, or cancel input",
+              "command": "escape"
+            },
+            {
+              "keys": "i",
               "label": "Enter insert mode",
               "command": "insert"
             },
             {
-              "keys": "Shift+I",
+              "keys": "I",
               "label": "Move to the BOL, and enter insert mode",
-              "command": "move first-char, insert"
+              "command": "move first-char\", \"insert"
             },
             {
-              "keys": "A",
+              "keys": "a",
               "label": "Enter append mode",
               "command": "insert --append"
             },
             {
-              "keys": "Shift+A",
+              "keys": "A",
               "label": "Move to the EOL, and enter append mode",
-              "command": "move eol, insert --append"
+              "command": "move eol\", \"insert --append"
             },
             {
-              "keys": "V",
+              "keys": "v",
               "label": "Enter visual mode",
               "command": "visual"
             },
             {
-              "keys": "R",
+              "keys": "r",
               "label": "Replace a single character",
               "command": "replace"
+            }
+          ],
+          "description": "The create/rename prompt is a vi line editor: i/I insert (at cursor / line start), a/A append (at cursor / line end), v selects, r replaces one char. Return submits, Escape/Ctrl+[ back out, Ctrl+C cancels."
+        },
+        {
+          "name": "Stock · input: select lines",
+          "bindings": [
+            {
+              "keys": "V",
+              "label": "Select from BOL to EOL",
+              "command": "move bol\", \"visual\", \"move eol"
             },
             {
-              "keys": "H",
+              "keys": "Ctrl+Shift+A",
+              "label": "Select from EOL to BOL",
+              "command": "move eol\", \"visual\", \"move bol"
+            },
+            {
+              "keys": "Ctrl+Shift+E",
+              "label": "Select from BOL to EOL",
+              "command": "move bol\", \"visual\", \"move eol"
+            }
+          ],
+          "description": "The capitalized Ctrl+A/E forms select whole lines in one shot (V from BOL to EOL, Ctrl+Shift+A from EOL back)."
+        },
+        {
+          "name": "Stock · input: move",
+          "bindings": [
+            {
+              "keys": "h",
               "label": "Move back a character",
               "command": "move -1"
             },
             {
-              "keys": "L",
+              "keys": "l",
               "label": "Move forward a character",
               "command": "move 1"
             },
@@ -4884,32 +5254,32 @@
               "command": "move 1"
             },
             {
-              "keys": "B",
+              "keys": "b",
               "label": "Move back to the start of the current or previous word",
               "command": "backward"
             },
             {
-              "keys": "Shift+B",
+              "keys": "B",
               "label": "Move back to the start of the current or previous WORD",
               "command": "backward wide"
             },
             {
-              "keys": "W",
+              "keys": "w",
               "label": "Move forward to the start of the next word",
               "command": "forward"
             },
             {
-              "keys": "Shift+W",
+              "keys": "W",
               "label": "Move forward to the start of the next WORD",
               "command": "forward wide"
             },
             {
-              "keys": "E",
+              "keys": "e",
               "label": "Move forward to the end of the current or next word",
               "command": "forward --end-of-word"
             },
             {
-              "keys": "Shift+E",
+              "keys": "E",
               "label": "Move forward to the end of the current or next WORD",
               "command": "forward wide --end-of-word"
             },
@@ -4944,6 +5314,11 @@
               "command": "move eol"
             },
             {
+              "keys": "_",
+              "label": "Move to the first non-whitespace character",
+              "command": "move first-char"
+            },
+            {
               "keys": "^",
               "label": "Move to the first non-whitespace character",
               "command": "move first-char"
@@ -4967,7 +5342,13 @@
               "keys": "End",
               "label": "Move to the EOL",
               "command": "move eol"
-            },
+            }
+          ],
+          "description": "h/l chars, b/w/e words (B/W/E WORDs; the Alt forms and Ctrl+arrows are the leaner variants), 0/$/_/^ and Home/End line positions - _ and ^ land on the first non-whitespace char."
+        },
+        {
+          "name": "Stock · input: delete & kill",
+          "bindings": [
             {
               "keys": "Backspace",
               "label": "Delete the character before the cursor",
@@ -5017,54 +5398,76 @@
               "keys": "Ctrl+Delete",
               "label": "Kill forwards to the end of the current word",
               "command": "kill forward"
-            },
+            }
+          ],
+          "description": "Backspace/Delete chars (Ctrl+H/Ctrl+D mirrors); Ctrl+U/K kill to line start/end, Ctrl+W and Ctrl+Backspace kill words backwards, Alt+D and Ctrl+Delete forwards."
+        },
+        {
+          "name": "Stock · input: cut, copy & paste",
+          "bindings": [
             {
-              "keys": "D",
+              "keys": "d",
               "label": "Cut selected characters",
               "command": "delete --cut"
             },
             {
-              "keys": "Shift+D",
+              "keys": "D",
               "label": "Cut until EOL",
-              "command": "delete --cut, move eol"
+              "command": "delete --cut\", \"move eol"
             },
             {
-              "keys": "C",
+              "keys": "c",
               "label": "Cut selected characters, and enter insert mode",
               "command": "delete --cut --insert"
             },
             {
-              "keys": "Shift+C",
+              "keys": "C",
               "label": "Cut until EOL, and enter insert mode",
-              "command": "delete --cut --insert, move eol"
+              "command": "delete --cut --insert\", \"move eol"
             },
             {
-              "keys": "X",
+              "keys": "s",
+              "label": "Cut current character, and enter insert mode",
+              "command": "delete --cut --insert\", \"move 1"
+            },
+            {
+              "keys": "S",
+              "label": "Cut from BOL until EOL, and enter insert mode",
+              "command": "move bol\", \"delete --cut --insert\", \"move eol"
+            },
+            {
+              "keys": "x",
               "label": "Cut current character",
-              "command": "delete --cut, move 1 --in-operating"
+              "command": "delete --cut\", \"move 1 --in-operating"
             },
             {
-              "keys": "Y",
+              "keys": "y",
               "label": "Copy selected characters",
               "command": "yank"
             },
             {
-              "keys": "P",
+              "keys": "p",
               "label": "Paste copied characters after the cursor",
               "command": "paste"
             },
             {
-              "keys": "Shift+P",
+              "keys": "P",
               "label": "Paste copied characters before the cursor",
               "command": "paste --before"
+            }
+          ],
+          "description": "The vi operators: d cuts the selection (D to EOL), c cuts and inserts (C to EOL), s/S cut a char / the whole line and insert, x cuts one char; y copies, p/P paste after/before the cursor."
+        },
+        {
+          "name": "Stock · input: case, undo & history",
+          "bindings": [
+            {
+              "keys": "u",
+              "label": "Undo, or lowercase if in visual mode",
+              "command": "undo\", \"casefy lower"
             },
             {
               "keys": "U",
-              "label": "Undo, or lowercase if in visual mode",
-              "command": "undo, casefy lower"
-            },
-            {
-              "keys": "Shift+U",
               "label": "Uppercase",
               "command": "casefy upper"
             },
@@ -5074,12 +5477,12 @@
               "command": "redo"
             },
             {
-              "keys": "K",
+              "keys": "k",
               "label": "Recall previous input",
               "command": "recall -1"
             },
             {
-              "keys": "J",
+              "keys": "j",
               "label": "Recall next input",
               "command": "recall 1"
             },
@@ -5103,13 +5506,40 @@
               "label": "Recall next input",
               "command": "recall 1"
             }
-          ]
+          ],
+          "description": "u undoes (or lowercases in visual mode), U uppercases, Ctrl+R redoes; k/j and arrows recall earlier inputs."
         },
         {
-          "name": "Stock · confirm & completion",
+          "name": "Stock · input: help",
+          "bindings": [
+            {
+              "keys": "~",
+              "label": "Open help",
+              "command": "help"
+            },
+            {
+              "keys": "F1",
+              "label": "Open help",
+              "command": "help"
+            }
+          ],
+          "description": "~/F1 open yazi's help from anywhere, even mid-prompt."
+        },
+        {
+          "name": "Stock · confirm dialogs",
           "bindings": [
             {
               "keys": "Escape",
+              "label": "Cancel the confirm",
+              "command": "close"
+            },
+            {
+              "keys": "Ctrl+[",
+              "label": "Cancel the confirm",
+              "command": "close"
+            },
+            {
+              "keys": "Ctrl+C",
               "label": "Cancel the confirm",
               "command": "close"
             },
@@ -5119,25 +5549,51 @@
               "command": "close --submit"
             },
             {
-              "keys": "N",
+              "keys": "n",
               "label": "Cancel the confirm",
               "command": "close"
             },
             {
-              "keys": "Y",
+              "keys": "y",
               "label": "Submit the confirm",
               "command": "close --submit"
             },
             {
-              "keys": "K",
+              "keys": "k",
               "label": "Previous line",
               "command": "arrow prev"
             },
             {
-              "keys": "J",
+              "keys": "j",
               "label": "Next line",
               "command": "arrow next"
             },
+            {
+              "keys": "Up",
+              "label": "Previous line",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "Down",
+              "label": "Next line",
+              "command": "arrow next"
+            },
+            {
+              "keys": "~",
+              "label": "Open help",
+              "command": "help"
+            },
+            {
+              "keys": "F1",
+              "label": "Open help",
+              "command": "help"
+            }
+          ],
+          "description": "The delete/overwrite confirmation: y submits, n cancels (Enter/Esc the same); k/j and arrows move in multi-line confirms."
+        },
+        {
+          "name": "Stock · completion popup",
+          "bindings": [
             {
               "keys": "Ctrl+C",
               "label": "Cancel completion",
@@ -5151,7 +5607,7 @@
             {
               "keys": "Return",
               "label": "Complete and submit the input",
-              "command": "close --submit, input:close --submit"
+              "command": "close --submit\", \"input:close --submit"
             },
             {
               "keys": "Alt+K",
@@ -5182,8 +5638,278 @@
               "keys": "Ctrl+N",
               "label": "Next item",
               "command": "arrow next"
+            },
+            {
+              "keys": "~",
+              "label": "Open help",
+              "command": "help"
+            },
+            {
+              "keys": "F1",
+              "label": "Open help",
+              "command": "help"
             }
-          ]
+          ],
+          "description": "The fuzzy completion under the prompt: Alt+K/J, arrows or Ctrl+P/N walk, Tab submits, Return submits and closes the input too, Ctrl+C cancels."
+        },
+        {
+          "name": "Stock · tasks manager",
+          "bindings": [
+            {
+              "keys": "Escape",
+              "label": "Close task manager",
+              "command": "close"
+            },
+            {
+              "keys": "Ctrl+[",
+              "label": "Close task manager",
+              "command": "close"
+            },
+            {
+              "keys": "Ctrl+C",
+              "label": "Close task manager",
+              "command": "close"
+            },
+            {
+              "keys": "w",
+              "label": "Close task manager",
+              "command": "close"
+            },
+            {
+              "keys": "k",
+              "label": "Previous task",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "j",
+              "label": "Next task",
+              "command": "arrow next"
+            },
+            {
+              "keys": "Up",
+              "label": "Previous task",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "Down",
+              "label": "Next task",
+              "command": "arrow next"
+            },
+            {
+              "keys": "Return",
+              "label": "Inspect the task",
+              "command": "inspect"
+            },
+            {
+              "keys": "x",
+              "label": "Cancel the task",
+              "command": "cancel"
+            },
+            {
+              "keys": "~",
+              "label": "Open help",
+              "command": "help"
+            },
+            {
+              "keys": "F1",
+              "label": "Open help",
+              "command": "help"
+            }
+          ],
+          "description": "The background-task list (w): k/j and arrows walk, Return inspects a task, x cancels it, w or Escape closes."
+        },
+        {
+          "name": "Stock · spot panel",
+          "bindings": [
+            {
+              "keys": "Escape",
+              "label": "Close the spot",
+              "command": "close"
+            },
+            {
+              "keys": "Ctrl+[",
+              "label": "Close the spot",
+              "command": "close"
+            },
+            {
+              "keys": "Ctrl+C",
+              "label": "Close the spot",
+              "command": "close"
+            },
+            {
+              "keys": "Tab",
+              "label": "Close the spot",
+              "command": "close"
+            },
+            {
+              "keys": "k",
+              "label": "Previous line",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "j",
+              "label": "Next line",
+              "command": "arrow next"
+            },
+            {
+              "keys": "h",
+              "label": "Swipe to previous file",
+              "command": "swipe prev"
+            },
+            {
+              "keys": "l",
+              "label": "Swipe to next file",
+              "command": "swipe next"
+            },
+            {
+              "keys": "Up",
+              "label": "Previous line",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "Down",
+              "label": "Next line",
+              "command": "arrow next"
+            },
+            {
+              "keys": "Left",
+              "label": "Swipe to previous file",
+              "command": "swipe prev"
+            },
+            {
+              "keys": "Right",
+              "label": "Swipe to next file",
+              "command": "swipe next"
+            },
+            {
+              "keys": "c c",
+              "label": "Copy selected cell",
+              "command": "copy cell"
+            },
+            {
+              "keys": "~",
+              "label": "Open help",
+              "command": "help"
+            },
+            {
+              "keys": "F1",
+              "label": "Open help",
+              "command": "help"
+            }
+          ],
+          "description": "The details panel (Tab): k/j walk the lines, h/l swipe to the previous/next file, c c copies the selected cell, Escape/Tab closes."
+        },
+        {
+          "name": "Stock · pick dialogs",
+          "bindings": [
+            {
+              "keys": "Escape",
+              "label": "Cancel pick",
+              "command": "close"
+            },
+            {
+              "keys": "Ctrl+[",
+              "label": "Cancel pick",
+              "command": "close"
+            },
+            {
+              "keys": "Ctrl+C",
+              "label": "Cancel pick",
+              "command": "close"
+            },
+            {
+              "keys": "Return",
+              "label": "Submit the pick",
+              "command": "close --submit"
+            },
+            {
+              "keys": "k",
+              "label": "Previous option",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "j",
+              "label": "Next option",
+              "command": "arrow next"
+            },
+            {
+              "keys": "Up",
+              "label": "Previous option",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "Down",
+              "label": "Next option",
+              "command": "arrow next"
+            },
+            {
+              "keys": "~",
+              "label": "Open help",
+              "command": "help"
+            },
+            {
+              "keys": "F1",
+              "label": "Open help",
+              "command": "help"
+            }
+          ],
+          "description": "Plugin pickers (like the choose/open-with lists): k/j and arrows walk, Return submits, Escape cancels."
+        },
+        {
+          "name": "Stock · help menu",
+          "bindings": [
+            {
+              "keys": "Escape",
+              "label": "Enter normal mode, or hide help menu",
+              "command": "escape"
+            },
+            {
+              "keys": "Ctrl+[",
+              "label": "Enter normal mode, or hide help menu",
+              "command": "escape"
+            },
+            {
+              "keys": "Ctrl+C",
+              "label": "Close help menu",
+              "command": "close"
+            },
+            {
+              "keys": "Return",
+              "label": "Close help menu and run selected action(s)",
+              "command": "close --submit"
+            },
+            {
+              "keys": "k",
+              "label": "Previous line",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "j",
+              "label": "Next line",
+              "command": "arrow next"
+            },
+            {
+              "keys": "Up",
+              "label": "Previous line",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "Down",
+              "label": "Next line",
+              "command": "arrow next"
+            },
+            {
+              "keys": "Ctrl+P",
+              "label": "Previous line",
+              "command": "arrow prev"
+            },
+            {
+              "keys": "Ctrl+N",
+              "label": "Next line",
+              "command": "arrow next"
+            }
+          ],
+          "description": "The help list (~ / F1): k/j and arrows walk, Ctrl+P/N too; Return closes and runs the highlighted action, Ctrl+C closes."
         }
       ]
     },
@@ -5192,48 +5918,111 @@
       "title": "zathura",
       "tagline": "keyboard-driven PDF viewer",
       "icon": "▥",
-      "description": "Document viewer; all bindings are stock defaults.",
+      "description": "zathura is the vi-style document viewer (PDF, DjVu, PS, Comics). Case matters throughout - j scrolls the view while J flips pages, h/l scroll while H/L jump to the page edges. Binds verified against upstream config.c at 2026.05.20.",
       "groups": [
         {
-          "name": "Stock · navigation",
+          "name": "Stock · pages: navigate",
+          "description": "J/K (or PageDown/PageUp, the browser-nav keys, or Alt+arrows) flip pages. Type a number first and G jumps to that page; P snaps back to the current page's top.",
           "bindings": [
             {
               "keys": "J",
-              "label": "Go to next page",
-              "command": "navigate next"
-            },
-            {
-              "keys": "PageDown",
-              "label": "Go to next page",
+              "label": "Next page",
               "command": "navigate next"
             },
             {
               "keys": "K",
-              "label": "Go to previous page",
+              "label": "Previous page",
               "command": "navigate previous"
+            },
+            {
+              "keys": "PageDown",
+              "label": "Next page",
+              "command": "navigate next"
             },
             {
               "keys": "PageUp",
-              "label": "Go to previous page",
+              "label": "Previous page",
               "command": "navigate previous"
             },
             {
-              "keys": "H",
+              "keys": "Alt+Right",
+              "label": "Next page",
+              "command": "navigate next"
+            },
+            {
+              "keys": "Alt+Left",
+              "label": "Previous page",
+              "command": "navigate previous"
+            },
+            {
+              "keys": "Forward",
+              "label": "Next page (browser-nav key)",
+              "command": "navigate next"
+            },
+            {
+              "keys": "Back",
+              "label": "Previous page (browser-nav key)",
+              "command": "navigate previous"
+            },
+            {
+              "keys": "P",
+              "label": "Snap to the current page",
+              "command": "snap_to_page"
+            },
+            {
+              "keys": "n G",
+              "label": "Go to page N - type the number, then G",
+              "command": "goto specific"
+            }
+          ]
+        },
+        {
+          "name": "Stock · pages: first & last",
+          "description": "g g and Home jump to the first page, G and End to the last.",
+          "bindings": [
+            {
+              "keys": "g g",
+              "label": "First page",
+              "command": "goto top"
+            },
+            {
+              "keys": "Home",
+              "label": "First page",
+              "command": "goto top"
+            },
+            {
+              "keys": "G",
+              "label": "Last page",
+              "command": "goto bottom"
+            },
+            {
+              "keys": "End",
+              "label": "Last page",
+              "command": "goto bottom"
+            }
+          ]
+        },
+        {
+          "name": "Stock · scroll: the view",
+          "description": "The vi home row scrolls; the arrows mirror it. Capital H/L jump to the top/bottom of the current PAGE (g g / G are document-level).",
+          "bindings": [
+            {
+              "keys": "h",
               "label": "Scroll left",
               "command": "scroll left"
             },
             {
-              "keys": "J",
+              "keys": "j",
               "label": "Scroll down",
               "command": "scroll down"
             },
             {
-              "keys": "K",
+              "keys": "k",
               "label": "Scroll up",
               "command": "scroll up"
             },
             {
-              "keys": "L",
+              "keys": "l",
               "label": "Scroll right",
               "command": "scroll right"
             },
@@ -5258,69 +6047,40 @@
               "command": "scroll right"
             },
             {
-              "keys": "g g",
-              "label": "Go to first page",
-              "command": "goto top"
-            },
-            {
-              "keys": "G",
-              "label": "Go to last page",
-              "command": "goto bottom"
-            },
-            {
-              "keys": "n G",
-              "label": "Go to nth page",
-              "command": "goto"
-            },
-            {
-              "keys": "P",
-              "label": "Snap to current page",
-              "command": "snap_to_page"
-            },
-            {
               "keys": "H",
-              "label": "Go to top of current page",
+              "label": "Scroll to the top of the page",
               "command": "scroll page-top"
             },
             {
               "keys": "L",
-              "label": "Go to bottom of current page",
+              "label": "Scroll to the bottom of the page",
               "command": "scroll page-bottom"
             }
           ]
         },
         {
-          "name": "Stock · scrolling",
+          "name": "Stock · scroll: half & full pages",
+          "description": "Ctrl+D/U half pages down/up, Ctrl+F/B and Space full pages (Shift+Space up), Ctrl+T/Y and t/y half/full pages sideways, Alt+K/J small steps.",
           "bindings": [
             {
-              "keys": "Ctrl+t",
-              "label": "Scroll half page left",
-              "command": "scroll half-left"
-            },
-            {
-              "keys": "Ctrl+d",
+              "keys": "Ctrl+D",
               "label": "Scroll half page down",
               "command": "scroll half-down"
             },
             {
-              "keys": "Ctrl+u",
+              "keys": "Ctrl+U",
               "label": "Scroll half page up",
               "command": "scroll half-up"
             },
             {
-              "keys": "Ctrl+y",
-              "label": "Scroll half page right",
-              "command": "scroll half-right"
-            },
-            {
-              "keys": "T",
-              "label": "Scroll full page left",
-              "command": "scroll full-left"
-            },
-            {
-              "keys": "Ctrl+f",
+              "keys": "Ctrl+F",
               "label": "Scroll full page down",
               "command": "scroll full-down"
+            },
+            {
+              "keys": "Ctrl+B",
+              "label": "Scroll full page up",
+              "command": "scroll full-up"
             },
             {
               "keys": "Space",
@@ -5328,19 +6088,55 @@
               "command": "scroll full-down"
             },
             {
-              "keys": "Ctrl+b",
+              "keys": "Shift+Space",
               "label": "Scroll full page up",
               "command": "scroll full-up"
             },
             {
-              "keys": "Y",
+              "keys": "Ctrl+T",
+              "label": "Scroll half page left",
+              "command": "scroll half-left"
+            },
+            {
+              "keys": "Ctrl+Y",
+              "label": "Scroll half page right",
+              "command": "scroll half-right"
+            },
+            {
+              "keys": "t",
+              "label": "Scroll full page left",
+              "command": "scroll full-left"
+            },
+            {
+              "keys": "y",
               "label": "Scroll full page right",
               "command": "scroll full-right"
+            },
+            {
+              "keys": "Alt+K",
+              "label": "Scroll a small step up",
+              "command": "scroll partial-up"
+            },
+            {
+              "keys": "Alt+J",
+              "label": "Scroll a small step down",
+              "command": "scroll partial-down"
+            },
+            {
+              "keys": "Alt+Up",
+              "label": "Scroll a small step up",
+              "command": "scroll partial-up"
+            },
+            {
+              "keys": "Alt+Down",
+              "label": "Scroll a small step down",
+              "command": "scroll partial-down"
             }
           ]
         },
         {
-          "name": "Stock · zoom & view",
+          "name": "Stock · zoom & fit",
+          "description": "+/- zoom, = resets (or type a number and = for an exact percent). The z chains mirror those; a fits the page to the window, s to its width.",
           "bindings": [
             {
               "keys": "+",
@@ -5355,12 +6151,27 @@
             {
               "keys": "=",
               "label": "Zoom to original size",
-              "command": "zoom default"
+              "command": "zoom original"
+            },
+            {
+              "keys": "n =",
+              "label": "Zoom to N percent - type the number, then =",
+              "command": "zoom specific"
+            },
+            {
+              "keys": "z i",
+              "label": "Zoom in",
+              "command": "zoom in"
             },
             {
               "keys": "z I",
               "label": "Zoom in",
               "command": "zoom in"
+            },
+            {
+              "keys": "z o",
+              "label": "Zoom out",
+              "command": "zoom out"
             },
             {
               "keys": "z O",
@@ -5370,46 +6181,62 @@
             {
               "keys": "z 0",
               "label": "Zoom to original size",
-              "command": "zoom default"
+              "command": "zoom original"
             },
             {
-              "keys": "n =",
-              "label": "Zoom to size n",
+              "keys": "z z",
+              "label": "Zoom to a specific size",
               "command": "zoom specific"
             },
             {
-              "keys": "A",
+              "keys": "z Z",
+              "label": "Zoom to a specific size",
+              "command": "zoom specific"
+            },
+            {
+              "keys": "a",
               "label": "Adjust window to best-fit",
               "command": "adjust_window best-fit"
             },
             {
-              "keys": "S",
+              "keys": "s",
               "label": "Adjust window to page width",
               "command": "adjust_window width"
-            },
+            }
+          ]
+        },
+        {
+          "name": "Stock · view: layout, colors & reload",
+          "description": "d toggles multiple pages per row, D cycles which column the first page sits in, w flips single-page view. r rotates, Ctrl+R recolors (inverted grayscale), R reloads; F5 presentation, F11 fullscreen, Tab the table of contents.",
+          "bindings": [
             {
-              "keys": "D",
-              "label": "Toggle dual page view",
+              "keys": "d",
+              "label": "Toggle multi-page rows",
               "command": "toggle_page_mode"
             },
             {
               "keys": "D",
-              "label": "Cycle first column in dual view",
+              "label": "Cycle the first column in multi-page layout",
               "command": "cycle_first_column"
             },
             {
-              "keys": "R",
-              "label": "Rotate by 90 degrees",
-              "command": "rotate"
+              "keys": "w",
+              "label": "Toggle single-page view",
+              "command": "toggle_single_page_mode"
             },
             {
-              "keys": "Ctrl+r",
-              "label": "Recolor (grayscale and invert)",
+              "keys": "r",
+              "label": "Rotate 90 degrees",
+              "command": "rotate rotate-cw"
+            },
+            {
+              "keys": "Ctrl+R",
+              "label": "Recolor: inverted grayscale",
               "command": "recolor"
             },
             {
               "keys": "R",
-              "label": "Reload document",
+              "label": "Reload the document",
               "command": "reload"
             },
             {
@@ -5424,67 +6251,85 @@
             },
             {
               "keys": "Tab",
-              "label": "Show index",
+              "label": "Show or hide the index (table of contents)",
               "command": "toggle_index"
+            },
+            {
+              "keys": "Alt+O",
+              "label": "Open another document (file chooser)",
+              "command": "file_chooser"
             }
           ]
         },
         {
-          "name": "Stock · search & links",
+          "name": "Stock · search",
+          "description": "/ and ? prompt for a search string (forward/backward), n/N walk the hits.",
           "bindings": [
             {
               "keys": "/",
-              "label": "Search forward",
+              "label": "Search forward (prompt)",
               "command": "focus_inputbar /"
             },
             {
               "keys": "?",
-              "label": "Search backward",
+              "label": "Search backward (prompt)",
               "command": "focus_inputbar ?"
             },
             {
-              "keys": "N",
-              "label": "Search next result",
+              "keys": "n",
+              "label": "Next search hit",
               "command": "search forward"
             },
             {
               "keys": "N",
-              "label": "Search previous result",
+              "label": "Previous search hit",
               "command": "search backward"
-            },
-            {
-              "keys": "F",
-              "label": "Follow links",
-              "command": "follow"
-            },
-            {
-              "keys": "F",
-              "label": "Display link target",
-              "command": "display_link"
-            },
-            {
-              "keys": "C",
-              "label": "Copy link target",
-              "command": "copy_link"
-            },
-            {
-              "keys": "O",
-              "label": "Open document",
-              "command": "focus_inputbar :open "
-            },
-            {
-              "keys": "O",
-              "label": "Open document (inputbar)",
-              "command": "focus_inputbar :open "
             }
           ]
         },
         {
-          "name": "Stock · marks & jumps",
+          "name": "Stock · links, copy & open",
+          "description": "f follows links via the keyboard, F reveals a link target; c copies the hovered link, Y the document's path. o/O open the :open prompt - O pre-fills the current file path.",
+          "bindings": [
+            {
+              "keys": "f",
+              "label": "Follow a link (numbered hints)",
+              "command": "follow"
+            },
+            {
+              "keys": "F",
+              "label": "Display the link target",
+              "command": "display_link"
+            },
+            {
+              "keys": "c",
+              "label": "Copy the link target",
+              "command": "copy_link"
+            },
+            {
+              "keys": "Y",
+              "label": "Copy the document's file path",
+              "command": "copy_filepath"
+            },
+            {
+              "keys": "o",
+              "label": "Open a document: :open prompt",
+              "command": "focus_inputbar :open "
+            },
+            {
+              "keys": "O",
+              "label": "Open a document: prompt with the current path appended",
+              "command": "focus_inputbar :open (append)"
+            }
+          ]
+        },
+        {
+          "name": "Stock · marks & jumplist",
+          "description": "m X parks a quickmark, ' X returns to it. The jumplist records every jump: Ctrl+O/I step back/forward, Ctrl+J/K bisect the list (jump halfway).",
           "bindings": [
             {
               "keys": "m X",
-              "label": "Set quickmark X",
+              "label": "Set quickmark X (any letter)",
               "command": "mark_add"
             },
             {
@@ -5493,59 +6338,201 @@
               "command": "mark_evaluate"
             },
             {
-              "keys": "Ctrl+o",
-              "label": "Move backward in jumplist",
+              "keys": "Ctrl+O",
+              "label": "Step backward in the jumplist",
               "command": "jumplist backward"
             },
             {
-              "keys": "Ctrl+i",
-              "label": "Move forward in jumplist",
+              "keys": "Ctrl+I",
+              "label": "Step forward in the jumplist",
               "command": "jumplist forward"
             },
             {
-              "keys": "Ctrl+j",
-              "label": "Bisect forward between jumps",
+              "keys": "Ctrl+J",
+              "label": "Bisect forward between two jumps",
               "command": "bisect forward"
             },
             {
-              "keys": "Ctrl+k",
-              "label": "Bisect backward between jumps",
+              "keys": "Ctrl+K",
+              "label": "Bisect backward between two jumps",
               "command": "bisect backward"
             }
           ]
         },
         {
-          "name": "Stock · misc",
+          "name": "Stock · prompt, bars & quit",
+          "description": ": opens the command prompt (same grammar as the config file: set/map/...). Ctrl+N/M toggle statusbar/inputbar, q quits, Ctrl+P prints; Escape and friends abort whatever is active.",
           "bindings": [
             {
               "keys": ":",
-              "label": "Enter command",
+              "label": "Enter a command (prompt)",
               "command": "focus_inputbar :"
             },
             {
-              "keys": "Q",
+              "keys": "Ctrl+N",
+              "label": "Toggle the statusbar",
+              "command": "toggle_statusbar"
+            },
+            {
+              "keys": "Ctrl+M",
+              "label": "Toggle the inputbar",
+              "command": "toggle_inputbar"
+            },
+            {
+              "keys": "Ctrl+P",
+              "label": "Show the print dialog",
+              "command": "print"
+            },
+            {
+              "keys": "q",
               "label": "Quit",
               "command": "quit"
             },
             {
-              "keys": "Ctrl+c",
-              "label": "Abort",
+              "keys": "Escape",
+              "label": "Abort: leave the mode, clear the search",
               "command": "abort"
+            },
+            {
+              "keys": "Ctrl+C",
+              "label": "Abort: leave the mode, clear the search",
+              "command": "abort"
+            },
+            {
+              "keys": "Ctrl+[",
+              "label": "Abort: leave the mode, clear the search",
+              "command": "abort"
+            }
+          ]
+        },
+        {
+          "name": "Stock · index mode (Tab)",
+          "description": "The table of contents: j/k and arrows walk, Ctrl+D/U half-page, h/l collapse/expand entries (z c/z C recursive, H/L everything with z M/z R aliases), Space/Return jump to the selected entry, Escape closes.",
+          "bindings": [
+            {
+              "keys": "Tab",
+              "label": "Show or hide the index",
+              "command": "toggle_index"
+            },
+            {
+              "keys": "j",
+              "label": "Index: next line",
+              "command": "navigate_index down"
+            },
+            {
+              "keys": "k",
+              "label": "Index: previous line",
+              "command": "navigate_index up"
+            },
+            {
+              "keys": "Down",
+              "label": "Index: next line",
+              "command": "navigate_index down"
+            },
+            {
+              "keys": "Up",
+              "label": "Index: previous line",
+              "command": "navigate_index up"
+            },
+            {
+              "keys": "Ctrl+D",
+              "label": "Index: half page down",
+              "command": "navigate_index half-down"
+            },
+            {
+              "keys": "Ctrl+U",
+              "label": "Index: half page up",
+              "command": "navigate_index half-up"
+            },
+            {
+              "keys": "h",
+              "label": "Index: collapse the entry",
+              "command": "navigate_index collapse"
+            },
+            {
+              "keys": "z c",
+              "label": "Index: collapse the entry",
+              "command": "navigate_index collapse"
+            },
+            {
+              "keys": "z C",
+              "label": "Index: collapse recursively",
+              "command": "navigate_index collapse-recursive"
+            },
+            {
+              "keys": "H",
+              "label": "Index: collapse all",
+              "command": "navigate_index collapse-all"
+            },
+            {
+              "keys": "z M",
+              "label": "Index: collapse all",
+              "command": "navigate_index collapse-all"
+            },
+            {
+              "keys": "l",
+              "label": "Index: expand the entry",
+              "command": "navigate_index expand"
+            },
+            {
+              "keys": "z o",
+              "label": "Index: expand the entry",
+              "command": "navigate_index expand"
+            },
+            {
+              "keys": "z O",
+              "label": "Index: expand recursively",
+              "command": "navigate_index expand-recursive"
+            },
+            {
+              "keys": "L",
+              "label": "Index: expand all",
+              "command": "navigate_index expand-all"
+            },
+            {
+              "keys": "z R",
+              "label": "Index: expand all",
+              "command": "navigate_index expand-all"
+            },
+            {
+              "keys": "Left",
+              "label": "Index: collapse the entry",
+              "command": "navigate_index collapse"
+            },
+            {
+              "keys": "Right",
+              "label": "Index: expand the entry",
+              "command": "navigate_index expand"
+            },
+            {
+              "keys": "Space",
+              "label": "Index: select the entry",
+              "command": "navigate_index select"
+            },
+            {
+              "keys": "Return",
+              "label": "Index: select the entry",
+              "command": "navigate_index select"
+            },
+            {
+              "keys": "Ctrl+J",
+              "label": "Index: select the entry",
+              "command": "navigate_index select"
+            },
+            {
+              "keys": "g g",
+              "label": "Index: top",
+              "command": "navigate_index top"
+            },
+            {
+              "keys": "G",
+              "label": "Index: bottom",
+              "command": "navigate_index bottom"
             },
             {
               "keys": "Escape",
-              "label": "Abort",
-              "command": "abort"
-            },
-            {
-              "keys": "Ctrl+m",
-              "label": "Toggle inputbar",
-              "command": "toggle_inputbar"
-            },
-            {
-              "keys": "Ctrl+n",
-              "label": "Toggle statusbar",
-              "command": "toggle_statusbar"
+              "label": "Close the index",
+              "command": "toggle_index"
             }
           ]
         }
