@@ -100,5 +100,7 @@ The structure you are reading - groups, labels, the prose on this site - is a
 hand-maintained layer in `nixos_config/scripts/extract/manual/`. The extractor
 cross-checks both directions and refuses to publish if they drift: a new bind
 that nobody has curated, or a curated entry whose bind is gone, fails the sync.
+Binds set by this config render with a ● marker; unmarked rows are upstream
+stock defaults.
 The tables can therefore be trusted exactly as far as the config can - and no
 further than the last sync.

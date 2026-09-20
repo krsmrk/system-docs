@@ -11,9 +11,10 @@ or any URL handed to `xdg-open` — qutebrowser is the `x-scheme-handler/https`
 default. Firefox stays installed as the fallback for extension-grade blocking
 (uBlock Origin et al.), not for daily use.
 
-The full binding reference — every custom bind plus all stock defaults of
-qutebrowser 3.7.0, per mode — is the [qutebrowser app page](/apps/qutebrowser.html).
-This guide covers the workflows on top.
+The full binding reference — customs (marked ●) plus the stock defaults of
+qutebrowser 3.7.0, per mode, in one thematic table set — is the
+[qutebrowser app page](/apps/qutebrowser.html). This guide covers the
+workflows on top.
 
 ## Modes in 30 seconds
 

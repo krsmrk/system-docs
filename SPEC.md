@@ -39,15 +39,21 @@ Nord theme. Hosted on GitHub Pages (`krsmrk.github.io/system-docs`).
               "keys": "Mod+H",                       // normalized, see below
               "label": "Focus column left (wraps)",  // human description
               "command": "focus-column-left-or-last", // optional: raw action
-              "source": "config.kdl:158"              // optional: provenance
-            }
-          ]
+              "source": "config.kdl:158",           // optional: provenance
+              "custom": true                         // optional: origin flag —
+            }                                     // true = bound in this config,
+          ]                                       // absent = stock default
         }
       ]
     }
   ]
 }
 ```
+
+There is NO custom/stock separation in group names - sections are purely
+thematic. Origin is a row-level fact: binds parsed from the live config
+carry `"custom": true` and render with a ● marker; curated stock rows are
+unmarked. App pages show an origin legend under the description.
 
 ### Key normalization contract
 
@@ -114,10 +120,10 @@ multi-key sequences anyway. Only `<tag>` keys are normalized
     <h3>Focus & movement <span class="group-count">19</span></h3>
     <p class="group-desc">Optional crafted prose under the heading.</p>
     <table class="kb-table"><tbody>
-      <tr class="kb-row" data-keys="Mod+H">
-        <td class="kb-keys"><kbd><span class="mod">Mod</span>+<span class="key">H</span></kbd></td>
-        <td class="kb-label">Focus column left (wraps)</td>
-        <td class="kb-command"><code>focus-column-left-or-last</code></td>
+      <tr class="kb-row custom" data-keys="Mod+H">  <!-- .custom = bound in this config -->
+      <td class="kb-keys"><span class="custom-mark" title="custom — bound in this config">●</span><kbd><span class="mod">Mod</span>+<span class="key">H</span></kbd></td>
+      <td class="kb-label">Focus column left (wraps)</td>
+      <td class="kb-command"><code>focus-column-left-or-last</code></td>
       </tr>
     </tbody></table>
   </section>
@@ -132,7 +138,9 @@ multi-key sequences anyway. Only `<tag>` keys are normalized
   built from h2/h3 headings at build time.
 - App-page extras (round-2): `.kb-toc` chip row links to section ids
   `#g-0..n`; `h3` shows `.group-count`; rows carry `data-cmd` (lowercased
-  command) for command search; app headers show icon + `.chip-link` guide chip.
+  command) for command search; app headers show icon + `.chip-link` guide chip;
+  `.origin-legend` under the description states the page's custom/stock mix
+  (binds bound in this config carry the `.custom-mark` ●, stock rows are plain).
 - All pages share one sticky header: site title "box manual", nav
   links (Overview, Guides; active one gets `aria-current="page"`), Nord theme
   toggle (dark/light, persists localStorage, default dark, respects
@@ -238,16 +246,23 @@ This repo's CI (`.github/workflows/pages.yml`) rebuilds + deploys on `main`.
 
 ### Manual layer (crafted content over mechanical truth)
 
-Extraction only produces truth: keys, commands, provenance. Everything a human
-reads - group taxonomy and order, labels, group prose, app blurbs - lives in
-agent-crafted `nixos_config/scripts/extract/manual/<id>.json`, applied by the
-extractor as a merge pass with a two-way drift contract:
+Extraction only produces truth: keys, commands, provenance, origin. Everything
+a human reads - group taxonomy and order, labels, group prose, app blurbs -
+lives in agent-crafted `nixos_config/scripts/extract/manual/<id>.json`, applied
+by the extractor as a merge pass over the FULL pool (custom parses + curated
+stock rows), with a two-way drift contract:
 
-- a config bind no manual entry covers  → sync fails (curate it)
-- a manual entry no config bind matches  → sync fails (remove it)
-- same keys, different commands          → sync fails (disambiguate with
-  `commandContains`; custom rows win over `Stock · …` reference rows, which
-  survive unclaimed and stay appended after the manual groups)
+- a bind (custom or stock) no manual entry covers → sync fails (curate it)
+- a manual entry no bind matches                 → sync fails (remove it)
+- same keys, different commands                  → sync fails (disambiguate
+  with `commandContains`; custom rows win over stock rows when keys collide)
+
+Manual entries: `{keys, label?, commandContains?, drop?}` (label may be
+omitted - falls back to the source label, e.g. for stock rows) or
+`{ref: "<source group name>"}` to fold a whole curated stock group into a
+thematic section in order. `drop: true` claims a row without showing it
+(stock binds that a custom bind shadows identically). Apps without a manual
+file pass their parsed/curated groups through untouched.
 
 So the published tables are exactly as current as the last `just update-docs`.
 

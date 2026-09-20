@@ -21,6 +21,8 @@ interface Binding {
   label: string;
   command?: string;
   source?: string;
+  /** True when this bind comes from the machine's own config (vs stock default). */
+  custom?: boolean;
 }
 
 interface BindingGroup {
@@ -165,7 +167,7 @@ function validateKeybinds(raw: unknown): KeybindsFile {
       const bindings: Binding[] = (grp.bindings as unknown[]).map((bnd, bi) => {
         const bwhere = `${gwhere}.bindings[${bi}]`;
         if (!isRecord(bnd)) fail(`${bwhere}: must be an object`);
-        const { keys, label, command, source } = bnd;
+        const { keys, label, command, source, custom } = bnd;
         if (!isStr(label) || label.trim() === "")
           fail(`${bwhere}: every binding needs a non-empty "label"`);
         if (!isStr(keys))
@@ -176,7 +178,9 @@ function validateKeybinds(raw: unknown): KeybindsFile {
           fail(`${bwhere}: "command" must be a string`);
         if (source !== undefined && !isStr(source))
           fail(`${bwhere}: "source" must be a string`);
-        return { keys, label, command, source };
+        if (custom !== undefined && typeof custom !== "boolean")
+          fail(`${bwhere}: "custom" must be a boolean`);
+        return { keys, label, command, source, custom };
       });
       if (grp.description !== undefined && !isStr(grp.description))
         fail(`${gwhere}: "description" must be a string`);
@@ -364,24 +368,37 @@ function renderRow(b: Binding): string {
       ? `\n      <td class="kb-source" title="${esc(b.source)}">∴</td>`
       : "";
   const cmdAttr = b.command !== undefined ? ` data-cmd="${esc(b.command.toLowerCase())}"` : "";
-  return `    <tr class="kb-row" data-keys="${esc(b.keys)}"${cmdAttr}>
-      <td class="kb-keys">${kbdChips(b.keys)}</td>
+  const mark =
+    b.custom === true
+      ? `<span class="custom-mark" title="custom — bound in this config">●</span>`
+      : "";
+  return `    <tr class="kb-row${b.custom === true ? " custom" : ""}" data-keys="${esc(b.keys)}"${cmdAttr}>
+      <td class="kb-keys">${mark}${kbdChips(b.keys)}</td>
       <td class="kb-label">${esc(b.label)}</td>
       <td class="kb-command">${b.command !== undefined ? `<code>${esc(b.command)}</code>` : ""}</td>${sourceCell}
     </tr>`;
 }
 
 function renderAppBody(app: App, guideBySlug: ReadonlyMap<string, GuideDoc>): string {
-  const total = app.groups.reduce((n, g) => n + g.bindings.length, 0);
   const related = app.guide !== undefined ? guideBySlug.get(app.guide) : undefined;
   const relatedGuide = related
     ? `\n  <p class="related-guide"><a class="chip-link" href="../guides/${esc(related.slug)}.html">guide → ${esc(related.title)}</a></p>`
     : "";
 
+  const total = app.groups.reduce((n, g) => n + g.bindings.length, 0);
+  const customCount = app.groups.reduce((n, g) => n + g.bindings.filter((b) => b.custom).length, 0);
+  const legend =
+    customCount === total
+      ? "All binds on this page are custom - bound in this config."
+      : customCount === 0
+        ? "All binds on this page are stock defaults; none are customized."
+        : '<span class="custom-mark">●</span> custom — bound in this config · plain rows are stock defaults';
+
   const header = `<div class="app-header">
   <h1><span class="app-icon" aria-hidden="true">${appIcon(app)}</span> ${esc(app.title)}</h1>
   <p class="tagline">${esc(app.tagline)}</p>
   <p class="app-desc">${esc(app.description)}</p>${relatedGuide}
+  <p class="origin-legend">${legend}</p>
 </div>`;
 
   const tocChips = app.groups

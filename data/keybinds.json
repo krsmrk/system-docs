@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-20T09:00:34.526Z",
-    "sourceCommit": "b5a52ab",
+    "generatedAt": "2026-09-20T09:48:55.895Z",
+    "sourceCommit": "f51caa9",
     "host": "box"
   },
   "apps": [
@@ -20,7 +20,8 @@
               "keys": "CapsLock",
               "label": "Tap: Escape · hold or chord: Control",
               "command": "overload(control, esc)",
-              "source": "default.conf:27"
+              "source": "default.conf:27",
+              "custom": true
             }
           ],
           "description": "One key, two jobs: release it within the tap timeout (Global settings below) and it is Esc; hold it, or press any other key while it is down, and it is Control. Plain overload, not the delayed overloadt variants: the layer activates instantly on keydown, so fast chords - tmux's prefix is Ctrl+Space - can never race the tap/hold decision into a stuck Escape."
@@ -32,7 +33,8 @@
               "keys": "LeftCtrl",
               "label": "Sends a real Caps Lock (OS toggle + LED)",
               "command": "capslock",
-              "source": "default.conf:26"
+              "source": "default.conf:26",
+              "custom": true
             }
           ],
           "description": "Caps Lock's new job needs its old one to live somewhere: the left Ctrl keycap becomes the real Caps Lock (raw keycode to the OS/XKB toggle, LED included). Esc keeps its own key."
@@ -44,7 +46,8 @@
               "keys": "OverloadTapTimeout",
               "label": "Escape fires only when the overloaded key was held for less than this many ms",
               "command": "overload_tap_timeout = 250",
-              "source": "default.conf:15"
+              "source": "default.conf:15",
+              "custom": true
             }
           ],
           "description": "The tap window that separates Escape from Control on overloaded keys; the live value rides in the command column."
@@ -66,37 +69,43 @@
               "keys": "Mod+Return",
               "label": "Open ghostty",
               "command": "spawn \"ghostty\"",
-              "source": "config.kdl:97"
+              "source": "config.kdl:97",
+              "custom": true
             },
             {
               "keys": "Mod+T",
               "label": "Open ghostty (second key for the same hand)",
               "command": "spawn \"ghostty\"",
-              "source": "config.kdl:98"
+              "source": "config.kdl:98",
+              "custom": true
             },
             {
               "keys": "Mod+D",
               "label": "Open fuzzel (app launcher)",
               "command": "spawn \"fuzzel\"",
-              "source": "config.kdl:99"
+              "source": "config.kdl:99",
+              "custom": true
             },
             {
               "keys": "Mod+Q",
               "label": "Open qutebrowser (daily driver; xdg-open default)",
               "command": "spawn \"qutebrowser\"",
-              "source": "config.kdl:104"
+              "source": "config.kdl:104",
+              "custom": true
             },
             {
               "keys": "Mod+B",
               "label": "Open Firefox (fallback browser)",
               "command": "spawn \"firefox\"",
-              "source": "config.kdl:100"
+              "source": "config.kdl:100",
+              "custom": true
             },
             {
               "keys": "Mod+E",
               "label": "Open nautilus (file manager)",
               "command": "spawn \"nautilus\"",
-              "source": "config.kdl:114"
+              "source": "config.kdl:114",
+              "custom": true
             }
           ],
           "description": "Single Mod letters. Return and T are both ghostty (T for when the home row wins); D opens fuzzel, from which everything else is reachable."
@@ -108,31 +117,36 @@
               "keys": "Mod+Shift+B",
               "label": "Bluetooth menu: power, scan, pair/trust/connect, disconnect",
               "command": "spawn \"btmenu\"",
-              "source": "config.kdl:107"
+              "source": "config.kdl:107",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+W",
               "label": "Network menu: Wi-Fi scan + connect, saved profiles, radio toggle",
               "command": "spawn \"netmenu\"",
-              "source": "config.kdl:108"
+              "source": "config.kdl:108",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+A",
               "label": "Audio menu: default sink/source, per-app stream volume and mute",
               "command": "spawn \"volmenu\"",
-              "source": "config.kdl:109"
+              "source": "config.kdl:109",
+              "custom": true
             },
             {
               "keys": "Mod+P",
               "label": "Session menu: lock, logout, suspend, reboot, power off (gum TUI)",
               "command": "spawn \"ghostty\" \"-e\" \"session-menu\"",
-              "source": "config.kdl:143"
+              "source": "config.kdl:143",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+U",
               "label": "System-ops menu: staged diff, upgrade timer, generations, rebuild, rollback, power profile",
               "command": "spawn \"ghostty\" \"-e\" \"sysmenu\"",
-              "source": "config.kdl:144"
+              "source": "config.kdl:144",
+              "custom": true
             }
           ],
           "description": "The system's settings live in keyboard menus, not apps: Mod+Shift plus the initial opens a hardware menu as a fuzzel dmenu loop, Mod+P the session menu (P = power), Mod+Shift+U the system-ops menu."
@@ -144,61 +158,71 @@
               "keys": "Mod+H",
               "label": "Focus column left (wraps to the far edge)",
               "command": "focus-column-left-or-last",
-              "source": "config.kdl:149"
+              "source": "config.kdl:149",
+              "custom": true
             },
             {
               "keys": "Mod+L",
               "label": "Focus column right (wraps to the far edge)",
               "command": "focus-column-right-or-first",
-              "source": "config.kdl:137"
+              "source": "config.kdl:137",
+              "custom": true
             },
             {
               "keys": "Mod+Left",
               "label": "Focus column left (arrow form of Mod+H)",
               "command": "focus-column-left-or-last",
-              "source": "config.kdl:150"
+              "source": "config.kdl:150",
+              "custom": true
             },
             {
               "keys": "Mod+Right",
               "label": "Focus column right (arrow form of Mod+L)",
               "command": "focus-column-right-or-first",
-              "source": "config.kdl:151"
+              "source": "config.kdl:151",
+              "custom": true
             },
             {
               "keys": "Mod+J",
               "label": "Focus window below inside the column",
               "command": "focus-window-down",
-              "source": "config.kdl:152"
+              "source": "config.kdl:152",
+              "custom": true
             },
             {
               "keys": "Mod+K",
               "label": "Focus window above inside the column",
               "command": "focus-window-up",
-              "source": "config.kdl:154"
+              "source": "config.kdl:154",
+              "custom": true
             },
             {
               "keys": "Mod+Down",
               "label": "Focus window below (arrow form of Mod+J)",
               "command": "focus-window-down",
-              "source": "config.kdl:153"
+              "source": "config.kdl:153",
+              "custom": true
             },
             {
               "keys": "Mod+Up",
               "label": "Focus window above (arrow form of Mod+K)",
               "command": "focus-window-up",
-              "source": "config.kdl:155"
+              "source": "config.kdl:155",
+              "custom": true
             },
             {
               "keys": "Mod+BracketLeft",
               "label": "Focus left: previous column, or the last column on the previous monitor",
               "command": "focus-column-or-monitor-left",
-              "source": "config.kdl:156"
+              "source": "config.kdl:156",
+              "custom": true
             },
             {
               "keys": "Mod+BracketRight",
               "label": "Focus right: next column, or the first column on the next monitor",
               "command": "focus-column-or-monitor-right",
-              "source": "config.kdl:157"
+              "source": "config.kdl:157",
+              "custom": true
             }
           ],
           "description": "Vim keys are primary, arrows mirror them. Horizontal focus wraps at the strip edges (or-last / or-first); the brackets keep going where focus runs out: past the edge column, they land on the neighboring monitor."
@@ -210,61 +234,71 @@
               "keys": "Mod+Shift+H",
               "label": "Move column left",
               "command": "move-column-left",
-              "source": "config.kdl:159"
+              "source": "config.kdl:159",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+L",
               "label": "Move column right",
               "command": "move-column-right",
-              "source": "config.kdl:160"
+              "source": "config.kdl:160",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+Left",
               "label": "Move column left (arrow form)",
               "command": "move-column-left",
-              "source": "config.kdl:163"
+              "source": "config.kdl:163",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+Right",
               "label": "Move column right (arrow form)",
               "command": "move-column-right",
-              "source": "config.kdl:164"
+              "source": "config.kdl:164",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+J",
               "label": "Move window down inside the column",
               "command": "move-window-down",
-              "source": "config.kdl:161"
+              "source": "config.kdl:161",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+K",
               "label": "Move window up inside the column",
               "command": "move-window-up",
-              "source": "config.kdl:162"
+              "source": "config.kdl:162",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+Down",
               "label": "Move window down (arrow form)",
               "command": "move-window-down",
-              "source": "config.kdl:165"
+              "source": "config.kdl:165",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+Up",
               "label": "Move window up (arrow form)",
               "command": "move-window-up",
-              "source": "config.kdl:166"
+              "source": "config.kdl:166",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+BracketLeft",
               "label": "Move the column to the previous monitor",
               "command": "move-column-to-monitor-left",
-              "source": "config.kdl:167"
+              "source": "config.kdl:167",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+BracketRight",
               "label": "Move the column to the next monitor",
               "command": "move-column-to-monitor-right",
-              "source": "config.kdl:168"
+              "source": "config.kdl:168",
+              "custom": true
             }
           ],
           "description": "Shift turns a focus verb into a move verb: the column or window travels instead of the focus. Moves do not wrap (niri ships no wrap variants for them)."
@@ -276,67 +310,78 @@
               "keys": "Mod+U",
               "label": "Focus the workspace below",
               "command": "focus-workspace-down",
-              "source": "config.kdl:193"
+              "source": "config.kdl:193",
+              "custom": true
             },
             {
               "keys": "Mod+I",
               "label": "Focus the workspace above",
               "command": "focus-workspace-up",
-              "source": "config.kdl:194"
+              "source": "config.kdl:194",
+              "custom": true
             },
             {
               "keys": "Mod+1",
               "label": "Jump to workspace 1",
               "command": "focus-workspace 1",
-              "source": "config.kdl:197"
+              "source": "config.kdl:197",
+              "custom": true
             },
             {
               "keys": "Mod+2",
               "label": "Jump to workspace 2",
               "command": "focus-workspace 2",
-              "source": "config.kdl:198"
+              "source": "config.kdl:198",
+              "custom": true
             },
             {
               "keys": "Mod+3",
               "label": "Jump to workspace 3",
               "command": "focus-workspace 3",
-              "source": "config.kdl:199"
+              "source": "config.kdl:199",
+              "custom": true
             },
             {
               "keys": "Mod+4",
               "label": "Jump to workspace 4",
               "command": "focus-workspace 4",
-              "source": "config.kdl:200"
+              "source": "config.kdl:200",
+              "custom": true
             },
             {
               "keys": "Mod+5",
               "label": "Jump to workspace 5",
               "command": "focus-workspace 5",
-              "source": "config.kdl:201"
+              "source": "config.kdl:201",
+              "custom": true
             },
             {
               "keys": "Mod+6",
               "label": "Jump to workspace 6",
               "command": "focus-workspace 6",
-              "source": "config.kdl:202"
+              "source": "config.kdl:202",
+              "custom": true
             },
             {
               "keys": "Mod+7",
               "label": "Jump to workspace 7",
               "command": "focus-workspace 7",
-              "source": "config.kdl:203"
+              "source": "config.kdl:203",
+              "custom": true
             },
             {
               "keys": "Mod+8",
               "label": "Jump to workspace 8",
               "command": "focus-workspace 8",
-              "source": "config.kdl:204"
+              "source": "config.kdl:204",
+              "custom": true
             },
             {
               "keys": "Mod+9",
               "label": "Jump to workspace 9",
               "command": "focus-workspace 9",
-              "source": "config.kdl:205"
+              "source": "config.kdl:205",
+              "custom": true
             }
           ],
           "description": "Workspaces scroll vertically; U/I walk the strip, numbers jump. 1-3 are persistent so the bar always shows three dots; higher numbers spawn on demand."
@@ -348,67 +393,78 @@
               "keys": "Mod+Ctrl+U",
               "label": "Move the column to the workspace below",
               "command": "move-column-to-workspace-down",
-              "source": "config.kdl:195"
+              "source": "config.kdl:195",
+              "custom": true
             },
             {
               "keys": "Mod+Ctrl+I",
               "label": "Move the column to the workspace above",
               "command": "move-column-to-workspace-up",
-              "source": "config.kdl:196"
+              "source": "config.kdl:196",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+1",
               "label": "Move the column to workspace 1",
               "command": "move-column-to-workspace 1",
-              "source": "config.kdl:206"
+              "source": "config.kdl:206",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+2",
               "label": "Move the column to workspace 2",
               "command": "move-column-to-workspace 2",
-              "source": "config.kdl:207"
+              "source": "config.kdl:207",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+3",
               "label": "Move the column to workspace 3",
               "command": "move-column-to-workspace 3",
-              "source": "config.kdl:208"
+              "source": "config.kdl:208",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+4",
               "label": "Move the column to workspace 4",
               "command": "move-column-to-workspace 4",
-              "source": "config.kdl:209"
+              "source": "config.kdl:209",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+5",
               "label": "Move the column to workspace 5",
               "command": "move-column-to-workspace 5",
-              "source": "config.kdl:210"
+              "source": "config.kdl:210",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+6",
               "label": "Move the column to workspace 6",
               "command": "move-column-to-workspace 6",
-              "source": "config.kdl:211"
+              "source": "config.kdl:211",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+7",
               "label": "Move the column to workspace 7",
               "command": "move-column-to-workspace 7",
-              "source": "config.kdl:212"
+              "source": "config.kdl:212",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+8",
               "label": "Move the column to workspace 8",
               "command": "move-column-to-workspace 8",
-              "source": "config.kdl:213"
+              "source": "config.kdl:213",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+9",
               "label": "Move the column to workspace 9",
               "command": "move-column-to-workspace 9",
-              "source": "config.kdl:214"
+              "source": "config.kdl:214",
+              "custom": true
             }
           ],
           "description": "Ctrl composes with the switch binds: the focused column comes along. Same grammar as screenshots, where Ctrl narrows to the window."
@@ -420,37 +476,43 @@
               "keys": "Mod+V",
               "label": "Cycle preset column width: 1/3, 1/2, 2/3",
               "command": "switch-preset-column-width",
-              "source": "config.kdl:171"
+              "source": "config.kdl:171",
+              "custom": true
             },
             {
               "keys": "Mod+W",
               "label": "Expand the column to the available width",
               "command": "expand-column-to-available-width",
-              "source": "config.kdl:172"
+              "source": "config.kdl:172",
+              "custom": true
             },
             {
               "keys": "Mod+Minus",
               "label": "Column width -10%",
               "command": "set-column-width \"-10%\"",
-              "source": "config.kdl:179"
+              "source": "config.kdl:179",
+              "custom": true
             },
             {
               "keys": "Mod+Equal",
               "label": "Column width +10%",
               "command": "set-column-width \"+10%\"",
-              "source": "config.kdl:180"
+              "source": "config.kdl:180",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+Minus",
               "label": "Window height -10%",
               "command": "set-window-height \"-10%\"",
-              "source": "config.kdl:182"
+              "source": "config.kdl:182",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+Equal",
               "label": "Window height +10%",
               "command": "set-window-height \"+10%\"",
-              "source": "config.kdl:183"
+              "source": "config.kdl:183",
+              "custom": true
             }
           ],
           "description": "V cycles the presets (third / half / two-thirds); Minus/Equal resize in 10% steps. Shift switches the axis: window heights matter once windows stack vertically inside a column."
@@ -462,55 +524,64 @@
               "keys": "Mod+C",
               "label": "Center the focused column",
               "command": "center-column",
-              "source": "config.kdl:178"
+              "source": "config.kdl:178",
+              "custom": true
             },
             {
               "keys": "Mod+O",
               "label": "Toggle the overview (all workspaces at a glance)",
               "command": "toggle-overview",
-              "source": "config.kdl:177"
+              "source": "config.kdl:177",
+              "custom": true
             },
             {
               "keys": "Mod+Comma",
               "label": "Consume: pull the next window into this column, stacked",
               "command": "consume-window-into-column",
-              "source": "config.kdl:184"
+              "source": "config.kdl:184",
+              "custom": true
             },
             {
               "keys": "Mod+Period",
               "label": "Expel: push the bottom window out of the column",
               "command": "expel-window-from-column",
-              "source": "config.kdl:185"
+              "source": "config.kdl:185",
+              "custom": true
             },
             {
               "keys": "Mod+F",
               "label": "Maximize to the screen edges (bar stays visible)",
               "command": "maximize-window-to-edges",
-              "source": "config.kdl:175"
+              "source": "config.kdl:175",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+F",
               "label": "True fullscreen (bar hides too)",
               "command": "fullscreen-window",
-              "source": "config.kdl:176"
+              "source": "config.kdl:176",
+              "custom": true
             },
             {
               "keys": "Mod+Alt+S",
               "label": "Toggle the window between floating and tiling",
               "command": "toggle-window-floating",
-              "source": "config.kdl:186"
+              "source": "config.kdl:186",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+Space",
               "label": "Switch focus between the floating layer and the tiling strip",
               "command": "switch-focus-between-floating-and-tiling",
-              "source": "config.kdl:187"
+              "source": "config.kdl:187",
+              "custom": true
             },
             {
               "keys": "Mod+X",
               "label": "Close the focused window",
               "command": "close-window",
-              "source": "config.kdl:140"
+              "source": "config.kdl:140",
+              "custom": true
             }
           ],
           "description": "Two grades of zoom: F maximizes to the screen edges (bar stays, no gaps or ring), Shift+F is true fullscreen. Comma/Period stack windows into (or expel them from) the column. Floating is the config's one Alt bind - plain Mod+S stays deliberately unbound; do not rebind it without asking Stefan first."
@@ -522,43 +593,50 @@
               "keys": "Print",
               "label": "Screenshot UI: pick region/window/screen, then clipboard or file",
               "command": "screenshot",
-              "source": "config.kdl:128"
+              "source": "config.kdl:128",
+              "custom": true
             },
             {
               "keys": "Ctrl+Print",
               "label": "Screenshot the focused window, no dialog",
               "command": "screenshot-window",
-              "source": "config.kdl:129"
+              "source": "config.kdl:129",
+              "custom": true
             },
             {
               "keys": "Shift+Print",
               "label": "Screenshot the full screen, no dialog",
               "command": "screenshot-screen",
-              "source": "config.kdl:130"
+              "source": "config.kdl:130",
+              "custom": true
             },
             {
               "keys": "Mod+G",
               "label": "Screenshot UI (grab form of Print)",
               "command": "screenshot",
-              "source": "config.kdl:131"
+              "source": "config.kdl:131",
+              "custom": true
             },
             {
               "keys": "Mod+Ctrl+G",
               "label": "Screenshot the focused window (grab form)",
               "command": "screenshot-window",
-              "source": "config.kdl:132"
+              "source": "config.kdl:132",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+G",
               "label": "Screenshot the full screen (grab form)",
               "command": "screenshot-screen",
-              "source": "config.kdl:133"
+              "source": "config.kdl:133",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+S",
               "label": "Zero-UI region capture to the clipboard (slurp + grim)",
               "command": "spawn-sh \"grim -g \\\"$(slurp)\\\" - | wl-copy\"",
-              "source": "config.kdl:134"
+              "source": "config.kdl:134",
+              "custom": true
             }
           ],
           "description": "Two spellings for the same three actions: the Print family for boards that have the key, the G cluster (G = grab) for boards without. Ctrl is the window variant, Shift the full-screen variant in both families. Mod+Shift+S is the no-dialog fast lane: region straight to the clipboard."
@@ -570,13 +648,15 @@
               "keys": "Mod+Shift+V",
               "label": "Recall from clipboard history (cliphist through fuzzel)",
               "command": "spawn-sh \"cliphist list | fuzzel --dmenu | cliphist decode | wl-copy\"",
-              "source": "config.kdl:118"
+              "source": "config.kdl:118",
+              "custom": true
             },
             {
               "keys": "Mod+Ctrl+V",
               "label": "Arm or disarm clipboard recording (cliprec menu)",
               "command": "spawn \"cliprec\" \"menu\"",
-              "source": "config.kdl:121"
+              "source": "config.kdl:121",
+              "custom": true
             }
           ],
           "description": "Recording is opt-in: nothing watches the clipboard by default, so secrets are never silently archived. Arm it for a chosen lifetime, recall while armed. History is wiped at session start and on lock/suspend."
@@ -588,13 +668,15 @@
               "keys": "Mod+N",
               "label": "Toggle do-not-disturb",
               "command": "spawn \"swaync-client\" \"-d\"",
-              "source": "config.kdl:112"
+              "source": "config.kdl:112",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+N",
               "label": "Open the control center (history + actions)",
               "command": "spawn \"swaync-client\" \"-t\"",
-              "source": "config.kdl:113"
+              "source": "config.kdl:113",
+              "custom": true
             }
           ],
           "description": "swaync runs toasts and the control center; the waybar bell mirrors these clicks."
@@ -606,25 +688,29 @@
               "keys": "Ctrl+Alt+L",
               "label": "Lock the session (swaylock + clipboard wipe)",
               "command": "spawn \"lock\"",
-              "source": "config.kdl:138"
+              "source": "config.kdl:138",
+              "custom": true
             },
             {
               "keys": "Mod+Escape",
               "label": "Lock - one hand, no mnemonic needed",
               "command": "spawn \"lock\"",
-              "source": "config.kdl:139"
+              "source": "config.kdl:139",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+P",
               "label": "Power off the monitors now (pairs with Mod+P, the session menu)",
               "command": "power-off-monitors",
-              "source": "config.kdl:142"
+              "source": "config.kdl:142",
+              "custom": true
             },
             {
               "keys": "Mod+Shift+Q",
               "label": "Quit niri (end the session)",
               "command": "quit",
-              "source": "config.kdl:141"
+              "source": "config.kdl:141",
+              "custom": true
             }
           ],
           "description": "Two roads to lock: the GNOME-style chord and the one-hand Mod+Escape. Locking runs swaylock and wipes the clipboard history. Idle handling: swayidle locks after 15 min, powers monitors off after 20. Sleep/reboot live in the session menu (Mod+P)."
@@ -636,7 +722,8 @@
               "keys": "Mod+Space",
               "label": "Cycle the layout us/de",
               "command": "switch-layout \"next\"",
-              "source": "config.kdl:190"
+              "source": "config.kdl:190",
+              "custom": true
             }
           ],
           "description": "Plain XKB us,de - niri switches natively, no input-method engine, indicator in the waybar language chip."
@@ -648,7 +735,8 @@
               "keys": "Mod+Ctrl+Shift+I",
               "label": "Toggle keyboard-shortcuts inhibition for the focused window",
               "command": "toggle-keyboard-shortcuts-inhibit",
-              "source": "config.kdl:218"
+              "source": "config.kdl:218",
+              "custom": true
             }
           ],
           "description": "One bind, one job: hand the ENTIRE keyboard to the focused window so a VM or remote desktop receives everything - niri's own binds stop working until this is toggled again."
@@ -660,55 +748,64 @@
               "keys": "XF86AudioRaiseVolume",
               "label": "Volume up (+5, with OSD)",
               "command": "spawn \"swayosd-client\" \"--output-volume\" \"+5\"",
-              "source": "config.kdl:223"
+              "source": "config.kdl:223",
+              "custom": true
             },
             {
               "keys": "XF86AudioLowerVolume",
               "label": "Volume down (-5, with OSD)",
               "command": "spawn \"swayosd-client\" \"--output-volume\" \"-5\"",
-              "source": "config.kdl:224"
+              "source": "config.kdl:224",
+              "custom": true
             },
             {
               "keys": "XF86AudioMute",
               "label": "Mute/unmute the output (with OSD)",
               "command": "spawn \"swayosd-client\" \"--output-volume\" \"mute-toggle\"",
-              "source": "config.kdl:225"
+              "source": "config.kdl:225",
+              "custom": true
             },
             {
               "keys": "XF86AudioMicMute",
               "label": "Mute/unmute the mic (ignored while locked, on purpose)",
               "command": "spawn \"swayosd-client\" \"--input-volume\" \"mute-toggle\"",
-              "source": "config.kdl:227"
+              "source": "config.kdl:227",
+              "custom": true
             },
             {
               "keys": "XF86AudioPlay",
               "label": "Play/pause (playerctl via OSD)",
               "command": "spawn \"swayosd-client\" \"--playerctl\" \"play-pause\"",
-              "source": "config.kdl:228"
+              "source": "config.kdl:228",
+              "custom": true
             },
             {
               "keys": "XF86AudioNext",
               "label": "Next track",
               "command": "spawn \"swayosd-client\" \"--playerctl\" \"next\"",
-              "source": "config.kdl:229"
+              "source": "config.kdl:229",
+              "custom": true
             },
             {
               "keys": "XF86AudioPrev",
               "label": "Previous track",
               "command": "spawn \"swayosd-client\" \"--playerctl\" \"previous\"",
-              "source": "config.kdl:230"
+              "source": "config.kdl:230",
+              "custom": true
             },
             {
               "keys": "XF86MonBrightnessUp",
               "label": "Brightness up (with OSD)",
               "command": "spawn \"swayosd-client\" \"--brightness\" \"raise\"",
-              "source": "config.kdl:231"
+              "source": "config.kdl:231",
+              "custom": true
             },
             {
               "keys": "XF86MonBrightnessDown",
               "label": "Brightness down (with OSD)",
               "command": "spawn \"swayosd-client\" \"--brightness\" \"lower\"",
-              "source": "config.kdl:232"
+              "source": "config.kdl:232",
+              "custom": true
             }
           ],
           "description": "Media and brightness keys route through swayosd, which paints the on-screen display. All of them work while locked - except the mic: a lock screen shouldn't flip mic state."
@@ -729,13 +826,15 @@
               "keys": "Scroll Up",
               "label": "Walk to the workspace above",
               "command": "niri msg action focus-workspace-up",
-              "source": "modules/home/waybar.nix:251"
+              "source": "modules/home/waybar.nix:251",
+              "custom": true
             },
             {
               "keys": "Scroll Down",
               "label": "Walk to the workspace below",
               "command": "niri msg action focus-workspace-down",
-              "source": "modules/home/waybar.nix:252"
+              "source": "modules/home/waybar.nix:252",
+              "custom": true
             }
           ],
           "description": "Each workspace paints a 10px dot in its identity colour; focus stretches it into a pill, urgent workspaces breathe, empty ones stay visible (1-3 are persistent by niri config). Scrolling walks the strip."
@@ -747,49 +846,57 @@
               "keys": "Mouse Left Click",
               "label": "Bell: toggle the swaync control center (history + actions)",
               "command": "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw",
-              "source": "modules/home/waybar.nix:293"
+              "source": "modules/home/waybar.nix:293",
+              "custom": true
             },
             {
               "keys": "Mouse Right Click",
               "label": "Bell: close all notifications",
               "command": "${pkgs.swaynotificationcenter}/bin/swaync-client -C -sw",
-              "source": "modules/home/waybar.nix:294"
+              "source": "modules/home/waybar.nix:294",
+              "custom": true
             },
             {
               "keys": "Mouse Left Click",
               "label": "Language chip: switch to the next layout (us ⇄ de)",
               "command": "niri msg action switch-layout next",
-              "source": "modules/home/waybar.nix:304"
+              "source": "modules/home/waybar.nix:304",
+              "custom": true
             },
             {
               "keys": "Mouse Right Click",
               "label": "Language chip: switch to the previous layout",
               "command": "niri msg action switch-layout prev",
-              "source": "modules/home/waybar.nix:305"
+              "source": "modules/home/waybar.nix:305",
+              "custom": true
             },
             {
               "keys": "Scroll Up",
               "label": "Language chip scroll: previous layout",
               "command": "niri msg action switch-layout prev",
-              "source": "modules/home/waybar.nix:306"
+              "source": "modules/home/waybar.nix:306",
+              "custom": true
             },
             {
               "keys": "Scroll Down",
               "label": "Language chip scroll: next layout",
               "command": "niri msg action switch-layout next",
-              "source": "modules/home/waybar.nix:307"
+              "source": "modules/home/waybar.nix:307",
+              "custom": true
             },
             {
               "keys": "Mouse Left Click",
               "label": "Volume icon: mute the default sink",
               "command": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-              "source": "modules/home/waybar.nix:413"
+              "source": "modules/home/waybar.nix:413",
+              "custom": true
             },
             {
               "keys": "Mouse Left Click",
               "label": "Clock: toggle local time ⇄ UTC (the zone abbreviation is the cue)",
               "command": "tz_up",
-              "source": "modules/home/waybar.nix:442"
+              "source": "modules/home/waybar.nix:442",
+              "custom": true
             }
           ],
           "description": "The notification bell shows toasts as a glyph + count (grey under do-not-disturb). Click handlers run with a bare PATH, which is why the module pins absolute store paths."
@@ -800,992 +907,68 @@
       "id": "qutebrowser",
       "title": "qutebrowser",
       "tagline": "keyboard-driven browser · daily driver",
-      "description": "Daily driver (Mod+Q in niri), Nord-themed, with Brave-ABP + StevenBlack host blocking and pass-store logins. Customs hide behind the , leader so the stock vocabulary (J/K tabs, d close, f hints, H/L history, gg/G) stays untouched; case is the binding - ;j is not ,J. The full stock reference follows.",
+      "description": "Daily driver (Mod+Q in niri), Nord-themed, with Brave-ABP + StevenBlack host blocking and pass-store logins. Customs live behind the , leader so the stock vocabulary (J/K tabs, d close, f hints, H/L history, gg/G) is never clobbered - case is the binding. Rows marked ● are this config's.",
       "icon": "◍",
       "guide": "qutebrowser",
       "groups": [
         {
-          "name": "Custom · toggles",
+          "name": "Quick toggles & userscripts (, leader)",
           "bindings": [
             {
               "keys": ",d",
               "label": "Toggle the page color-scheme hint (dark ⇄ light)",
               "command": "config-cycle colors.webpage.preferred_color_scheme dark light",
-              "source": "modules/home/qutebrowser.nix:170"
+              "source": "modules/home/qutebrowser.nix:170",
+              "custom": true
             },
             {
               "keys": ",b",
               "label": "Toggle the status bar (tab bar auto-hides already)",
               "command": "config-cycle statusbar.show always never",
-              "source": "modules/home/qutebrowser.nix:172"
+              "source": "modules/home/qutebrowser.nix:172",
+              "custom": true
             },
-            {
-              "keys": ",u",
-              "label": "This site: toggle ad blocking + reload (un-break the page)",
-              "command": "config-cycle -u *://{url:host}/* content.blocking.enabled true false ;; reload",
-              "source": "modules/home/qutebrowser.nix:178"
-            },
-            {
-              "keys": ";j",
-              "label": "This site: toggle JavaScript + reload (the kill-switch)",
-              "command": "config-cycle -u *://{url:host}/* content.javascript.enabled true false ;; reload",
-              "source": "modules/home/qutebrowser.nix:179"
-            }
-          ],
-          "description": "Per-site fixes: ,d flips the color-scheme hint for sites that break in dark mode; ,u and ;j are the per-site escape hatches when the blocklist or JavaScript breaks a page - they scope the change to the current host and reload immediately."
-        },
-        {
-          "name": "Custom · userscripts",
-          "bindings": [
             {
               "keys": ",m",
               "label": "Open the page's videos in mpv - the page itself stays usable",
               "command": "spawn --userscript view_in_mpv",
-              "source": "modules/home/qutebrowser.nix:184"
+              "source": "modules/home/qutebrowser.nix:184",
+              "custom": true
             },
             {
               "keys": ",r",
               "label": "Reader mode (readability userscript, Nord-styled)",
               "command": "spawn --userscript readability",
-              "source": "modules/home/qutebrowser.nix:185"
+              "source": "modules/home/qutebrowser.nix:185",
+              "custom": true
             },
             {
               "keys": ",q",
               "label": "QR code of the current URL (phone handoff)",
               "command": "spawn --userscript qr",
-              "source": "modules/home/qutebrowser.nix:186"
+              "source": "modules/home/qutebrowser.nix:186",
+              "custom": true
             }
           ],
-          "description": "Userscripts live in the nix module's qutebrowser-userscripts directory."
+          "description": "The , leader keeps customs out of stock's way - case is the binding: ;j is not ,J. ,d flips the page's color-scheme hint for sites that break in dark mode, ,b the status bar; ,m/,r/,q run userscripts (mpv, reader mode, QR handoff)."
         },
         {
-          "name": "Custom · pass-store logins",
+          "name": "Per-site toggles (t family & quick forms)",
           "bindings": [
             {
-              "keys": "zl",
-              "label": "Pick a pass entry; fill the login",
-              "command": "spawn --userscript qute-pass",
-              "source": "modules/home/qutebrowser.nix:189"
+              "keys": ",u",
+              "label": "This site: toggle ad blocking + reload (un-break the page)",
+              "command": "config-cycle -u *://{url:host}/* content.blocking.enabled true false ;; reload",
+              "source": "modules/home/qutebrowser.nix:178",
+              "custom": true
+            },
+            {
+              "keys": ";j",
+              "label": "This site: toggle JavaScript + reload (the kill-switch)",
+              "command": "config-cycle -u *://{url:host}/* content.javascript.enabled true false ;; reload",
+              "source": "modules/home/qutebrowser.nix:179",
+              "custom": true
             },
-            {
-              "keys": "zul",
-              "label": "Fill only the username",
-              "command": "spawn --userscript qute-pass --username-only",
-              "source": "modules/home/qutebrowser.nix:190"
-            },
-            {
-              "keys": "zpl",
-              "label": "Fill only the password",
-              "command": "spawn --userscript qute-pass --password-only",
-              "source": "modules/home/qutebrowser.nix:191"
-            },
-            {
-              "keys": "zol",
-              "label": "Fill only the OTP code",
-              "command": "spawn --userscript qute-pass --otp-only",
-              "source": "modules/home/qutebrowser.nix:192"
-            }
-          ],
-          "description": "Upstream's qute-pass fill scheme: z l is the full login, and u/p/o narrow it to just the username, password, or OTP. Entries are picked with fuzzel; pass-otp supplies the codes."
-        },
-        {
-          "name": "Stock · open: the prompt family",
-          "bindings": [
-            {
-              "keys": "o",
-              "label": "Open URL in current tab (statusbar prompt)",
-              "command": "cmd-set-text -s :open"
-            },
-            {
-              "keys": ":",
-              "label": "Enter command mode (statusbar prompt)",
-              "command": "cmd-set-text :"
-            },
-            {
-              "keys": "go",
-              "label": "Edit and re-open current URL",
-              "command": "cmd-set-text :open {url:pretty}"
-            },
-            {
-              "keys": "O",
-              "label": "Open URL in new tab",
-              "command": "cmd-set-text -s :open -t"
-            },
-            {
-              "keys": "gO",
-              "label": "Edit and open current URL in new tab",
-              "command": "cmd-set-text :open -t -r {url:pretty}"
-            },
-            {
-              "keys": "xo",
-              "label": "Open URL in new background tab",
-              "command": "cmd-set-text -s :open -b"
-            },
-            {
-              "keys": "xO",
-              "label": "Edit and open current URL in background tab",
-              "command": "cmd-set-text :open -b -r {url:pretty}"
-            },
-            {
-              "keys": "wo",
-              "label": "Open URL in new window",
-              "command": "cmd-set-text -s :open -w"
-            },
-            {
-              "keys": "wO",
-              "label": "Edit and open current URL in new window",
-              "command": "cmd-set-text :open -w {url:pretty}"
-            }
-          ],
-          "description": "o prompts in the current tab; capital O opens a new tab, w-prefixed forms open a new window, x-prefixed stay in the background. The g-forms (go, gO) pre-fill the prompt with the current URL for editing. : enters raw command mode."
-        },
-        {
-          "name": "Stock · open: history back & forward",
-          "bindings": [
-            {
-              "keys": "H",
-              "label": "History back",
-              "command": "back"
-            },
-            {
-              "keys": "L",
-              "label": "History forward",
-              "command": "forward"
-            },
-            {
-              "keys": "Mouse Back",
-              "label": "Mouse back button: history back",
-              "command": "back"
-            },
-            {
-              "keys": "Mouse Forward",
-              "label": "Mouse forward button: history forward",
-              "command": "forward"
-            },
-            {
-              "keys": "th",
-              "label": "Back in new tab",
-              "command": "back -t"
-            },
-            {
-              "keys": "tl",
-              "label": "Forward in new tab",
-              "command": "forward -t"
-            },
-            {
-              "keys": "wh",
-              "label": "Back in new window",
-              "command": "back -w"
-            },
-            {
-              "keys": "wl",
-              "label": "Forward in new window",
-              "command": "forward -w"
-            }
-          ],
-          "description": "H/L walk history; t-prefixed clones the target into a new tab, w- into a new window. The mouse side buttons mirror H/L."
-        },
-        {
-          "name": "Stock · open: reload, stop & home",
-          "bindings": [
-            {
-              "keys": "r",
-              "label": "Reload",
-              "command": "reload"
-            },
-            {
-              "keys": "F5",
-              "label": "Reload",
-              "command": "reload"
-            },
-            {
-              "keys": "R",
-              "label": "Force reload (skip cache)",
-              "command": "reload -f"
-            },
-            {
-              "keys": "Ctrl+F5",
-              "label": "Force reload (skip cache)",
-              "command": "reload -f"
-            },
-            {
-              "keys": "Ctrl+H",
-              "label": "Home page",
-              "command": "home"
-            },
-            {
-              "keys": "Ctrl+S",
-              "label": "Stop loading",
-              "command": "stop"
-            }
-          ],
-          "description": "r reloads, R skips the cache; F5 forms mirror them. Ctrl+S stops loading, Ctrl+H goes home."
-        },
-        {
-          "name": "Stock · open: prev/next & URL path",
-          "bindings": [
-            {
-              "keys": "[[",
-              "label": "Previous page (rel/prev link)",
-              "command": "navigate prev"
-            },
-            {
-              "keys": "]]",
-              "label": "Next page (rel/next link)",
-              "command": "navigate next"
-            },
-            {
-              "keys": "{{",
-              "label": "Previous page in new tab",
-              "command": "navigate prev -t"
-            },
-            {
-              "keys": "}}",
-              "label": "Next page in new tab",
-              "command": "navigate next -t"
-            },
-            {
-              "keys": "gu",
-              "label": "Go up one URL path level",
-              "command": "navigate up"
-            },
-            {
-              "keys": "gU",
-              "label": "Go up one URL path level, new tab",
-              "command": "navigate up -t"
-            },
-            {
-              "keys": "Ctrl+A",
-              "label": "Increment number in URL",
-              "command": "navigate increment"
-            },
-            {
-              "keys": "Ctrl+X",
-              "label": "Decrement number in URL",
-              "command": "navigate decrement"
-            }
-          ],
-          "description": "[[/]] follow the page's rel prev/next links ({{/}} open them in tabs); gu climbs one URL-path level (gU in a tab). Ctrl+A/X bump/decrement a number inside the URL - gallery pagination without the mouse."
-        },
-        {
-          "name": "Stock · tabs: open, close & reopen",
-          "bindings": [
-            {
-              "keys": "ga",
-              "label": "New empty tab",
-              "command": "open -t"
-            },
-            {
-              "keys": "Ctrl+T",
-              "label": "New empty tab",
-              "command": "open -t"
-            },
-            {
-              "keys": "d",
-              "label": "Close tab",
-              "command": "tab-close"
-            },
-            {
-              "keys": "Ctrl+W",
-              "label": "Close tab",
-              "command": "tab-close"
-            },
-            {
-              "keys": "D",
-              "label": "Close tab, focus previously focused",
-              "command": "tab-close -o"
-            },
-            {
-              "keys": "co",
-              "label": "Close all other tabs",
-              "command": "tab-only"
-            },
-            {
-              "keys": "u",
-              "label": "Reopen last closed tab",
-              "command": "undo"
-            },
-            {
-              "keys": "U",
-              "label": "Reopen last closed tab in new window",
-              "command": "undo -w"
-            },
-            {
-              "keys": "Ctrl+Shift+T",
-              "label": "Reopen last closed tab",
-              "command": "undo"
-            },
-            {
-              "keys": "Ctrl+N",
-              "label": "Open new window",
-              "command": "open -w"
-            },
-            {
-              "keys": "Ctrl+Shift+N",
-              "label": "Open URL in new private window",
-              "command": "open -p"
-            },
-            {
-              "keys": "Ctrl+Shift+W",
-              "label": "Close window",
-              "command": "close"
-            },
-            {
-              "keys": "Ctrl+Shift+Tab",
-              "label": "Reserved (nop, stock placeholder)",
-              "command": "nop"
-            }
-          ],
-          "description": "d closes (D closes and focuses the previously focused tab), u reopens the last closed one (U in a new window, Ctrl+Shift+T stock form), co closes all others. Windows: Ctrl+N opens one, Ctrl+Shift+N private, Ctrl+Shift+W closes it. Ctrl+Shift+Tab is a stock nop - reserved."
-        },
-        {
-          "name": "Stock · tabs: navigate",
-          "bindings": [
-            {
-              "keys": "J",
-              "label": "Next tab",
-              "command": "tab-next"
-            },
-            {
-              "keys": "K",
-              "label": "Previous tab",
-              "command": "tab-prev"
-            },
-            {
-              "keys": "Ctrl+PageDown",
-              "label": "Next tab",
-              "command": "tab-next"
-            },
-            {
-              "keys": "Ctrl+PageUp",
-              "label": "Previous tab",
-              "command": "tab-prev"
-            },
-            {
-              "keys": "Ctrl+Tab",
-              "label": "Last active tab",
-              "command": "tab-focus last"
-            },
-            {
-              "keys": "Ctrl+^",
-              "label": "Last active tab",
-              "command": "tab-focus last"
-            },
-            {
-              "keys": "gt",
-              "label": "Focus tab by number (prompt)",
-              "command": "cmd-set-text -s :tab-select"
-            },
-            {
-              "keys": "T",
-              "label": "Focus tab by title/URL search",
-              "command": "cmd-set-text -sr :tab-focus"
-            },
-            {
-              "keys": "Alt+1",
-              "label": "Focus tab 1",
-              "command": "tab-focus 1"
-            },
-            {
-              "keys": "Alt+2",
-              "label": "Focus tab 2",
-              "command": "tab-focus 2"
-            },
-            {
-              "keys": "Alt+3",
-              "label": "Focus tab 3",
-              "command": "tab-focus 3"
-            },
-            {
-              "keys": "Alt+4",
-              "label": "Focus tab 4",
-              "command": "tab-focus 4"
-            },
-            {
-              "keys": "Alt+5",
-              "label": "Focus tab 5",
-              "command": "tab-focus 5"
-            },
-            {
-              "keys": "Alt+6",
-              "label": "Focus tab 6",
-              "command": "tab-focus 6"
-            },
-            {
-              "keys": "Alt+7",
-              "label": "Focus tab 7",
-              "command": "tab-focus 7"
-            },
-            {
-              "keys": "Alt+8",
-              "label": "Focus tab 8",
-              "command": "tab-focus 8"
-            },
-            {
-              "keys": "Alt+9",
-              "label": "Focus last tab",
-              "command": "tab-focus -1"
-            },
-            {
-              "keys": "g0",
-              "label": "First tab",
-              "command": "tab-focus 1"
-            },
-            {
-              "keys": "g^",
-              "label": "First tab",
-              "command": "tab-focus 1"
-            },
-            {
-              "keys": "g$",
-              "label": "Last tab",
-              "command": "tab-focus -1"
-            }
-          ],
-          "description": "J/K and Ctrl+PageDown/Up walk, Ctrl+Tab flips to the last active tab (Ctrl+^ too); Alt+digits jump (Alt+9 = last), g0/g^/g$ first and last. gt prompts for a number, T searches by title/URL."
-        },
-        {
-          "name": "Stock · tabs: organize",
-          "bindings": [
-            {
-              "keys": "gm",
-              "label": "Move tab (prompt)",
-              "command": "tab-move"
-            },
-            {
-              "keys": "gJ",
-              "label": "Move tab left",
-              "command": "tab-move +"
-            },
-            {
-              "keys": "gK",
-              "label": "Move tab right",
-              "command": "tab-move -"
-            },
-            {
-              "keys": "gC",
-              "label": "Clone tab",
-              "command": "tab-clone"
-            },
-            {
-              "keys": "Ctrl+P",
-              "label": "Pin tab",
-              "command": "tab-pin"
-            },
-            {
-              "keys": "Alt+M",
-              "label": "Mute tab",
-              "command": "tab-mute"
-            },
-            {
-              "keys": "gD",
-              "label": "Detach tab into new window",
-              "command": "tab-give"
-            }
-          ],
-          "description": "gm moves by prompt, gJ/gK one slot, gC clones, gD detaches the tab into its own window. Ctrl+P pins, Alt+M mutes."
-        },
-        {
-          "name": "Stock · scrolling",
-          "bindings": [
-            {
-              "keys": "h",
-              "label": "Scroll left",
-              "command": "scroll left"
-            },
-            {
-              "keys": "j",
-              "label": "Scroll down",
-              "command": "scroll down"
-            },
-            {
-              "keys": "k",
-              "label": "Scroll up",
-              "command": "scroll up"
-            },
-            {
-              "keys": "l",
-              "label": "Scroll right",
-              "command": "scroll right"
-            },
-            {
-              "keys": "gg",
-              "label": "Scroll to top",
-              "command": "scroll-to-perc 0"
-            },
-            {
-              "keys": "G",
-              "label": "Scroll to bottom (or N%)",
-              "command": "scroll-to-perc"
-            },
-            {
-              "keys": "Ctrl+F",
-              "label": "Page down",
-              "command": "scroll-page 0 1"
-            },
-            {
-              "keys": "Ctrl+B",
-              "label": "Page up",
-              "command": "scroll-page 0 -1"
-            },
-            {
-              "keys": "Ctrl+D",
-              "label": "Half page down",
-              "command": "scroll-page 0 0.5"
-            },
-            {
-              "keys": "Ctrl+U",
-              "label": "Half page up",
-              "command": "scroll-page 0 -0.5"
-            }
-          ],
-          "description": "The vi home row scrolls; gg/G go to top/bottom (G takes a percent), Ctrl+D/U half pages, Ctrl+F/B full pages."
-        },
-        {
-          "name": "Stock · marks & text selection",
-          "bindings": [
-            {
-              "keys": "`",
-              "label": "Set scroll mark",
-              "command": "mode-enter set_mark"
-            },
-            {
-              "keys": "'",
-              "label": "Jump to scroll mark",
-              "command": "mode-enter jump_mark"
-            },
-            {
-              "keys": "Return",
-              "label": "Follow text selection",
-              "command": "selection-follow"
-            },
-            {
-              "keys": "Ctrl+Return",
-              "label": "Follow text selection in new tab",
-              "command": "selection-follow -t"
-            }
-          ],
-          "description": "The backtick sets a scroll mark, the apostrophe jumps back to it. Return follows the page's text selection (Ctrl+Return in a new tab)."
-        },
-        {
-          "name": "Stock · hints: open links",
-          "bindings": [
-            {
-              "keys": "f",
-              "label": "Hint: open in current tab",
-              "command": "hint"
-            },
-            {
-              "keys": "F",
-              "label": "Hint: open in new tab",
-              "command": "hint all tab"
-            },
-            {
-              "keys": ";b",
-              "label": "Hint: open in background tab",
-              "command": "hint all tab-bg"
-            },
-            {
-              "keys": ";f",
-              "label": "Hint: open in new foreground tab",
-              "command": "hint all tab-fg"
-            },
-            {
-              "keys": "wf",
-              "label": "Hint: open in new window",
-              "command": "hint all window"
-            },
-            {
-              "keys": ";h",
-              "label": "Hint: hover element",
-              "command": "hint all hover"
-            }
-          ],
-          "description": "f hints everything (open in current tab), F opens in a new tab, ;b in a background tab, ;f in a foreground tab, wf in a new window. ;h only hovers - for menus that need a mouse-over."
-        },
-        {
-          "name": "Stock · hints: media & forms",
-          "bindings": [
-            {
-              "keys": ";i",
-              "label": "Hint: images",
-              "command": "hint images"
-            },
-            {
-              "keys": ";I",
-              "label": "Hint: images in new tab",
-              "command": "hint images tab"
-            },
-            {
-              "keys": ";t",
-              "label": "Hint: form inputs",
-              "command": "hint inputs"
-            },
-            {
-              "keys": "gi",
-              "label": "Hint: focus first input",
-              "command": "hint inputs --first"
-            }
-          ],
-          "description": ";i opens images (capital form in a tab), ;t picks form inputs, gi jumps straight to the first one."
-        },
-        {
-          "name": "Stock · hints: yank, download & rapid",
-          "bindings": [
-            {
-              "keys": ";o",
-              "label": "Hint: fill :open prompt with URL",
-              "command": "hint links fill :open {hint-url}"
-            },
-            {
-              "keys": ";O",
-              "label": "Hint: fill :open prompt, new tab",
-              "command": "hint links fill :open -t -r {hint-url}"
-            },
-            {
-              "keys": ";y",
-              "label": "Hint: yank URL",
-              "command": "hint links yank"
-            },
-            {
-              "keys": ";Y",
-              "label": "Hint: yank URL to primary",
-              "command": "hint links yank-primary"
-            },
-            {
-              "keys": ";d",
-              "label": "Hint: download",
-              "command": "hint links download"
-            },
-            {
-              "keys": ";r",
-              "label": "Hint: many links to background tabs (rapid)",
-              "command": "hint --rapid links tab-bg"
-            },
-            {
-              "keys": ";R",
-              "label": "Hint: many links to windows (rapid)",
-              "command": "hint --rapid links window"
-            }
-          ],
-          "description": ";y yanks the hinted URL, ;o puts it in the :open prompt, ;d downloads it. ;r/;R stay in hint mode and fire on many links in a row (background tabs / windows) - link harvesting without re-hinting."
-        },
-        {
-          "name": "Stock · find & zoom",
-          "bindings": [
-            {
-              "keys": "/",
-              "label": "Search in page",
-              "command": "cmd-set-text /"
-            },
-            {
-              "keys": "?",
-              "label": "Search in page (backwards)",
-              "command": "cmd-set-text ?"
-            },
-            {
-              "keys": "n",
-              "label": "Next search match",
-              "command": "search-next"
-            },
-            {
-              "keys": "N",
-              "label": "Previous search match",
-              "command": "search-prev"
-            },
-            {
-              "keys": "-",
-              "label": "Zoom out",
-              "command": "zoom-out"
-            },
-            {
-              "keys": "+",
-              "label": "Zoom in",
-              "command": "zoom-in"
-            },
-            {
-              "keys": "=",
-              "label": "Reset zoom",
-              "command": "zoom"
-            }
-          ],
-          "description": "/ prompts for in-page search (backwards), n/N walk matches. - and + zoom, = resets."
-        },
-        {
-          "name": "Stock · yank: URL, title & markdown",
-          "bindings": [
-            {
-              "keys": "yy",
-              "label": "Yank URL",
-              "command": "yank"
-            },
-            {
-              "keys": "yY",
-              "label": "Yank URL to primary",
-              "command": "yank -s"
-            },
-            {
-              "keys": "yt",
-              "label": "Yank page title",
-              "command": "yank title"
-            },
-            {
-              "keys": "yT",
-              "label": "Yank title to primary",
-              "command": "yank title -s"
-            },
-            {
-              "keys": "yd",
-              "label": "Yank domain",
-              "command": "yank domain"
-            },
-            {
-              "keys": "yD",
-              "label": "Yank domain to primary",
-              "command": "yank domain -s"
-            },
-            {
-              "keys": "yp",
-              "label": "Yank pretty URL",
-              "command": "yank pretty-url"
-            },
-            {
-              "keys": "yP",
-              "label": "Yank pretty URL to primary",
-              "command": "yank pretty-url -s"
-            },
-            {
-              "keys": "ym",
-              "label": "Yank URL as markdown link",
-              "command": "yank inline [{title}]({url:yank})"
-            },
-            {
-              "keys": "yM",
-              "label": "Yank markdown link to primary",
-              "command": "yank inline [{title}]({url:yank}) -s"
-            }
-          ],
-          "description": "The y-family copies page metadata - URL, title, domain, pretty URL, or a [markdown](link). Lowercase goes to the clipboard, uppercase to the primary selection."
-        },
-        {
-          "name": "Stock · paste: open from clipboard",
-          "bindings": [
-            {
-              "keys": "pp",
-              "label": "Open URL from clipboard",
-              "command": "open -- {clipboard}"
-            },
-            {
-              "keys": "pP",
-              "label": "Open URL from primary selection",
-              "command": "open -- {primary}"
-            },
-            {
-              "keys": "Pp",
-              "label": "Open clipboard URL in new tab",
-              "command": "open -t -- {clipboard}"
-            },
-            {
-              "keys": "PP",
-              "label": "Open primary URL in new tab",
-              "command": "open -t -- {primary}"
-            },
-            {
-              "keys": "wp",
-              "label": "Open clipboard URL in new window",
-              "command": "open -w -- {clipboard}"
-            },
-            {
-              "keys": "wP",
-              "label": "Open primary URL in new window",
-              "command": "open -w -- {primary}"
-            }
-          ],
-          "description": "p opens what's in the clipboard: lowercase in the current tab, capital second letter = primary selection, P opens in a new tab, w- in a new window."
-        },
-        {
-          "name": "Stock · bookmarks, quickmarks & history",
-          "bindings": [
-            {
-              "keys": "m",
-              "label": "Save quickmark",
-              "command": "quickmark-save"
-            },
-            {
-              "keys": "M",
-              "label": "Bookmark page",
-              "command": "bookmark-add"
-            },
-            {
-              "keys": "b",
-              "label": "Load quickmark (prompt)",
-              "command": "cmd-set-text -s :quickmark-load"
-            },
-            {
-              "keys": "B",
-              "label": "Load quickmark in new tab",
-              "command": "cmd-set-text -s :quickmark-load -t"
-            },
-            {
-              "keys": "wb",
-              "label": "Load quickmark in new window",
-              "command": "cmd-set-text -s :quickmark-load -w"
-            },
-            {
-              "keys": "gb",
-              "label": "Load bookmark (prompt)",
-              "command": "cmd-set-text -s :bookmark-load"
-            },
-            {
-              "keys": "gB",
-              "label": "Load bookmark in new tab",
-              "command": "cmd-set-text -s :bookmark-load -t"
-            },
-            {
-              "keys": "wB",
-              "label": "Load bookmark in new window",
-              "command": "cmd-set-text -s :bookmark-load -w"
-            },
-            {
-              "keys": "Sb",
-              "label": "Bookmarks (GUI, jump)",
-              "command": "bookmark-list --jump"
-            },
-            {
-              "keys": "Sq",
-              "label": "Bookmarks and quickmarks (GUI)",
-              "command": "bookmark-list"
-            },
-            {
-              "keys": "Sh",
-              "label": "History (GUI)",
-              "command": "history"
-            }
-          ],
-          "description": "m saves a quickmark, M a bookmark; b/B load quickmarks, gb/gB bookmarks (w-prefixed forms open windows). The S-GUI pickers: Sb bookmarks, Sq bookmarks+quickmarks, Sh history."
-        },
-        {
-          "name": "Stock · settings & keybinds",
-          "bindings": [
-            {
-              "keys": "sf",
-              "label": "Save config and session to disk",
-              "command": "save"
-            },
-            {
-              "keys": "ss",
-              "label": "Set an option (prompt)",
-              "command": "cmd-set-text -s :set"
-            },
-            {
-              "keys": "sl",
-              "label": "Set an option (GUI)",
-              "command": "cmd-set-text -s :set -t"
-            },
-            {
-              "keys": "sk",
-              "label": "Bind a key (prompt)",
-              "command": "cmd-set-text -s :bind"
-            },
-            {
-              "keys": "Ss",
-              "label": "Options (GUI)",
-              "command": "set"
-            }
-          ],
-          "description": "The s-family configures: sf saves config and session, ss/sl set an option (prompt / GUI), sk binds a key; Ss opens the full options GUI."
-        },
-        {
-          "name": "Stock · quit & session save",
-          "bindings": [
-            {
-              "keys": "ZZ",
-              "label": "Quit with session save (for restore-quit)",
-              "command": "quit --save"
-            },
-            {
-              "keys": "ZQ",
-              "label": "Quit without saving",
-              "command": "quit"
-            },
-            {
-              "keys": "Ctrl+Q",
-              "label": "Quit",
-              "command": "quit"
-            }
-          ],
-          "description": "ZZ quits and saves the session (for :session-load), ZQ quits without saving, Ctrl+Q quits."
-        },
-        {
-          "name": "Stock · downloads",
-          "bindings": [
-            {
-              "keys": "gd",
-              "label": "Download page",
-              "command": "download"
-            },
-            {
-              "keys": "ad",
-              "label": "Cancel last download",
-              "command": "download-cancel"
-            },
-            {
-              "keys": "cd",
-              "label": "Clear download list",
-              "command": "download-clear"
-            }
-          ],
-          "description": "gd opens the download manager page, ad cancels the newest download, cd clears the list."
-        },
-        {
-          "name": "Stock · source & devtools",
-          "bindings": [
-            {
-              "keys": "gf",
-              "label": "View page source",
-              "command": "view-source"
-            },
-            {
-              "keys": "wi",
-              "label": "Toggle devtools",
-              "command": "devtools"
-            },
-            {
-              "keys": "wIh",
-              "label": "Devtools left",
-              "command": "devtools left"
-            },
-            {
-              "keys": "wIj",
-              "label": "Devtools bottom",
-              "command": "devtools bottom"
-            },
-            {
-              "keys": "wIk",
-              "label": "Devtools top",
-              "command": "devtools top"
-            },
-            {
-              "keys": "wIl",
-              "label": "Devtools right",
-              "command": "devtools right"
-            },
-            {
-              "keys": "wIw",
-              "label": "Devtools in own window",
-              "command": "devtools window"
-            },
-            {
-              "keys": "wIf",
-              "label": "Focus devtools",
-              "command": "devtools-focus"
-            }
-          ],
-          "description": "gf views the page source. wi toggles devtools, wI<h/j/k/l/w> docks them (left/bottom/top/right/own window), wIf focuses the devtools pane."
-        },
-        {
-          "name": "Stock · per-site toggles (the t-family)",
-          "bindings": [
             {
               "keys": "tsh",
               "label": "JavaScript: toggle for this host (temp)",
@@ -1907,10 +1090,919 @@
               "command": "config-cycle -p -u {url} content.cookies.accept"
             }
           ],
-          "description": "Grammar: t, then the feature - s JavaScript, p plugins, i images, c cookie policy - then the scope: h this host, H host plus subdomains, u exact URL. Capital second letter persists across restarts, lowercase is temporary for the session. (The config's own ,u and ;j are quick forms of the JavaScript rows.)"
+          "description": "Quick forms first: ,u and ;j toggle ad blocking / JavaScript for the current site and reload immediately. The stock t-family is the full grammar: t, then the feature (s JavaScript, p plugins, i images, c cookie policy), then the scope (h this host, H host + subdomains, u exact URL) - a capital second letter persists."
         },
         {
-          "name": "Stock · macros & misc",
+          "name": "Pass-store logins (z family)",
+          "bindings": [
+            {
+              "keys": "zl",
+              "label": "Pick a pass entry; fill the login",
+              "command": "spawn --userscript qute-pass",
+              "source": "modules/home/qutebrowser.nix:189",
+              "custom": true
+            },
+            {
+              "keys": "zul",
+              "label": "Fill only the username",
+              "command": "spawn --userscript qute-pass --username-only",
+              "source": "modules/home/qutebrowser.nix:190",
+              "custom": true
+            },
+            {
+              "keys": "zpl",
+              "label": "Fill only the password",
+              "command": "spawn --userscript qute-pass --password-only",
+              "source": "modules/home/qutebrowser.nix:191",
+              "custom": true
+            },
+            {
+              "keys": "zol",
+              "label": "Fill only the OTP code",
+              "command": "spawn --userscript qute-pass --otp-only",
+              "source": "modules/home/qutebrowser.nix:192",
+              "custom": true
+            }
+          ],
+          "description": "Upstream's qute-pass fill scheme: z l fills a whole login; u/p/o narrow it to just the username, password, or OTP. Entries are picked with fuzzel; pass-otp supplies the codes."
+        },
+        {
+          "name": "open: the prompt family",
+          "bindings": [
+            {
+              "keys": "o",
+              "label": "Open URL in current tab (statusbar prompt)",
+              "command": "cmd-set-text -s :open"
+            },
+            {
+              "keys": ":",
+              "label": "Enter command mode (statusbar prompt)",
+              "command": "cmd-set-text :"
+            },
+            {
+              "keys": "go",
+              "label": "Edit and re-open current URL",
+              "command": "cmd-set-text :open {url:pretty}"
+            },
+            {
+              "keys": "O",
+              "label": "Open URL in new tab",
+              "command": "cmd-set-text -s :open -t"
+            },
+            {
+              "keys": "gO",
+              "label": "Edit and open current URL in new tab",
+              "command": "cmd-set-text :open -t -r {url:pretty}"
+            },
+            {
+              "keys": "xo",
+              "label": "Open URL in new background tab",
+              "command": "cmd-set-text -s :open -b"
+            },
+            {
+              "keys": "xO",
+              "label": "Edit and open current URL in background tab",
+              "command": "cmd-set-text :open -b -r {url:pretty}"
+            },
+            {
+              "keys": "wo",
+              "label": "Open URL in new window",
+              "command": "cmd-set-text -s :open -w"
+            },
+            {
+              "keys": "wO",
+              "label": "Edit and open current URL in new window",
+              "command": "cmd-set-text :open -w {url:pretty}"
+            }
+          ]
+        },
+        {
+          "name": "open: history back & forward",
+          "bindings": [
+            {
+              "keys": "H",
+              "label": "History back",
+              "command": "back"
+            },
+            {
+              "keys": "L",
+              "label": "History forward",
+              "command": "forward"
+            },
+            {
+              "keys": "Mouse Back",
+              "label": "Mouse back button: history back",
+              "command": "back"
+            },
+            {
+              "keys": "Mouse Forward",
+              "label": "Mouse forward button: history forward",
+              "command": "forward"
+            },
+            {
+              "keys": "th",
+              "label": "Back in new tab",
+              "command": "back -t"
+            },
+            {
+              "keys": "tl",
+              "label": "Forward in new tab",
+              "command": "forward -t"
+            },
+            {
+              "keys": "wh",
+              "label": "Back in new window",
+              "command": "back -w"
+            },
+            {
+              "keys": "wl",
+              "label": "Forward in new window",
+              "command": "forward -w"
+            }
+          ]
+        },
+        {
+          "name": "open: reload, stop & home",
+          "bindings": [
+            {
+              "keys": "r",
+              "label": "Reload",
+              "command": "reload"
+            },
+            {
+              "keys": "F5",
+              "label": "Reload",
+              "command": "reload"
+            },
+            {
+              "keys": "R",
+              "label": "Force reload (skip cache)",
+              "command": "reload -f"
+            },
+            {
+              "keys": "Ctrl+F5",
+              "label": "Force reload (skip cache)",
+              "command": "reload -f"
+            },
+            {
+              "keys": "Ctrl+H",
+              "label": "Home page",
+              "command": "home"
+            },
+            {
+              "keys": "Ctrl+S",
+              "label": "Stop loading",
+              "command": "stop"
+            }
+          ]
+        },
+        {
+          "name": "open: prev/next & URL path",
+          "bindings": [
+            {
+              "keys": "[[",
+              "label": "Previous page (rel/prev link)",
+              "command": "navigate prev"
+            },
+            {
+              "keys": "]]",
+              "label": "Next page (rel/next link)",
+              "command": "navigate next"
+            },
+            {
+              "keys": "{{",
+              "label": "Previous page in new tab",
+              "command": "navigate prev -t"
+            },
+            {
+              "keys": "}}",
+              "label": "Next page in new tab",
+              "command": "navigate next -t"
+            },
+            {
+              "keys": "gu",
+              "label": "Go up one URL path level",
+              "command": "navigate up"
+            },
+            {
+              "keys": "gU",
+              "label": "Go up one URL path level, new tab",
+              "command": "navigate up -t"
+            },
+            {
+              "keys": "Ctrl+A",
+              "label": "Increment number in URL",
+              "command": "navigate increment"
+            },
+            {
+              "keys": "Ctrl+X",
+              "label": "Decrement number in URL",
+              "command": "navigate decrement"
+            }
+          ]
+        },
+        {
+          "name": "tabs: open, close & reopen",
+          "bindings": [
+            {
+              "keys": "ga",
+              "label": "New empty tab",
+              "command": "open -t"
+            },
+            {
+              "keys": "Ctrl+T",
+              "label": "New empty tab",
+              "command": "open -t"
+            },
+            {
+              "keys": "d",
+              "label": "Close tab",
+              "command": "tab-close"
+            },
+            {
+              "keys": "Ctrl+W",
+              "label": "Close tab",
+              "command": "tab-close"
+            },
+            {
+              "keys": "D",
+              "label": "Close tab, focus previously focused",
+              "command": "tab-close -o"
+            },
+            {
+              "keys": "co",
+              "label": "Close all other tabs",
+              "command": "tab-only"
+            },
+            {
+              "keys": "u",
+              "label": "Reopen last closed tab",
+              "command": "undo"
+            },
+            {
+              "keys": "U",
+              "label": "Reopen last closed tab in new window",
+              "command": "undo -w"
+            },
+            {
+              "keys": "Ctrl+Shift+T",
+              "label": "Reopen last closed tab",
+              "command": "undo"
+            },
+            {
+              "keys": "Ctrl+N",
+              "label": "Open new window",
+              "command": "open -w"
+            },
+            {
+              "keys": "Ctrl+Shift+N",
+              "label": "Open URL in new private window",
+              "command": "open -p"
+            },
+            {
+              "keys": "Ctrl+Shift+W",
+              "label": "Close window",
+              "command": "close"
+            },
+            {
+              "keys": "Ctrl+Shift+Tab",
+              "label": "Reserved (nop, stock placeholder)",
+              "command": "nop"
+            }
+          ]
+        },
+        {
+          "name": "tabs: navigate",
+          "bindings": [
+            {
+              "keys": "J",
+              "label": "Next tab",
+              "command": "tab-next"
+            },
+            {
+              "keys": "K",
+              "label": "Previous tab",
+              "command": "tab-prev"
+            },
+            {
+              "keys": "Ctrl+PageDown",
+              "label": "Next tab",
+              "command": "tab-next"
+            },
+            {
+              "keys": "Ctrl+PageUp",
+              "label": "Previous tab",
+              "command": "tab-prev"
+            },
+            {
+              "keys": "Ctrl+Tab",
+              "label": "Last active tab",
+              "command": "tab-focus last"
+            },
+            {
+              "keys": "Ctrl+^",
+              "label": "Last active tab",
+              "command": "tab-focus last"
+            },
+            {
+              "keys": "gt",
+              "label": "Focus tab by number (prompt)",
+              "command": "cmd-set-text -s :tab-select"
+            },
+            {
+              "keys": "T",
+              "label": "Focus tab by title/URL search",
+              "command": "cmd-set-text -sr :tab-focus"
+            },
+            {
+              "keys": "Alt+1",
+              "label": "Focus tab 1",
+              "command": "tab-focus 1"
+            },
+            {
+              "keys": "Alt+2",
+              "label": "Focus tab 2",
+              "command": "tab-focus 2"
+            },
+            {
+              "keys": "Alt+3",
+              "label": "Focus tab 3",
+              "command": "tab-focus 3"
+            },
+            {
+              "keys": "Alt+4",
+              "label": "Focus tab 4",
+              "command": "tab-focus 4"
+            },
+            {
+              "keys": "Alt+5",
+              "label": "Focus tab 5",
+              "command": "tab-focus 5"
+            },
+            {
+              "keys": "Alt+6",
+              "label": "Focus tab 6",
+              "command": "tab-focus 6"
+            },
+            {
+              "keys": "Alt+7",
+              "label": "Focus tab 7",
+              "command": "tab-focus 7"
+            },
+            {
+              "keys": "Alt+8",
+              "label": "Focus tab 8",
+              "command": "tab-focus 8"
+            },
+            {
+              "keys": "Alt+9",
+              "label": "Focus last tab",
+              "command": "tab-focus -1"
+            },
+            {
+              "keys": "g0",
+              "label": "First tab",
+              "command": "tab-focus 1"
+            },
+            {
+              "keys": "g^",
+              "label": "First tab",
+              "command": "tab-focus 1"
+            },
+            {
+              "keys": "g$",
+              "label": "Last tab",
+              "command": "tab-focus -1"
+            }
+          ]
+        },
+        {
+          "name": "tabs: organize",
+          "bindings": [
+            {
+              "keys": "gm",
+              "label": "Move tab (prompt)",
+              "command": "tab-move"
+            },
+            {
+              "keys": "gJ",
+              "label": "Move tab left",
+              "command": "tab-move +"
+            },
+            {
+              "keys": "gK",
+              "label": "Move tab right",
+              "command": "tab-move -"
+            },
+            {
+              "keys": "gC",
+              "label": "Clone tab",
+              "command": "tab-clone"
+            },
+            {
+              "keys": "Ctrl+P",
+              "label": "Pin tab",
+              "command": "tab-pin"
+            },
+            {
+              "keys": "Alt+M",
+              "label": "Mute tab",
+              "command": "tab-mute"
+            },
+            {
+              "keys": "gD",
+              "label": "Detach tab into new window",
+              "command": "tab-give"
+            }
+          ]
+        },
+        {
+          "name": "scrolling",
+          "bindings": [
+            {
+              "keys": "h",
+              "label": "Scroll left",
+              "command": "scroll left"
+            },
+            {
+              "keys": "j",
+              "label": "Scroll down",
+              "command": "scroll down"
+            },
+            {
+              "keys": "k",
+              "label": "Scroll up",
+              "command": "scroll up"
+            },
+            {
+              "keys": "l",
+              "label": "Scroll right",
+              "command": "scroll right"
+            },
+            {
+              "keys": "gg",
+              "label": "Scroll to top",
+              "command": "scroll-to-perc 0"
+            },
+            {
+              "keys": "G",
+              "label": "Scroll to bottom (or N%)",
+              "command": "scroll-to-perc"
+            },
+            {
+              "keys": "Ctrl+F",
+              "label": "Page down",
+              "command": "scroll-page 0 1"
+            },
+            {
+              "keys": "Ctrl+B",
+              "label": "Page up",
+              "command": "scroll-page 0 -1"
+            },
+            {
+              "keys": "Ctrl+D",
+              "label": "Half page down",
+              "command": "scroll-page 0 0.5"
+            },
+            {
+              "keys": "Ctrl+U",
+              "label": "Half page up",
+              "command": "scroll-page 0 -0.5"
+            }
+          ]
+        },
+        {
+          "name": "marks & text selection",
+          "bindings": [
+            {
+              "keys": "`",
+              "label": "Set scroll mark",
+              "command": "mode-enter set_mark"
+            },
+            {
+              "keys": "'",
+              "label": "Jump to scroll mark",
+              "command": "mode-enter jump_mark"
+            },
+            {
+              "keys": "Return",
+              "label": "Follow text selection",
+              "command": "selection-follow"
+            },
+            {
+              "keys": "Ctrl+Return",
+              "label": "Follow text selection in new tab",
+              "command": "selection-follow -t"
+            }
+          ]
+        },
+        {
+          "name": "hints: open links",
+          "bindings": [
+            {
+              "keys": "f",
+              "label": "Hint: open in current tab",
+              "command": "hint"
+            },
+            {
+              "keys": "F",
+              "label": "Hint: open in new tab",
+              "command": "hint all tab"
+            },
+            {
+              "keys": ";b",
+              "label": "Hint: open in background tab",
+              "command": "hint all tab-bg"
+            },
+            {
+              "keys": ";f",
+              "label": "Hint: open in new foreground tab",
+              "command": "hint all tab-fg"
+            },
+            {
+              "keys": "wf",
+              "label": "Hint: open in new window",
+              "command": "hint all window"
+            },
+            {
+              "keys": ";h",
+              "label": "Hint: hover element",
+              "command": "hint all hover"
+            }
+          ]
+        },
+        {
+          "name": "hints: media & forms",
+          "bindings": [
+            {
+              "keys": ";i",
+              "label": "Hint: images",
+              "command": "hint images"
+            },
+            {
+              "keys": ";I",
+              "label": "Hint: images in new tab",
+              "command": "hint images tab"
+            },
+            {
+              "keys": ";t",
+              "label": "Hint: form inputs",
+              "command": "hint inputs"
+            },
+            {
+              "keys": "gi",
+              "label": "Hint: focus first input",
+              "command": "hint inputs --first"
+            }
+          ]
+        },
+        {
+          "name": "hints: yank, download & rapid",
+          "bindings": [
+            {
+              "keys": ";o",
+              "label": "Hint: fill :open prompt with URL",
+              "command": "hint links fill :open {hint-url}"
+            },
+            {
+              "keys": ";O",
+              "label": "Hint: fill :open prompt, new tab",
+              "command": "hint links fill :open -t -r {hint-url}"
+            },
+            {
+              "keys": ";y",
+              "label": "Hint: yank URL",
+              "command": "hint links yank"
+            },
+            {
+              "keys": ";Y",
+              "label": "Hint: yank URL to primary",
+              "command": "hint links yank-primary"
+            },
+            {
+              "keys": ";d",
+              "label": "Hint: download",
+              "command": "hint links download"
+            },
+            {
+              "keys": ";r",
+              "label": "Hint: many links to background tabs (rapid)",
+              "command": "hint --rapid links tab-bg"
+            },
+            {
+              "keys": ";R",
+              "label": "Hint: many links to windows (rapid)",
+              "command": "hint --rapid links window"
+            }
+          ]
+        },
+        {
+          "name": "find & zoom",
+          "bindings": [
+            {
+              "keys": "/",
+              "label": "Search in page",
+              "command": "cmd-set-text /"
+            },
+            {
+              "keys": "?",
+              "label": "Search in page (backwards)",
+              "command": "cmd-set-text ?"
+            },
+            {
+              "keys": "n",
+              "label": "Next search match",
+              "command": "search-next"
+            },
+            {
+              "keys": "N",
+              "label": "Previous search match",
+              "command": "search-prev"
+            },
+            {
+              "keys": "-",
+              "label": "Zoom out",
+              "command": "zoom-out"
+            },
+            {
+              "keys": "+",
+              "label": "Zoom in",
+              "command": "zoom-in"
+            },
+            {
+              "keys": "=",
+              "label": "Reset zoom",
+              "command": "zoom"
+            }
+          ]
+        },
+        {
+          "name": "yank: URL, title & markdown",
+          "bindings": [
+            {
+              "keys": "yy",
+              "label": "Yank URL",
+              "command": "yank"
+            },
+            {
+              "keys": "yY",
+              "label": "Yank URL to primary",
+              "command": "yank -s"
+            },
+            {
+              "keys": "yt",
+              "label": "Yank page title",
+              "command": "yank title"
+            },
+            {
+              "keys": "yT",
+              "label": "Yank title to primary",
+              "command": "yank title -s"
+            },
+            {
+              "keys": "yd",
+              "label": "Yank domain",
+              "command": "yank domain"
+            },
+            {
+              "keys": "yD",
+              "label": "Yank domain to primary",
+              "command": "yank domain -s"
+            },
+            {
+              "keys": "yp",
+              "label": "Yank pretty URL",
+              "command": "yank pretty-url"
+            },
+            {
+              "keys": "yP",
+              "label": "Yank pretty URL to primary",
+              "command": "yank pretty-url -s"
+            },
+            {
+              "keys": "ym",
+              "label": "Yank URL as markdown link",
+              "command": "yank inline [{title}]({url:yank})"
+            },
+            {
+              "keys": "yM",
+              "label": "Yank markdown link to primary",
+              "command": "yank inline [{title}]({url:yank}) -s"
+            }
+          ]
+        },
+        {
+          "name": "paste: open from clipboard",
+          "bindings": [
+            {
+              "keys": "pp",
+              "label": "Open URL from clipboard",
+              "command": "open -- {clipboard}"
+            },
+            {
+              "keys": "pP",
+              "label": "Open URL from primary selection",
+              "command": "open -- {primary}"
+            },
+            {
+              "keys": "Pp",
+              "label": "Open clipboard URL in new tab",
+              "command": "open -t -- {clipboard}"
+            },
+            {
+              "keys": "PP",
+              "label": "Open primary URL in new tab",
+              "command": "open -t -- {primary}"
+            },
+            {
+              "keys": "wp",
+              "label": "Open clipboard URL in new window",
+              "command": "open -w -- {clipboard}"
+            },
+            {
+              "keys": "wP",
+              "label": "Open primary URL in new window",
+              "command": "open -w -- {primary}"
+            }
+          ]
+        },
+        {
+          "name": "bookmarks, quickmarks & history",
+          "bindings": [
+            {
+              "keys": "m",
+              "label": "Save quickmark",
+              "command": "quickmark-save"
+            },
+            {
+              "keys": "M",
+              "label": "Bookmark page",
+              "command": "bookmark-add"
+            },
+            {
+              "keys": "b",
+              "label": "Load quickmark (prompt)",
+              "command": "cmd-set-text -s :quickmark-load"
+            },
+            {
+              "keys": "B",
+              "label": "Load quickmark in new tab",
+              "command": "cmd-set-text -s :quickmark-load -t"
+            },
+            {
+              "keys": "wb",
+              "label": "Load quickmark in new window",
+              "command": "cmd-set-text -s :quickmark-load -w"
+            },
+            {
+              "keys": "gb",
+              "label": "Load bookmark (prompt)",
+              "command": "cmd-set-text -s :bookmark-load"
+            },
+            {
+              "keys": "gB",
+              "label": "Load bookmark in new tab",
+              "command": "cmd-set-text -s :bookmark-load -t"
+            },
+            {
+              "keys": "wB",
+              "label": "Load bookmark in new window",
+              "command": "cmd-set-text -s :bookmark-load -w"
+            },
+            {
+              "keys": "Sb",
+              "label": "Bookmarks (GUI, jump)",
+              "command": "bookmark-list --jump"
+            },
+            {
+              "keys": "Sq",
+              "label": "Bookmarks and quickmarks (GUI)",
+              "command": "bookmark-list"
+            },
+            {
+              "keys": "Sh",
+              "label": "History (GUI)",
+              "command": "history"
+            }
+          ]
+        },
+        {
+          "name": "settings & keybinds",
+          "bindings": [
+            {
+              "keys": "sf",
+              "label": "Save config and session to disk",
+              "command": "save"
+            },
+            {
+              "keys": "ss",
+              "label": "Set an option (prompt)",
+              "command": "cmd-set-text -s :set"
+            },
+            {
+              "keys": "sl",
+              "label": "Set an option (GUI)",
+              "command": "cmd-set-text -s :set -t"
+            },
+            {
+              "keys": "sk",
+              "label": "Bind a key (prompt)",
+              "command": "cmd-set-text -s :bind"
+            },
+            {
+              "keys": "Ss",
+              "label": "Options (GUI)",
+              "command": "set"
+            }
+          ]
+        },
+        {
+          "name": "quit & session save",
+          "bindings": [
+            {
+              "keys": "ZZ",
+              "label": "Quit with session save (for restore-quit)",
+              "command": "quit --save"
+            },
+            {
+              "keys": "ZQ",
+              "label": "Quit without saving",
+              "command": "quit"
+            },
+            {
+              "keys": "Ctrl+Q",
+              "label": "Quit",
+              "command": "quit"
+            }
+          ]
+        },
+        {
+          "name": "downloads",
+          "bindings": [
+            {
+              "keys": "gd",
+              "label": "Download page",
+              "command": "download"
+            },
+            {
+              "keys": "ad",
+              "label": "Cancel last download",
+              "command": "download-cancel"
+            },
+            {
+              "keys": "cd",
+              "label": "Clear download list",
+              "command": "download-clear"
+            }
+          ]
+        },
+        {
+          "name": "source & devtools",
+          "bindings": [
+            {
+              "keys": "gf",
+              "label": "View page source",
+              "command": "view-source"
+            },
+            {
+              "keys": "wi",
+              "label": "Toggle devtools",
+              "command": "devtools"
+            },
+            {
+              "keys": "wIh",
+              "label": "Devtools left",
+              "command": "devtools left"
+            },
+            {
+              "keys": "wIj",
+              "label": "Devtools bottom",
+              "command": "devtools bottom"
+            },
+            {
+              "keys": "wIk",
+              "label": "Devtools top",
+              "command": "devtools top"
+            },
+            {
+              "keys": "wIl",
+              "label": "Devtools right",
+              "command": "devtools right"
+            },
+            {
+              "keys": "wIw",
+              "label": "Devtools in own window",
+              "command": "devtools window"
+            },
+            {
+              "keys": "wIf",
+              "label": "Focus devtools",
+              "command": "devtools-focus"
+            }
+          ]
+        },
+        {
+          "name": "macros & misc",
           "bindings": [
             {
               "keys": "q",
@@ -1937,11 +2029,10 @@
               "label": "Fullscreen",
               "command": "fullscreen"
             }
-          ],
-          "description": "q records a macro into a register, @ replays it, . repeats the last command; Ctrl+Alt+P prints the page, F11 fullscreen."
+          ]
         },
         {
-          "name": "Stock · modes",
+          "name": "modes",
           "bindings": [
             {
               "keys": "Escape",
@@ -1973,11 +2064,10 @@
               "label": "Passthrough: leave mode",
               "command": "mode-leave"
             }
-          ],
-          "description": "i enters insert (form fields), v/V caret mode (V starts with whole-line selection), Ctrl+V passthrough - the page gets ALL keys until Shift+Escape. Escape clears keychains, search and fullscreen."
+          ]
         },
         {
-          "name": "Stock · insert mode",
+          "name": "insert mode",
           "bindings": [
             {
               "keys": "Ctrl+E",
@@ -1999,11 +2089,10 @@
               "label": "Fake Escape key to page",
               "command": "fake-key <Escape>"
             }
-          ],
-          "description": "Inside form fields: Ctrl+E edits the field in $EDITOR (ghostty + nvim here, cursor preserved), Shift+Ins pastes the primary selection. Escape leaves; Shift+Escape sends a *fake* Esc to the page (some webapps swallow the real one)."
+          ]
         },
         {
-          "name": "Stock · hint mode",
+          "name": "hint mode",
           "bindings": [
             {
               "keys": "Return",
@@ -2030,11 +2119,10 @@
               "label": "Leave hint mode",
               "command": "mode-leave"
             }
-          ],
-          "description": "Once the hints are painted: Return follows the highlighted one, Ctrl+F re-hints links only, Ctrl+B opens in a background tab, Ctrl+R rapid-fires, Escape cancels."
+          ]
         },
         {
-          "name": "Stock · command mode: history, completion & accept",
+          "name": "command mode: history, completion & accept",
           "bindings": [
             {
               "keys": "Ctrl+P",
@@ -2101,11 +2189,10 @@
               "label": "Leave mode",
               "command": "mode-leave"
             }
-          ],
-          "description": "Ctrl+P/N walk command history. Tab/Shift+Tab and arrows walk completions (Up/Down prefer history), Ctrl+Tab jumps between completion categories, PageUp/Down pages the list. Return accepts, Ctrl+Return accepts and keeps the prompt open, Escape closes it."
+          ]
         },
         {
-          "name": "Stock · command mode: edit the line (readline)",
+          "name": "command mode: edit the line (readline)",
           "bindings": [
             {
               "keys": "Ctrl+B",
@@ -2182,11 +2269,10 @@
               "label": "Backspace",
               "command": "rl-backward-delete-char"
             }
-          ],
-          "description": "The prompt is a readline: Ctrl+B/F chars, Alt+B/F words, Ctrl+A/E line ends. Ctrl+U/K kill to line start/end, Ctrl+W and Alt+Backspace kill words backwards, Alt+D forwards, Ctrl+Shift+W kills path segments. Ctrl+Y pastes the last kill back; Ctrl+?/Ctrl+H delete chars."
+          ]
         },
         {
-          "name": "Stock · command mode: act on completion items",
+          "name": "command mode: act on completion items",
           "bindings": [
             {
               "keys": "Ctrl+D",
@@ -2208,11 +2294,10 @@
               "label": "Yank item to primary",
               "command": "completion-item-yank --sel"
             }
-          ],
-          "description": "Delete suggested entries with Ctrl+D (Shift+Delete mirrors), or yank them to the clipboard/primary with Ctrl+C / Ctrl+Shift+C."
+          ]
         },
         {
-          "name": "Stock · prompt mode: answer & file pickers",
+          "name": "prompt mode: answer & file pickers",
           "bindings": [
             {
               "keys": "Return",
@@ -2249,11 +2334,10 @@
               "label": "Cancel prompt",
               "command": "mode-leave"
             }
-          ],
-          "description": "Return accepts. Download prompts: Ctrl+X opens the file, Ctrl+P renders it in PDF.js; Alt+E hands the file dialog to the external picker (yazi here). Alt+Y yanks the prompt value, Escape cancels."
+          ]
         },
         {
-          "name": "Stock · prompt mode: completion",
+          "name": "prompt mode: completion",
           "bindings": [
             {
               "keys": "Tab",
@@ -2275,11 +2359,10 @@
               "label": "Previous completion item",
               "command": "prompt-item-focus prev"
             }
-          ],
-          "description": "Tab/Shift+Tab and the arrows walk the prompt's completion list."
+          ]
         },
         {
-          "name": "Stock · prompt mode: edit the line (readline)",
+          "name": "prompt mode: edit the line (readline)",
           "bindings": [
             {
               "keys": "Ctrl+B",
@@ -2356,11 +2439,10 @@
               "label": "Backspace",
               "command": "rl-backward-delete-char"
             }
-          ],
-          "description": "Same readline grammar as command mode: chars, words, line ends, kills, re-paste."
+          ]
         },
         {
-          "name": "Stock · yes/no mode",
+          "name": "yes/no mode",
           "bindings": [
             {
               "keys": "Return",
@@ -2402,11 +2484,10 @@
               "label": "Cancel",
               "command": "mode-leave"
             }
-          ],
-          "description": "The confirmation dialog: y/n answer (Y/N answer AND remember for this site), Return takes the default. Alt+Y yanks the prompt text, Escape cancels."
+          ]
         },
         {
-          "name": "Stock · caret mode: move the caret",
+          "name": "caret mode: move the caret",
           "bindings": [
             {
               "keys": "h",
@@ -2483,11 +2564,10 @@
               "label": "End of next block",
               "command": "move-to-end-of-next-block"
             }
-          ],
-          "description": "Full vim caret motions: chars and lines, words (w/e/b), line ends, document ends, and block starts/ends with brackets."
+          ]
         },
         {
-          "name": "Stock · caret mode: select & yank",
+          "name": "caret mode: select & yank",
           "bindings": [
             {
               "keys": "v",
@@ -2529,11 +2609,10 @@
               "label": "Yank selection",
               "command": "yank selection"
             }
-          ],
-          "description": "v/Space toggle the selection, V selects whole lines, o flips which end moves. y/Y yank to clipboard/primary (Return yanks too), Ctrl+Space drops the selection."
+          ]
         },
         {
-          "name": "Stock · caret mode: scroll & exit",
+          "name": "caret mode: scroll & exit",
           "bindings": [
             {
               "keys": "H",
@@ -2565,8 +2644,7 @@
               "label": "Leave caret mode",
               "command": "mode-leave"
             }
-          ],
-          "description": "Capital H/J/K/L scroll the VIEW while the caret stays put. c returns to normal mode, Escape leaves caret mode."
+          ]
         }
       ]
     },
@@ -2578,7 +2656,7 @@
       "description": "dmenu-style launcher; also drives the btmenu/netmenu/volmenu fold-out menus. Bindings are stock defaults.",
       "groups": [
         {
-          "name": "Stock · selection & execute",
+          "name": "selection & execute",
           "description": "Pick with Up/Down or Ctrl+P/N (Shift+Tab wraps), pages with PageUp/Down, Home/End-style jumps with Ctrl+Home/Ctrl+End. Return executes; Shift+Return executes the raw input as typed (launch a command with arguments straight from the prompt), Tab completes-then-executes when the list is down to one entry, Ctrl+Tab inserts the selected entry into the prompt for editing.",
           "bindings": [
             {
@@ -2674,7 +2752,7 @@
           ]
         },
         {
-          "name": "Stock · input editing",
+          "name": "input editing",
           "description": "The prompt is a readline: Ctrl+B/F chars, Alt+B/F or Ctrl+arrows words, Ctrl+A/E line ends. Backspace/Delete chars, Ctrl+W/Alt+Backspace kill words backwards, Alt+D/Ctrl+Delete forwards, Ctrl+U/K to line start/end, Ctrl+Shift+Backspace the whole line. Ctrl+V pastes the clipboard, Shift+Insert the primary selection; Shift+Delete expunges a mistyped entry from the launch cache.",
           "bindings": [
             {
@@ -2820,7 +2898,7 @@
           ]
         },
         {
-          "name": "Stock · quit & custom actions",
+          "name": "quit & custom actions",
           "description": "Escape, Ctrl+C, Ctrl+G and Ctrl+[ all cancel. Alt+digits run one of fuzzel's ten custom actions (exit codes 10-19) - scripts driving fuzzel --dmenu can branch on them.",
           "bindings": [
             {
@@ -2902,22 +2980,10 @@
       "title": "ghostty",
       "tagline": "terminal emulator",
       "icon": "▮",
-      "description": "ghostty is natively keybound (stock tables below); the one local addition rides F11, the conventional fullscreen key, so the terminal matches the apps around it.",
+      "description": "ghostty is natively keybound; the one local addition (F11 fullscreen, marked ●) joins the stock vocabulary below. Select with the mouse, copy/paste with Ctrl+Shift+C/V, scroll the scrollback with Shift+PageUp/Down.",
       "groups": [
         {
-          "name": "Custom",
-          "bindings": [
-            {
-              "keys": "F11",
-              "label": "Toggle fullscreen",
-              "command": "toggle_fullscreen",
-              "source": "~/.config/ghostty/config:19"
-            }
-          ],
-          "description": "Local keybind from ~/.config/ghostty/config."
-        },
-        {
-          "name": "Stock · clipboard & scrollback",
+          "name": "Clipboard & scrollback",
           "bindings": [
             {
               "keys": "Ctrl+Shift+C",
@@ -2994,11 +3060,10 @@
               "label": "Adjust selection down",
               "command": "adjust_selection:down"
             }
-          ],
-          "description": "Select with the mouse, copy with Ctrl+Shift+C (or Ctrl+Insert), paste with Ctrl+Shift+V. Shift+PageUp/Down scroll, Shift+Home/End jump to the ends; Ctrl+Shift+PageUp/Down jump between shell prompts (prompt-marking aware)."
+          ]
         },
         {
-          "name": "Stock · font size",
+          "name": "Font size",
           "bindings": [
             {
               "keys": "Ctrl+Equal",
@@ -3020,11 +3085,10 @@
               "label": "Reset font size",
               "command": "reset_font_size"
             }
-          ],
-          "description": "Ctrl+= and Ctrl+- grow and shrink, Ctrl+0 resets. (The plus on the main row works too.)"
+          ]
         },
         {
-          "name": "Stock · tabs & windows: create, close, quit",
+          "name": "Tabs & windows: create, close, quit",
           "bindings": [
             {
               "keys": "Ctrl+Shift+T",
@@ -3051,11 +3115,10 @@
               "label": "Quit ghostty",
               "command": "quit"
             }
-          ],
-          "description": "Ctrl+Shift+T new tab, Ctrl+Shift+N new window; Ctrl+Shift+W closes the tab, Alt+F4 the window, Ctrl+Shift+Q quits ghostty entirely."
+          ]
         },
         {
-          "name": "Stock · tabs: switch",
+          "name": "Tabs: switch",
           "bindings": [
             {
               "keys": "Ctrl+Tab",
@@ -3132,11 +3195,10 @@
               "label": "Go to last tab",
               "command": "last_tab"
             }
-          ],
-          "description": "Ctrl+Tab flips to the last-used tab, Ctrl+Shift+Tab walks back; arrows and PageUp/Down do the same. Alt+digits jump straight to a tab (Alt+9 = last)."
+          ]
         },
         {
-          "name": "Stock · splits: create, navigate, resize",
+          "name": "Splits: create, navigate, resize",
           "bindings": [
             {
               "keys": "Ctrl+Shift+O",
@@ -3203,11 +3265,10 @@
               "label": "Toggle split zoom",
               "command": "toggle_split_zoom"
             }
-          ],
-          "description": "Ctrl+Shift+O splits right, Ctrl+Shift+E splits down. Ctrl+Alt+arrows move between splits, Ctrl+Super+brackets cycle them; Ctrl+Super+Shift+arrows resize, Ctrl+Shift+Enter zooms one split full-window."
+          ]
         },
         {
-          "name": "Stock · search & inspector",
+          "name": "Search & inspector",
           "bindings": [
             {
               "keys": "Ctrl+Shift+F",
@@ -3224,12 +3285,18 @@
               "label": "Toggle inspector",
               "command": "inspector:toggle"
             }
-          ],
-          "description": "Ctrl+Shift+F opens scrollback search (Escape ends it), Ctrl+Shift+I toggles the GTK inspector."
+          ]
         },
         {
-          "name": "Stock · command palette, config & screen",
+          "name": "Command palette, config & screen",
           "bindings": [
+            {
+              "keys": "F11",
+              "label": "Toggle fullscreen - F11 added as the conventional alias of stock Ctrl+Enter",
+              "command": "toggle_fullscreen",
+              "source": "~/.config/ghostty/config:19",
+              "custom": true
+            },
             {
               "keys": "Ctrl+Shift+P",
               "label": "Toggle command palette",
@@ -3266,7 +3333,7 @@
               "command": "write_screen_file:open,plain"
             }
           ],
-          "description": "Ctrl+Shift+P is ghostty's command palette. Ctrl+Comma opens the config file, Ctrl+Shift+Comma reloads it. Ctrl+Enter toggles fullscreen (this config also binds F11), and the write_screen binds save the pane contents - to a file, the clipboard, or open it in $EDITOR."
+          "description": "Ctrl+Shift+P is ghostty's command palette. Ctrl+Comma opens the config, Ctrl+Shift+Comma reloads it. Fullscreen has two spellings: stock Ctrl+Enter and this config's F11 - the conventional key the terminal was missing. The write_screen trio saves the pane contents to a file, the clipboard, or opens them in $EDITOR."
         }
       ]
     },
@@ -3274,198 +3341,19 @@
       "id": "tmux",
       "title": "tmux",
       "tagline": "terminal multiplexer - prefix is Ctrl+Space",
-      "description": "The prefix is Ctrl+Space (stock C-b is unbound); under keyd that's the Caps Lock hold plus Space - one home-row reach, either hand. After the prefix: one key. Resurrect + continuum keep sessions across reboots; stock tables are tmux 3.7c defaults.",
+      "description": "The prefix is Ctrl+Space (stock C-b is unbound); under keyd that's the Caps Lock hold plus Space - one home-row reach. After the prefix: one key; Alt+H/J/K/L jump panes with no prefix at all. Rows marked ● are this config's, unmarked rows are the tmux 3.7c defaults it diverges from. Sessions persist across reboots: resurrect saves on prefix Ctrl+S and restores on prefix Ctrl+R (plugin defaults), continuum auto-saves.",
       "icon": "⊞",
       "groups": [
         {
-          "name": "Prefix layer: windows & lifecycle",
+          "name": "Prefix: windows — jump & browse",
           "bindings": [
-            {
-              "keys": "Ctrl+Space Ctrl+Space",
-              "label": "Send a literal Ctrl+Space to the pane (for tmux inside tmux)",
-              "command": "send-prefix",
-              "source": "tmux.conf:18"
-            },
             {
               "keys": "Ctrl+Space Space",
               "label": "Flip to the last window and back",
               "command": "last-window",
-              "source": "tmux.conf:21"
+              "source": "tmux.conf:21",
+              "custom": true
             },
-            {
-              "keys": "Ctrl+Space c",
-              "label": "New window, inheriting the pane's cwd",
-              "command": "new-window -c \"#{pane_current_path}\"",
-              "source": "tmux.conf:37"
-            },
-            {
-              "keys": "Ctrl+Space x",
-              "label": "Kill the pane without a confirmation prompt",
-              "command": "kill-pane",
-              "source": "tmux.conf:44"
-            },
-            {
-              "keys": "Ctrl+Space l",
-              "label": "Cycle the preset pane layouts",
-              "command": "next-layout",
-              "source": "tmux.conf:22"
-            },
-            {
-              "keys": "Ctrl+Space R",
-              "label": "Reload the config; the status line confirms with 'Reloaded.'",
-              "command": "source-file \"$HOME/.config/tmux/tmux.conf\" ; display 'Reloaded.'",
-              "source": "tmux.conf:93"
-            }
-          ],
-          "description": "Every bind here starts with the prefix (shown as Ctrl+Space). Space flips between the two most recent windows - the most-used bind in this file."
-        },
-        {
-          "name": "Panes: split, jump, resize",
-          "bindings": [
-            {
-              "keys": "Ctrl+Space |",
-              "label": "Split side-by-side, same cwd",
-              "command": "split-window -h -c \"#{pane_current_path}\"",
-              "source": "tmux.conf:40"
-            },
-            {
-              "keys": "Ctrl+Space _",
-              "label": "Split top/bottom, same cwd",
-              "command": "split-window -v -c \"#{pane_current_path}\"",
-              "source": "tmux.conf:41"
-            },
-            {
-              "keys": "Alt+h",
-              "label": "Jump to the pane on the left (no prefix)",
-              "command": "select-pane -L",
-              "source": "tmux.conf:55"
-            },
-            {
-              "keys": "Alt+j",
-              "label": "Jump to the pane below (no prefix)",
-              "command": "select-pane -D",
-              "source": "tmux.conf:58"
-            },
-            {
-              "keys": "Alt+k",
-              "label": "Jump to the pane above (no prefix)",
-              "command": "select-pane -U",
-              "source": "tmux.conf:57"
-            },
-            {
-              "keys": "Alt+l",
-              "label": "Jump to the pane on the right (no prefix)",
-              "command": "select-pane -R",
-              "source": "tmux.conf:56"
-            },
-            {
-              "keys": "Ctrl+Space Ctrl+h",
-              "label": "Resize toward the left by 8 (repeat: hold Ctrl, tap h)",
-              "command": "resize-pane -L 8",
-              "source": "tmux.conf:59"
-            },
-            {
-              "keys": "Ctrl+Space Ctrl+j",
-              "label": "Resize downward by 8 (repeatable)",
-              "command": "resize-pane -D 8",
-              "source": "tmux.conf:62"
-            },
-            {
-              "keys": "Ctrl+Space Ctrl+k",
-              "label": "Resize upward by 8 (repeatable)",
-              "command": "resize-pane -U 8",
-              "source": "tmux.conf:61"
-            },
-            {
-              "keys": "Ctrl+Space Ctrl+l",
-              "label": "Resize toward the right by 8 (repeatable)",
-              "command": "resize-pane -R 8",
-              "source": "tmux.conf:60"
-            }
-          ],
-          "description": "Split mnemonics draw the divider: | side-by-side, _ stacked. Jumps skip the prefix entirely (Alt + home row); resizes take the prefix plus Ctrl + home row and repeat while Ctrl is held."
-        },
-        {
-          "name": "Marks & joins",
-          "bindings": [
-            {
-              "keys": "Ctrl+Space m",
-              "label": "Toggle the mark on this pane (marked border turns red)",
-              "command": "select-pane -m",
-              "source": "tmux.conf:65"
-            },
-            {
-              "keys": "Ctrl+Space `",
-              "label": "Jump back to the marked pane",
-              "command": "switch-client -t '{marked}'",
-              "source": "tmux.conf:66"
-            },
-            {
-              "keys": "Ctrl+Space j",
-              "label": "Pick a window; pull one of its panes in beside this one",
-              "command": "choose-tree -w 'join-pane -h -s \"%%\"'",
-              "source": "tmux.conf:69"
-            },
-            {
-              "keys": "Ctrl+Space J",
-              "label": "Pick a window; pull one of its panes in below this one",
-              "command": "choose-tree -w 'join-pane -s \"%%\"'",
-              "source": "tmux.conf:70"
-            }
-          ],
-          "description": "m + backtick is the two-keystroke round trip: mark where you are, wander off, backtick returns you. The join binds steal a pane from another window through a picker."
-        },
-        {
-          "name": "Popups & scratch",
-          "bindings": [
-            {
-              "keys": "Ctrl+Space g",
-              "label": "lazygit in a 90% popup, at the pane's cwd",
-              "command": "display-popup -d \"#{pane_current_path}\" -w90% -h90% -E lazygit",
-              "source": "tmux.conf:136"
-            },
-            {
-              "keys": "Ctrl+Space h",
-              "label": "Scratch notes: nvim ~/scratch/notes.md in a side split",
-              "command": "split-window -h \"nvim ~/scratch/notes.md\"",
-              "source": "tmux.conf:90"
-            }
-          ],
-          "description": "Floating overlays rooted at the pane's working directory."
-        },
-        {
-          "name": "Copy mode (vi)",
-          "bindings": [
-            {
-              "keys": "Ctrl+Space P",
-              "label": "Paste the most recent buffer",
-              "command": "paste-buffer",
-              "source": "tmux.conf:49"
-            },
-            {
-              "keys": "v",
-              "label": "Copy mode: start the selection",
-              "command": "send-keys -X begin-selection",
-              "source": "tmux.conf:50"
-            },
-            {
-              "keys": "y",
-              "label": "Copy mode: yank the selection and leave",
-              "command": "send-keys -X copy-selection-and-cancel",
-              "source": "tmux.conf:51"
-            },
-            {
-              "keys": "r",
-              "label": "Copy mode: toggle rectangular selection",
-              "command": "send-keys -X rectangle-toggle",
-              "source": "tmux.conf:52"
-            }
-          ],
-          "description": "Copy mode is vi keys (mode-keys vi). Selections land in the tmux buffer and, via OSC52, in the system clipboard - Ghostty asks once for permission."
-        },
-        {
-          "name": "Stock · prefix: windows — jump & browse",
-          "bindings": [
             {
               "keys": "Ctrl+Space 0",
               "label": "Switch to window 0",
@@ -3557,11 +3445,18 @@
               "command": "previous-window -a"
             }
           ],
-          "description": "Digits jump, n/p walk, l flips between the two most recent windows. Alt+ variants skip straight to windows with activity; w opens the tree browser, f searches titles and contents, ' prompts for a window index."
+          "description": "Digits jump, n/p walk, l is stock's last-window; this config rebinds Space to flip between the two most recent windows (stock Space = next-layout). Alt+ variants skip straight to windows with activity; w opens the tree browser, f searches titles and contents, ' prompts for a window index."
         },
         {
-          "name": "Stock · prefix: windows — create, close, rename",
+          "name": "Prefix: windows — create, close & rename",
           "bindings": [
+            {
+              "keys": "Ctrl+Space c",
+              "label": "New window, inheriting the pane's cwd",
+              "command": "new-window -c \"#{pane_current_path}\"",
+              "source": "tmux.conf:37",
+              "custom": true
+            },
             {
               "keys": "Ctrl+Space c",
               "label": "New window",
@@ -3583,11 +3478,32 @@
               "command": "command-prompt -T target { move-window -t \"%%\" }"
             }
           ],
-          "description": "c creates, & kills (with confirm), , renames, . moves/renumbers via a prompt. This config rebinds Space (stock: layout) to flip windows, and adds its own c with inherited cwd."
+          "description": "c creates in the pane's cwd (stock ignores the cwd), & kills with confirmation, , renames, . moves/renumbers via a prompt."
         },
         {
-          "name": "Stock · prefix: panes — split, break, kill",
+          "name": "Prefix: panes — split, break & kill",
           "bindings": [
+            {
+              "keys": "Ctrl+Space |",
+              "label": "Split side-by-side, same cwd",
+              "command": "split-window -h -c \"#{pane_current_path}\"",
+              "source": "tmux.conf:40",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+Space _",
+              "label": "Split top/bottom, same cwd",
+              "command": "split-window -v -c \"#{pane_current_path}\"",
+              "source": "tmux.conf:41",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+Space x",
+              "label": "Kill the pane without a confirmation prompt",
+              "command": "kill-pane",
+              "source": "tmux.conf:44",
+              "custom": true
+            },
             {
               "keys": "Ctrl+Space \"",
               "label": "Split pane top/bottom",
@@ -3614,11 +3530,78 @@
               "command": "new-pane"
             }
           ],
-          "description": "Splits are the shifted symbols: quotedot stacks, % sits side by side. ! breaks a pane out into its own window, x kills it (confirm), * spawns a new pane in place (tmux 3.7)."
+          "description": "Splits draw their divider: | side-by-side and _ stacked, both inheriting the pane's cwd (stock's \\\" and % don't). x kills without the confirmation stock asks for; ! breaks a pane out into its own window, * spawns a new one in place (tmux 3.7)."
         },
         {
-          "name": "Stock · prefix: panes — focus, swap, mark",
+          "name": "Prefix: marks & joins",
           "bindings": [
+            {
+              "keys": "Ctrl+Space m",
+              "label": "Toggle the mark on this pane (marked border turns red)",
+              "command": "select-pane -m",
+              "source": "tmux.conf:65",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+Space `",
+              "label": "Jump back to the marked pane",
+              "command": "switch-client -t '{marked}'",
+              "source": "tmux.conf:66",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+Space j",
+              "label": "Pick a window; pull one of its panes in beside this one",
+              "command": "choose-tree -w 'join-pane -h -s \"%%\"'",
+              "source": "tmux.conf:69",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+Space J",
+              "label": "Pick a window; pull one of its panes in below this one",
+              "command": "choose-tree -w 'join-pane -s \"%%\"'",
+              "source": "tmux.conf:70",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+Space M",
+              "label": "Clear the marked pane",
+              "command": "select-pane -M"
+            }
+          ],
+          "description": "m marks the pane (its border turns red - a re-declaration of the stock bind, so the stock duplicate is dropped) and the backtick jumps back to it; j/J pull a pane in from another window through a picker, beside or below this one. M clears the mark."
+        },
+        {
+          "name": "Prefix: panes — focus & swap",
+          "bindings": [
+            {
+              "keys": "Alt+h",
+              "label": "Jump to the pane on the left (no prefix)",
+              "command": "select-pane -L",
+              "source": "tmux.conf:55",
+              "custom": true
+            },
+            {
+              "keys": "Alt+j",
+              "label": "Jump to the pane below (no prefix)",
+              "command": "select-pane -D",
+              "source": "tmux.conf:58",
+              "custom": true
+            },
+            {
+              "keys": "Alt+k",
+              "label": "Jump to the pane above (no prefix)",
+              "command": "select-pane -U",
+              "source": "tmux.conf:57",
+              "custom": true
+            },
+            {
+              "keys": "Alt+l",
+              "label": "Jump to the pane on the right (no prefix)",
+              "command": "select-pane -R",
+              "source": "tmux.conf:56",
+              "custom": true
+            },
             {
               "keys": "Ctrl+Space Up",
               "label": "Focus pane up",
@@ -3663,23 +3646,48 @@
               "keys": "Ctrl+Space }",
               "label": "Swap with next pane",
               "command": "swap-pane -D"
-            },
-            {
-              "keys": "Ctrl+Space m",
-              "label": "Mark pane (jump/swaps target it)",
-              "command": "select-pane -m"
-            },
-            {
-              "keys": "Ctrl+Space M",
-              "label": "Clear the marked pane",
-              "command": "select-pane -M"
             }
           ],
-          "description": "Arrows focus adjacent panes - this config replaces them with prefix-less Alt+H/J/K/L. o cycles, ; returns to the last pane, q paints numbers and jumps by digit, {/} swap positions, m/M set/clear the mark that the config's backtick bind jumps to."
+          "description": "Alt+H/J/K/L jump between panes with NO prefix at all - this config's addition. Stock: arrows focus adjacent panes, o cycles, ; returns to the last one, {/} swap positions, q paints numbers and jumps by digit."
         },
         {
-          "name": "Stock · prefix: panes — layout, zoom, resize",
+          "name": "Prefix: panes — layout, zoom & resize",
           "bindings": [
+            {
+              "keys": "Ctrl+Space l",
+              "label": "Cycle the preset pane layouts",
+              "command": "next-layout",
+              "source": "tmux.conf:22",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+h",
+              "label": "Resize toward the left by 8 (repeat: hold Ctrl, tap h)",
+              "command": "resize-pane -L 8",
+              "source": "tmux.conf:59",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+j",
+              "label": "Resize downward by 8 (repeatable)",
+              "command": "resize-pane -D 8",
+              "source": "tmux.conf:62",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+k",
+              "label": "Resize upward by 8 (repeatable)",
+              "command": "resize-pane -U 8",
+              "source": "tmux.conf:61",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+l",
+              "label": "Resize toward the right by 8 (repeatable)",
+              "command": "resize-pane -R 8",
+              "source": "tmux.conf:60",
+              "custom": true
+            },
             {
               "keys": "Ctrl+Space Space",
               "label": "Next preset pane layout",
@@ -3781,10 +3789,10 @@
               "command": "resize-pane -R"
             }
           ],
-          "description": "Space cycles preset layouts, Alt+digits pick one directly (1-5 even/main/tiled, 6-7 mirrored), Ctrl+o and Alt+o rotate panes around, z zooms one pane to the full window. Arrows resize: Alt moves the edge by 5, Ctrl by 1 - both repeat while held (this config maps the same sizes onto prefix Ctrl+H/J/K/L)."
+          "description": "l cycles the preset layouts and prefix Ctrl+H/J/K/L resizes by 8, repeating while held — both rebound here (stock: l = last-window, resize lives on the arrows at 1-5 per press). Stock rows: Space cycles layouts, Alt+digits pick one directly (1-5 even/main/tiled, 6-7 mirrored), Ctrl+o and Alt+o rotate panes, z zooms one pane to the full window."
         },
         {
-          "name": "Stock · prefix: sessions",
+          "name": "Prefix: sessions",
           "bindings": [
             {
               "keys": "Ctrl+Space $",
@@ -3821,12 +3829,18 @@
               "label": "Interactive session/window/pane browser",
               "command": "choose-tree -Zs"
             }
-          ],
-          "description": "( and ) walk sessions, L flips back to the last one, $ renames. d detaches, D picks which client to detach, s opens the session tree browser."
+          ]
         },
         {
-          "name": "Stock · prefix: clipboard — copy mode & buffers",
+          "name": "Prefix: clipboard — copy mode & buffers",
           "bindings": [
+            {
+              "keys": "Ctrl+Space P",
+              "label": "Paste the most recent buffer",
+              "command": "paste-buffer",
+              "source": "tmux.conf:49",
+              "custom": true
+            },
             {
               "keys": "Ctrl+Space [",
               "label": "Enter copy mode (vi keys)",
@@ -3853,10 +3867,37 @@
               "command": "delete-buffer"
             }
           ],
-          "description": "[ enters copy mode, ] pastes the top buffer with bracketed paste; # lists buffers, = picks one zoomed, - deletes the most recent. This config adds P for a quick paste."
+          "description": "[ enters copy mode, ] pastes the top buffer with bracketed paste; P is this config's quick paste of the most recent buffer (stock P does the bracketed form). # lists buffers, = picks one zoomed, - deletes the most recent."
         },
         {
-          "name": "Stock · prefix: client & display",
+          "name": "Prefix: popups, scratch & reload",
+          "bindings": [
+            {
+              "keys": "Ctrl+Space g",
+              "label": "lazygit in a 90% popup, at the pane's cwd",
+              "command": "display-popup -d \"#{pane_current_path}\" -w90% -h90% -E lazygit",
+              "source": "tmux.conf:136",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+Space h",
+              "label": "Scratch notes: nvim ~/scratch/notes.md in a side split",
+              "command": "split-window -h \"nvim ~/scratch/notes.md\"",
+              "source": "tmux.conf:90",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+Space R",
+              "label": "Reload the config; the status line confirms with 'Reloaded.'",
+              "command": "source-file \"$HOME/.config/tmux/tmux.conf\" ; display 'Reloaded.'",
+              "source": "tmux.conf:93",
+              "custom": true
+            }
+          ],
+          "description": "g floats lazygit at the pane's cwd, h opens scratch notes in a side split, R reloads the config and confirms in the status line."
+        },
+        {
+          "name": "Prefix: client & display",
           "bindings": [
             {
               "keys": "Ctrl+Space r",
@@ -3908,12 +3949,18 @@
               "label": "Show window/pane info (display-message)",
               "command": "display-message"
             }
-          ],
-          "description": "r refreshes the screen, Delete forces a resize after the terminal changes size, Shift+arrows pan the client region. Ctrl+z suspends the whole client, ~ shows the message log, t a big clock, i window/pane info."
+          ]
         },
         {
-          "name": "Stock · prefix: help, prompts & menus",
+          "name": "Prefix: help, prompts & menus",
           "bindings": [
+            {
+              "keys": "Ctrl+Space Ctrl+Space",
+              "label": "Send a literal Ctrl+Space to the pane (for tmux inside tmux)",
+              "command": "send-prefix",
+              "source": "tmux.conf:18",
+              "custom": true
+            },
             {
               "keys": "Ctrl+Space :",
               "label": "Command prompt: run tmux command",
@@ -3955,10 +4002,92 @@
               "command": "copy-mode -u"
             }
           ],
-          "description": ": opens the command prompt, / describes a key, ? lists every bind, C the interactive option editor. < and > are context menus for window and pane, Ctrl+b sends a literal nested prefix, PageUp enters copy mode half a page up."
+          "description": ": opens the command prompt, / describes a key, ? lists every bind, C the interactive option editor; < and > are window/pane context menus. Pressing the prefix twice (stock: prefix Ctrl+b) sends a literal Ctrl+Space to the pane for tmux inside tmux; PageUp enters copy mode half a page up."
         },
         {
-          "name": "Stock · copy mode: cursor — chars & lines",
+          "name": "Copy mode (vi): selection & yank",
+          "bindings": [
+            {
+              "keys": "v",
+              "label": "Copy mode: start the selection",
+              "command": "send-keys -X begin-selection",
+              "source": "tmux.conf:50",
+              "custom": true
+            },
+            {
+              "keys": "y",
+              "label": "Copy mode: yank the selection and leave",
+              "command": "send-keys -X copy-selection-and-cancel",
+              "source": "tmux.conf:51",
+              "custom": true
+            },
+            {
+              "keys": "r",
+              "label": "Copy mode: toggle rectangular selection",
+              "command": "send-keys -X rectangle-toggle",
+              "source": "tmux.conf:52",
+              "custom": true
+            },
+            {
+              "keys": "Space",
+              "label": "Begin selection",
+              "command": "send-keys -X begin-selection"
+            },
+            {
+              "keys": "v",
+              "label": "Toggle block/rectangle selection",
+              "command": "send-keys -X rectangle-toggle"
+            },
+            {
+              "keys": "Ctrl+v",
+              "label": "Toggle block/rectangle selection",
+              "command": "send-keys -X rectangle-toggle"
+            },
+            {
+              "keys": "V",
+              "label": "Select line",
+              "command": "send-keys -X select-line"
+            },
+            {
+              "keys": "o",
+              "label": "Other end",
+              "command": "send-keys -X other-end"
+            },
+            {
+              "keys": "A",
+              "label": "Append selection and cancel",
+              "command": "send-keys -X append-selection-and-cancel"
+            },
+            {
+              "keys": "D",
+              "label": "Copy pipe end of line and cancel",
+              "command": "send-keys -X copy-pipe-end-of-line-and-cancel"
+            },
+            {
+              "keys": "Enter",
+              "label": "Copy selection & exit (to system clipboard)",
+              "command": "send-keys -X copy-pipe-and-cancel"
+            },
+            {
+              "keys": "Ctrl+j",
+              "label": "Copy selection & exit (to system clipboard)",
+              "command": "send-keys -X copy-pipe-and-cancel"
+            },
+            {
+              "keys": "Escape",
+              "label": "Clear the selection",
+              "command": "send-keys -X clear-selection"
+            },
+            {
+              "keys": "Ctrl+[",
+              "label": "Clear the selection",
+              "command": "send-keys -X clear-selection"
+            }
+          ],
+          "description": "This config's selection verbs lead: v begins a selection, y yanks to the tmux buffer and leaves, r flips the rectangle. The stock rows differ meaningfully: Space begins, Enter/Ctrl+j copy-pipe to the system clipboard, V selects lines, Ctrl+v flips the rectangle, A/D append or yank to line end, o swaps the selection end, Escape/Ctrl+[ clear."
+        },
+        {
+          "name": "Copy mode (vi): cursor — chars & lines",
           "bindings": [
             {
               "keys": "h",
@@ -4040,11 +4169,10 @@
               "label": "Go to line (prompt)",
               "command": "command-prompt -p \"(goto line)\" { send-keys -X goto-line -- \"%%\" }"
             }
-          ],
-          "description": "The vi home row plus arrow mirrors. 0/Home line start, $/End line end, ^ first non-blank, : prompts for a line number."
+          ]
         },
         {
-          "name": "Stock · copy mode: cursor — words & paragraphs",
+          "name": "Copy mode (vi): cursor — words & paragraphs",
           "bindings": [
             {
               "keys": "w",
@@ -4086,11 +4214,10 @@
               "label": "Next paragraph",
               "command": "send-keys -X next-paragraph"
             }
-          ],
-          "description": "Lowercase hops words, uppercase hops space-separated WORDS, {/} hop paragraphs."
+          ]
         },
         {
-          "name": "Stock · copy mode: screens & scrolling",
+          "name": "Copy mode (vi): screens & scrolling",
           "bindings": [
             {
               "keys": "H",
@@ -4182,11 +4309,10 @@
               "label": "Halfpage down",
               "command": "send-keys -X halfpage-down"
             }
-          ],
-          "description": "H/M/L jump to the visible top/middle/bottom line, g/G to history top/bottom, J/K scroll a line, Ctrl+u/d half a page, PageUp/PageDown and Ctrl+b/f a full page, Ctrl+e/y scroll one line, z centers on the cursor."
+          ]
         },
         {
-          "name": "Stock · copy mode: search & jump",
+          "name": "Copy mode (vi): search & jump",
           "bindings": [
             {
               "keys": "/",
@@ -4253,11 +4379,10 @@
               "label": "Next matching bracket",
               "command": "send-keys -X next-matching-bracket"
             }
-          ],
-          "description": "/ and ? prompt (down/up), n/N repeat and reverse, #/* search the word under the cursor. f/F/t/T are vim-style jumps (;/, repeat and reverse), % hops between matching brackets."
+          ]
         },
         {
-          "name": "Stock · copy mode: marks & position",
+          "name": "Copy mode (vi): marks & position",
           "bindings": [
             {
               "keys": "X",
@@ -4274,11 +4399,10 @@
               "label": "Toggle position",
               "command": "send-keys -X toggle-position"
             }
-          ],
-          "description": "X sets a mark, Alt+x jumps to it, P flips the cursor between opposite corners."
+          ]
         },
         {
-          "name": "Stock · copy mode: repeat counts",
+          "name": "Copy mode (vi): repeat counts",
           "bindings": [
             {
               "keys": "1",
@@ -4325,72 +4449,10 @@
               "label": "Repeat-count digit 9 (argument for motions)",
               "command": "command-prompt -N -I 9 -p (repeat) { send-keys -N \"%%\" }"
             }
-          ],
-          "description": "Type digits to build a count, then any motion: 5j = 5 lines down."
+          ]
         },
         {
-          "name": "Stock · copy mode: selection & yank",
-          "bindings": [
-            {
-              "keys": "Space",
-              "label": "Begin selection",
-              "command": "send-keys -X begin-selection"
-            },
-            {
-              "keys": "v",
-              "label": "Toggle block/rectangle selection",
-              "command": "send-keys -X rectangle-toggle"
-            },
-            {
-              "keys": "Ctrl+v",
-              "label": "Toggle block/rectangle selection",
-              "command": "send-keys -X rectangle-toggle"
-            },
-            {
-              "keys": "V",
-              "label": "Select line",
-              "command": "send-keys -X select-line"
-            },
-            {
-              "keys": "o",
-              "label": "Other end",
-              "command": "send-keys -X other-end"
-            },
-            {
-              "keys": "A",
-              "label": "Append selection and cancel",
-              "command": "send-keys -X append-selection-and-cancel"
-            },
-            {
-              "keys": "D",
-              "label": "Copy pipe end of line and cancel",
-              "command": "send-keys -X copy-pipe-end-of-line-and-cancel"
-            },
-            {
-              "keys": "Enter",
-              "label": "Copy selection & exit (to system clipboard)",
-              "command": "send-keys -X copy-pipe-and-cancel"
-            },
-            {
-              "keys": "Ctrl+j",
-              "label": "Copy selection & exit (to system clipboard)",
-              "command": "send-keys -X copy-pipe-and-cancel"
-            },
-            {
-              "keys": "Escape",
-              "label": "Clear the selection",
-              "command": "send-keys -X clear-selection"
-            },
-            {
-              "keys": "Ctrl+[",
-              "label": "Clear the selection",
-              "command": "send-keys -X clear-selection"
-            }
-          ],
-          "description": "Space begins a selection, V grabs whole lines, v/Ctrl+v flip rectangle mode, o swaps the cursor to the other end. Enter/Ctrl+j yank and leave (through to the system clipboard via OSC52), A appends the selection and cancels, D yanks to line end, Escape/Ctrl+[ just clears."
-        },
-        {
-          "name": "Stock · copy mode: exit & redraw",
+          "name": "Copy mode (vi): exit & redraw",
           "bindings": [
             {
               "keys": "q",
@@ -4407,11 +4469,10 @@
               "label": "Refresh from pane",
               "command": "send-keys -X refresh-from-pane"
             }
-          ],
-          "description": "q and Ctrl+c leave copy mode, r refreshes the view from the live pane."
+          ]
         },
         {
-          "name": "Stock · copy mode: mouse",
+          "name": "Copy mode (vi): mouse",
           "bindings": [
             {
               "keys": "Mouse Down",
@@ -4448,8 +4509,7 @@
               "label": "Triple click: select the line, copy, leave",
               "command": "select-pane ; send-keys -X select-line ; copy-pipe-and-cancel"
             }
-          ],
-          "description": "Click focuses and starts a drag selection; releasing copies. Double/triple click select a word/line and copy, the wheel scrolls 5 lines per tick."
+          ]
         }
       ]
     },
@@ -4462,19 +4522,7 @@
       "guide": "yazi",
       "groups": [
         {
-          "name": "Custom · mgr additions",
-          "bindings": [
-            {
-              "keys": "E",
-              "label": "Extract the hovered/selected archive in place",
-              "command": "plugin extract-here",
-              "source": "keymap.toml:7"
-            }
-          ],
-          "description": "One addition: archive extraction. yazi's builtin extract plugin is only reachable as a DDS remote, so a local plugin bridges hovered/selected files to it."
-        },
-        {
-          "name": "Stock · mgr: move the cursor",
+          "name": "mgr: move the cursor",
           "bindings": [
             {
               "keys": "k",
@@ -4556,11 +4604,10 @@
               "label": "Move cursor down one page",
               "command": "arrow 100%"
             }
-          ],
-          "description": "k/j (and the arrows) walk the list; g g and G jump to the very top/bottom (Home/End mirror them); Ctrl+U/D half pages, Ctrl+B/F and PageUp/PageDown full pages."
+          ]
         },
         {
-          "name": "Stock · mgr: directories & history",
+          "name": "mgr: directories & history",
           "bindings": [
             {
               "keys": "h",
@@ -4592,11 +4639,10 @@
               "label": "Forward to next directory",
               "command": "forward"
             }
-          ],
-          "description": "h/l leave/enter directories (arrows mirror), H/L walk back/forward through visited directories."
+          ]
         },
         {
-          "name": "Stock · mgr: goto chords (g …)",
+          "name": "mgr: goto chords (g …)",
           "bindings": [
             {
               "keys": "g h",
@@ -4628,11 +4674,10 @@
               "label": "Follow hovered symlink",
               "command": "follow"
             }
-          ],
-          "description": "Two-step g jumps: home, config, downloads, the trash bin, an interactive fuzzy jump, and following the hovered symlink."
+          ]
         },
         {
-          "name": "Stock · mgr: preview & spot",
+          "name": "mgr: preview & spot",
           "bindings": [
             {
               "keys": "K",
@@ -4649,11 +4694,10 @@
               "label": "Spot hovered file",
               "command": "spot"
             }
-          ],
-          "description": "The capitalized home row scrolls the PREVIEW (the file list stays put); Tab opens the spot panel with full file details."
+          ]
         },
         {
-          "name": "Stock · mgr: open & run",
+          "name": "mgr: open & run",
           "bindings": [
             {
               "keys": "o",
@@ -4685,11 +4729,10 @@
               "label": "Run a shell command (block until finishes)",
               "command": "shell --block --interactive"
             }
-          ],
-          "description": "o/Return open (O/Shift+Return pick the opener interactively); ; and : run shell commands - : blocks until they finish."
+          ]
         },
         {
-          "name": "Stock · mgr: yank, paste & link",
+          "name": "mgr: yank, paste & link",
           "bindings": [
             {
               "keys": "y",
@@ -4736,12 +4779,18 @@
               "label": "Cancel the yank status",
               "command": "unyank"
             }
-          ],
-          "description": "y copies, x cuts, p pastes (P overwrites); the dashed forms make symlinks/hardlinks instead of copies; Y/X cancel a pending yank."
+          ]
         },
         {
-          "name": "Stock · mgr: create, rename & trash",
+          "name": "mgr: create, rename, extract & trash",
           "bindings": [
+            {
+              "keys": "E",
+              "label": "Extract the hovered/selected archive in place (local plugin)",
+              "command": "plugin extract-here",
+              "source": "keymap.toml:7",
+              "custom": true
+            },
             {
               "keys": "a",
               "label": "Create a file (ends with / for directories)",
@@ -4768,10 +4817,10 @@
               "command": "remove --permanently"
             }
           ],
-          "description": "a creates a file (trailing / for a directory), A bulk-creates, r renames, d trashes, D deletes permanently."
+          "description": "a creates a file (trailing / for directories), A bulk-creates, r renames, d trashes, D deletes permanently. E (this config) extracts archives in place - yazi's builtin extractor is only reachable as a DDS remote, so a small local plugin bridges hovered/selected files to it."
         },
         {
-          "name": "Stock · mgr: copy metadata (c …)",
+          "name": "mgr: copy metadata (c …)",
           "bindings": [
             {
               "keys": "c c",
@@ -4803,11 +4852,10 @@
               "label": "Copy filename without extension",
               "command": "copy name_without_ext"
             }
-          ],
-          "description": "Two-step c copies metadata to the system clipboard: the hovered file's path, URL, filename, or its directory's."
+          ]
         },
         {
-          "name": "Stock · mgr: find, filter & search",
+          "name": "mgr: find, filter & search",
           "bindings": [
             {
               "keys": "f",
@@ -4859,11 +4907,10 @@
               "label": "Jump to a directory via zoxide",
               "command": "plugin zoxide"
             }
-          ],
-          "description": "f filters the list as you type; / and ? hop through a typed string, n/N repeat. s searches by name (fd), S by content (ripgrep), Ctrl+S cancels; z jumps via fzf, Z via zoxide."
+          ]
         },
         {
-          "name": "Stock · mgr: selection & visual mode",
+          "name": "mgr: selection & visual mode",
           "bindings": [
             {
               "keys": "Space",
@@ -4900,11 +4947,10 @@
               "label": "Exit visual mode, clear selection, or exit view",
               "command": "escape"
             }
-          ],
-          "description": "Space toggles the file under the cursor and steps down, Ctrl+A selects all, Ctrl+R inverts; v starts visual (range) mode, V unselects; Escape/Ctrl+[ back out."
+          ]
         },
         {
-          "name": "Stock · mgr: sort (, …)",
+          "name": "mgr: sort (, …)",
           "bindings": [
             {
               "keys": ", m",
@@ -4971,11 +5017,10 @@
               "label": "Sort randomly",
               "command": "sort random --reverse=no"
             }
-          ],
-          "description": "Two-step , picks the sort order - m modified, b birth, e extension, a alphabetical, n natural, s size, r random - and capital forms reverse it. The mtime/btime/size sorts also switch the linemode to match."
+          ]
         },
         {
-          "name": "Stock · mgr: linemode (m …)",
+          "name": "mgr: linemode (m …)",
           "bindings": [
             {
               "keys": "m s",
@@ -5007,11 +5052,10 @@
               "label": "Linemode: none",
               "command": "linemode none"
             }
-          ],
-          "description": "Two-step m picks which size/timestamp column is shown per file."
+          ]
         },
         {
-          "name": "Stock · mgr: tabs",
+          "name": "mgr: tabs",
           "bindings": [
             {
               "keys": "t t",
@@ -5088,11 +5132,10 @@
               "label": "Swap current tab with next tab",
               "command": "tab_swap 1"
             }
-          ],
-          "description": "t t creates a tab in this cwd, t r renames one; digits 1-9 switch, [ and ] walk, { and } reorder."
+          ]
         },
         {
-          "name": "Stock · mgr: quit & suspend",
+          "name": "mgr: quit & suspend",
           "bindings": [
             {
               "keys": "q",
@@ -5114,11 +5157,10 @@
               "label": "Suspend the process",
               "command": "suspend"
             }
-          ],
-          "description": "q quits and prints the cwd-file (so the calling shell can cd along), Q skips that; Ctrl+C closes the current tab - or quits on the last - and Ctrl+Z suspends the process."
+          ]
         },
         {
-          "name": "Stock · mgr: view, tasks & help",
+          "name": "mgr: view, tasks & help",
           "bindings": [
             {
               "keys": ".",
@@ -5140,11 +5182,10 @@
               "label": "Open help",
               "command": "help"
             }
-          ],
-          "description": ". flips hidden files; w opens the background-task manager; ~ / F1 the help."
+          ]
         },
         {
-          "name": "Stock · input: modes",
+          "name": "input: modes",
           "bindings": [
             {
               "keys": "Ctrl+C",
@@ -5196,11 +5237,10 @@
               "label": "Replace a single character",
               "command": "replace"
             }
-          ],
-          "description": "The create/rename prompt is a vi line editor: i/I insert (at cursor / line start), a/A append (at cursor / line end), v selects, r replaces one char. Return submits, Escape/Ctrl+[ back out, Ctrl+C cancels."
+          ]
         },
         {
-          "name": "Stock · input: select lines",
+          "name": "input: select lines",
           "bindings": [
             {
               "keys": "V",
@@ -5217,11 +5257,10 @@
               "label": "Select from BOL to EOL",
               "command": "move bol\", \"visual\", \"move eol"
             }
-          ],
-          "description": "The capitalized Ctrl+A/E forms select whole lines in one shot (V from BOL to EOL, Ctrl+Shift+A from EOL back)."
+          ]
         },
         {
-          "name": "Stock · input: move",
+          "name": "input: move",
           "bindings": [
             {
               "keys": "h",
@@ -5343,11 +5382,10 @@
               "label": "Move to the EOL",
               "command": "move eol"
             }
-          ],
-          "description": "h/l chars, b/w/e words (B/W/E WORDs; the Alt forms and Ctrl+arrows are the leaner variants), 0/$/_/^ and Home/End line positions - _ and ^ land on the first non-whitespace char."
+          ]
         },
         {
-          "name": "Stock · input: delete & kill",
+          "name": "input: delete & kill",
           "bindings": [
             {
               "keys": "Backspace",
@@ -5399,11 +5437,10 @@
               "label": "Kill forwards to the end of the current word",
               "command": "kill forward"
             }
-          ],
-          "description": "Backspace/Delete chars (Ctrl+H/Ctrl+D mirrors); Ctrl+U/K kill to line start/end, Ctrl+W and Ctrl+Backspace kill words backwards, Alt+D and Ctrl+Delete forwards."
+          ]
         },
         {
-          "name": "Stock · input: cut, copy & paste",
+          "name": "input: cut, copy & paste",
           "bindings": [
             {
               "keys": "d",
@@ -5455,11 +5492,10 @@
               "label": "Paste copied characters before the cursor",
               "command": "paste --before"
             }
-          ],
-          "description": "The vi operators: d cuts the selection (D to EOL), c cuts and inserts (C to EOL), s/S cut a char / the whole line and insert, x cuts one char; y copies, p/P paste after/before the cursor."
+          ]
         },
         {
-          "name": "Stock · input: case, undo & history",
+          "name": "input: case, undo & history",
           "bindings": [
             {
               "keys": "u",
@@ -5506,11 +5542,10 @@
               "label": "Recall next input",
               "command": "recall 1"
             }
-          ],
-          "description": "u undoes (or lowercases in visual mode), U uppercases, Ctrl+R redoes; k/j and arrows recall earlier inputs."
+          ]
         },
         {
-          "name": "Stock · input: help",
+          "name": "input: help",
           "bindings": [
             {
               "keys": "~",
@@ -5522,11 +5557,10 @@
               "label": "Open help",
               "command": "help"
             }
-          ],
-          "description": "~/F1 open yazi's help from anywhere, even mid-prompt."
+          ]
         },
         {
-          "name": "Stock · confirm dialogs",
+          "name": "confirm dialogs",
           "bindings": [
             {
               "keys": "Escape",
@@ -5588,11 +5622,10 @@
               "label": "Open help",
               "command": "help"
             }
-          ],
-          "description": "The delete/overwrite confirmation: y submits, n cancels (Enter/Esc the same); k/j and arrows move in multi-line confirms."
+          ]
         },
         {
-          "name": "Stock · completion popup",
+          "name": "completion popup",
           "bindings": [
             {
               "keys": "Ctrl+C",
@@ -5649,11 +5682,10 @@
               "label": "Open help",
               "command": "help"
             }
-          ],
-          "description": "The fuzzy completion under the prompt: Alt+K/J, arrows or Ctrl+P/N walk, Tab submits, Return submits and closes the input too, Ctrl+C cancels."
+          ]
         },
         {
-          "name": "Stock · tasks manager",
+          "name": "tasks manager",
           "bindings": [
             {
               "keys": "Escape",
@@ -5715,11 +5747,10 @@
               "label": "Open help",
               "command": "help"
             }
-          ],
-          "description": "The background-task list (w): k/j and arrows walk, Return inspects a task, x cancels it, w or Escape closes."
+          ]
         },
         {
-          "name": "Stock · spot panel",
+          "name": "spot panel",
           "bindings": [
             {
               "keys": "Escape",
@@ -5796,11 +5827,10 @@
               "label": "Open help",
               "command": "help"
             }
-          ],
-          "description": "The details panel (Tab): k/j walk the lines, h/l swipe to the previous/next file, c c copies the selected cell, Escape/Tab closes."
+          ]
         },
         {
-          "name": "Stock · pick dialogs",
+          "name": "pick dialogs",
           "bindings": [
             {
               "keys": "Escape",
@@ -5852,11 +5882,10 @@
               "label": "Open help",
               "command": "help"
             }
-          ],
-          "description": "Plugin pickers (like the choose/open-with lists): k/j and arrows walk, Return submits, Escape cancels."
+          ]
         },
         {
-          "name": "Stock · help menu",
+          "name": "help menu",
           "bindings": [
             {
               "keys": "Escape",
@@ -5908,8 +5937,7 @@
               "label": "Next line",
               "command": "arrow next"
             }
-          ],
-          "description": "The help list (~ / F1): k/j and arrows walk, Ctrl+P/N too; Return closes and runs the highlighted action, Ctrl+C closes."
+          ]
         }
       ]
     },
@@ -5921,7 +5949,7 @@
       "description": "zathura is the vi-style document viewer (PDF, DjVu, PS, Comics). Case matters throughout - j scrolls the view while J flips pages, h/l scroll while H/L jump to the page edges. Binds verified against upstream config.c at 2026.05.20.",
       "groups": [
         {
-          "name": "Stock · pages: navigate",
+          "name": "pages: navigate",
           "description": "J/K (or PageDown/PageUp, the browser-nav keys, or Alt+arrows) flip pages. Type a number first and G jumps to that page; P snaps back to the current page's top.",
           "bindings": [
             {
@@ -5977,7 +6005,7 @@
           ]
         },
         {
-          "name": "Stock · pages: first & last",
+          "name": "pages: first & last",
           "description": "g g and Home jump to the first page, G and End to the last.",
           "bindings": [
             {
@@ -6003,7 +6031,7 @@
           ]
         },
         {
-          "name": "Stock · scroll: the view",
+          "name": "scroll: the view",
           "description": "The vi home row scrolls; the arrows mirror it. Capital H/L jump to the top/bottom of the current PAGE (g g / G are document-level).",
           "bindings": [
             {
@@ -6059,7 +6087,7 @@
           ]
         },
         {
-          "name": "Stock · scroll: half & full pages",
+          "name": "scroll: half & full pages",
           "description": "Ctrl+D/U half pages down/up, Ctrl+F/B and Space full pages (Shift+Space up), Ctrl+T/Y and t/y half/full pages sideways, Alt+K/J small steps.",
           "bindings": [
             {
@@ -6135,7 +6163,7 @@
           ]
         },
         {
-          "name": "Stock · zoom & fit",
+          "name": "zoom & fit",
           "description": "+/- zoom, = resets (or type a number and = for an exact percent). The z chains mirror those; a fits the page to the window, s to its width.",
           "bindings": [
             {
@@ -6206,7 +6234,7 @@
           ]
         },
         {
-          "name": "Stock · view: layout, colors & reload",
+          "name": "view: layout, colors & reload",
           "description": "d toggles multiple pages per row, D cycles which column the first page sits in, w flips single-page view. r rotates, Ctrl+R recolors (inverted grayscale), R reloads; F5 presentation, F11 fullscreen, Tab the table of contents.",
           "bindings": [
             {
@@ -6262,7 +6290,7 @@
           ]
         },
         {
-          "name": "Stock · search",
+          "name": "search",
           "description": "/ and ? prompt for a search string (forward/backward), n/N walk the hits.",
           "bindings": [
             {
@@ -6288,7 +6316,7 @@
           ]
         },
         {
-          "name": "Stock · links, copy & open",
+          "name": "links, copy & open",
           "description": "f follows links via the keyboard, F reveals a link target; c copies the hovered link, Y the document's path. o/O open the :open prompt - O pre-fills the current file path.",
           "bindings": [
             {
@@ -6324,7 +6352,7 @@
           ]
         },
         {
-          "name": "Stock · marks & jumplist",
+          "name": "marks & jumplist",
           "description": "m X parks a quickmark, ' X returns to it. The jumplist records every jump: Ctrl+O/I step back/forward, Ctrl+J/K bisect the list (jump halfway).",
           "bindings": [
             {
@@ -6360,7 +6388,7 @@
           ]
         },
         {
-          "name": "Stock · prompt, bars & quit",
+          "name": "prompt, bars & quit",
           "description": ": opens the command prompt (same grammar as the config file: set/map/...). Ctrl+N/M toggle statusbar/inputbar, q quits, Ctrl+P prints; Escape and friends abort whatever is active.",
           "bindings": [
             {
@@ -6406,7 +6434,7 @@
           ]
         },
         {
-          "name": "Stock · index mode (Tab)",
+          "name": "index mode (Tab)",
           "description": "The table of contents: j/k and arrows walk, Ctrl+D/U half-page, h/l collapse/expand entries (z c/z C recursive, H/L everything with z M/z R aliases), Space/Return jump to the selected entry, Escape closes.",
           "bindings": [
             {
@@ -6553,13 +6581,15 @@
               "keys": "Ctrl+R",
               "label": "atuin history search (works in BOTH vi modes)",
               "command": "atuin-search",
-              "source": ".zshrc:124"
+              "source": ".zshrc:124",
+              "custom": true
             },
             {
               "keys": "V",
               "label": "NORMAL: edit the command line in $EDITOR, cursor preserved",
               "command": "edit-command-line",
-              "source": ".zshrc:165"
+              "source": ".zshrc:165",
+              "custom": true
             }
           ],
           "description": "NORMAL mode extras: v escalates the command line to $EDITOR, / and Ctrl+R search atuin's synced history."
@@ -6571,25 +6601,29 @@
               "keys": "Ctrl+Alt+Escape",
               "label": "Esc Esc: toggle a sudo prefix (empty line: sudo-repeat the last command)",
               "command": "sudo-command-line",
-              "source": ".zshrc:177"
+              "source": ".zshrc:177",
+              "custom": true
             },
             {
               "keys": "Alt+Q",
               "label": "Push-line: park the command, run something else, it pops back at the next prompt",
               "command": "push-line",
-              "source": ".zshrc:181"
+              "source": ".zshrc:181",
+              "custom": true
             },
             {
               "keys": "Ctrl+X B",
               "label": "Copy the command line to the clipboard",
               "command": "copybuffer",
-              "source": ".zshrc:222"
+              "source": ".zshrc:222",
+              "custom": true
             },
             {
               "keys": "Ctrl+X P",
               "label": "Copy $PWD to the clipboard",
               "command": "copypath",
-              "source": ".zshrc:224"
+              "source": ".zshrc:224",
+              "custom": true
             }
           ],
           "description": "Ctrl+X is a two-step prefix for clipboard tricks; Esc Esc toggles sudo without retyping the line."
@@ -6601,31 +6635,36 @@
               "keys": "Tab",
               "label": "Complete / expand (fzf-tab turns the menu into a fuzzy picker)",
               "command": "expand-or-complete",
-              "source": ".zshrc:259"
+              "source": ".zshrc:259",
+              "custom": true
             },
             {
               "keys": "Shift+Tab",
               "label": "fzf-tab: fuzzy-pick completions directly",
               "command": "fzf-tab-complete",
-              "source": ".zshrc:261"
+              "source": ".zshrc:261",
+              "custom": true
             },
             {
               "keys": "Alt+F",
               "label": "Accept one word of the ghost-text suggestion",
               "command": "forward-word",
-              "source": ".zshrc:290"
+              "source": ".zshrc:290",
+              "custom": true
             },
             {
               "keys": "Ctrl+F",
               "label": "Accept one suggestion word (home-row form of Alt+F)",
               "command": "forward-word",
-              "source": ".zshrc:296"
+              "source": ".zshrc:296",
+              "custom": true
             },
             {
               "keys": "Ctrl+E",
               "label": "Accept the whole suggestion (jump to end of line)",
               "command": "end-of-line",
-              "source": ".zshrc:297"
+              "source": ".zshrc:297",
+              "custom": true
             }
           ],
           "description": "zsh-autosuggestions paints ghost text from history: Alt+F / Ctrl+F accept one word, Ctrl+E accepts it all, → accepts one character. Tab completes via fzf-tab, which renders the candidate menu as a fuzzy picker."
