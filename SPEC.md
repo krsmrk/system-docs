@@ -33,6 +33,7 @@ Nord theme. Hosted on GitHub Pages (`krsmrk.github.io/system-docs`).
       "groups": [
         {
           "name": "Focus & movement",
+          "description": "Optional crafted prose: one to three sentences of design intent, rendered under the group heading.",
           "bindings": [
             {
               "keys": "Mod+H",                       // normalized, see below
@@ -62,12 +63,18 @@ chord steps separated by `<span class="kb-seq"> </span>`.
   `^Xb` → `Ctrl+X B` (two-step: keep space-separated tail; still normalized mods).
 - Pointer/wheel pseudo-keys: `Mouse Left Click`, `Mouse Right Click`,
   `Scroll Up`, `Scroll Down` - used by waybar.
+- keyd rows are physical-key remaps, not chords: `keys` names the physical key
+  as a single token (`CapsLock`, `LeftCtrl`); `[global]` settings surface one
+  row each with a PascalCase token (`OverloadTapTimeout`) and the live value
+  riding in `command`.
 - Every binding MUST have `keys` and `label`. `keys` may be `""` only for
   prose-only rows; widgets must tolerate that.
 
 ## Apps covered (ids)
 
-Extracted from live config / repo modules: `niri` (binds, media keys),
+Extracted from live config / repo modules: `keyd` (evdev remap layer - defines
+what Ctrl/Esc physically are; parsed from `~/.config/keyd/default.conf`),
+`niri` (binds, media keys),
 `waybar` (click/scroll, module file), `qutebrowser` (custom binds parsed
 from `modules/home/qutebrowser.nix` keyBindings — NOT the generated
 config.py, which goes stale between a change and the next switch),
@@ -96,7 +103,8 @@ multi-key sequences anyway. Only `<tag>` keys are normalized
   <input class="kb-filter" type="search" placeholder="Filter bindings…" aria-label="Filter bindings">
   <div class="kb-keyboard"></div>            <!-- keyboard widget mounts here -->
   <section class="kb-group">
-    <h3>Focus & movement</h3>
+    <h3>Focus & movement <span class="group-count">19</span></h3>
+    <p class="group-desc">Optional crafted prose under the heading.</p>
     <table class="kb-table"><tbody>
       <tr class="kb-row" data-keys="Mod+H">
         <td class="kb-keys"><kbd><span class="mod">Mod</span>+<span class="key">H</span></kbd></td>
@@ -216,9 +224,24 @@ Needs `permissions: pages: write, id-token: write`, environment `github-pages`.
 ## Updating data (sync flow)
 
 The extractor lives in nixos_config: `scripts/extract-keybinds.mjs` +
-`scripts/extract/lib/{keys,parseNiri,parseWaybar,parseYazi,parseZsh,parseTmux}.mjs`.
+`scripts/extract/lib/{keys,parseKeyd,parseNiri,parseWaybar,parseYazi,parseZsh,parseTmux}.mjs`.
 `just update-docs` there writes `data/keybinds.json` here, commits and pushes.
 This repo's CI (`.github/workflows/pages.yml`) rebuilds + deploys on `main`.
+
+### Manual layer (crafted content over mechanical truth)
+
+Extraction only produces truth: keys, commands, provenance. Everything a human
+reads - group taxonomy and order, labels, group prose, app blurbs - lives in
+agent-crafted `nixos_config/scripts/extract/manual/<id>.json`, applied by the
+extractor as a merge pass with a two-way drift contract:
+
+- a config bind no manual entry covers  → sync fails (curate it)
+- a manual entry no config bind matches  → sync fails (remove it)
+- same keys, different commands          → sync fails (disambiguate with
+  `commandContains`; custom rows win over `Stock · …` reference rows, which
+  survive unclaimed and stay appended after the manual groups)
+
+So the published tables are exactly as current as the last `just update-docs`.
 
 ### Light-theme tokens (strict Nord)
 

@@ -25,6 +25,8 @@ interface Binding {
 
 interface BindingGroup {
   name: string;
+  /** Optional crafted prose explaining the group's design intent. */
+  description?: string;
   bindings: Binding[];
 }
 
@@ -74,7 +76,7 @@ interface GuideDoc {
 // ---------------------------------------------------------------------------
 
 /** Landing-page card order (SPEC "Build pipeline"); unknown ids sort last. */
-const APP_ORDER = ["niri", "waybar", "qutebrowser", "fuzzel", "ghostty", "tmux", "yazi", "zathura", "zsh"];
+const APP_ORDER = ["keyd", "niri", "waybar", "qutebrowser", "fuzzel", "ghostty", "tmux", "yazi", "zathura", "zsh"];
 
 // Consistent inline-SVG icons (24px, stroke style, currentColor). The data
 // schema's `icon` glyph remains the fallback for ids not listed here.
@@ -89,6 +91,7 @@ const APP_SVG: Record<string, string> = {
   qutebrowser: S('<circle cx="12" cy="12" r="8.5"/><ellipse cx="12" cy="12" rx="3.8" ry="8.5"/><line x1="3.5" y1="12" x2="20.5" y2="12"/>'),
   yazi: S('<path d="M3 6.5a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>'),
   zathura: S('<path d="M6 3h8l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M13.5 3v5h5"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="16.5" x2="14" y2="16.5"/>'),
+  keyd: S('<rect x="2.5" y="6.5" width="19" height="11" rx="2"/><line x1="6" y1="9.5" x2="9" y2="9.5"/><line x1="11" y1="9.5" x2="13" y2="9.5"/><line x1="15" y1="9.5" x2="18" y2="9.5"/><line x1="6" y1="12.5" x2="18" y2="12.5"/><line x1="6" y1="15" x2="9" y2="15"/><line x1="11" y1="15" x2="13" y2="15"/><line x1="15" y1="15" x2="18" y2="15"/>'),
   zsh: S('<path d="M5 7l6 5-6 5"/><line x1="13.5" y1="17.5" x2="20" y2="17.5" stroke-width="2.2"/>'),
 };
 
@@ -175,7 +178,9 @@ function validateKeybinds(raw: unknown): KeybindsFile {
           fail(`${bwhere}: "source" must be a string`);
         return { keys, label, command, source };
       });
-      return { name: grp.name, bindings };
+      if (grp.description !== undefined && !isStr(grp.description))
+        fail(`${gwhere}: "description" must be a string`);
+      return { name: grp.name, description: grp.description as string | undefined, bindings };
     });
 
     return {
@@ -390,7 +395,7 @@ function renderAppBody(app: App, guideBySlug: ReadonlyMap<string, GuideDoc>): st
     .map(
       (g, i) => `<section class="kb-group" id="g-${i}">
   <h3>${esc(g.name)} <span class="group-count">${g.bindings.length}</span></h3>
-  <table class="kb-table"><tbody>
+${g.description !== undefined ? `  <p class="group-desc">${esc(g.description)}</p>\n` : ""}<table class="kb-table"><tbody>
 ${g.bindings.map(renderRow).join("\n")}
   </tbody></table>
 </section>`,

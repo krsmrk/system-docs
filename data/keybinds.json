@@ -1,258 +1,211 @@
 {
   "meta": {
-    "generatedAt": "2026-09-13T17:16:29.678Z",
-    "sourceCommit": "811555a",
+    "generatedAt": "2026-09-20T08:22:42.491Z",
+    "sourceCommit": "b5a52ab",
     "host": "box"
   },
   "apps": [
     {
+      "id": "keyd",
+      "title": "keyd",
+      "tagline": "evdev remap - the layer beneath every bind",
+      "description": "keyd remaps at the evdev level, below XKB and Wayland, so it applies in every session - niri and GNOME alike, even on the login screen's seat. Every Ctrl in this manual is the Caps Lock key held; every Esc is the Caps Lock key tapped. The vi-style grammar of the whole system stands on this.",
+      "icon": "⌨",
+      "guide": "keyboard-grammar",
+      "groups": [
+        {
+          "name": "Caps Lock: tap Escape, hold Control",
+          "bindings": [
+            {
+              "keys": "CapsLock",
+              "label": "Tap: Escape · hold or chord: Control",
+              "command": "overload(control, esc)",
+              "source": "default.conf:27"
+            }
+          ],
+          "description": "One key, two jobs: release it within the tap timeout (Global settings below) and it is Esc; hold it, or press any other key while it is down, and it is Control. Plain overload, not the delayed overloadt variants: the layer activates instantly on keydown, so fast chords - tmux's prefix is Ctrl+Space - can never race the tap/hold decision into a stuck Escape."
+        },
+        {
+          "name": "Physical Ctrl keycap",
+          "bindings": [
+            {
+              "keys": "LeftCtrl",
+              "label": "Sends a real Caps Lock (OS toggle + LED)",
+              "command": "capslock",
+              "source": "default.conf:26"
+            }
+          ],
+          "description": "Caps Lock's new job needs its old one to live somewhere: the left Ctrl keycap becomes the real Caps Lock (raw keycode to the OS/XKB toggle, LED included). Esc keeps its own key."
+        },
+        {
+          "name": "Global settings",
+          "bindings": [
+            {
+              "keys": "OverloadTapTimeout",
+              "label": "Escape fires only when the overloaded key was held for less than this many ms",
+              "command": "overload_tap_timeout = 250",
+              "source": "default.conf:15"
+            }
+          ],
+          "description": "The tap window that separates Escape from Control on overloaded keys; the live value rides in the command column."
+        }
+      ]
+    },
+    {
       "id": "niri",
       "title": "niri",
       "tagline": "scrollable-tiling compositor",
-      "description": "Window management, workspaces, screenshots and session control.",
+      "description": "The global layer: everything works from the vi home row, and modifiers compose — Shift moves instead of focusing, Ctrl takes the column along, Alt is the floating exception. Mod = Super. Binds are declared from scratch here, so stock niri assignments (like Mod+Q = close) do not exist. In-app overlay: this config skips it at startup; use this site instead.",
       "icon": "▦",
       "guide": "niri-workflows",
       "groups": [
         {
-          "name": "Apps",
+          "name": "Launch apps",
           "bindings": [
             {
               "keys": "Mod+Return",
-              "label": "Launch ghostty",
+              "label": "Open ghostty",
               "command": "spawn \"ghostty\"",
               "source": "config.kdl:97"
             },
             {
               "keys": "Mod+T",
-              "label": "Launch ghostty",
+              "label": "Open ghostty (second key for the same hand)",
               "command": "spawn \"ghostty\"",
               "source": "config.kdl:98"
             },
             {
               "keys": "Mod+D",
-              "label": "Launch fuzzel",
+              "label": "Open fuzzel (app launcher)",
               "command": "spawn \"fuzzel\"",
               "source": "config.kdl:99"
             },
             {
-              "keys": "Mod+B",
-              "label": "Launch firefox",
-              "command": "spawn \"firefox\"",
-              "source": "config.kdl:100"
-            },
-            {
               "keys": "Mod+Q",
-              "label": "Qutebrowser",
+              "label": "Open qutebrowser (daily driver; xdg-open default)",
               "command": "spawn \"qutebrowser\"",
               "source": "config.kdl:104"
             },
             {
+              "keys": "Mod+B",
+              "label": "Open Firefox (fallback browser)",
+              "command": "spawn \"firefox\"",
+              "source": "config.kdl:100"
+            },
+            {
+              "keys": "Mod+E",
+              "label": "Open nautilus (file manager)",
+              "command": "spawn \"nautilus\"",
+              "source": "config.kdl:114"
+            }
+          ],
+          "description": "Single Mod letters. Return and T are both ghostty (T for when the home row wins); D opens fuzzel, from which everything else is reachable."
+        },
+        {
+          "name": "Fold-out menus",
+          "bindings": [
+            {
               "keys": "Mod+Shift+B",
-              "label": "Bluetooth: power/scan/pair/connect",
+              "label": "Bluetooth menu: power, scan, pair/trust/connect, disconnect",
               "command": "spawn \"btmenu\"",
               "source": "config.kdl:107"
             },
             {
               "keys": "Mod+Shift+W",
-              "label": "Network: Wi-Fi scan+connect, saved profiles, radio",
+              "label": "Network menu: Wi-Fi scan + connect, saved profiles, radio toggle",
               "command": "spawn \"netmenu\"",
               "source": "config.kdl:108"
             },
             {
               "keys": "Mod+Shift+A",
-              "label": "Audio: default sink/source, per-app streams",
+              "label": "Audio menu: default sink/source, per-app stream volume and mute",
               "command": "spawn \"volmenu\"",
               "source": "config.kdl:109"
             },
             {
-              "keys": "Mod+N",
-              "label": "Toggle do-not-disturb",
-              "command": "spawn \"swaync-client\" \"-d\"",
-              "source": "config.kdl:112"
-            },
-            {
-              "keys": "Mod+Shift+N",
-              "label": "Control center: history + actions",
-              "command": "spawn \"swaync-client\" \"-t\"",
-              "source": "config.kdl:113"
-            },
-            {
-              "keys": "Mod+E",
-              "label": "Launch nautilus",
-              "command": "spawn \"nautilus\"",
-              "source": "config.kdl:114"
-            },
-            {
-              "keys": "Mod+Shift+V",
-              "label": "Clipboard history recall",
-              "command": "spawn-sh \"cliphist list | fuzzel --dmenu | cliphist decode | wl-copy\"",
-              "source": "config.kdl:118"
-            },
-            {
-              "keys": "Mod+Ctrl+V",
-              "label": "Arm/disarm clipboard recording (opt-in: modules/home/clipboard.nix)",
-              "command": "spawn \"cliprec\" \"menu\"",
-              "source": "config.kdl:121"
-            }
-          ]
-        },
-        {
-          "name": "Screenshots",
-          "bindings": [
-            {
-              "keys": "Print",
-              "label": "Niri's UI: pick region/window/screen + clipboard/file per shot",
-              "command": "screenshot",
-              "source": "config.kdl:128"
-            },
-            {
-              "keys": "Ctrl+Print",
-              "label": "Screenshot window",
-              "command": "screenshot-window",
-              "source": "config.kdl:129"
-            },
-            {
-              "keys": "Shift+Print",
-              "label": "Screenshot screen",
-              "command": "screenshot-screen",
-              "source": "config.kdl:130"
-            },
-            {
-              "keys": "Mod+G",
-              "label": "Screenshot",
-              "command": "screenshot",
-              "source": "config.kdl:131"
-            },
-            {
-              "keys": "Mod+Ctrl+G",
-              "label": "Screenshot window",
-              "command": "screenshot-window",
-              "source": "config.kdl:132"
-            },
-            {
-              "keys": "Mod+Shift+G",
-              "label": "Screenshot screen",
-              "command": "screenshot-screen",
-              "source": "config.kdl:133"
-            },
-            {
-              "keys": "Mod+Shift+S",
-              "label": "Zero-UI region → clipboard",
-              "command": "spawn-sh \"grim -g \\\"$(slurp)\\\" - | wl-copy\"",
-              "source": "config.kdl:134"
-            }
-          ]
-        },
-        {
-          "name": "Session",
-          "bindings": [
-            {
-              "keys": "Mod+L",
-              "label": "Vim-style; wraps to the first column at the strip edge",
-              "command": "focus-column-right-or-first",
-              "source": "config.kdl:137"
-            },
-            {
-              "keys": "Ctrl+Alt+L",
-              "label": "`lock` = swaylock -f + cliphist wipe",
-              "command": "spawn \"lock\"",
-              "source": "config.kdl:138"
-            },
-            {
-              "keys": "Mod+Escape",
-              "label": "Fast lock: one hand, no mnemonic needed",
-              "command": "spawn \"lock\"",
-              "source": "config.kdl:139"
-            },
-            {
-              "keys": "Mod+X",
-              "label": "Close window",
-              "command": "close-window",
-              "source": "config.kdl:140"
-            },
-            {
-              "keys": "Mod+Shift+Q",
-              "label": "Quit",
-              "command": "quit",
-              "source": "config.kdl:141"
-            },
-            {
-              "keys": "Mod+Shift+P",
-              "label": "Power off monitors",
-              "command": "power-off-monitors",
-              "source": "config.kdl:142"
-            },
-            {
               "keys": "Mod+P",
-              "label": "Alias: P = Power, pairs with Mod+Shift+P above",
+              "label": "Session menu: lock, logout, suspend, reboot, power off (gum TUI)",
               "command": "spawn \"ghostty\" \"-e\" \"session-menu\"",
               "source": "config.kdl:143"
             },
             {
               "keys": "Mod+Shift+U",
-              "label": "Gum system-ops menu (hosts/box)",
+              "label": "System-ops menu: staged diff, upgrade timer, generations, rebuild, rollback, power profile",
               "command": "spawn \"ghostty\" \"-e\" \"sysmenu\"",
               "source": "config.kdl:144"
             }
-          ]
+          ],
+          "description": "The system's settings live in keyboard menus, not apps: Mod+Shift plus the initial opens a hardware menu as a fuzzel dmenu loop, Mod+P the session menu (P = power), Mod+Shift+U the system-ops menu."
         },
         {
-          "name": "Focus & movement",
+          "name": "Focus: columns, windows, monitors",
           "bindings": [
             {
               "keys": "Mod+H",
-              "label": "Focus column left or last",
+              "label": "Focus column left (wraps to the far edge)",
               "command": "focus-column-left-or-last",
               "source": "config.kdl:149"
             },
             {
+              "keys": "Mod+L",
+              "label": "Focus column right (wraps to the far edge)",
+              "command": "focus-column-right-or-first",
+              "source": "config.kdl:137"
+            },
+            {
               "keys": "Mod+Left",
-              "label": "Focus column left or last",
+              "label": "Focus column left (arrow form of Mod+H)",
               "command": "focus-column-left-or-last",
               "source": "config.kdl:150"
             },
             {
               "keys": "Mod+Right",
-              "label": "Focus column right or first",
+              "label": "Focus column right (arrow form of Mod+L)",
               "command": "focus-column-right-or-first",
               "source": "config.kdl:151"
             },
             {
               "keys": "Mod+J",
-              "label": "Focus window down",
+              "label": "Focus window below inside the column",
               "command": "focus-window-down",
               "source": "config.kdl:152"
             },
             {
-              "keys": "Mod+Down",
-              "label": "Focus window down",
-              "command": "focus-window-down",
-              "source": "config.kdl:153"
-            },
-            {
               "keys": "Mod+K",
-              "label": "Focus window up",
+              "label": "Focus window above inside the column",
               "command": "focus-window-up",
               "source": "config.kdl:154"
             },
             {
+              "keys": "Mod+Down",
+              "label": "Focus window below (arrow form of Mod+J)",
+              "command": "focus-window-down",
+              "source": "config.kdl:153"
+            },
+            {
               "keys": "Mod+Up",
-              "label": "Focus window up",
+              "label": "Focus window above (arrow form of Mod+K)",
               "command": "focus-window-up",
               "source": "config.kdl:155"
             },
             {
               "keys": "Mod+BracketLeft",
-              "label": "Focus column or monitor left",
+              "label": "Focus left: previous column, or the last column on the previous monitor",
               "command": "focus-column-or-monitor-left",
               "source": "config.kdl:156"
             },
             {
               "keys": "Mod+BracketRight",
-              "label": "Focus column or monitor right",
+              "label": "Focus right: next column, or the first column on the next monitor",
               "command": "focus-column-or-monitor-right",
               "source": "config.kdl:157"
-            },
+            }
+          ],
+          "description": "Vim keys are primary, arrows mirror them. Horizontal focus wraps at the strip edges (or-last / or-first); the brackets keep going where focus runs out: past the edge column, they land on the neighboring monitor."
+        },
+        {
+          "name": "Move: take it along",
+          "bindings": [
             {
               "keys": "Mod+Shift+H",
               "label": "Move column left",
@@ -266,361 +219,499 @@
               "source": "config.kdl:160"
             },
             {
-              "keys": "Mod+Shift+J",
-              "label": "Move window down",
-              "command": "move-window-down",
-              "source": "config.kdl:161"
-            },
-            {
-              "keys": "Mod+Shift+K",
-              "label": "Move window up",
-              "command": "move-window-up",
-              "source": "config.kdl:162"
-            },
-            {
               "keys": "Mod+Shift+Left",
-              "label": "Move column left",
+              "label": "Move column left (arrow form)",
               "command": "move-column-left",
               "source": "config.kdl:163"
             },
             {
               "keys": "Mod+Shift+Right",
-              "label": "Move column right",
+              "label": "Move column right (arrow form)",
               "command": "move-column-right",
               "source": "config.kdl:164"
             },
             {
+              "keys": "Mod+Shift+J",
+              "label": "Move window down inside the column",
+              "command": "move-window-down",
+              "source": "config.kdl:161"
+            },
+            {
+              "keys": "Mod+Shift+K",
+              "label": "Move window up inside the column",
+              "command": "move-window-up",
+              "source": "config.kdl:162"
+            },
+            {
               "keys": "Mod+Shift+Down",
-              "label": "Move window down",
+              "label": "Move window down (arrow form)",
               "command": "move-window-down",
               "source": "config.kdl:165"
             },
             {
               "keys": "Mod+Shift+Up",
-              "label": "Move window up",
+              "label": "Move window up (arrow form)",
               "command": "move-window-up",
               "source": "config.kdl:166"
             },
             {
               "keys": "Mod+Shift+BracketLeft",
-              "label": "Move column to monitor left",
+              "label": "Move the column to the previous monitor",
               "command": "move-column-to-monitor-left",
               "source": "config.kdl:167"
             },
             {
               "keys": "Mod+Shift+BracketRight",
-              "label": "Move column to monitor right",
+              "label": "Move the column to the next monitor",
               "command": "move-column-to-monitor-right",
               "source": "config.kdl:168"
             }
-          ]
+          ],
+          "description": "Shift turns a focus verb into a move verb: the column or window travels instead of the focus. Moves do not wrap (niri ships no wrap variants for them)."
         },
         {
-          "name": "Columns & windows",
+          "name": "Workspaces: switch",
+          "bindings": [
+            {
+              "keys": "Mod+U",
+              "label": "Focus the workspace below",
+              "command": "focus-workspace-down",
+              "source": "config.kdl:193"
+            },
+            {
+              "keys": "Mod+I",
+              "label": "Focus the workspace above",
+              "command": "focus-workspace-up",
+              "source": "config.kdl:194"
+            },
+            {
+              "keys": "Mod+1",
+              "label": "Jump to workspace 1",
+              "command": "focus-workspace 1",
+              "source": "config.kdl:197"
+            },
+            {
+              "keys": "Mod+2",
+              "label": "Jump to workspace 2",
+              "command": "focus-workspace 2",
+              "source": "config.kdl:198"
+            },
+            {
+              "keys": "Mod+3",
+              "label": "Jump to workspace 3",
+              "command": "focus-workspace 3",
+              "source": "config.kdl:199"
+            },
+            {
+              "keys": "Mod+4",
+              "label": "Jump to workspace 4",
+              "command": "focus-workspace 4",
+              "source": "config.kdl:200"
+            },
+            {
+              "keys": "Mod+5",
+              "label": "Jump to workspace 5",
+              "command": "focus-workspace 5",
+              "source": "config.kdl:201"
+            },
+            {
+              "keys": "Mod+6",
+              "label": "Jump to workspace 6",
+              "command": "focus-workspace 6",
+              "source": "config.kdl:202"
+            },
+            {
+              "keys": "Mod+7",
+              "label": "Jump to workspace 7",
+              "command": "focus-workspace 7",
+              "source": "config.kdl:203"
+            },
+            {
+              "keys": "Mod+8",
+              "label": "Jump to workspace 8",
+              "command": "focus-workspace 8",
+              "source": "config.kdl:204"
+            },
+            {
+              "keys": "Mod+9",
+              "label": "Jump to workspace 9",
+              "command": "focus-workspace 9",
+              "source": "config.kdl:205"
+            }
+          ],
+          "description": "Workspaces scroll vertically; U/I walk the strip, numbers jump. 1-3 are persistent so the bar always shows three dots; higher numbers spawn on demand."
+        },
+        {
+          "name": "Workspaces: carry the column",
+          "bindings": [
+            {
+              "keys": "Mod+Ctrl+U",
+              "label": "Move the column to the workspace below",
+              "command": "move-column-to-workspace-down",
+              "source": "config.kdl:195"
+            },
+            {
+              "keys": "Mod+Ctrl+I",
+              "label": "Move the column to the workspace above",
+              "command": "move-column-to-workspace-up",
+              "source": "config.kdl:196"
+            },
+            {
+              "keys": "Mod+Shift+1",
+              "label": "Move the column to workspace 1",
+              "command": "move-column-to-workspace 1",
+              "source": "config.kdl:206"
+            },
+            {
+              "keys": "Mod+Shift+2",
+              "label": "Move the column to workspace 2",
+              "command": "move-column-to-workspace 2",
+              "source": "config.kdl:207"
+            },
+            {
+              "keys": "Mod+Shift+3",
+              "label": "Move the column to workspace 3",
+              "command": "move-column-to-workspace 3",
+              "source": "config.kdl:208"
+            },
+            {
+              "keys": "Mod+Shift+4",
+              "label": "Move the column to workspace 4",
+              "command": "move-column-to-workspace 4",
+              "source": "config.kdl:209"
+            },
+            {
+              "keys": "Mod+Shift+5",
+              "label": "Move the column to workspace 5",
+              "command": "move-column-to-workspace 5",
+              "source": "config.kdl:210"
+            },
+            {
+              "keys": "Mod+Shift+6",
+              "label": "Move the column to workspace 6",
+              "command": "move-column-to-workspace 6",
+              "source": "config.kdl:211"
+            },
+            {
+              "keys": "Mod+Shift+7",
+              "label": "Move the column to workspace 7",
+              "command": "move-column-to-workspace 7",
+              "source": "config.kdl:212"
+            },
+            {
+              "keys": "Mod+Shift+8",
+              "label": "Move the column to workspace 8",
+              "command": "move-column-to-workspace 8",
+              "source": "config.kdl:213"
+            },
+            {
+              "keys": "Mod+Shift+9",
+              "label": "Move the column to workspace 9",
+              "command": "move-column-to-workspace 9",
+              "source": "config.kdl:214"
+            }
+          ],
+          "description": "Ctrl composes with the switch binds: the focused column comes along. Same grammar as screenshots, where Ctrl narrows to the window."
+        },
+        {
+          "name": "Columns: width & height",
           "bindings": [
             {
               "keys": "Mod+V",
-              "label": "Switch preset column width",
+              "label": "Cycle preset column width: 1/3, 1/2, 2/3",
               "command": "switch-preset-column-width",
               "source": "config.kdl:171"
             },
             {
               "keys": "Mod+W",
-              "label": "Expand column to available width",
+              "label": "Expand the column to the available width",
               "command": "expand-column-to-available-width",
               "source": "config.kdl:172"
             },
             {
-              "keys": "Mod+F",
-              "label": "Maximizes the window to the screen edges",
-              "command": "maximize-window-to-edges",
-              "source": "config.kdl:175"
-            },
-            {
-              "keys": "Mod+Shift+F",
-              "label": "Fullscreen window",
-              "command": "fullscreen-window",
-              "source": "config.kdl:176"
-            },
-            {
-              "keys": "Mod+O",
-              "label": "Toggle overview",
-              "command": "toggle-overview",
-              "source": "config.kdl:177"
-            },
-            {
-              "keys": "Mod+C",
-              "label": "Center column",
-              "command": "center-column",
-              "source": "config.kdl:178"
-            },
-            {
               "keys": "Mod+Minus",
-              "label": "Set column width -10%",
+              "label": "Column width -10%",
               "command": "set-column-width \"-10%\"",
               "source": "config.kdl:179"
             },
             {
               "keys": "Mod+Equal",
-              "label": "Set column width +10%",
+              "label": "Column width +10%",
               "command": "set-column-width \"+10%\"",
               "source": "config.kdl:180"
             },
             {
               "keys": "Mod+Shift+Minus",
-              "label": "Heights matter once windows stack vertically inside one column",
+              "label": "Window height -10%",
               "command": "set-window-height \"-10%\"",
               "source": "config.kdl:182"
             },
             {
               "keys": "Mod+Shift+Equal",
-              "label": "Set window height +10%",
+              "label": "Window height +10%",
               "command": "set-window-height \"+10%\"",
               "source": "config.kdl:183"
+            }
+          ],
+          "description": "V cycles the presets (third / half / two-thirds); Minus/Equal resize in 10% steps. Shift switches the axis: window heights matter once windows stack vertically inside a column."
+        },
+        {
+          "name": "Windows: stack, zoom, float, close",
+          "bindings": [
+            {
+              "keys": "Mod+C",
+              "label": "Center the focused column",
+              "command": "center-column",
+              "source": "config.kdl:178"
+            },
+            {
+              "keys": "Mod+O",
+              "label": "Toggle the overview (all workspaces at a glance)",
+              "command": "toggle-overview",
+              "source": "config.kdl:177"
             },
             {
               "keys": "Mod+Comma",
-              "label": "Consume window into column",
+              "label": "Consume: pull the next window into this column, stacked",
               "command": "consume-window-into-column",
               "source": "config.kdl:184"
             },
             {
               "keys": "Mod+Period",
-              "label": "Expel window from column",
+              "label": "Expel: push the bottom window out of the column",
               "command": "expel-window-from-column",
               "source": "config.kdl:185"
             },
             {
+              "keys": "Mod+F",
+              "label": "Maximize to the screen edges (bar stays visible)",
+              "command": "maximize-window-to-edges",
+              "source": "config.kdl:175"
+            },
+            {
+              "keys": "Mod+Shift+F",
+              "label": "True fullscreen (bar hides too)",
+              "command": "fullscreen-window",
+              "source": "config.kdl:176"
+            },
+            {
               "keys": "Mod+Alt+S",
-              "label": "Toggle window floating",
+              "label": "Toggle the window between floating and tiling",
               "command": "toggle-window-floating",
               "source": "config.kdl:186"
             },
             {
               "keys": "Mod+Shift+Space",
-              "label": "Switch focus between floating and tiling",
+              "label": "Switch focus between the floating layer and the tiling strip",
               "command": "switch-focus-between-floating-and-tiling",
               "source": "config.kdl:187"
+            },
+            {
+              "keys": "Mod+X",
+              "label": "Close the focused window",
+              "command": "close-window",
+              "source": "config.kdl:140"
             }
-          ]
+          ],
+          "description": "Two grades of zoom: F maximizes to the screen edges (bar stays, no gaps or ring), Shift+F is true fullscreen. Comma/Period stack windows into (or expel them from) the column. Floating is the config's one Alt bind - plain Mod+S stays deliberately unbound; do not rebind it without asking Stefan first."
+        },
+        {
+          "name": "Screenshots",
+          "bindings": [
+            {
+              "keys": "Print",
+              "label": "Screenshot UI: pick region/window/screen, then clipboard or file",
+              "command": "screenshot",
+              "source": "config.kdl:128"
+            },
+            {
+              "keys": "Ctrl+Print",
+              "label": "Screenshot the focused window, no dialog",
+              "command": "screenshot-window",
+              "source": "config.kdl:129"
+            },
+            {
+              "keys": "Shift+Print",
+              "label": "Screenshot the full screen, no dialog",
+              "command": "screenshot-screen",
+              "source": "config.kdl:130"
+            },
+            {
+              "keys": "Mod+G",
+              "label": "Screenshot UI (grab form of Print)",
+              "command": "screenshot",
+              "source": "config.kdl:131"
+            },
+            {
+              "keys": "Mod+Ctrl+G",
+              "label": "Screenshot the focused window (grab form)",
+              "command": "screenshot-window",
+              "source": "config.kdl:132"
+            },
+            {
+              "keys": "Mod+Shift+G",
+              "label": "Screenshot the full screen (grab form)",
+              "command": "screenshot-screen",
+              "source": "config.kdl:133"
+            },
+            {
+              "keys": "Mod+Shift+S",
+              "label": "Zero-UI region capture to the clipboard (slurp + grim)",
+              "command": "spawn-sh \"grim -g \\\"$(slurp)\\\" - | wl-copy\"",
+              "source": "config.kdl:134"
+            }
+          ],
+          "description": "Two spellings for the same three actions: the Print family for boards that have the key, the G cluster (G = grab) for boards without. Ctrl is the window variant, Shift the full-screen variant in both families. Mod+Shift+S is the no-dialog fast lane: region straight to the clipboard."
+        },
+        {
+          "name": "Clipboard",
+          "bindings": [
+            {
+              "keys": "Mod+Shift+V",
+              "label": "Recall from clipboard history (cliphist through fuzzel)",
+              "command": "spawn-sh \"cliphist list | fuzzel --dmenu | cliphist decode | wl-copy\"",
+              "source": "config.kdl:118"
+            },
+            {
+              "keys": "Mod+Ctrl+V",
+              "label": "Arm or disarm clipboard recording (cliprec menu)",
+              "command": "spawn \"cliprec\" \"menu\"",
+              "source": "config.kdl:121"
+            }
+          ],
+          "description": "Recording is opt-in: nothing watches the clipboard by default, so secrets are never silently archived. Arm it for a chosen lifetime, recall while armed. History is wiped at session start and on lock/suspend."
+        },
+        {
+          "name": "Notifications",
+          "bindings": [
+            {
+              "keys": "Mod+N",
+              "label": "Toggle do-not-disturb",
+              "command": "spawn \"swaync-client\" \"-d\"",
+              "source": "config.kdl:112"
+            },
+            {
+              "keys": "Mod+Shift+N",
+              "label": "Open the control center (history + actions)",
+              "command": "spawn \"swaync-client\" \"-t\"",
+              "source": "config.kdl:113"
+            }
+          ],
+          "description": "swaync runs toasts and the control center; the waybar bell mirrors these clicks."
+        },
+        {
+          "name": "Lock, leave, power",
+          "bindings": [
+            {
+              "keys": "Ctrl+Alt+L",
+              "label": "Lock the session (swaylock + clipboard wipe)",
+              "command": "spawn \"lock\"",
+              "source": "config.kdl:138"
+            },
+            {
+              "keys": "Mod+Escape",
+              "label": "Lock - one hand, no mnemonic needed",
+              "command": "spawn \"lock\"",
+              "source": "config.kdl:139"
+            },
+            {
+              "keys": "Mod+Shift+P",
+              "label": "Power off the monitors now (pairs with Mod+P, the session menu)",
+              "command": "power-off-monitors",
+              "source": "config.kdl:142"
+            },
+            {
+              "keys": "Mod+Shift+Q",
+              "label": "Quit niri (end the session)",
+              "command": "quit",
+              "source": "config.kdl:141"
+            }
+          ],
+          "description": "Two roads to lock: the GNOME-style chord and the one-hand Mod+Escape. Locking runs swaylock and wipes the clipboard history. Idle handling: swayidle locks after 15 min, powers monitors off after 20. Sleep/reboot live in the session menu (Mod+P)."
         },
         {
           "name": "Keyboard layout",
           "bindings": [
             {
               "keys": "Mod+Space",
-              "label": "Switch layout next",
+              "label": "Cycle the layout us/de",
               "command": "switch-layout \"next\"",
               "source": "config.kdl:190"
             }
-          ]
+          ],
+          "description": "Plain XKB us,de - niri switches natively, no input-method engine, indicator in the waybar language chip."
         },
         {
-          "name": "Workspaces",
-          "bindings": [
-            {
-              "keys": "Mod+U",
-              "label": "Focus workspace down",
-              "command": "focus-workspace-down",
-              "source": "config.kdl:193"
-            },
-            {
-              "keys": "Mod+I",
-              "label": "Focus workspace up",
-              "command": "focus-workspace-up",
-              "source": "config.kdl:194"
-            },
-            {
-              "keys": "Mod+Ctrl+U",
-              "label": "Move column to workspace down",
-              "command": "move-column-to-workspace-down",
-              "source": "config.kdl:195"
-            },
-            {
-              "keys": "Mod+Ctrl+I",
-              "label": "Move column to workspace up",
-              "command": "move-column-to-workspace-up",
-              "source": "config.kdl:196"
-            },
-            {
-              "keys": "Mod+1",
-              "label": "Focus workspace",
-              "command": "focus-workspace 1",
-              "source": "config.kdl:197"
-            },
-            {
-              "keys": "Mod+2",
-              "label": "Focus workspace",
-              "command": "focus-workspace 2",
-              "source": "config.kdl:198"
-            },
-            {
-              "keys": "Mod+3",
-              "label": "Focus workspace",
-              "command": "focus-workspace 3",
-              "source": "config.kdl:199"
-            },
-            {
-              "keys": "Mod+4",
-              "label": "Focus workspace",
-              "command": "focus-workspace 4",
-              "source": "config.kdl:200"
-            },
-            {
-              "keys": "Mod+5",
-              "label": "Focus workspace",
-              "command": "focus-workspace 5",
-              "source": "config.kdl:201"
-            },
-            {
-              "keys": "Mod+6",
-              "label": "Focus workspace",
-              "command": "focus-workspace 6",
-              "source": "config.kdl:202"
-            },
-            {
-              "keys": "Mod+7",
-              "label": "Focus workspace",
-              "command": "focus-workspace 7",
-              "source": "config.kdl:203"
-            },
-            {
-              "keys": "Mod+8",
-              "label": "Focus workspace",
-              "command": "focus-workspace 8",
-              "source": "config.kdl:204"
-            },
-            {
-              "keys": "Mod+9",
-              "label": "Focus workspace",
-              "command": "focus-workspace 9",
-              "source": "config.kdl:205"
-            },
-            {
-              "keys": "Mod+Shift+1",
-              "label": "Move column to workspace",
-              "command": "move-column-to-workspace 1",
-              "source": "config.kdl:206"
-            },
-            {
-              "keys": "Mod+Shift+2",
-              "label": "Move column to workspace",
-              "command": "move-column-to-workspace 2",
-              "source": "config.kdl:207"
-            },
-            {
-              "keys": "Mod+Shift+3",
-              "label": "Move column to workspace",
-              "command": "move-column-to-workspace 3",
-              "source": "config.kdl:208"
-            },
-            {
-              "keys": "Mod+Shift+4",
-              "label": "Move column to workspace",
-              "command": "move-column-to-workspace 4",
-              "source": "config.kdl:209"
-            },
-            {
-              "keys": "Mod+Shift+5",
-              "label": "Move column to workspace",
-              "command": "move-column-to-workspace 5",
-              "source": "config.kdl:210"
-            },
-            {
-              "keys": "Mod+Shift+6",
-              "label": "Move column to workspace",
-              "command": "move-column-to-workspace 6",
-              "source": "config.kdl:211"
-            },
-            {
-              "keys": "Mod+Shift+7",
-              "label": "Move column to workspace",
-              "command": "move-column-to-workspace 7",
-              "source": "config.kdl:212"
-            },
-            {
-              "keys": "Mod+Shift+8",
-              "label": "Move column to workspace",
-              "command": "move-column-to-workspace 8",
-              "source": "config.kdl:213"
-            },
-            {
-              "keys": "Mod+Shift+9",
-              "label": "Move column to workspace",
-              "command": "move-column-to-workspace 9",
-              "source": "config.kdl:214"
-            }
-          ]
-        },
-        {
-          "name": "VMs/remote desktops inside a window",
+          "name": "Keyboard takeover (VMs & remote desktops)",
           "bindings": [
             {
               "keys": "Mod+Ctrl+Shift+I",
-              "label": "(inhibits niri's own binds until toggled off again; cf. VM_SETUP_ISSUE.md)",
+              "label": "Toggle keyboard-shortcuts inhibition for the focused window",
               "command": "toggle-keyboard-shortcuts-inhibit",
               "source": "config.kdl:218"
             }
-          ]
+          ],
+          "description": "One bind, one job: hand the ENTIRE keyboard to the focused window so a VM or remote desktop receives everything - niri's own binds stop working until this is toggled again."
         },
         {
           "name": "Hardware keys",
           "bindings": [
             {
               "keys": "XF86AudioRaiseVolume",
-              "label": "Launch swayosd-client --output-volume +5",
+              "label": "Volume up (+5, with OSD)",
               "command": "spawn \"swayosd-client\" \"--output-volume\" \"+5\"",
               "source": "config.kdl:223"
             },
             {
               "keys": "XF86AudioLowerVolume",
-              "label": "Launch swayosd-client --output-volume -5",
+              "label": "Volume down (-5, with OSD)",
               "command": "spawn \"swayosd-client\" \"--output-volume\" \"-5\"",
               "source": "config.kdl:224"
             },
             {
               "keys": "XF86AudioMute",
-              "label": "Launch swayosd-client --output-volume mute-toggle",
+              "label": "Mute/unmute the output (with OSD)",
               "command": "spawn \"swayosd-client\" \"--output-volume\" \"mute-toggle\"",
               "source": "config.kdl:225"
             },
             {
               "keys": "XF86AudioMicMute",
-              "label": "Mic deliberately requires unlock: a lock screen shouldn't toggle mic state",
+              "label": "Mute/unmute the mic (ignored while locked, on purpose)",
               "command": "spawn \"swayosd-client\" \"--input-volume\" \"mute-toggle\"",
               "source": "config.kdl:227"
             },
             {
               "keys": "XF86AudioPlay",
-              "label": "Launch swayosd-client --playerctl play-pause",
+              "label": "Play/pause (playerctl via OSD)",
               "command": "spawn \"swayosd-client\" \"--playerctl\" \"play-pause\"",
               "source": "config.kdl:228"
             },
             {
               "keys": "XF86AudioNext",
-              "label": "Launch swayosd-client --playerctl next",
+              "label": "Next track",
               "command": "spawn \"swayosd-client\" \"--playerctl\" \"next\"",
               "source": "config.kdl:229"
             },
             {
               "keys": "XF86AudioPrev",
-              "label": "Launch swayosd-client --playerctl previous",
+              "label": "Previous track",
               "command": "spawn \"swayosd-client\" \"--playerctl\" \"previous\"",
               "source": "config.kdl:230"
             },
             {
               "keys": "XF86MonBrightnessUp",
-              "label": "Launch swayosd-client --brightness raise",
+              "label": "Brightness up (with OSD)",
               "command": "spawn \"swayosd-client\" \"--brightness\" \"raise\"",
               "source": "config.kdl:231"
             },
             {
               "keys": "XF86MonBrightnessDown",
-              "label": "Launch swayosd-client --brightness lower",
+              "label": "Brightness down (with OSD)",
               "command": "spawn \"swayosd-client\" \"--brightness\" \"lower\"",
               "source": "config.kdl:232"
             }
-          ]
+          ],
+          "description": "Media and brightness keys route through swayosd, which paints the on-screen display. All of them work while locked - except the mic: a lock screen shouldn't flip mic state."
         }
       ]
     },
@@ -628,73 +719,80 @@
       "id": "waybar",
       "title": "waybar",
       "tagline": "status bar",
-      "description": "Click and scroll actions on bar modules.",
+      "description": "The bar is deliberately thin: workspace dots at the left edge, status chips in the right pill. The chips mirror the keyboard layer - the language chip click is Mod+Space, the bell click is Mod+Shift+N - so the pointer path and the key path always agree.",
       "icon": "▬",
       "groups": [
         {
-          "name": "Modules · click & scroll",
+          "name": "Left edge: workspace dots",
           "bindings": [
             {
               "keys": "Scroll Up",
-              "label": "niri/workspaces: niri msg action focus-workspace-up",
+              "label": "Walk to the workspace above",
               "command": "niri msg action focus-workspace-up",
               "source": "modules/home/waybar.nix:251"
             },
             {
               "keys": "Scroll Down",
-              "label": "niri/workspaces: niri msg action focus-workspace-down",
+              "label": "Walk to the workspace below",
               "command": "niri msg action focus-workspace-down",
               "source": "modules/home/waybar.nix:252"
-            },
+            }
+          ],
+          "description": "Each workspace paints a 10px dot in its identity colour; focus stretches it into a pill, urgent workspaces breathe, empty ones stay visible (1-3 are persistent by niri config). Scrolling walks the strip."
+        },
+        {
+          "name": "Right pill: bell · language · volume · clock",
+          "bindings": [
             {
               "keys": "Mouse Left Click",
-              "label": "notifications: swaync-client -t -sw",
+              "label": "Bell: toggle the swaync control center (history + actions)",
               "command": "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw",
               "source": "modules/home/waybar.nix:293"
             },
             {
               "keys": "Mouse Right Click",
-              "label": "notifications: swaync-client -C -sw",
+              "label": "Bell: close all notifications",
               "command": "${pkgs.swaynotificationcenter}/bin/swaync-client -C -sw",
               "source": "modules/home/waybar.nix:294"
             },
             {
               "keys": "Mouse Left Click",
-              "label": "niri/language: niri msg action switch-layout next",
+              "label": "Language chip: switch to the next layout (us ⇄ de)",
               "command": "niri msg action switch-layout next",
               "source": "modules/home/waybar.nix:304"
             },
             {
               "keys": "Mouse Right Click",
-              "label": "niri/language: niri msg action switch-layout prev",
+              "label": "Language chip: switch to the previous layout",
               "command": "niri msg action switch-layout prev",
               "source": "modules/home/waybar.nix:305"
             },
             {
               "keys": "Scroll Up",
-              "label": "niri/language: niri msg action switch-layout prev",
+              "label": "Language chip scroll: previous layout",
               "command": "niri msg action switch-layout prev",
               "source": "modules/home/waybar.nix:306"
             },
             {
               "keys": "Scroll Down",
-              "label": "niri/language: niri msg action switch-layout next",
+              "label": "Language chip scroll: next layout",
               "command": "niri msg action switch-layout next",
               "source": "modules/home/waybar.nix:307"
             },
             {
               "keys": "Mouse Left Click",
-              "label": "pulseaudio: wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+              "label": "Volume icon: mute the default sink",
               "command": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
               "source": "modules/home/waybar.nix:413"
             },
             {
               "keys": "Mouse Left Click",
-              "label": "clock: tz_up",
+              "label": "Clock: toggle local time ⇄ UTC (the zone abbreviation is the cue)",
               "command": "tz_up",
               "source": "modules/home/waybar.nix:442"
             }
-          ]
+          ],
+          "description": "The notification bell shows toasts as a glyph + count (grey under do-not-disturb). Click handlers run with a bare PATH, which is why the module pins absolute store paths."
         }
       ]
     },
@@ -702,80 +800,93 @@
       "id": "qutebrowser",
       "title": "qutebrowser",
       "tagline": "keyboard-driven browser · daily driver",
-      "description": "Nord-themed daily driver (Mod+Q): Brave-ABP + StevenBlack blocking, pass-store logins. Custom binds from the live config; stock defaults below.",
+      "description": "Daily driver (Mod+Q in niri), Nord-themed, with Brave-ABP + StevenBlack host blocking and pass-store logins. Customs hide behind the , leader so the stock vocabulary (J/K tabs, d close, f hints, H/L history, gg/G) stays untouched; case is the binding - ;j is not ,J. The full stock reference follows.",
       "icon": "◍",
       "guide": "qutebrowser",
       "groups": [
         {
-          "name": "Custom · userscripts & quick toggles",
+          "name": "Custom · toggles",
           "bindings": [
             {
               "keys": ",d",
-              "label": "Toggle page color scheme hint (dark/light)",
+              "label": "Toggle the page color-scheme hint (dark ⇄ light)",
               "command": "config-cycle colors.webpage.preferred_color_scheme dark light",
-              "source": "modules/home/qutebrowser.nix:168"
-            },
-            {
-              "keys": ",b",
-              "label": "Toggle statusbar",
-              "command": "config-cycle statusbar.show always never",
               "source": "modules/home/qutebrowser.nix:170"
             },
             {
+              "keys": ",b",
+              "label": "Toggle the status bar (tab bar auto-hides already)",
+              "command": "config-cycle statusbar.show always never",
+              "source": "modules/home/qutebrowser.nix:172"
+            },
+            {
               "keys": ",u",
-              "label": "Toggle ad blocking for this site",
+              "label": "This site: toggle ad blocking + reload (un-break the page)",
               "command": "config-cycle -u *://{url:host}/* content.blocking.enabled true false ;; reload",
-              "source": "modules/home/qutebrowser.nix:176"
+              "source": "modules/home/qutebrowser.nix:178"
             },
             {
               "keys": ";j",
-              "label": "Toggle JavaScript for this site",
+              "label": "This site: toggle JavaScript + reload (the kill-switch)",
               "command": "config-cycle -u *://{url:host}/* content.javascript.enabled true false ;; reload",
-              "source": "modules/home/qutebrowser.nix:177"
-            },
+              "source": "modules/home/qutebrowser.nix:179"
+            }
+          ],
+          "description": "Per-site fixes: ,d flips the color-scheme hint for sites that break in dark mode; ,u and ;j are the per-site escape hatches when the blocklist or JavaScript breaks a page - they scope the change to the current host and reload immediately."
+        },
+        {
+          "name": "Custom · userscripts",
+          "bindings": [
             {
               "keys": ",m",
-              "label": "Play the page's videos in mpv (page stays usable)",
+              "label": "Open the page's videos in mpv - the page itself stays usable",
               "command": "spawn --userscript view_in_mpv",
-              "source": "modules/home/qutebrowser.nix:182"
-            },
-            {
-              "keys": ",r",
-              "label": "Reader mode (Nord fork of upstream readability)",
-              "command": "spawn --userscript readability",
-              "source": "modules/home/qutebrowser.nix:183"
-            },
-            {
-              "keys": ",q",
-              "label": "Show QR code of the current URL (phone handoff)",
-              "command": "spawn --userscript qr",
               "source": "modules/home/qutebrowser.nix:184"
             },
             {
+              "keys": ",r",
+              "label": "Reader mode (readability userscript, Nord-styled)",
+              "command": "spawn --userscript readability",
+              "source": "modules/home/qutebrowser.nix:185"
+            },
+            {
+              "keys": ",q",
+              "label": "QR code of the current URL (phone handoff)",
+              "command": "spawn --userscript qr",
+              "source": "modules/home/qutebrowser.nix:186"
+            }
+          ],
+          "description": "Userscripts live in the nix module's qutebrowser-userscripts directory."
+        },
+        {
+          "name": "Custom · pass-store logins",
+          "bindings": [
+            {
               "keys": "zl",
-              "label": "Fill login from pass store (fuzzel picker)",
+              "label": "Pick a pass entry; fill the login",
               "command": "spawn --userscript qute-pass",
-              "source": "modules/home/qutebrowser.nix:187"
-            },
-            {
-              "keys": "zul",
-              "label": "Fill username from pass store",
-              "command": "spawn --userscript qute-pass --username-only",
-              "source": "modules/home/qutebrowser.nix:188"
-            },
-            {
-              "keys": "zpl",
-              "label": "Fill password from pass store",
-              "command": "spawn --userscript qute-pass --password-only",
               "source": "modules/home/qutebrowser.nix:189"
             },
             {
-              "keys": "zol",
-              "label": "Fill OTP code from pass store",
-              "command": "spawn --userscript qute-pass --otp-only",
+              "keys": "zul",
+              "label": "Fill only the username",
+              "command": "spawn --userscript qute-pass --username-only",
               "source": "modules/home/qutebrowser.nix:190"
+            },
+            {
+              "keys": "zpl",
+              "label": "Fill only the password",
+              "command": "spawn --userscript qute-pass --password-only",
+              "source": "modules/home/qutebrowser.nix:191"
+            },
+            {
+              "keys": "zol",
+              "label": "Fill only the OTP code",
+              "command": "spawn --userscript qute-pass --otp-only",
+              "source": "modules/home/qutebrowser.nix:192"
             }
-          ]
+          ],
+          "description": "Upstream's qute-pass fill scheme: z l is the full login, and u/p/o narrow it to just the username, password, or OTP. Entries are picked with fuzzel; pass-otp supplies the codes."
         },
         {
           "name": "Stock · open & URL",
@@ -2668,7 +2779,7 @@
       "title": "ghostty",
       "tagline": "terminal emulator",
       "icon": "▮",
-      "description": "Terminal emulator (Nordfox theme). Bindings are the stock Linux defaults; F11 is additionally bound to toggle_fullscreen via user config.",
+      "description": "ghostty is natively keybound (stock tables below); the one local addition rides F11, the conventional fullscreen key, so the terminal matches the apps around it.",
       "groups": [
         {
           "name": "Custom",
@@ -2679,7 +2790,8 @@
               "command": "toggle_fullscreen",
               "source": "~/.config/ghostty/config:19"
             }
-          ]
+          ],
+          "description": "Local keybind from ~/.config/ghostty/config."
         },
         {
           "name": "Stock · clipboard & scrollback",
@@ -3021,175 +3133,195 @@
     {
       "id": "tmux",
       "title": "tmux",
-      "tagline": "terminal multiplexer",
-      "description": "Prefix is Ctrl+Space. Stock tables are the tmux 3.7c defaults; resurrect/continuum keep sessions across reboots.",
+      "tagline": "terminal multiplexer - prefix is Ctrl+Space",
+      "description": "The prefix is Ctrl+Space (stock C-b is unbound); under keyd that's the Caps Lock hold plus Space - one home-row reach, either hand. After the prefix: one key. Resurrect + continuum keep sessions across reboots; stock tables are tmux 3.7c defaults.",
       "icon": "⊞",
       "groups": [
         {
-          "name": "Custom · tmux.conf",
+          "name": "Prefix layer: windows & lifecycle",
           "bindings": [
             {
               "keys": "Ctrl+Space Ctrl+Space",
-              "label": "Send prefix char to the pane (for nested tmux)",
+              "label": "Send a literal Ctrl+Space to the pane (for tmux inside tmux)",
               "command": "send-prefix",
               "source": "tmux.conf:18"
             },
             {
               "keys": "Ctrl+Space Space",
-              "label": "Faster switch to last window",
+              "label": "Flip to the last window and back",
               "command": "last-window",
               "source": "tmux.conf:21"
             },
             {
-              "keys": "Ctrl+Space l",
-              "label": "Next preset pane layout",
-              "command": "next-layout",
-              "source": "tmux.conf:22"
-            },
-            {
               "keys": "Ctrl+Space c",
-              "label": "Create new windows with current path",
+              "label": "New window, inheriting the pane's cwd",
               "command": "new-window -c \"#{pane_current_path}\"",
               "source": "tmux.conf:37"
             },
             {
+              "keys": "Ctrl+Space x",
+              "label": "Kill the pane without a confirmation prompt",
+              "command": "kill-pane",
+              "source": "tmux.conf:44"
+            },
+            {
+              "keys": "Ctrl+Space l",
+              "label": "Cycle the preset pane layouts",
+              "command": "next-layout",
+              "source": "tmux.conf:22"
+            },
+            {
+              "keys": "Ctrl+Space R",
+              "label": "Reload the config; the status line confirms with 'Reloaded.'",
+              "command": "source-file \"$HOME/.config/tmux/tmux.conf\" ; display 'Reloaded.'",
+              "source": "tmux.conf:93"
+            }
+          ],
+          "description": "Every bind here starts with the prefix (shown as Ctrl+Space). Space flips between the two most recent windows - the most-used bind in this file."
+        },
+        {
+          "name": "Panes: split, jump, resize",
+          "bindings": [
+            {
               "keys": "Ctrl+Space |",
-              "label": "Split commands with better visual fit",
+              "label": "Split side-by-side, same cwd",
               "command": "split-window -h -c \"#{pane_current_path}\"",
               "source": "tmux.conf:40"
             },
             {
               "keys": "Ctrl+Space _",
-              "label": "Split pane top/bottom, same cwd",
+              "label": "Split top/bottom, same cwd",
               "command": "split-window -v -c \"#{pane_current_path}\"",
               "source": "tmux.conf:41"
             },
             {
-              "keys": "Ctrl+Space x",
-              "label": "Don't promt before killing pane",
-              "command": "kill-pane",
-              "source": "tmux.conf:44"
-            },
-            {
-              "keys": "Ctrl+Space P",
-              "label": "Paste most recent buffer",
-              "command": "paste-buffer",
-              "source": "tmux.conf:49"
-            },
-            {
               "keys": "Alt+h",
-              "label": "Focus pane left (no prefix needed)",
+              "label": "Jump to the pane on the left (no prefix)",
               "command": "select-pane -L",
               "source": "tmux.conf:55"
             },
             {
-              "keys": "Alt+l",
-              "label": "Focus pane right (no prefix needed)",
-              "command": "select-pane -R",
-              "source": "tmux.conf:56"
-            },
-            {
-              "keys": "Alt+k",
-              "label": "Focus pane up (no prefix needed)",
-              "command": "select-pane -U",
-              "source": "tmux.conf:57"
-            },
-            {
               "keys": "Alt+j",
-              "label": "Focus pane down (no prefix needed)",
+              "label": "Jump to the pane below (no prefix)",
               "command": "select-pane -D",
               "source": "tmux.conf:58"
             },
             {
+              "keys": "Alt+k",
+              "label": "Jump to the pane above (no prefix)",
+              "command": "select-pane -U",
+              "source": "tmux.conf:57"
+            },
+            {
+              "keys": "Alt+l",
+              "label": "Jump to the pane on the right (no prefix)",
+              "command": "select-pane -R",
+              "source": "tmux.conf:56"
+            },
+            {
               "keys": "Ctrl+Space Ctrl+h",
-              "label": "Resize pane left by 8 (repeatable: hold Ctrl and press again)",
+              "label": "Resize toward the left by 8 (repeat: hold Ctrl, tap h)",
               "command": "resize-pane -L 8",
               "source": "tmux.conf:59"
             },
             {
-              "keys": "Ctrl+Space Ctrl+l",
-              "label": "Resize pane right by 8 (repeatable: hold Ctrl and press again)",
-              "command": "resize-pane -R 8",
-              "source": "tmux.conf:60"
-            },
-            {
-              "keys": "Ctrl+Space Ctrl+k",
-              "label": "Resize pane up by 8 (repeatable: hold Ctrl and press again)",
-              "command": "resize-pane -U 8",
-              "source": "tmux.conf:61"
-            },
-            {
               "keys": "Ctrl+Space Ctrl+j",
-              "label": "Resize pane down by 8 (repeatable: hold Ctrl and press again)",
+              "label": "Resize downward by 8 (repeatable)",
               "command": "resize-pane -D 8",
               "source": "tmux.conf:62"
             },
             {
+              "keys": "Ctrl+Space Ctrl+k",
+              "label": "Resize upward by 8 (repeatable)",
+              "command": "resize-pane -U 8",
+              "source": "tmux.conf:61"
+            },
+            {
+              "keys": "Ctrl+Space Ctrl+l",
+              "label": "Resize toward the right by 8 (repeatable)",
+              "command": "resize-pane -R 8",
+              "source": "tmux.conf:60"
+            }
+          ],
+          "description": "Split mnemonics draw the divider: | side-by-side, _ stacked. Jumps skip the prefix entirely (Alt + home row); resizes take the prefix plus Ctrl + home row and repeat while Ctrl is held."
+        },
+        {
+          "name": "Marks & joins",
+          "bindings": [
+            {
               "keys": "Ctrl+Space m",
-              "label": "Mark pane with prefix m (toggles mark), jump back to it with prefix `",
+              "label": "Toggle the mark on this pane (marked border turns red)",
               "command": "select-pane -m",
               "source": "tmux.conf:65"
             },
             {
               "keys": "Ctrl+Space `",
-              "label": "Jump to the marked pane",
+              "label": "Jump back to the marked pane",
               "command": "switch-client -t '{marked}'",
               "source": "tmux.conf:66"
             },
             {
               "keys": "Ctrl+Space j",
-              "label": "Horizontal",
+              "label": "Pick a window; pull one of its panes in beside this one",
               "command": "choose-tree -w 'join-pane -h -s \"%%\"'",
               "source": "tmux.conf:69"
             },
             {
               "keys": "Ctrl+Space J",
-              "label": "Vertical",
+              "label": "Pick a window; pull one of its panes in below this one",
               "command": "choose-tree -w 'join-pane -s \"%%\"'",
               "source": "tmux.conf:70"
+            }
+          ],
+          "description": "m + backtick is the two-keystroke round trip: mark where you are, wander off, backtick returns you. The join binds steal a pane from another window through a picker."
+        },
+        {
+          "name": "Popups & scratch",
+          "bindings": [
+            {
+              "keys": "Ctrl+Space g",
+              "label": "lazygit in a 90% popup, at the pane's cwd",
+              "command": "display-popup -d \"#{pane_current_path}\" -w90% -h90% -E lazygit",
+              "source": "tmux.conf:136"
             },
             {
               "keys": "Ctrl+Space h",
-              "label": "Open scratch notes",
+              "label": "Scratch notes: nvim ~/scratch/notes.md in a side split",
               "command": "split-window -h \"nvim ~/scratch/notes.md\"",
               "source": "tmux.conf:90"
-            },
-            {
-              "keys": "Ctrl+Space R",
-              "label": "Reload configuration",
-              "command": "source-file \"$HOME/.config/tmux/tmux.conf\" ; display 'Reloaded.'",
-              "source": "tmux.conf:93"
-            },
-            {
-              "keys": "Ctrl+Space g",
-              "label": "floating lazygit rooted at the pane's cwd",
-              "command": "display-popup -d \"#{pane_current_path}\" -w90% -h90% -E lazygit",
-              "source": "tmux.conf:136"
             }
-          ]
+          ],
+          "description": "Floating overlays rooted at the pane's working directory."
         },
         {
-          "name": "Custom · copy mode (vi)",
+          "name": "Copy mode (vi)",
           "bindings": [
             {
+              "keys": "Ctrl+Space P",
+              "label": "Paste the most recent buffer",
+              "command": "paste-buffer",
+              "source": "tmux.conf:49"
+            },
+            {
               "keys": "v",
-              "label": "Begin selection",
+              "label": "Copy mode: start the selection",
               "command": "send-keys -X begin-selection",
               "source": "tmux.conf:50"
             },
             {
               "keys": "y",
-              "label": "Copy selection and cancel",
+              "label": "Copy mode: yank the selection and leave",
               "command": "send-keys -X copy-selection-and-cancel",
               "source": "tmux.conf:51"
             },
             {
               "keys": "r",
-              "label": "Rectangle toggle",
+              "label": "Copy mode: toggle rectangular selection",
               "command": "send-keys -X rectangle-toggle",
               "source": "tmux.conf:52"
             }
-          ]
+          ],
+          "description": "Copy mode is vi keys (mode-keys vi). Selections land in the tmux buffer and, via OSC52, in the system clipboard - Ghostty asks once for permission."
         },
         {
           "name": "Stock · prefix (Ctrl+Space then key)",
@@ -4052,20 +4184,21 @@
       "id": "yazi",
       "title": "yazi",
       "tagline": "terminal file manager",
-      "description": "Custom keymap additions; yazi's stock bindings apply too.",
+      "description": "The keymap uses prepend_keymap, so this one addition merges over the stock bindings rather than replacing them - everything in the stock tables below still applies.",
       "icon": "▤",
       "guide": "yazi",
       "groups": [
         {
-          "name": "Custom · mgr prepend",
+          "name": "Custom · mgr additions",
           "bindings": [
             {
               "keys": "E",
-              "label": "Extract archive here",
+              "label": "Extract the hovered/selected archive in place",
               "command": "plugin extract-here",
               "source": "keymap.toml:7"
             }
-          ]
+          ],
+          "description": "One addition: archive extraction. yazi's builtin extract plugin is only reachable as a DDS remote, so a local plugin bridges hovered/selected files to it."
         },
         {
           "name": "Stock · navigation",
@@ -5422,109 +5555,93 @@
       "id": "zsh",
       "title": "zsh",
       "tagline": "shell (vi mode)",
-      "description": "Line-editing bindings on top of vi mode.",
+      "description": "bindkey -v with KEYTIMEOUT=1: Esc flips to NORMAL mode instantly, no 0.4s lag. atuin owns history (Ctrl+R, in both vi modes), fzf-tab owns completion menus, and every trick below is wired for BOTH modes - the table lists each once even where it is bound twice.",
       "icon": "❯",
       "guide": "shell-tricks",
       "groups": [
         {
-          "name": "vi insert & global",
-          "bindings": [
-            {
-              "keys": "Ctrl+Alt+Escape",
-              "label": "Prefix/swap sudo on the command line",
-              "command": "sudo-command-line",
-              "source": ".zshrc:177"
-            },
-            {
-              "keys": "Alt+Q",
-              "label": "Push line (recall on next prompt)",
-              "command": "push-line",
-              "source": ".zshrc:181"
-            },
-            {
-              "keys": "Ctrl+X B",
-              "label": "Copy buffer to clipboard",
-              "command": "copybuffer",
-              "source": ".zshrc:222"
-            },
-            {
-              "keys": "Ctrl+X P",
-              "label": "Copy path to clipboard",
-              "command": "copypath",
-              "source": ".zshrc:224"
-            },
-            {
-              "keys": "Tab",
-              "label": "Expand or complete",
-              "command": "expand-or-complete",
-              "source": ".zshrc:259"
-            },
-            {
-              "keys": "Shift+Tab",
-              "label": "Fzf tab complete (fzf)",
-              "command": "fzf-tab-complete",
-              "source": ".zshrc:261"
-            },
-            {
-              "keys": "Alt+F",
-              "label": "Forward word",
-              "command": "forward-word",
-              "source": ".zshrc:290"
-            },
-            {
-              "keys": "Ctrl+F",
-              "label": "Forward word",
-              "command": "forward-word",
-              "source": ".zshrc:296"
-            },
-            {
-              "keys": "Ctrl+E",
-              "label": "End of line",
-              "command": "end-of-line",
-              "source": ".zshrc:297"
-            }
-          ]
-        },
-        {
-          "name": "vi normal mode",
+          "name": "vi modes: history & editing",
           "bindings": [
             {
               "keys": "Ctrl+R",
-              "label": "Atuin search (atuin)",
+              "label": "atuin history search (works in BOTH vi modes)",
               "command": "atuin-search",
               "source": ".zshrc:124"
             },
             {
               "keys": "V",
-              "label": "Edit command line in $EDITOR",
+              "label": "NORMAL: edit the command line in $EDITOR, cursor preserved",
               "command": "edit-command-line",
               "source": ".zshrc:165"
-            },
+            }
+          ],
+          "description": "NORMAL mode extras: v escalates the command line to $EDITOR, / and Ctrl+R search atuin's synced history."
+        },
+        {
+          "name": "Line tricks",
+          "bindings": [
             {
               "keys": "Ctrl+Alt+Escape",
-              "label": "Prefix/swap sudo on the command line",
+              "label": "Esc Esc: toggle a sudo prefix (empty line: sudo-repeat the last command)",
               "command": "sudo-command-line",
-              "source": ".zshrc:178"
+              "source": ".zshrc:177"
             },
             {
               "keys": "Alt+Q",
-              "label": "Push line (recall on next prompt)",
+              "label": "Push-line: park the command, run something else, it pops back at the next prompt",
               "command": "push-line",
-              "source": ".zshrc:182"
+              "source": ".zshrc:181"
             },
             {
               "keys": "Ctrl+X B",
-              "label": "Copy buffer to clipboard",
+              "label": "Copy the command line to the clipboard",
               "command": "copybuffer",
-              "source": ".zshrc:223"
+              "source": ".zshrc:222"
             },
             {
               "keys": "Ctrl+X P",
-              "label": "Copy path to clipboard",
+              "label": "Copy $PWD to the clipboard",
               "command": "copypath",
-              "source": ".zshrc:225"
+              "source": ".zshrc:224"
             }
-          ]
+          ],
+          "description": "Ctrl+X is a two-step prefix for clipboard tricks; Esc Esc toggles sudo without retyping the line."
+        },
+        {
+          "name": "Completion & suggestions",
+          "bindings": [
+            {
+              "keys": "Tab",
+              "label": "Complete / expand (fzf-tab turns the menu into a fuzzy picker)",
+              "command": "expand-or-complete",
+              "source": ".zshrc:259"
+            },
+            {
+              "keys": "Shift+Tab",
+              "label": "fzf-tab: fuzzy-pick completions directly",
+              "command": "fzf-tab-complete",
+              "source": ".zshrc:261"
+            },
+            {
+              "keys": "Alt+F",
+              "label": "Accept one word of the ghost-text suggestion",
+              "command": "forward-word",
+              "source": ".zshrc:290"
+            },
+            {
+              "keys": "Ctrl+F",
+              "label": "Accept one suggestion word (home-row form of Alt+F)",
+              "command": "forward-word",
+              "source": ".zshrc:296"
+            },
+            {
+              "keys": "Ctrl+E",
+              "label": "Accept the whole suggestion (jump to end of line)",
+              "command": "end-of-line",
+              "source": ".zshrc:297"
+            }
+          ],
+          "description": "zsh-autosuggestions paints ghost text from history: Alt+F / Ctrl+F accept one word, Ctrl+E accepts it all, → accepts one character. Tab completes via fzf-tab, which renders the candidate menu as a fuzzy picker."
         }
       ]
     }

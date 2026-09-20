@@ -7,8 +7,10 @@ order: 2
 
 Source of truth: `/home/stefan/nixos_config/modules/home/niri.nix` →
 `~/.config/niri/config.kdl` (nix-managed - edit the module, rebuild, don't edit
-the file). In-app cheat sheet: `Mod+Shift+/` (hotkey overlay). `niri msg`
-introspects the running session.
+the file). Binds are declared **from scratch**, so niri's stock defaults do not
+exist here (no stock `Mod+Shift+/` hotkey overlay - this site is the cheat
+sheet). `niri msg` introspects the running session. The modifier rules behind
+these binds live in [the keyboard grammar](./keyboard-grammar.html).
 
 ## Mental model
 
@@ -27,7 +29,7 @@ around the column strip; moves do not.
 | `Mod+H` / `Mod+L` (or arrows) | focus column left/right, wraps at the edges |
 | `Mod+J` / `Mod+K` (or arrows) | focus window down/up inside the column |
 | `Mod+Shift+H/L/J/K` | move column / window |
-| `Mod+[` / `Mod+]` | focus previous/next **monitor** |
+| `Mod+[` / `Mod+]` | focus left/right: next column, or the previous/next monitor at the strip edge |
 | `Mod+Shift+[` / `Mod+Shift+]` | move column to previous/next monitor |
 | `Mod+U` / `Mod+I` | workspace down / up |
 | `Mod+Ctrl+U` / `Mod+Ctrl+I` | move column to workspace down / up |
@@ -86,4 +88,5 @@ off after 20 min (swayidle user unit).
 See also: the full bind tables on the niri app page
 ([../apps/niri.html](../apps/niri.html)) ·
 [screenshots & clipboard](./screenshots-clipboard.html) ·
-[maintenance](./maintenance.html).
+[maintenance](./maintenance.html) ·
+[the keyboard grammar](./keyboard-grammar.html).
