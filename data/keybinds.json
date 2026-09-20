@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-09-20T09:48:55.895Z",
-    "sourceCommit": "f51caa9",
+    "generatedAt": "2026-09-20T10:05:08.114Z",
+    "sourceCommit": "538e9da",
     "host": "box"
   },
   "apps": [
@@ -907,7 +907,7 @@
       "id": "qutebrowser",
       "title": "qutebrowser",
       "tagline": "keyboard-driven browser · daily driver",
-      "description": "Daily driver (Mod+Q in niri), Nord-themed, with Brave-ABP + StevenBlack host blocking and pass-store logins. Customs live behind the , leader so the stock vocabulary (J/K tabs, d close, f hints, H/L history, gg/G) is never clobbered - case is the binding. Rows marked ● are this config's.",
+      "description": "Daily driver (Mod+Q in niri), Nord-themed, with Brave-ABP + StevenBlack host blocking and pass-store logins. Customs live behind the , leader so the stock vocabulary (J/K tabs, d close, f hints, H/L history, gg/G) is never clobbered - case is the binding. Accent-bordered key chips are this config's.",
       "icon": "◍",
       "guide": "qutebrowser",
       "groups": [
@@ -2980,7 +2980,7 @@
       "title": "ghostty",
       "tagline": "terminal emulator",
       "icon": "▮",
-      "description": "ghostty is natively keybound; the one local addition (F11 fullscreen, marked ●) joins the stock vocabulary below. Select with the mouse, copy/paste with Ctrl+Shift+C/V, scroll the scrollback with Shift+PageUp/Down.",
+      "description": "ghostty is natively keybound; the one local addition (F11 fullscreen, accent-bordered) joins the stock vocabulary below. Select with the mouse, copy/paste with Ctrl+Shift+C/V, scroll the scrollback with Shift+PageUp/Down.",
       "groups": [
         {
           "name": "Clipboard & scrollback",
@@ -3341,7 +3341,7 @@
       "id": "tmux",
       "title": "tmux",
       "tagline": "terminal multiplexer - prefix is Ctrl+Space",
-      "description": "The prefix is Ctrl+Space (stock C-b is unbound); under keyd that's the Caps Lock hold plus Space - one home-row reach. After the prefix: one key; Alt+H/J/K/L jump panes with no prefix at all. Rows marked ● are this config's, unmarked rows are the tmux 3.7c defaults it diverges from. Sessions persist across reboots: resurrect saves on prefix Ctrl+S and restores on prefix Ctrl+R (plugin defaults), continuum auto-saves.",
+      "description": "The prefix is Ctrl+Space (stock C-b is unbound); under keyd that's the Caps Lock hold plus Space - one home-row reach. After the prefix: one key; Alt+H/J/K/L jump panes with no prefix at all. Binds with an accent border on their key chips are this config's; plain chips are the tmux 3.7c defaults they diverge from. Sessions persist across reboots: resurrect saves on prefix Ctrl+S and restores on prefix Ctrl+R (plugin defaults), continuum auto-saves.",
       "icon": "⊞",
       "groups": [
         {

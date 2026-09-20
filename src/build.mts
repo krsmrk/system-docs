@@ -368,12 +368,8 @@ function renderRow(b: Binding): string {
       ? `\n      <td class="kb-source" title="${esc(b.source)}">∴</td>`
       : "";
   const cmdAttr = b.command !== undefined ? ` data-cmd="${esc(b.command.toLowerCase())}"` : "";
-  const mark =
-    b.custom === true
-      ? `<span class="custom-mark" title="custom — bound in this config">●</span>`
-      : "";
   return `    <tr class="kb-row${b.custom === true ? " custom" : ""}" data-keys="${esc(b.keys)}"${cmdAttr}>
-      <td class="kb-keys">${mark}${kbdChips(b.keys)}</td>
+      <td class="kb-keys">${kbdChips(b.keys)}</td>
       <td class="kb-label">${esc(b.label)}</td>
       <td class="kb-command">${b.command !== undefined ? `<code>${esc(b.command)}</code>` : ""}</td>${sourceCell}
     </tr>`;
@@ -392,7 +388,7 @@ function renderAppBody(app: App, guideBySlug: ReadonlyMap<string, GuideDoc>): st
       ? "All binds on this page are custom - bound in this config."
       : customCount === 0
         ? "All binds on this page are stock defaults; none are customized."
-        : '<span class="custom-mark">●</span> custom — bound in this config · plain rows are stock defaults';
+        : "accent-bordered key chips = custom (this config) · plain chips = stock default";
 
   const header = `<div class="app-header">
   <h1><span class="app-icon" aria-hidden="true">${appIcon(app)}</span> ${esc(app.title)}</h1>

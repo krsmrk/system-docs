@@ -52,7 +52,8 @@ Nord theme. Hosted on GitHub Pages (`krsmrk.github.io/system-docs`).
 
 There is NO custom/stock separation in group names - sections are purely
 thematic. Origin is a row-level fact: binds parsed from the live config
-carry `"custom": true` and render with a ● marker; curated stock rows are
+carry `"custom": true` and render with an accent border on their key chips;
+curated stock rows are plain-bordered;
 unmarked. App pages show an origin legend under the description.
 
 ### Key normalization contract
@@ -121,7 +122,7 @@ multi-key sequences anyway. Only `<tag>` keys are normalized
     <p class="group-desc">Optional crafted prose under the heading.</p>
     <table class="kb-table"><tbody>
       <tr class="kb-row custom" data-keys="Mod+H">  <!-- .custom = bound in this config -->
-      <td class="kb-keys"><span class="custom-mark" title="custom — bound in this config">●</span><kbd><span class="mod">Mod</span>+<span class="key">H</span></kbd></td>
+      <td class="kb-keys"><kbd><span class="mod">Mod</span>+<span class="key">H</span></kbd></td>   <!-- .custom rows: kbd border = accent -->
       <td class="kb-label">Focus column left (wraps)</td>
       <td class="kb-command"><code>focus-column-left-or-last</code></td>
       </tr>
@@ -140,7 +141,7 @@ multi-key sequences anyway. Only `<tag>` keys are normalized
   `#g-0..n`; `h3` shows `.group-count`; rows carry `data-cmd` (lowercased
   command) for command search; app headers show icon + `.chip-link` guide chip;
   `.origin-legend` under the description states the page's custom/stock mix
-  (binds bound in this config carry the `.custom-mark` ●, stock rows are plain).
+  (custom rows' kbd chips get an accent border; stock rows stay plain).
 - All pages share one sticky header: site title "box manual", nav
   links (Overview, Guides; active one gets `aria-current="page"`), Nord theme
   toggle (dark/light, persists localStorage, default dark, respects
