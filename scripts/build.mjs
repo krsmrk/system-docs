@@ -4,19 +4,24 @@
 //
 // 1. bundle src/widgets/main.ts   → dist/assets/app.js   (browser, iife)
 // 2. bundle src/build.mts         → build-cache/build.mjs (node, esm)
-// 3. run it                        → writes dist/*.html
-// 4. copy src/styles/nord.css      → dist/assets/app.css
+// 3. run it                        → writes dist/*.html + assets/bindings.json
+// 4. copy src/styles/nord.css      → dist/assets/app.css, favicon, fonts
+//
+// The dev server mirrors GitHub Pages: the site lives under /system-docs/
+// (the bare prefix redirects there) and any missing path gets 404.html with
+// a real 404 status, so the not-found page can be checked locally.
 
 import { build } from "esbuild";
 import { spawnSync } from "node:child_process";
 import { createServer } from "node:http";
-import { copyFile, mkdir, mkdtemp, readFile, rm } from "node:fs/promises";
+import { copyFile, mkdir, readFile, rm } from "node:fs/promises";
 import { extname, join, resolve } from "node:path";
 
 const root = resolve(new URL("..", import.meta.url).pathname);
 const dist = join(root, "dist");
 const cache = join(root, "build-cache");
 const serve = process.argv.includes("--serve");
+const PAGES_BASE = "/system-docs/";
 
 const MIME = {
   ".html": "text/html; charset=utf-8",
@@ -27,6 +32,7 @@ const MIME = {
   ".png": "image/png",
   ".ico": "image/x-icon",
   ".map": "application/json",
+  ".woff2": "font/woff2",
 };
 
 await rm(dist, { recursive: true, force: true });
@@ -60,7 +66,7 @@ const run = spawnSync(process.execPath, [join(cache, "build.mjs")], {
 });
 if (run.status !== 0) process.exit(run.status ?? 1);
 
-// 4. stylesheet + favicon
+// 4. stylesheet + favicon + fonts
 await copyFile(join(root, "src/styles/nord.css"), join(dist, "assets/app.css"));
 await copyFile(join(root, "src/assets/favicon.svg"), join(dist, "assets/favicon.svg"));
 await mkdir(join(dist, "assets/fonts"), { recursive: true });
@@ -71,18 +77,34 @@ for (const f of ["roboto-condensed-latin-wght-normal.woff2", "jetbrains-mono-lat
 console.log("✓ built dist/");
 
 if (serve) {
-  const server = createServer(async (req, res) => {
+  const notFound = async (res) => {
     try {
-      const url = new URL(req.url ?? "/", "http://x");
-      let path = join(dist, decodeURIComponent(url.pathname));
-      if (url.pathname.endsWith("/")) path = join(path, "index.html");
-      const body = await readFile(path);
-      res.writeHead(200, { "content-type": MIME[extname(path)] ?? "application/octet-stream" });
+      const body = await readFile(join(dist, "404.html"));
+      res.writeHead(404, { "content-type": MIME[".html"] });
       res.end(body);
     } catch {
       res.writeHead(404, { "content-type": "text/plain" });
       res.end("404");
     }
+  };
+  const server = createServer(async (req, res) => {
+    const url = new URL(req.url ?? "/", "http://x");
+    if (!url.pathname.startsWith(PAGES_BASE)) {
+      res.writeHead(302, { location: PAGES_BASE });
+      res.end();
+      return;
+    }
+    let path = join(dist, decodeURIComponent(url.pathname.slice(PAGES_BASE.length)));
+    if (url.pathname.endsWith("/")) path = join(path, "index.html");
+    try {
+      const body = await readFile(path);
+      res.writeHead(200, { "content-type": MIME[extname(path)] ?? "application/octet-stream" });
+      res.end(body);
+    } catch {
+      await notFound(res);
+    }
   });
-  server.listen(4321, () => console.log("→ http://localhost:4321  (Ctrl+C to stop; re-run to rebuild)"));
+  server.listen(4321, () =>
+    console.log(`→ http://localhost:4321${PAGES_BASE}  (Ctrl+C to stop; re-run to rebuild)`),
+  );
 }

@@ -20,7 +20,7 @@ const SYNONYMS: Record<string, string[]> = {
   shot: ["screenshot", "capture"],
   screenshot: ["capture"],
   files: ["file"],
-  browser: ["firefox"],
+  browser: ["qutebrowser", "firefox"],
   launcher: ["fuzzel", "dmenu"],
   terminal: ["ghostty"],
   music: ["playerctl", "player"],

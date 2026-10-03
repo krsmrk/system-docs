@@ -3,9 +3,10 @@ title: NixOS maintenance
 slug: maintenance
 summary: switch, update, rollback - the daily driver commands.
 order: 1
+verified: 0bd451a
 ---
 
-Everything lives in the flake at `/home/stefan/nixos_config`. `just` runs from
+Everything lives in the flake at `~/nixos_config`. `just` runs from
 anywhere (`j` / `j --list` are aliased in zsh).
 
 ## justfile recipes (`~/nixos_config/justfile`)
@@ -26,7 +27,7 @@ anywhere (`j` / `j --list` are aliased in zsh).
 
 Bare `nh os switch` also works from any directory (`NH_FLAKE` is set system-wide),
 same for `nh os build`, `nh os test`, `nh os rollback`. The classic spelling is
-`sudo nixos-rebuild switch --flake /home/stefan/nixos_config#box` - that is exactly
+`sudo nixos-rebuild switch --flake ~/nixos_config#box` - that is exactly
 what the sysmenu rebuild entry runs.
 
 **Flakes only see git-tracked files** - `git add` new/renamed files *before* rebuilding.

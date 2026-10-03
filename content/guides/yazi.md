@@ -2,7 +2,9 @@
 title: yazi: terminal file manager
 slug: yazi
 summary: vim-key file manager with Nord flavor, rich previews, and one custom key.
-order: 4
+order: 7
+app: yazi
+verified: 0bd451a
 ---
 
 ## Launching
@@ -72,9 +74,30 @@ mediainfo (audio/subtitles), lsar (rar), allmytoes (XDG thumbnails), mime-ext
 (extension fallback). PDF/HEIC/SVG/fonts preview via yazi's built-ins.
 
 Opening files (`Enter` / `o`) routes by mime: documents → **zathura** (pdf, epub,
-cbz/cbr, djvu), images → loupe, media → mpv. The same defaults are set
+cbz/cbr), images → loupe, media → mpv. The same defaults are set
 system-wide via `xdg.mimeApps` (`modules/home/zathura.nix`), so `xdg-open` and
 yazi agree.
+
+## zathura: the document viewer
+
+Everything document-like that yazi (or `xdg-open`) opens lands in **zathura**,
+the vi-style viewer: one mupdf-backed package covers PDF, EPUB, CBZ/CBR, DjVu
+and PS. Colors come from the shared Nord palette (`modules/home/zathura.nix`),
+and the same module registers zathura as the system default for pdf, epub,
+cbz and cbr.
+
+| keys | action |
+|---|---|
+| `j` / `k` | scroll the view · `J` / `K` flip pages |
+| `h` / `l` | scroll sideways · `H` / `L` jump to the page edges |
+| `gg` / `G` | first / last page · `<n>G` goes to page n |
+| `/` | search, `n` / `N` next / previous hit |
+| `Tab` | the document index (table of contents) |
+| `r` | rotate · `a` / `s` fit page / fit width |
+| `:` | command line (`:open`, `:print`, `:set`) |
+
+Case is the grammar, as in yazi. The full stock reference is the
+[zathura app page](../apps/zathura.html).
 
 See also: [shell-tricks](./shell-tricks.html) for the `y` wrapper and shell
 aliases · [screenshots-clipboard](./screenshots-clipboard.html).

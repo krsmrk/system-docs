@@ -2,7 +2,9 @@
 title: Screenshots & clipboard
 slug: screenshots-clipboard
 summary: two screenshot families, and a clipboard history that only records when you say so.
-order: 3
+order: 4
+app: niri
+verified: 0bd451a
 ---
 
 ## Screenshots
@@ -27,7 +29,7 @@ history is just the directory listing sorted by name).
 ## Clipboard: opt-in recording
 
 Nothing watches your clipboard by default - copied passwords are never silently
-archived (this was the security-review fix). The stack is `cliphist` (store),
+archived. The stack is `cliphist` (store),
 `wl-clip-persist` (keeps the *live* clipboard alive when the source app exits),
 and `cliprec` (the opt-in recorder).
 
@@ -52,7 +54,8 @@ History never outlives the moment it was needed. It is wiped:
 
 - at **session start** (`cliphist wipe` in niri's autostart),
 - on **lock** - every lock path goes through the `lock` script
-  (`swaylock -f` + `cliphist wipe`): `Ctrl+Alt+L`, `Mod+Escape`, the session
+  (`swaylock -f`, `cliphist wipe`, and `wl-copy --clear` for the live
+  clipboard and primary selection): `Ctrl+Alt+L`, `Mod+Escape`, the session
   menu, swayidle's 15-min timeout, and suspend (before-sleep event).
 
 So `Mod+Shift+V` after unlocking shows an empty history. The raw archive lives in
@@ -72,8 +75,10 @@ swaync, so they land in the control-center history too (`Mod+Shift+N`).
 ## Lock interplay
 
 Because `lock` wipes the archive, the flow is: arm recording (`Mod+Ctrl+V`) →
-copy what you need → `Mod+Shift+V` recall. Walk away / lock, and it's gone;that is the point. The live clipboard still persists across app exits
-(wl-clip-persist), it's just not archived.
+copy what you need → `Mod+Shift+V` recall. Walk away or lock, and it is gone - that is the point. Locking also clears the
+live clipboard and primary selection, so nothing copied before a lock survives
+it. While you are logged in, wl-clip-persist keeps the live clipboard alive
+across app exits; it is just not archived.
 
 See also: the niri app page for the bind table
 ([../apps/niri.html](../apps/niri.html)) · [troubleshooting](./troubleshooting.html)

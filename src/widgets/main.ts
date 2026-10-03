@@ -3,6 +3,7 @@
 
 import { initFilter } from "./filter";
 import { initKeyboard } from "./keyboard";
+import { initSearch } from "./search";
 import { initTheme } from "./theme";
 
 initTheme();
@@ -10,6 +11,9 @@ initTheme();
 if (document.body.dataset.page === "app") {
   initFilter();
   initKeyboard();
+}
+if (document.body.dataset.page === "index") {
+  initSearch();
 }
 
 // nav active state (aria-current): app pages live under "Overview"

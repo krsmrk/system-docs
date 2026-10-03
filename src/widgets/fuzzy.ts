@@ -78,8 +78,3 @@ export function fuzzyMatch(needle: string, haystack: string): FuzzyHit | null {
   score -= (h.length - n.length) * 0.02; // shorter targets slightly preferred
   return { ...hit, score };
 }
-
-/** Compat wrapper (SPEC signature): rank score or null. */
-export function fuzzyScore(needle: string, haystack: string): number | null {
-  return fuzzyMatch(needle, haystack)?.score ?? null;
-}

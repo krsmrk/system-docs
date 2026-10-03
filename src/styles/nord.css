@@ -313,7 +313,19 @@ kbd .key { color: var(--fg-bright); }
 .kb-plus { color: var(--fg-dim); }
 .kb-seq { color: var(--fg-dim); } /* space between chord steps (zsh ^X b) */
 .kb-command code { font-size: 0.82rem; color: var(--fg-dim); }
-.kb-source { width: 1%; text-align: right; font-size: 0.75rem; color: var(--fg-dim); }
+.kb-source {
+  width: 1%;
+  text-align: right;
+  font-size: 0.72rem;
+  color: var(--fg-dim);
+  white-space: nowrap;
+  font-family: "Iosevka Skiouros", "JetBrains Mono Opt", ui-monospace, Menlo, monospace;
+}
+.kb-source a { color: var(--fg-dim); text-decoration: underline dotted; text-underline-offset: 2px; }
+.kb-source a:hover { color: var(--link); }
+/* row anchors: #k-… links from guides and the landing-page lookup */
+.kb-row { scroll-margin-top: 7.5rem; }
+.kb-row:target td { background: var(--mark); }
 
 /* ---------- keyboard widget ---------- */
 .kb-keyboard { margin: 1.25rem 0 2rem; }
@@ -570,6 +582,9 @@ mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1
 
 /* narrow screens: keyboard gets smaller */
 @media (max-width: 760px) {
+  .kb-source { display: none; }
+  .sr { grid-template-columns: 1fr; gap: 0.25rem; }
+  .guide-list .g-date { display: none; }
   .kb-keyboard { overflow-x: auto; }
   .kb-board { min-width: 620px; }
   .kb-key { font-size: 0.68rem; padding: 0.15rem 0.25rem; }
@@ -594,10 +609,57 @@ mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1
     --teal: #3f7f7b;
   }
   .site-header nav, .site-header button, .skip-link,
-  .filter-bar, .kb-toc, .kb-keyboard, .site-footer .to-top {
+  .filter-bar, .kb-toc, .kb-keyboard, .site-footer .to-top,
+  .site-search, .sr-list, .kb-source {
     display: none !important;
   }
   .site-header { position: static; }
   td, tr, section { break-inside: avoid; }
   main { max-width: none; }
 }
+
+/* ---------- landing page: cross-app key lookup ---------- */
+.site-search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1.25rem;
+}
+.site-search .kb-search {
+  flex: 1;
+  max-width: 40rem;
+  padding: 0.6rem 0.85rem;
+  font-size: 1.02rem;
+  background: var(--bg-panel);
+  color: var(--fg-bright);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+}
+.site-search .kb-search:focus { border-color: var(--accent); box-shadow: 0 0 0 2px var(--mark); }
+.sr-list { display: grid; gap: 0.35rem; margin: 0 0 2rem; }
+.sr {
+  display: grid;
+  grid-template-columns: 6.5rem auto 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.4rem 0.7rem;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--fg);
+}
+.sr:hover, .sr:focus { border-color: var(--accent); text-decoration: none; }
+.sr-app { color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.sr-keys { white-space: nowrap; }
+.sr-label { font-size: 0.95rem; }
+.sr-label code { font-size: 0.78rem; color: var(--fg-dim); margin-left: 0.5rem; }
+.sr-note { color: var(--fg-dim); font-size: 0.85rem; margin: 0.15rem 0 0.35rem; }
+.sr-empty { color: var(--fg-dim); padding: 0.75rem; margin: 0; }
+
+/* guides: checked key references + provenance line */
+a.kb-ref { text-decoration: none; color: inherit; }
+a.kb-ref code { border-bottom: 1px dotted var(--accent); }
+a.kb-ref:hover code { background: var(--mark); }
+.guide-meta { color: var(--fg-dim); font-size: 0.85rem; margin: -0.35rem 0 1.25rem; }
+.guide-list .g-date { margin-left: auto; color: var(--fg-dim); font-size: 0.78rem; white-space: nowrap; }

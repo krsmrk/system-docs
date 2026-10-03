@@ -2,7 +2,9 @@
 title: Troubleshooting
 slug: troubleshooting
 summary: symptom → command → what to check next, for the failures that actually happen.
-order: 7
+order: 12
+ignore-keys: Ctrl+Alt+F2
+verified: 0bd451a
 ---
 
 Every lock/session component here is a systemd **user** unit; system stuff is
@@ -26,7 +28,8 @@ rollback (below) or rebuild headlessly.
 
 ## Locked out / lock screen oddities
 
-All lock paths run the `lock` script (`swaylock -f` + `cliphist wipe`):
+All lock paths run the `lock` script (`swaylock -f`, `cliphist wipe`, and a
+`wl-copy --clear` of the live clipboard):
 `Ctrl+Alt+L`, `Mod+Escape`, session menu, 15-min idle timeout, before-sleep.
 
 | symptom | check |
@@ -58,11 +61,27 @@ portal; portals come up with `graphical-session.target`.
   validates the passphrase and caches the key via AddKeysToAgent. `ssh-add -l`
   lists loaded keys. `gcr-ssh-agent` is deliberately off - don't re-enable it.
 - **gpg**: `gpg-agent` + `pass` (common.nix).
-- **gnome-keyring**: enabled by the niri system module for session secrets.
+- **gnome-keyring**: started at login by PAM (it comes with the GNOME module)
+  and owns the session secret service.
+
+The how-to for all of this is [SSH, secrets and agents](./ssh-secrets.html).
 
 Symptom "ssh prompts forever": the fuzzel askpass only validates keys in
 `~/.ssh/id_*`; keys referenced via `IdentityFile` elsewhere fall back to a
 generic prompt.
+
+## Bar or notifications gone
+
+waybar, swaync and swayosd are supervised systemd **user** units, so a crash
+restarts them; if one is stuck, restart it yourself:
+
+```bash
+systemctl --user restart waybar.service
+systemctl --user restart swaync.service
+systemctl --user status swayosd.service
+```
+
+What each module and toast means is in [bar and notifications](./bar-notifications.html).
 
 ## Audio
 

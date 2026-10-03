@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # guide pages show their last git commit date
 
       - uses: actions/setup-node@v5
         with:
@@ -28,6 +30,7 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run build
+      - run: npm run check:links
 
       - uses: actions/configure-pages@v5
 

@@ -3,6 +3,8 @@ title: The keyboard grammar
 slug: keyboard-grammar
 summary: keyd, vi home row, and the modifier rules that make every app predictable.
 order: 0
+app: keyd
+verified: 0bd451a
 ---
 
 The binds on this site are not ninety unrelated facts. They are one small
@@ -81,8 +83,8 @@ Patterns worth internalizing:
 
 Some non-bindings are load-bearing:
 
-- **Mod+S in niri is free** (freed in commit 138da3c) - do not rebind it
-  without checking with Stefan first.
+- **Mod+S in niri is free** on purpose - leave it unbound unless you are
+  redesigning the layer.
 - **niri declares binds from scratch**: stock assignments like Mod+Q =
   close-window do not exist; close is Mod+X.
 - **qutebrowser stock M/m** (bookmark-add, quickmark-save) stay untouched by

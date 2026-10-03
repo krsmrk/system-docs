@@ -3,9 +3,11 @@ title: niri workflows
 slug: niri-workflows
 summary: columns, workspaces, and the launcher menus that drive box.
 order: 2
+app: niri
+verified: 0bd451a
 ---
 
-Source of truth: `/home/stefan/nixos_config/modules/home/niri.nix` →
+Source of truth: `~/nixos_config/modules/home/niri.nix` →
 `~/.config/niri/config.kdl` (nix-managed - edit the module, rebuild, don't edit
 the file). Binds are declared **from scratch**, so niri's stock defaults do not
 exist here (no stock `Mod+Shift+/` hotkey overlay - this site is the cheat
@@ -57,7 +59,7 @@ around the column strip; moves do not.
 ## Launchers & fold-out menus
 
 `Mod+D` opens **fuzzel** (app launcher). The fold-outs are fuzzel dmenu loops,
-sources in `/home/stefan/nixos_config/hosts/box/scripts/`:
+sources in `~/nixos_config/hosts/box/scripts/`:
 
 | keys | menu | covers |
 |---|---|---|
@@ -88,5 +90,6 @@ off after 20 min (swayidle user unit).
 See also: the full bind tables on the niri app page
 ([../apps/niri.html](../apps/niri.html)) ·
 [screenshots & clipboard](./screenshots-clipboard.html) ·
+[bar & notifications](./bar-notifications.html) ·
 [maintenance](./maintenance.html) ·
 [the keyboard grammar](./keyboard-grammar.html).

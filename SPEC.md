@@ -2,14 +2,19 @@
 
 Web-based documentation for Stefan's NixOS system ("box"). Fully custom static
 site: **keybindings generated from live config** + hand-written usage guides.
-Nord theme. Hosted on GitHub Pages (`krsmrk.github.io/system-docs`).
+Nord theme. Hosted on GitHub Pages (`krsmrk.github.io/system-docs`), and the
+qutebrowser start page, so the landing page doubles as a lookup tool.
+
+One manual is shared by all hosts: the keybind data comes from whichever host
+runs `just update-docs` (`meta.host`), the guides describe the shared config.
 
 ## Tech
 
 - TypeScript + esbuild + markdown-it. No other runtime deps. No framework.
 - Build: `npm run build` → `dist/` (pure static HTML/CSS/JS).
 - Pages: `dist/index.html`, `dist/apps/<id>.html`, `dist/guides/<slug>.html`,
-  `dist/assets/app.css`, `dist/assets/app.js` (one bundle, auto-inits per page).
+  `dist/404.html`, `dist/assets/app.css`, `dist/assets/app.js` (one bundle,
+  auto-inits per page), `dist/assets/bindings.json` (compact search index).
 - Progressive enhancement: pages are complete HTML without JS; widgets only
   enhance existing DOM.
 
@@ -66,8 +71,11 @@ chord steps separated by `<span class="kb-seq"> </span>`.
   (`Return`, `Left`, `BracketLeft`, `Print`, `Minus`, `Escape`, `Space`,
   `Tab`, `XF86AudioRaiseVolume`).
 - Joined with `+`, no spaces: `Mod+Shift+BracketLeft`.
-- zsh: `^R` → `Ctrl+R`; `^[f` (Meta) → `Alt+F`; `^[^[` → `Ctrl+Alt+Escape`;
-  `^Xb` → `Ctrl+X B` (two-step: keep space-separated tail; still normalized mods).
+- zsh: `^R` → `Ctrl+R`; `^[f` (Meta) → `Alt+f`; `^[^[` → `Ctrl+Alt+Escape`;
+  `^Xb` → `Ctrl+X b` (two-step: keep space-separated tail; still normalized mods).
+- Character-keyed apps (zsh, tmux) keep letter case: vicmd `v` is not `V`,
+  `Alt+q` (`^[q`) is not `Alt+Q`. Only Ctrl combos uppercase, because control
+  characters are caseless (`^r` = `^R`). niri/XKB-style apps uppercase letters.
 - Pointer/wheel pseudo-keys: `Mouse Left Click`, `Mouse Right Click`,
   `Mouse Down`, `Mouse Drag`, `Mouse Up`, `Mouse Double Click`,
   `Mouse Triple Click`, `Scroll Up`, `Scroll Down`, `Wheel Up`,
@@ -89,8 +97,9 @@ what Ctrl/Esc physically are; parsed from `~/.config/keyd/default.conf`),
 `waybar` (click/scroll, module file), `qutebrowser` (custom binds parsed
 from `modules/home/qutebrowser.nix` keyBindings — NOT the generated
 config.py, which goes stale between a change and the next switch),
-`yazi` (custom keymap), `zsh` (vi-mode bindkeys), `tmux` (config + stock
-tables).
+`yazi` (custom keymap), `zsh` (vi-mode bindkeys; the fzf / fzf-git.sh
+integration binds ride a curated `zsh.json` overlay as stock rows), `tmux`
+(config + stock tables).
 Curated stock defaults (files in `nixos_config/scripts/extract/curated/*.json`,
 merged by the extractor) - thematically grouped with prose descriptions,
 verified against authoritative sources:
@@ -121,22 +130,32 @@ multi-key sequences anyway. Only `<tag>` keys are normalized
     <h3>Focus & movement <span class="group-count">19</span></h3>
     <p class="group-desc">Optional crafted prose under the heading.</p>
     <table class="kb-table"><tbody>
-      <tr class="kb-row custom" data-keys="Mod+H">  <!-- .custom = bound in this config -->
+      <tr class="kb-row custom" id="k-mod-h" data-keys="Mod+H">  <!-- .custom = bound in this config -->
       <td class="kb-keys"><kbd><span class="mod">Mod</span>+<span class="key">H</span></kbd></td>   <!-- .custom rows: kbd border = accent -->
       <td class="kb-label">Focus column left (wraps)</td>
       <td class="kb-command"><code>focus-column-left-or-last</code></td>
+      <td class="kb-source"><span title="…">config.kdl:158</span></td>  <!-- repo paths link to the GitHub blob @ sourceCommit -->
       </tr>
     </tbody></table>
   </section>
   <script type="application/json" id="app-data"> { ...this app object... } </script>
 ```
 
+- Row anchors: every `.kb-row` carries `id="k-<keys slug>"` (first
+  occurrence of a keys string wins the bare id, repeats get `-2`, `-3`…), so
+  guides and the landing-page lookup can deep-link a bind; `:target` rows are
+  highlighted. `.kb-source` shows `file:line` as text; sources under
+  `modules/`, `hosts/`, `scripts/`… link to the GitHub blob at
+  `meta.sourceCommit`, generated/yadm files get a title hint. Hidden ≤760px.
 - Landing page: `body[data-page="index"]`, hero with site stats
-  (`.hero-stats`: bindings/apps/guides/generated-date chips), grid of
-  `.app-card` elements (icon, title, tagline, counts), plus a guide
-  list. No widgets required on index (pure CSS grid).
+  (`.hero-stats`: bindings/apps/guides/data-date chips), `.site-search` with
+  `input.kb-search` + `.sr-list` (search widget mounts here), grid of
+  `.app-card` elements (icon, title, tagline, count + custom/stock split),
+  plus a guide list with per-guide `.g-date`.
 - Guide pages: `body[data-page="guide"]`, `<article>` + `<nav class="toc">`
-  built from h2/h3 headings at build time.
+  built from h2/h3 headings at build time; `.guide-meta` under the h1 shows
+  the last git commit date, the reviewed-against commit and the related app;
+  checked key references render as `<a class="kb-ref" href="../apps/<id>.html#k-…"><code>…</code></a>`.
 - App-page extras (round-2): `.kb-toc` chip row links to section ids
   `#g-0..n`; `h3` shows `.group-count`; rows carry `data-cmd` (lowercased
   command) for command search; app headers show icon + `.chip-link` guide chip;
@@ -145,16 +164,22 @@ multi-key sequences anyway. Only `<tag>` keys are normalized
 - All pages share one sticky header: site title "box manual", nav
   links (Overview, Guides; active one gets `aria-current="page"`), Nord theme
   toggle (dark/light, persists localStorage, default dark, respects
-  prefers-color-scheme); skip-link; footer has ↑ top link (JS smooth-scroll;
+  prefers-color-scheme; an inline `<script>` in `<head>` applies the stored
+  or OS theme before the stylesheet loads, so there is no dark flash);
+  skip-link; footer has ↑ top link (JS smooth-scroll;
   the bare `#top` anchor is a silent no-op on a second click once the hash
   is already set, so main.ts intercepts it). `@media print`
   forces a light ink-saving palette and hides interactive chrome.
+- `404.html` is served by GitHub Pages at ANY missing URL, so it is the one
+  page built with the absolute Pages base (`/system-docs/…`) instead of a
+  relative `rel`; `scripts/check-links.mjs` enforces that split.
 
 ## Themes & assets
 
-Fonts are bundled woff2 (Roboto Condensed + JetBrains Mono variable, latin subsets,
-from @fontsource-variable/*) with local "Iosevka Skiouros" preferred for
-mono when installed. App icons are consistent inline SVG (24px stroke,
+Fonts are vendored woff2 in `src/assets/fonts/` (Roboto Condensed + JetBrains
+Mono variable, latin subsets, originally from @fontsource-variable/* - no npm
+package involved) with local "Iosevka Skiouros" preferred for mono when
+installed. App icons are consistent inline SVG (24px stroke,
 currentColor) defined in build.mts, with the data `icon` glyph as fallback.
 
 ## Widgets (src/widgets/, bundled to assets/app.js)
@@ -180,6 +205,13 @@ currentColor) defined in build.mts, with the data `icon` glyph as fallback.
    Skip pointer pseudo-keys (Mouse/Scroll) in the keyboard.
 3. **theme.ts** - dark/light toggle, localStorage `sd-theme`, sets
    `data-theme` on <html>. Auto-init everywhere.
+4. **search.ts** - on `body[data-page="index"]`: cross-app lookup over
+   `assets/bindings.json` (fetched on first focus/keystroke). A query that
+   parses as a chord (`ctrl+r`, `Mod+Shift+N`, `Scroll Up`) lists exact key
+   matches ordered by layer (keyd → niri → waybar → tmux → zsh → the app),
+   i.e. in the order the layers see the key; any other query is ranked fuzzy
+   search over keys+label+command+app+group. Results link to `apps/<id>.html#k-…`.
+   `/` focuses, Esc clears, Enter opens the first hit, `?q=` round-trips.
 
 ## Markdown guides (content/guides/*.md)
 
@@ -190,10 +222,35 @@ title: NixOS maintenance
 slug: maintenance
 summary: One line for the index card.
 order: 1
+app: niri                 # optional: related app id; key refs resolve here first
+verified: bbf9656         # optional: nixos_config commit the prose was reviewed against
+ignore-keys: Ctrl+Alt+F2  # optional: chords exempt from the key check (not binds)
 ---
 ```
-Build renders markdown-it (GFM-ish: tables, fenced code) + TOC sidebar.
-Code blocks get class `language-x` + copy button? Simple: no copy button.
+Build renders markdown-it (GFM-ish: tables, fenced code) + TOC sidebar. Each
+guide page shows its last git commit date (CI checks out full history for
+this), the `verified` commit and the related app. No copy buttons.
+
+### Guide reference checks (build-time, hard failures)
+
+Guides are prose, so nothing stops them drifting from the config. The build
+therefore treats them like the manual layer treats binds:
+
+- every `app:` on a guide and every `guide:` on an app must exist;
+- every code span that looks like a chord (`Mod+H`, `Ctrl+Space c`,
+  `Scroll Up`; shorthand like `Mod+H/L` or `Mod+1…9` is skipped) must be a
+  bind in `data/keybinds.json`. Spellings are normalized the way the data is
+  (`Mod+[` → `Mod+BracketLeft`, `Alt+c` ↔ `Alt+C` case fallback, raw
+  spelling for tmux punctuation). A unique hit is rendered as a link to the
+  row; a miss fails the build unless the chord is listed under `ignore-keys:`;
+- every nixos_config path in a code span or GitHub blob link
+  (`modules/…`, `hosts/…`, `scripts/…`, `templates/…`, `home/…`, `lib/…`,
+  `flake.nix`, `justfile`, `README.md`) must exist in the local checkout
+  (`$NIXOS_CONFIG`, default `~/nixos_config`). Without a checkout - CI, the
+  repo is private - this check is skipped with a notice.
+
+`scripts/check-links.mjs` (`npm run check:links`, also in CI) then verifies
+every internal href/anchor of the built site.
 
 ## Style (src/styles/nord.css)
 
@@ -216,34 +273,46 @@ highlight. kbd chips: nord2 bg, rounded, mono font. Font stack: system-ui +
 ## Build pipeline (src/build.mts)
 
 1. Read `data/keybinds.json` (validate shape; hard-fail on missing keys/label).
-2. Render index.html (app cards sorted: niri, waybar, yazi, zsh, zathura,
-   fuzzel; each card: icon, title, tagline, binding count, first 3 modifiers;
-   footer: generatedAt + sourceCommit).
-3. Render apps/<id>.html per DOM contract above.
-4. Render guides/*.md → guides/<slug>.html + collect index section.
-5. Copy/bundle assets: app.css from src/styles/nord.css; app.js = esbuild
-   bundle of src/widgets/main.ts (imports filter, keyboard, theme; each
-   auto-inits by body[data-page]).
+2. Load guides, cross-check app↔guide links, key references and repo paths
+   (section above) - any problem is fatal.
+3. Render index.html (app cards in APP_ORDER: keyd, niri, waybar,
+   qutebrowser, fuzzel, ghostty, tmux, yazi, zathura, zsh; each card: icon,
+   title, tagline, binding count, custom/stock split; footer: sourceCommit
+   linked + data date).
+4. Render apps/<id>.html per DOM contract above.
+5. Render guides/*.md → guides/<slug>.html + collect index section.
+6. Render 404.html with the absolute Pages base; write assets/bindings.json.
+7. Copy/bundle assets: app.css from src/styles/nord.css; app.js = esbuild
+   bundle of src/widgets/main.ts (imports filter, keyboard, search, theme;
+   each auto-inits by body[data-page]); favicon + vendored fonts.
 
 ## Repo scripts
 
 - `npm run build` - bundle widgets + bundle & run build.mts → dist/
-- `npm run dev` - build + serve dist/ on http://localhost:4321 (node http,
-  ~30 lines, no dep)
+- `npm run dev` - build + serve dist/ on http://localhost:4321/system-docs/
+  (node http, no dep). Mirrors Pages: the bare prefix redirects, any missing
+  path gets 404.html with a real 404 status.
 - `npm run check` - tsc --noEmit
+- `npm run check:links` - internal link/anchor check over dist/
 
 ## CI
 
-`.github/workflows/pages.yml`: on push to `main` - npm ci, npm run build,
-upload dist/ via actions/upload-pages-artifact + actions/deploy-pages.
+`.github/workflows/pages.yml`: on push to `main` - checkout with
+`fetch-depth: 0` (guide dates), npm ci, check, build, check:links, upload
+dist/ via actions/upload-pages-artifact + actions/deploy-pages.
 Needs `permissions: pages: write, id-token: write`, environment `github-pages`.
 
 ## Updating data (sync flow)
 
 The extractor lives in nixos_config: `scripts/extract-keybinds.mjs` +
 `scripts/extract/lib/{keys,parseKeyd,parseNiri,parseWaybar,parseYazi,parseZsh,parseTmux}.mjs`.
-`just update-docs` there writes `data/keybinds.json` here, commits and pushes.
-This repo's CI (`.github/workflows/pages.yml`) rebuilds + deploys on `main`.
+`just update-docs` there writes `data/keybinds.json` here, commits and pushes;
+`just switch` runs it automatically after every rebuild (non-fatal). The
+extractor leaves the file untouched when nothing but `meta` and provenance
+line numbers changed, so unrelated config edits never churn this repo - the
+footer's commit means "the bindings are as of this commit", not "the newest
+commit". This repo's CI (`.github/workflows/pages.yml`) rebuilds + deploys on
+`main`.
 
 ### Manual layer (crafted content over mechanical truth)
 
@@ -279,4 +348,5 @@ pure; only `--border-strong`/ridges/island are color-mix derived.
 
 ## Non-goals
 
-No global cross-app search, no JS framework, no runtime deps, no analytics.
+No JS framework, no runtime deps, no analytics. The landing-page lookup is the
+only cross-app search; app pages keep their own per-page filter.

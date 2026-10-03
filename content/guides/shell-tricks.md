@@ -2,7 +2,9 @@
 title: Shell tricks (zsh)
 slug: shell-tricks
 summary: vi mode, atuin, fzf-tab, and the aliases worth remembering.
-order: 5
+order: 6
+app: zsh
+verified: 0bd451a
 ---
 
 Sources: `~/.zshrc` and `~/.zsh_aliases` (both yadm-managed). `reload` restarts
@@ -37,8 +39,9 @@ are custom `forward-word`-based bindings so they fire in vi mode.
 | `Tab` | classic completion, with fzf's `**` trigger (`cd **<Tab>`, `kill **<Tab>`) |
 | `Shift+Tab` | fzf-tab's fuzzy menu completion (fzf-tab grabbed Tab, so this moved there) |
 | `Ctrl+T` | fuzzy file picker, bat preview on the right |
-| `Alt+C` | fuzzy cd, eza tree preview |
-| `Ctrl+G` then `F/B/H/T/R/S` | fzf-git.sh: files, branches, commit hashes, tags, remotes, status - inserted into the command line |
+| `Alt+c` | fuzzy cd, eza tree preview |
+| `Ctrl+G f` / `Ctrl+G b` / `Ctrl+G h` | fzf-git.sh: files, branches, commit hashes - inserted into the command line |
+| `Ctrl+G t` / `Ctrl+G r` / `Ctrl+G s` | fzf-git.sh: tags, remotes, stashes (`Ctrl+G ?` lists all of them; Ctrl held on the second key works too) |
 
 fzf-tab stays active for everything else: case-insensitive, fuzzy matching on
 `-`/`.`/`_`, arrow-key menu, Nord-colored group labels. `cd -<Tab>` completes the
@@ -96,9 +99,13 @@ scratch dir), `ex <archive>` (extract via ouch), `fv` (fzf → nvim), `fkill`
 ## Extras worth knowing
 
 - **zmv**: `zmv -n '(*).jpeg' '$1.jpg'` - pattern rename, `-n` = dry run.
-- **Long commands notify**: anything running ≥30 s sends a swaync toast when done.
+- **Long commands notify, on request**: prefix a command with `notify`
+  (`notify nh os switch`) and a swaync toast reports when it finishes, provided
+  it ran 30 s or longer. Wrap pipelines: `notify zsh -c 'make && ./test.sh'`.
+  Plain commands never toast.
 - **carapace** supplies completions for hundreds of CLIs on top of compinit.
 - **nix-your-shell** makes `nix develop`/`nix shell` spawn zsh.
 
-See also: [dev-workflow](./dev-workflow.html) (direnv + devshells) ·
+See also: [terminal](./terminal.html) (ghostty + tmux) ·
+[dev-workflow](./dev-workflow.html) (direnv + devshells) ·
 [maintenance](./maintenance.html) (`nrs`/`j` recipes).

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-03T11:04:28.989Z",
-    "sourceCommit": "e1b88b8",
+    "generatedAt": "2026-10-03T11:09:12.227Z",
+    "sourceCommit": "0bd451a",
     "host": "box"
   },
   "apps": [
@@ -816,7 +816,7 @@
       "id": "waybar",
       "title": "waybar",
       "tagline": "status bar",
-      "description": "The bar is deliberately thin: workspace dots at the left edge, status chips in the right pill. The chips mirror the keyboard layer - the language chip click is Mod+Space, the bell click is Mod+Shift+N - so the pointer path and the key path always agree.",
+      "description": "The bar is deliberately thin: workspace dots at the left edge, the clock in the center, a bell pill and a status pill on the right. The chips mirror the keyboard layer - the language chip click is Mod+Space, the bell click is Mod+Shift+N - so the pointer path and the key path always agree.",
       "icon": "▬",
       "groups": [
         {
@@ -840,7 +840,7 @@
           "description": "Each workspace paints a 10px dot in its identity colour; focus stretches it into a pill, urgent workspaces breathe, empty ones stay visible (1-3 are persistent by niri config). Scrolling walks the strip."
         },
         {
-          "name": "Right pill: bell · language · volume · clock",
+          "name": "Bell pill, status pill and the clock",
           "bindings": [
             {
               "keys": "Mouse Left Click",
@@ -899,7 +899,7 @@
               "custom": true
             }
           ],
-          "description": "The notification bell shows toasts as a glyph + count (grey under do-not-disturb). Click handlers run with a bare PATH, which is why the module pins absolute store paths."
+          "description": "On the right the bell floats in its own pill, left of the status pill (language, cpu, memory, network, battery, volume, tray); the clock sits in the bar's center. The bell shows pending toasts as a glyph + count and turns grey under do-not-disturb."
         }
       ],
       "guide": "bar-notifications"
@@ -6595,7 +6595,7 @@
               "custom": true
             },
             {
-              "keys": "Alt+Q",
+              "keys": "Alt+q",
               "label": "Push-line: park the command, run something else, it pops back at the next prompt",
               "command": "push-line",
               "source": ".zshrc:181",
@@ -6636,7 +6636,7 @@
               "custom": true
             },
             {
-              "keys": "Alt+F",
+              "keys": "Alt+f",
               "label": "Accept one word of the ghost-text suggestion",
               "command": "forward-word",
               "source": ".zshrc:301",
@@ -6658,6 +6658,72 @@
             }
           ],
           "description": "zsh-autosuggestions paints ghost text from history: Alt+F / Ctrl+F accept one word, Ctrl+E accepts it all, → accepts one character. Tab completes via fzf-tab, which renders the candidate menu as a fuzzy picker."
+        },
+        {
+          "name": "fzf: files, directories & git pickers",
+          "bindings": [
+            {
+              "keys": "Ctrl+T",
+              "label": "fzf: pick files or directories under the cwd (bat preview), insert the path",
+              "command": "fzf-file-widget"
+            },
+            {
+              "keys": "Alt+c",
+              "label": "fzf: fuzzy cd into a directory (eza tree preview)",
+              "command": "fzf-cd-widget"
+            },
+            {
+              "keys": "Ctrl+G f",
+              "label": "fzf-git: files (modified, untracked, then the tree)",
+              "command": "fzf-git-files-widget"
+            },
+            {
+              "keys": "Ctrl+G b",
+              "label": "fzf-git: branches",
+              "command": "fzf-git-branches-widget"
+            },
+            {
+              "keys": "Ctrl+G t",
+              "label": "fzf-git: tags",
+              "command": "fzf-git-tags-widget"
+            },
+            {
+              "keys": "Ctrl+G r",
+              "label": "fzf-git: remotes",
+              "command": "fzf-git-remotes-widget"
+            },
+            {
+              "keys": "Ctrl+G h",
+              "label": "fzf-git: commit hashes from the log",
+              "command": "fzf-git-hashes-widget"
+            },
+            {
+              "keys": "Ctrl+G s",
+              "label": "fzf-git: stashes",
+              "command": "fzf-git-stashes-widget"
+            },
+            {
+              "keys": "Ctrl+G l",
+              "label": "fzf-git: reflog entries",
+              "command": "fzf-git-lreflogs-widget"
+            },
+            {
+              "keys": "Ctrl+G e",
+              "label": "fzf-git: every ref (branches, tags, remotes in one list)",
+              "command": "fzf-git-each_ref-widget"
+            },
+            {
+              "keys": "Ctrl+G w",
+              "label": "fzf-git: worktrees",
+              "command": "fzf-git-worktrees-widget"
+            },
+            {
+              "keys": "Ctrl+G ?",
+              "label": "fzf-git: list these bindings",
+              "command": "fzf-git-list_bindings-widget"
+            }
+          ],
+          "description": "The fzf shell integration and fzf-git.sh bind these in every vi mode; a picker inserts its choice into the command line. Ctrl+G is a two-step prefix, and the second key works with Ctrl held too (Ctrl+G Ctrl+F = Ctrl+G f). Ctrl+R is NOT fzf's: atuin owns history."
         }
       ]
     }
