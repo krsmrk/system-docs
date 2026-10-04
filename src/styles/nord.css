@@ -663,3 +663,8 @@ a.kb-ref code { border-bottom: 1px dotted var(--accent); }
 a.kb-ref:hover code { background: var(--mark); }
 .guide-meta { color: var(--fg-dim); font-size: 0.85rem; margin: -0.35rem 0 1.25rem; }
 .guide-list .g-date { margin-left: auto; color: var(--fg-dim); font-size: 0.78rem; white-space: nowrap; }
+
+/* keyboard layers grouped by context (tmux prefix / copy mode, zsh Ctrl+X…) */
+.kb-layer-group { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+.kb-layer-group + .kb-layer-group { margin-left: 0.6rem; padding-left: 0.9rem; border-left: 1px solid var(--border); }
+.kb-layer-ctx { color: var(--fg-dim); font-size: 0.78rem; font-style: italic; }

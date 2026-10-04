@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-10-04T13:35:58.058Z",
+    "generatedAt": "2026-10-04T14:20:08.081Z",
     "sourceCommit": "17be888",
     "host": "box"
   },
@@ -4578,6 +4578,847 @@
         }
       ],
       "guide": "terminal"
+    },
+    {
+      "id": "nvim",
+      "title": "Neovim",
+      "tagline": "modal editor, mnemonic leader scheme",
+      "description": "Space-led keymap where every group key is the first letter of a word (find, git, lists, options, pi...). Accent-bordered rows are this config's keymaps from ~/.config/nvim (yadm); plain rows are Neovim defaults the config relies on. Hand-curated: the extractor fails when a Space-leader map exists in the Lua files that this file does not list.",
+      "icon": "✎",
+      "guide": "neovim",
+      "groups": [
+        {
+          "name": "The scheme: first letters",
+          "description": "Space is the leader, and every group key is the first letter of a word: assistant, code, debug, find, git, lists, options, pi, substitute. A double tap is the group's main action (ff, gg, aa, pp, ss); Shift widens the scope (fs/fS, gb/gB, ld/lD). which-key lists the group after a short pause.",
+          "bindings": [
+            {
+              "keys": "Space",
+              "label": "Leader key; pause after it for the which-key popup",
+              "command": "mapleader",
+              "source": "~/.config/nvim/lua/core/options.lua",
+              "custom": true
+            }
+          ]
+        },
+        {
+          "name": "Find: pickers",
+          "description": "One-shot jumps - the picker closes after you choose. Panels that stay open live under Space l. Everything is a snacks picker.",
+          "bindings": [
+            {
+              "keys": "Space f f",
+              "label": "Files",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f g",
+              "label": "Grep",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f w",
+              "label": "Word under cursor / selection",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f b",
+              "label": "Buffers",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f r",
+              "label": "Recent files",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f h",
+              "label": "Help pages",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f k",
+              "label": "Keymaps",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f c",
+              "label": "Commands",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f s",
+              "label": "Symbols (file)",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f S",
+              "label": "Symbols (workspace)",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f n",
+              "label": "Notifications",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f m",
+              "label": "Marks",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f j",
+              "label": "Jumps",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space f .",
+              "label": "Resume the last picker",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            }
+          ]
+        },
+        {
+          "name": "Code: LSP",
+          "description": "Neovim's own LSP keys keep their meaning (K, grn, gra, [d ]d); gd/grr/gri/grt/gO are upgraded to snacks pickers with a preview and jump straight there on a single hit. Space c covers what gr* does not.",
+          "bindings": [
+            {
+              "keys": "gd",
+              "label": "Goto definition (picker)",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "grr",
+              "label": "References (picker)",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "gri",
+              "label": "Implementations (picker)",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "grt",
+              "label": "Type definition (picker)",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "gO",
+              "label": "Document symbols (picker)",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "]r",
+              "label": "Next reference of the word under the cursor",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "[r",
+              "label": "Previous reference of the word under the cursor",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space c f",
+              "label": "Format the buffer or selection (conform, LSP fallback)",
+              "source": "~/.config/nvim/lua/plugins/conform.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space c q",
+              "label": "Quickfix: apply the server's preferred fix without a menu",
+              "source": "~/.config/nvim/lua/core/keybindings.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space c d",
+              "label": "Generate a docstring (neogen)",
+              "source": "~/.config/nvim/lua/plugins/neogen.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space c i",
+              "label": "Incoming calls: who calls this",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space c o",
+              "label": "Outgoing calls: what this calls",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "K",
+              "label": "Hover documentation"
+            },
+            {
+              "keys": "grn",
+              "label": "Rename symbol"
+            },
+            {
+              "keys": "gra",
+              "label": "Code action"
+            },
+            {
+              "keys": "]d",
+              "label": "Next diagnostic"
+            },
+            {
+              "keys": "[d",
+              "label": "Previous diagnostic"
+            },
+            {
+              "keys": "an",
+              "label": "Incremental selection: grow to the parent node"
+            },
+            {
+              "keys": "in",
+              "label": "Incremental selection: shrink to the child node"
+            }
+          ]
+        },
+        {
+          "name": "Motion & text objects",
+          "description": "flash jumps by label; mini.ai adds text objects (f function, c class, u call, g whole buffer). Next/last variants moved to aN/iN/aL/iL so n and l stay free.",
+          "bindings": [
+            {
+              "keys": "s",
+              "label": "Flash: jump to a labelled match (n, x, o)",
+              "source": "~/.config/nvim/lua/plugins/flash.lua",
+              "custom": true
+            },
+            {
+              "keys": "S",
+              "label": "Flash: select a treesitter node (n, o)",
+              "source": "~/.config/nvim/lua/plugins/flash.lua",
+              "custom": true
+            },
+            {
+              "keys": "r",
+              "label": "Remote flash (operator-pending only)",
+              "source": "~/.config/nvim/lua/plugins/flash.lua",
+              "custom": true
+            },
+            {
+              "keys": "R",
+              "label": "Treesitter search (o, x)",
+              "source": "~/.config/nvim/lua/plugins/flash.lua",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+S",
+              "label": "Toggle flash inside / and ? search (command-line mode)",
+              "source": "~/.config/nvim/lua/plugins/flash.lua",
+              "custom": true
+            },
+            {
+              "keys": "-",
+              "label": "Open the parent directory (oil)",
+              "source": "~/.config/nvim/lua/plugins/oil.lua",
+              "custom": true
+            },
+            {
+              "keys": "ih",
+              "label": "Inside hunk: dih deletes it, vih selects it (o, x)",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "aN",
+              "label": "Around the next text object (mini.ai)",
+              "source": "~/.config/nvim/lua/plugins/mini-ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "iN",
+              "label": "Inside the next text object (mini.ai)",
+              "source": "~/.config/nvim/lua/plugins/mini-ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "aL",
+              "label": "Around the last text object (mini.ai)",
+              "source": "~/.config/nvim/lua/plugins/mini-ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "iL",
+              "label": "Inside the last text object (mini.ai)",
+              "source": "~/.config/nvim/lua/plugins/mini-ai.lua",
+              "custom": true
+            }
+          ]
+        },
+        {
+          "name": "Windows & editing",
+          "bindings": [
+            {
+              "keys": "Ctrl+H",
+              "label": "Window left",
+              "source": "~/.config/nvim/lua/core/keybindings.lua",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+J",
+              "label": "Window down",
+              "source": "~/.config/nvim/lua/core/keybindings.lua",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+K",
+              "label": "Window up",
+              "source": "~/.config/nvim/lua/core/keybindings.lua",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+L",
+              "label": "Window right",
+              "source": "~/.config/nvim/lua/core/keybindings.lua",
+              "custom": true
+            },
+            {
+              "keys": "Escape",
+              "label": "Clear the search highlight",
+              "source": "~/.config/nvim/lua/core/keybindings.lua",
+              "custom": true
+            },
+            {
+              "keys": "J",
+              "label": "Visual: move the selected lines down",
+              "source": "~/.config/nvim/lua/core/keybindings.lua",
+              "custom": true
+            },
+            {
+              "keys": "K",
+              "label": "Visual: move the selected lines up",
+              "source": "~/.config/nvim/lua/core/keybindings.lua",
+              "custom": true
+            },
+            {
+              "keys": "<",
+              "label": "Visual: indent left and keep the selection",
+              "source": "~/.config/nvim/lua/core/keybindings.lua",
+              "custom": true
+            },
+            {
+              "keys": ">",
+              "label": "Visual: indent right and keep the selection",
+              "source": "~/.config/nvim/lua/core/keybindings.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space t",
+              "label": "Toggle the terminal (snacks)",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space u",
+              "label": "Undo tree (built in since 0.12)",
+              "source": "~/.config/nvim/lua/core/keybindings.lua",
+              "custom": true
+            }
+          ]
+        },
+        {
+          "name": "Git",
+          "description": "gitsigns hunk work on the lowercase keys, whole-file or wider-scope variants on the capitals. ]h / [h walk hunks.",
+          "bindings": [
+            {
+              "keys": "Space g g",
+              "label": "Lazygit",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g o",
+              "label": "Open on the remote (n, x)",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "]h",
+              "label": "Next hunk",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "[h",
+              "label": "Previous hunk",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g s",
+              "label": "Stage hunk (toggle; works on a selection)",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g S",
+              "label": "Stage the whole file",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g r",
+              "label": "Reset hunk (works on a selection)",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g R",
+              "label": "Reset the whole file",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g p",
+              "label": "Preview hunk inline",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g b",
+              "label": "Blame line",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g B",
+              "label": "Blame file",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g d",
+              "label": "Diff against the index",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g D",
+              "label": "Diff against the last commit",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g v",
+              "label": "Diffview: all changes",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g q",
+              "label": "Diffview: quit",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g h",
+              "label": "Diffview: history of this file",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space g H",
+              "label": "Diffview: history of the repo",
+              "source": "~/.config/nvim/lua/plugins/git.lua",
+              "custom": true
+            }
+          ]
+        },
+        {
+          "name": "Lists: panels that stay open",
+          "description": "trouble panels you work through; Shift widens to the whole workspace.",
+          "bindings": [
+            {
+              "keys": "Space l d",
+              "label": "Diagnostics (file)",
+              "source": "~/.config/nvim/lua/plugins/trouble.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space l D",
+              "label": "Diagnostics (workspace)",
+              "source": "~/.config/nvim/lua/plugins/trouble.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space l s",
+              "label": "Symbols outline",
+              "source": "~/.config/nvim/lua/plugins/trouble.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space l r",
+              "label": "References & definitions",
+              "source": "~/.config/nvim/lua/plugins/trouble.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space l q",
+              "label": "Quickfix list",
+              "source": "~/.config/nvim/lua/plugins/trouble.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space l l",
+              "label": "Location list",
+              "source": "~/.config/nvim/lua/plugins/trouble.lua",
+              "custom": true
+            }
+          ]
+        },
+        {
+          "name": "Substitute: project-wide",
+          "description": "grug-far: ripgrep search with a live preview; edit the results buffer, then sync.",
+          "bindings": [
+            {
+              "keys": "Space s s",
+              "label": "Substitute in the project (with a selection: use it as the search)",
+              "source": "~/.config/nvim/lua/plugins/grug-far.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space s w",
+              "label": "Substitute the word under the cursor",
+              "source": "~/.config/nvim/lua/plugins/grug-far.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space s f",
+              "label": "Substitute in this file only",
+              "source": "~/.config/nvim/lua/plugins/grug-far.lua",
+              "custom": true
+            }
+          ]
+        },
+        {
+          "name": "Options: toggles",
+          "description": "Each key is the first letter of the option, and which-key shows its current state.",
+          "bindings": [
+            {
+              "keys": "Space o r",
+              "label": "Relative numbers",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space o n",
+              "label": "Line numbers",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space o s",
+              "label": "Spelling",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space o w",
+              "label": "Wrap",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space o l",
+              "label": "List chars (invisibles)",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space o c",
+              "label": "Conceal",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space o h",
+              "label": "Inlay hints",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space o d",
+              "label": "Diagnostics",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space o i",
+              "label": "Indent guides",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space o f",
+              "label": "Format on save",
+              "source": "~/.config/nvim/lua/plugins/snacks.lua",
+              "custom": true
+            }
+          ]
+        },
+        {
+          "name": "Debug: gdb words",
+          "description": "b break, c continue, n next, s step, f finish, q quit. F5 and F10 are VS Code habits that collide with nothing; F11 belongs to Ghostty, so into/out live on ds/df only.",
+          "bindings": [
+            {
+              "keys": "Space d b",
+              "label": "Toggle breakpoint",
+              "source": "~/.config/nvim/lua/plugins/dap.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space d B",
+              "label": "Breakpoint with a condition",
+              "source": "~/.config/nvim/lua/plugins/dap.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space d c",
+              "label": "Continue / start",
+              "source": "~/.config/nvim/lua/plugins/dap.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space d n",
+              "label": "Next (step over)",
+              "source": "~/.config/nvim/lua/plugins/dap.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space d s",
+              "label": "Step into",
+              "source": "~/.config/nvim/lua/plugins/dap.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space d f",
+              "label": "Finish (step out)",
+              "source": "~/.config/nvim/lua/plugins/dap.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space d q",
+              "label": "Quit the debug session",
+              "source": "~/.config/nvim/lua/plugins/dap.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space d r",
+              "label": "REPL",
+              "source": "~/.config/nvim/lua/plugins/dap.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space d u",
+              "label": "Debug UI",
+              "source": "~/.config/nvim/lua/plugins/dap.lua",
+              "custom": true
+            },
+            {
+              "keys": "F5",
+              "label": "Continue",
+              "source": "~/.config/nvim/lua/plugins/dap.lua",
+              "custom": true
+            },
+            {
+              "keys": "F10",
+              "label": "Next (step over)",
+              "source": "~/.config/nvim/lua/plugins/dap.lua",
+              "custom": true
+            }
+          ]
+        },
+        {
+          "name": "Assistant: CodeCompanion",
+          "description": "LLM chat and inline edits against the providers in core/ai-providers.lua. Inside the nono sandbox keys only exist when you start it with va (see the Neovim guide).",
+          "bindings": [
+            {
+              "keys": "Space a a",
+              "label": "Assistant chat (toggle); with a selection: add it to the chat",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space a n",
+              "label": "New chat",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space a e",
+              "label": "Edit inline: opens the command line for the instruction (n, x)",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space a p",
+              "label": "Prompts & actions (n, x)",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "ga",
+              "label": "In a proposed diff: accept this change",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "gA",
+              "label": "In a proposed diff: accept every change in the buffer",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "gx",
+              "label": "In a proposed diff: reject this change",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            }
+          ]
+        },
+        {
+          "name": "Pi: agent CLI via sidekick",
+          "description": "Your agent CLI (phi) in a terminal split; send it the cursor position, a selection, the file or the diagnostics. Sidekick is off inside the nono sandbox by design.",
+          "bindings": [
+            {
+              "keys": "Space p p",
+              "label": "Pi: toggle the agent terminal",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space p s",
+              "label": "Send this (cursor position); with a selection: send the selection",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space p f",
+              "label": "Send the file",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space p d",
+              "label": "Send the diagnostics (fix these)",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space p a",
+              "label": "Ask: prompt library (n, x)",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "Space p t",
+              "label": "Tool: choose the agent CLI",
+              "source": "~/.config/nvim/lua/plugins/ai.lua",
+              "custom": true
+            },
+            {
+              "keys": "Escape Escape",
+              "label": "Exit terminal mode (agent terminals keep their own double Esc)",
+              "source": "~/.config/nvim/lua/core/keybindings.lua",
+              "custom": true
+            }
+          ]
+        },
+        {
+          "name": "Completion (blink.cmp)",
+          "bindings": [
+            {
+              "keys": "Ctrl+Space",
+              "label": "Show the completion menu",
+              "source": "~/.config/nvim/lua/plugins/blink-cmp.lua",
+              "custom": true
+            },
+            {
+              "keys": "Tab",
+              "label": "Next item, or jump forward in a snippet",
+              "source": "~/.config/nvim/lua/plugins/blink-cmp.lua",
+              "custom": true
+            },
+            {
+              "keys": "Shift+Tab",
+              "label": "Previous item, or jump back in a snippet",
+              "source": "~/.config/nvim/lua/plugins/blink-cmp.lua",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+N",
+              "label": "Next item",
+              "source": "~/.config/nvim/lua/plugins/blink-cmp.lua",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+P",
+              "label": "Previous item",
+              "source": "~/.config/nvim/lua/plugins/blink-cmp.lua",
+              "custom": true
+            },
+            {
+              "keys": "Down",
+              "label": "Next item",
+              "source": "~/.config/nvim/lua/plugins/blink-cmp.lua",
+              "custom": true
+            },
+            {
+              "keys": "Up",
+              "label": "Previous item",
+              "source": "~/.config/nvim/lua/plugins/blink-cmp.lua",
+              "custom": true
+            },
+            {
+              "keys": "Enter",
+              "label": "Accept the selected item",
+              "source": "~/.config/nvim/lua/plugins/blink-cmp.lua",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+E",
+              "label": "Hide the menu",
+              "source": "~/.config/nvim/lua/plugins/blink-cmp.lua",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+B",
+              "label": "Scroll the documentation up",
+              "source": "~/.config/nvim/lua/plugins/blink-cmp.lua",
+              "custom": true
+            },
+            {
+              "keys": "Ctrl+F",
+              "label": "Scroll the documentation down",
+              "source": "~/.config/nvim/lua/plugins/blink-cmp.lua",
+              "custom": true
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "yazi",

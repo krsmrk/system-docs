@@ -111,6 +111,14 @@ curated overlay), `tmux` stock tables (verified against a pristine
 `qutebrowser` full stock reference (all modes, from the 3.7.0
 `bindings.default` section).
 
+`nvim` is the one app that is hand-curated end to end
+(`curated/nvim.json`, every row `custom` except the Neovim defaults the config
+leans on): its keymaps are scattered over lazy.nvim plugin specs in yadm, not
+one parseable file. Drift is still caught - the extractor scans
+`~/.config/nvim/lua` for `<leader>…` maps and fails `--check` when one is
+missing from the curated rows or a curated `Space …` chord no longer exists.
+Keys are spelled `Space f f` (leader as a named key, then the sequence).
+
 ### qutebrowser keychain spelling (documented deviation)
 
 qutebrowser chains keep the exact qutebrowser spelling instead of
@@ -194,8 +202,25 @@ currentColor) defined in build.mts, with the data `icon` glyph as fallback.
    already in an input), `Esc` clears+blurs. Empty state when 0 matches.
 2. **keyboard.ts** - on `body[data-page="app"]`: render ISO/DE keyboard
    (105-key, backslash/pipe key between Left-Shift and Z, big Enter) as a
-   <div> grid. Layer chips above it derived from modifier combos present in
-   the app's bindings (e.g. `none`, `Mod`, `Mod+Shift`, `Ctrl`, `Mod+Ctrl`).
+   <div> grid. Layer chips above it are derived from the app's bindings as
+   (context, modifier combo) pairs, e.g. `none`, `Mod`, `Mod+Shift`, `Ctrl`.
+   A **context** is the table a chord is typed in:
+   - root (`direct`): single chords such as niri's `Mod+H` or tmux's `Alt+h`;
+   - `after <chord>`: a two-step sequence whose first step carries a modifier
+     (`Ctrl+Space c` → context `after Ctrl+Space`, key `c`; zsh `Ctrl+X b`);
+     longer or unmodified sequences (yazi `g g`, nvim `Space f f`) are skipped;
+   - `copy mode`: single chords from groups named `Copy mode…` (tmux's vi
+     copy table - bare letters that only exist inside that mode).
+   Apps with one context get a flat chip row (`no modifier`, `Mod`…); apps
+   with several get the chips grouped under italic context labels.
+   Character-keyed apps (those that bind any lowercase letter: tmux, zsh,
+   yazi, nvim…) spell Shift+J as `J`, so an uppercase letter lands on the
+   Shift layer of its key (Ctrl combos stay caseless), and shifted symbols
+   (`"`, `%`, `_`, `:`…) are mapped to their key on the German layout plus
+   Shift; AltGr-only symbols (`{ } [ ] \ | @ ~`) and multi-character tokens
+   that name no key are left off the board (and out of the chip counts).
+   Default layer: `Mod` of the root table if present, else the busiest
+   context's plain layer (tmux → `after Ctrl+Space`, `plain`).
    Selecting a layer highlights bound keys (accent fill) and keeps the
    physical modifier keycaps of that layer pressed down (`.held`: inset,
    accent border). Keys press on hover and deeper on mouse-down. Chips show
@@ -276,7 +301,7 @@ highlight. kbd chips: nord2 bg, rounded, mono font. Font stack: system-ui +
 2. Load guides, cross-check app↔guide links, key references and repo paths
    (section above) - any problem is fatal.
 3. Render index.html (app cards in APP_ORDER: keyd, niri, waybar,
-   qutebrowser, fuzzel, ghostty, tmux, yazi, zathura, zsh; each card: icon,
+   qutebrowser, fuzzel, ghostty, tmux, nvim, yazi, zathura, zsh; each card: icon,
    title, tagline, binding count, custom/stock split; footer: sourceCommit
    linked + data date).
 4. Render apps/<id>.html per DOM contract above.

@@ -4,7 +4,7 @@ slug: niri-workflows
 summary: columns, workspaces, and the launcher menus that drive box.
 order: 2
 app: niri
-verified: 0bd451a
+verified: 17be888
 ---
 
 Source of truth: `~/nixos_config/modules/home/niri.nix` →
@@ -68,11 +68,24 @@ sources in `~/nixos_config/hosts/box/scripts/`:
 | `Mod+Shift+A` | `volmenu` | default sink/source switching, per-app stream volume/mute (wpctl) |
 | `Mod+P` | `session-menu` | Lock / Logout / Suspend / Reboot / Power off (gum TUI in ghostty) |
 | `Mod+Shift+U` | `sysmenu` | staged diff (nvd), upgrade timer & journal, generations, power profile, rebuild switch, rollback, firmware |
+| `Mod+Shift+D` | `phonemenu` | KDE Connect (private hosts only): send files/clipboard, browse phone storage, ring, pair |
 
-Plain app binds: `Mod+Return`/`Mod+T` ghostty · `Mod+D` fuzzel · `Mod+B` firefox ·
-`Mod+E` nautilus · `Mod+N` toggle do-not-disturb · `Mod+Shift+N` swaync control
-center. Hardware keys (volume/brightness/media) run through swayosd with an OSD;
-mic mute deliberately requires unlock.
+Two prompt-only pickers share the look: `Mod+Shift+E` is the emoji/Unicode
+picker (the pick is typed into the focused window *and* copied), `Mod+Shift+M`
+a qalc calculator (units, currencies, bases; every result is copied, `Esc`
+closes). Capture tools (`Mod+Shift+T` OCR, `Mod+Shift+C` colour picker,
+`Mod+Shift+R` recording, `Mod+Ctrl+S` annotate) live in
+[screenshots & clipboard](./screenshots-clipboard.html).
+
+Plain app binds: `Mod+Return`/`Mod+T` ghostty · `Mod+D` fuzzel · `Mod+Q`
+qutebrowser · `Mod+B` firefox (fallback) · `Mod+E` nautilus · `Mod+N` toggle
+do-not-disturb · `Mod+Shift+N` swaync control center · `Mod+Ctrl+N` night light
+(wlsunset).
+
+Hardware keys (volume/brightness/media) show an OSD; mic mute deliberately
+requires unlock. Brightness follows the **focused** output - the built-in panel
+through the kernel backlight, an external monitor through DDC/CI - and
+`Mod+F12` / `Mod+F11` do the same on keyboards without brightness keys.
 
 ## Keyboard layout
 

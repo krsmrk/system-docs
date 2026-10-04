@@ -4,7 +4,7 @@ slug: screenshots-clipboard
 summary: two screenshot families, and a clipboard history that only records when you say so.
 order: 4
 app: niri
-verified: 0bd451a
+verified: 17be888
 ---
 
 ## Screenshots
@@ -25,6 +25,18 @@ muscle memory works on any board. `grim` + `slurp` back the fast lane.
 **Where files land:** niri writes to `~/Pictures/Screenshots/` with timestamped
 names - `Screenshot from %Y-%m-%d %H-%M-%S.png` (created on first shot, so
 history is just the directory listing sorted by name).
+
+## Beyond the screenshot
+
+Four small wrappers (`modules/home/capture.nix`), each bound in niri. Output
+goes to the clipboard first, a file second, and a toast says which.
+
+| keys | what happens |
+|---|---|
+| `Mod+Ctrl+S` | annotate: pick a region, draw arrows/boxes/blur/text in satty; `Enter` copies and saves |
+| `Mod+Shift+T` | OCR: pick a region, the recognised text (English + German) lands in the clipboard |
+| `Mod+Shift+C` | colour picker: click a pixel, `#rrggbb` lands in the clipboard |
+| `Mod+Shift+R` | screen recording: asks region or screen, with or without audio; press again to stop. The file lands in `~/Videos/Recordings` and is copied as a file, so it pastes straight into a chat |
 
 ## Clipboard: opt-in recording
 

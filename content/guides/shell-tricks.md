@@ -69,7 +69,7 @@ full-screen search; type to filter, Enter to run. Config: `~/.config/atuin/confi
 | `df` | `duf` (`\df` for GNU) |
 | `diff` | `git diff --no-index` |
 | `dus` | `dua` (`dua i` = interactive cleanup) |
-| `v` | `nvim` |
+| `v` / `va` / `V` | `nvim-sandbox` / the same plus AI keys / plain `nvim` ([Neovim guide](./neovim.html)) |
 | `t` | tmux: attach to `main` or create it |
 | `o` | `xdg-open` |
 | `c` | clear |
@@ -92,7 +92,7 @@ untouched, the safe one), `nrc` (`nh os boot`), `nclean` (`nh clean all`),
 `sysfailed` (failed units), `scu` (user units), `pgfl`.
 
 **Handy functions** - `bak <file>` (timestamped copy), `tmpd` (cd into fresh
-scratch dir), `ex <archive>` (extract via ouch), `fv` (fzf → nvim), `fkill`
+scratch dir), `ex <archive>` (extract via ouch), `fv` (fzf → sandboxed nvim), `fkill`
 (fzf → kill), `tms` (fzf sessionizer for tmux), `weather`, `myip`,
 `http-serve` (cwd on localhost:8000).
 

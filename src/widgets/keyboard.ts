@@ -28,35 +28,87 @@ export function initKeyboard(): void {
   const MOD_SET = new Set(MOD_ORDER);
   const isPointer = (first: string) => first.startsWith("Mouse") || first.startsWith("Scroll");
 
+  // A chord lives in a *context*: the table that is active when it is typed.
+  // "" = the plain root table; "after Ctrl+Space" = a leading chord step
+  // (tmux prefix, zsh Ctrl+X / Ctrl+G); "copy mode" = a tmux key table that is
+  // only reachable inside that mode. Without contexts, tmux's prefix chords
+  // would vanish (they are sequences) and copy-mode's bare letters would be
+  // mixed up with root binds.
   interface Chord {
     keys: string; // raw string, matches .kb-row[data-keys]
+    ctx: string; // context label ("" = root)
     mods: string; // canonical combo, e.g. "Mod+Shift" or "none"
     target: string; // token of the non-modifier key ("" if chord is mods only)
     label: string;
   }
 
-  const chords: Chord[] = [];
-  for (const g of groups)
-    for (const b of g.bindings) {
-      const keys = b.keys.trim();
-      if (!keys || /\s/.test(keys)) continue; // sequences / empty → skip
-      const tokens = keys.split("+").map((t) => t.trim()).filter(Boolean);
-      if (tokens.length === 0 || isPointer(tokens[0])) continue; // pointer pseudo-keys
-      const mods = tokens.slice(0, -1);
-      const last = tokens[tokens.length - 1];
-      let modTokens: string[];
-      let target: string;
-      if (MOD_SET.has(last)) {
-        modTokens = tokens; // pure modifier chord, no target key
-        target = "";
-      } else {
-        modTokens = mods;
-        target = last;
-      }
-      const canon = MOD_ORDER.filter((m) => modTokens.includes(m)).join("+") || "none";
-      chords.push({ keys, mods: canon, target, label: b.label });
+  // Character-keyed apps (tmux, zsh, yazi…) spell Shift+J as "J". An app is
+  // character-keyed when it binds any lowercase letter; niri/XKB-style apps
+  // always uppercase letters, so there "H" is just the key.
+  const flat = groups.flatMap((g) => g.bindings.map((b) => ({ ...b, group: g.name })));
+  const caseKeyed = flat.some((b) => /(^|[+\s])[a-z]$/.test(b.keys.trim()));
+
+  // Shifted symbols on the German layout: character → [unshifted keycap].
+  // AltGr symbols ({ } [ ] \ | @ ~) have no layer here and are left off.
+  const DE_SHIFTED: Record<string, string> = {
+    "!": "1", '"': "2", "$": "4", "%": "5", "&": "6", "/": "7", "(": "8", ")": "9",
+    "=": "0", "?": "ß", ";": ",", ":": ".", "_": "-", "'": "#", "*": "+", ">": "<",
+  };
+  const PLAIN_CHARS = new Set([..."0123456789,.-#+<ßüöä"]);
+
+  function parseChord(step: string): { mods: string; target: string } | null {
+    const tokens = step.split("+").map((t) => t.trim()).filter(Boolean);
+    if (step === "+" || step.endsWith("++")) tokens.push("+"); // the "+" key itself
+    if (tokens.length === 0 || isPointer(tokens[0])) return null;
+    const last = tokens[tokens.length - 1];
+    let modTokens: string[];
+    let target: string;
+    if (MOD_SET.has(last)) {
+      modTokens = tokens; // pure modifier chord, no target key
+      target = "";
+    } else {
+      modTokens = tokens.slice(0, -1);
+      target = last;
     }
+    if (caseKeyed && target.length === 1) {
+      if (/[A-Z]/.test(target)) {
+        // Ctrl combos are caseless (Ctrl+R = Ctrl+r), so only other chords gain Shift
+        if (!modTokens.includes("Shift") && !modTokens.includes("Ctrl")) modTokens = [...modTokens, "Shift"];
+        target = target.toLowerCase();
+      } else if (DE_SHIFTED[target]) {
+        target = DE_SHIFTED[target];
+        if (!modTokens.includes("Shift")) modTokens = [...modTokens, "Shift"];
+      } else if (!/[a-z]/.test(target) && !PLAIN_CHARS.has(target)) {
+        return null; // no key on the board produces this character
+      }
+    }
+    const mods = MOD_ORDER.filter((m) => modTokens.includes(m)).join("+") || "none";
+    return { mods, target };
+  }
+
+  const chords: Chord[] = [];
+  for (const b of flat) {
+    const keys = b.keys.trim();
+    if (!keys) continue;
+    let ctx = "";
+    let tail = keys;
+    if (/\s/.test(keys)) {
+      // sequence: only "<modified chord> <single chord>" fits the board
+      const steps = keys.split(/\s+/);
+      if (steps.length !== 2 || !steps[0].includes("+")) continue;
+      const lead = parseChord(steps[0]);
+      if (!lead || lead.mods === "none") continue;
+      ctx = `after ${steps[0]}`;
+      tail = steps[1];
+    } else if (/^Copy mode/.test(b.group)) {
+      ctx = "copy mode";
+    }
+    const parsed = parseChord(tail);
+    if (!parsed) continue;
+    chords.push({ keys, ctx, mods: parsed.mods, target: parsed.target, label: b.label });
+  }
   if (chords.length === 0) return;
+  const layerId = (c: { ctx: string; mods: string }) => `${c.ctx}|${c.mods}`;
 
   // ---- geometry --------------------------------------------------------
   interface KeyDef {
@@ -210,42 +262,70 @@ export function initKeyboard(): void {
   board.appendChild(mainFlex);
 
   // ---- layers ----------------------------------------------------------
-  const combos = new Set<string>();
-  for (const c of chords) combos.add(c.mods);
-  const PRIORITY = ["none", "Mod", "Mod+Shift", "Mod+Ctrl", "Ctrl", "Shift", "Ctrl+Alt"];
-  const comboList = [...combos].sort((a, b) => {
-    const ia = PRIORITY.indexOf(a);
-    const ib = PRIORITY.indexOf(b);
-    if (ia !== -1 || ib !== -1) return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
-    return a < b ? -1 : a > b ? 1 : 0;
+  // One chip per (context, modifier combo). Apps with a single context get a
+  // flat chip row; otherwise chips are grouped under their context label.
+  const PRIORITY = ["none", "Mod", "Mod+Shift", "Mod+Ctrl", "Ctrl", "Shift", "Alt", "Ctrl+Alt"];
+  const modRank = (m: string) => (PRIORITY.indexOf(m) === -1 ? 99 : PRIORITY.indexOf(m));
+  const ctxList = [...new Set(chords.map((c) => c.ctx))].sort((a, b) => {
+    // root first, then sequence prefixes, then named tables
+    const rank = (x: string) => (x === "" ? 0 : x.startsWith("after ") ? 1 : 2);
+    return rank(a) - rank(b) || (a < b ? -1 : a > b ? 1 : 0);
   });
+  const layerCount = new Map<string, number>();
+  for (const c of chords) layerCount.set(layerId(c), (layerCount.get(layerId(c)) ?? 0) + 1);
 
-  let selected = comboList.includes("Mod") ? "Mod" : "none";
+  // default: the Mod layer of a root table; else the busiest context's plain layer
+  let selected = "";
+  if (layerCount.has("|Mod")) selected = "|Mod";
+  else {
+    const busiest = [...layerCount.entries()]
+      .filter(([id]) => id.endsWith("|none"))
+      .sort((a, b) => b[1] - a[1])[0];
+    selected = busiest ? busiest[0] : [...layerCount.keys()][0];
+  }
 
+  const multiCtx = ctxList.length > 1;
   const chips = new Map<string, HTMLButtonElement>();
-  for (const combo of comboList) {
-    const n = chords.filter((c) => c.mods === combo).length;
-    const label = combo === "none" ? "no modifier" : combo;
-    const chip = document.createElement("button");
-    chip.type = "button";
-    chip.className = "kb-layer-chip";
-    const labelSpan = document.createElement("span");
-    labelSpan.textContent = label;
-    chip.appendChild(labelSpan);
-    const countSpan = document.createElement("span");
-    countSpan.className = "count";
-    countSpan.textContent = ` ${n}`;
-    chip.appendChild(countSpan);
-    chip.title = `${label} - ${n} ${n === 1 ? "binding" : "bindings"} on this layer`;
-    chip.setAttribute("aria-pressed", combo === selected ? "true" : "false");
-    chip.addEventListener("click", () => {
-      selected = combo;
-      for (const [c, el] of chips) el.setAttribute("aria-pressed", c === selected ? "true" : "false");
-      applyLayer();
-      hideTooltip();
-    });
-    chips.set(combo, chip);
-    layers.appendChild(chip);
+  for (const ctx of ctxList) {
+    const combos = [...new Set(chords.filter((c) => c.ctx === ctx).map((c) => c.mods))].sort(
+      (a, b) => modRank(a) - modRank(b) || (a < b ? -1 : a > b ? 1 : 0),
+    );
+    let holder: HTMLElement = layers;
+    if (multiCtx) {
+      holder = document.createElement("div");
+      holder.className = "kb-layer-group";
+      const name = document.createElement("span");
+      name.className = "kb-layer-ctx";
+      name.textContent = ctx === "" ? "direct" : ctx;
+      holder.appendChild(name);
+      layers.appendChild(holder);
+    }
+    for (const combo of combos) {
+      const id = `${ctx}|${combo}`;
+      const n = layerCount.get(id) ?? 0;
+      const label = combo === "none" ? (ctx === "" && !multiCtx ? "no modifier" : "plain") : combo;
+      const where = ctx === "" ? "" : ` (${ctx})`;
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "kb-layer-chip";
+      const labelSpan = document.createElement("span");
+      labelSpan.textContent = label;
+      chip.appendChild(labelSpan);
+      const countSpan = document.createElement("span");
+      countSpan.className = "count";
+      countSpan.textContent = ` ${n}`;
+      chip.appendChild(countSpan);
+      chip.title = `${label}${where} - ${n} ${n === 1 ? "binding" : "bindings"} on this layer`;
+      chip.setAttribute("aria-pressed", id === selected ? "true" : "false");
+      chip.addEventListener("click", () => {
+        selected = id;
+        for (const [c, el] of chips) el.setAttribute("aria-pressed", c === selected ? "true" : "false");
+        applyLayer();
+        hideTooltip();
+      });
+      chips.set(id, chip);
+      holder.appendChild(chip);
+    }
   }
 
   // ---- highlighting ----------------------------------------------------
@@ -321,7 +401,8 @@ export function initKeyboard(): void {
       btn.classList.remove("bound", "active");
     }
     // modifiers of the selected layer stay visually held down
-    const held = selected === "none" ? [] : selected.split("+");
+    const selMods = selected.slice(selected.indexOf("|") + 1);
+    const held = selMods === "none" ? [] : selMods.split("+");
     for (const [token, els] of keyElsAll) {
       if (!MOD_SET.has(token)) continue;
       for (const el of els) el.classList.toggle("held", held.includes(token));
@@ -329,7 +410,7 @@ export function initKeyboard(): void {
     for (const [token, list] of tokenChords) {
       const els = keysForToken(token);
       if (els.length === 0) continue;
-      const inLayer = list.some((c) => c.mods === selected);
+      const inLayer = list.some((c) => layerId(c) === selected);
       for (const el of els) {
         el.classList.add("bound");
         if (inLayer) el.classList.add("active");
@@ -349,7 +430,7 @@ export function initKeyboard(): void {
   }
 
   function showTooltip(btn: HTMLButtonElement): void {
-    const list = chordsForKey(btn).filter((c) => c.mods === selected);
+    const list = chordsForKey(btn).filter((c) => layerId(c) === selected);
     if (list.length === 0) return;
     tooltip.replaceChildren();
     const kline = document.createElement("span");
@@ -386,7 +467,7 @@ export function initKeyboard(): void {
   board.addEventListener("click", (ev) => {
     const btn = (ev.target as Element | null)?.closest?.(".kb-key");
     if (!(btn instanceof HTMLButtonElement) || !btn.classList.contains("active")) return;
-    const list = chordsForKey(btn).filter((c) => c.mods === selected);
+    const list = chordsForKey(btn).filter((c) => layerId(c) === selected);
     let row: Element | null = null;
     for (const c of list) {
       row = document.querySelector(`.kb-row[data-keys="${CSS.escape(c.keys)}"]`);

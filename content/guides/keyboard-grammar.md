@@ -50,6 +50,7 @@ H/J/K/L mean movement in every layer that has a concept of movement:
 - **tmux**: Alt+H/J/K/L jump panes - and copy mode is vi keys outright.
 - **zsh**: NORMAL mode (Esc) is a vi line editor; `v` escalates to $EDITOR.
 - **qutebrowser**: J/K are tabs, H/L history, `f` hints, gg/G top/bottom.
+- **nvim**: Ctrl+H/J/K/L walk windows; `Space` groups are first letters ([Neovim guide](./neovim.html)).
 - **yazi / zathura**: stock navigation is vim motions already.
 
 Arrows always work too (niri mirrors every focus bind), but the home row is the

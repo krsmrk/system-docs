@@ -39,7 +39,8 @@ The path check needs a nixos_config checkout (`~/nixos_config`, or set
 In `nixos_config`: `just update-docs` extracts bindings from the live config
 (`~/.config/niri/config.kdl`, `~/.config/yazi/keymap.toml`, `~/.zshrc`,
 `~/.config/tmux/tmux.conf`, keyd, waybar and qutebrowser modules) plus the
-curated stock tables and the manual layer, and pushes an updated
+curated tables (stock defaults, plus the hand-curated Neovim keymap, which is
+drift-checked against `~/.config/nvim`) and the manual layer, and pushes an updated
 `data/keybinds.json` here. `just switch` runs it after every rebuild. When
 only provenance line numbers moved, nothing is written or committed.
 
