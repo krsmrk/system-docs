@@ -6,8 +6,9 @@ order: 1
 verified: 0bd451a
 ---
 
-The system config is the flake at `~/nixos_config`. Run recipes from inside
-that directory; zsh aliases `just` to `j` (`j --list` lists recipes).
+The system config is the flake at `~/nixos_config`. Inside that directory run
+recipes with `just`; from anywhere else use `nj` ("NixOS just", e.g.
+`nj update-docs`). `njr` lists the recipes.
 
 ## justfile recipes (`~/nixos_config/justfile`)
 

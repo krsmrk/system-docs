@@ -88,7 +88,7 @@ the full-screen search: type to filter, Enter runs. Config:
 **NixOS:** `nrs` (`nh os switch`), `nrt` (`nh os test`: activate without
 changing the boot default), `nrc` (`nh os boot`), `nclean` (`nh clean all`),
 `nss` (search nixpkgs), `ns nixpkgs#foo` (ad-hoc shell), `nd` (devshell),
-`gen-diff`, `gen-list`, `j`/`jr` (just / just --list).
+`gen-diff`, `gen-list`, `nj`/`njr` (nixos_config recipes from any directory / list them).
 
 **systemd:** `jctl`, `jctlf <unit>` (follow), `jctle` (errors this boot),
 `sysfailed` (failed units), `scu` (user units), `pgfl`.
@@ -110,4 +110,4 @@ sandboxed nvim), `fkill` (fzf, then kill), `tms` (tmux sessionizer),
 
 See also: [terminal](./terminal.html) (ghostty and tmux) ·
 [dev-workflow](./dev-workflow.html) (direnv and devshells) ·
-[maintenance](./maintenance.html) (`nrs` and `j` recipes).
+[maintenance](./maintenance.html) (`nrs` and `nj` recipes).
