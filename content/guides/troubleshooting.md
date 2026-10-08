@@ -118,7 +118,8 @@ the boot default.
 - Sources: `modules/home/update-notify.nix`. A user path unit watches
   `/nix/var/nix/profiles` (staged generations), another watches
   `/var/lib/fwupd/metadata/lvfs` (firmware). A root OnFailure unit sends
-  auto-upgrade failures to running sessions. Dedupe markers are in
+  auto-upgrade failures to running sessions; the cooldown gate sends
+  security-bypass notices and bypass warnings the same way. Dedupe markers are in
   `~/.cache/update-notify/`; delete them to test again.
 - Past notifications: control center (`Mod+Shift+N`).
 - Follow-up: sysmenu (`Mod+Shift+U`) → "Upgrade timer & journal" or

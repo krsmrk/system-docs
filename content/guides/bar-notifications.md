@@ -78,6 +78,7 @@ notify-send -u critical "title" "body"     # stays until dismissed
 | update-notify (path unit on the system profile, plus once per login) | "NixOS update staged", "NixOS kernel updated" | Reboot when convenient; see [maintenance](./maintenance.html) |
 | firmware-notify (path unit on the fwupd metadata) | "Firmware updates available", one line per device | sysmenu (`Mod+Shift+U`) → Firmware, or `fwupdmgr update` |
 | auto-upgrade failure (root unit, or a check at session start if you were logged out) | "NixOS auto-upgrade FAILED" (critical) | `journalctl -u nixos-upgrade.service` |
+| cooldown gate (during the automatic run) | "NixOS security update", "NixOS auto-upgrade: security bypass degraded" | Reboot after the staged update; `just upgrade-status` |
 | netmenu (`Mod+Shift+W`) | "Wi-Fi: Connected to …", critical "Failed …" | - |
 | sysmenu (`Mod+Shift+U`) | "Power profile: old → new" | - |
 | cliprec (`Mod+Ctrl+V`) | "Clipboard history ON (15 min)" / "… OFF" | See [screenshots & clipboard](./screenshots-clipboard.html) |
