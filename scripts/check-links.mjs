@@ -51,23 +51,25 @@ for (const file of files) {
       continue;
     }
     let target;
+    const hashAt = url.indexOf("#");
+    const pathPart = hashAt === -1 ? url : url.slice(0, hashAt);
+    const frag = hashAt === -1 ? "" : url.slice(hashAt + 1);
     if (url.startsWith("/")) {
       if (!ABSOLUTE_OK.has(rel) || !url.startsWith(PAGES_BASE)) {
         problems++;
         console.log(`${rel}: root-absolute path ${url} (breaks under ${PAGES_BASE})`);
         continue;
       }
-      target = join(dist, url.slice(PAGES_BASE.length));
+      target = join(dist, pathPart.slice(PAGES_BASE.length));
     } else {
-      target = resolve(dirname(file), url.split("#")[0]);
+      target = resolve(dirname(file), pathPart);
     }
-    const [path, frag] = target.split("#");
-    if (!existsSync(path)) {
+    if (!existsSync(target)) {
       problems++;
       console.log(`${rel}: broken link ${url}`);
       continue;
     }
-    if (frag && path.endsWith(".html") && !idsOf(path).has(frag)) {
+    if (frag && target.endsWith(".html") && !idsOf(target).has(frag)) {
       problems++;
       console.log(`${rel}: missing anchor ${url}`);
     }

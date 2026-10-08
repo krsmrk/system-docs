@@ -19,9 +19,9 @@ export function esc(s: string): string {
  * <span class="key">, joined by <span class="kb-plus">+</span>.
  */
 function kbdCombo(combo: string): string {
-  const spans = combo
-    .split("+")
-    .filter((t) => t.length > 0)
+  const tokens = combo.split("+").filter((t) => t.length > 0);
+  if (combo === "+" || combo.endsWith("++")) tokens.push("+"); // the "+" key itself
+  const spans = tokens
     .map(
       (t) =>
         `<span class="${MODIFIER_TOKENS.has(t) ? "mod" : "key"}">${esc(t)}</span>`,

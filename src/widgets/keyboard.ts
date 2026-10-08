@@ -26,7 +26,12 @@ export function initKeyboard(): void {
 
   const MOD_ORDER = ["Mod", "Ctrl", "Alt", "Shift"];
   const MOD_SET = new Set(MOD_ORDER);
-  const isPointer = (first: string) => first.startsWith("Mouse") || first.startsWith("Scroll");
+  // SPEC's pointer/wheel pseudo-keys are not keyboard binds and are skipped.
+  // Prefix matching covers the Mouse*/Scroll* variants (e.g. "Mouse Back");
+  // Forward/Back must match exactly so a real Backspace stays on the board.
+  const POINTER_KEYS = new Set(["Wheel Up", "Wheel Down", "Forward", "Back"]);
+  const isPointer = (first: string) =>
+    first.startsWith("Mouse") || first.startsWith("Scroll") || POINTER_KEYS.has(first);
 
   // A chord lives in a *context*: the table that is active when it is typed.
   // "" = the plain root table; "after Ctrl+Space" = a leading chord step
