@@ -1,111 +1,113 @@
 ---
 title: Shell tricks (zsh)
 slug: shell-tricks
-summary: vi mode, atuin, fzf-tab, and the aliases worth remembering.
+summary: vi mode, atuin, fzf, aliases and functions
 order: 6
 app: zsh
 verified: 0bd451a
 ---
 
-Sources: `~/.zshrc` and `~/.zsh_aliases` (both yadm-managed). `reload` restarts
-the shell after edits.
+Config: `~/.zshrc` and `~/.zsh_aliases` (yadm). `reload` restarts the shell
+after an edit.
 
 ## vi mode
 
-`bindkey -v` with `KEYTIMEOUT=1` - Esc flips to NORMAL mode instantly (no
-0.4 s lag). `i`/`a`/`o` to go back to INSERT. History and completion work in
-both modes; the bindings below are wired for both where it matters.
+`bindkey -v` with `KEYTIMEOUT=1`, so Esc switches to normal mode without the
+default 0.4 s delay. `i`, `a` or `o` return to insert mode.
 
 | key (mode) | action |
 |---|---|
-| `v` (normal) | edit the current command line in `$EDITOR` (edit-command-line) |
-| `Esc Esc` (any) | toggle `sudo` prefix on the line; empty line → sudo-repeat last command |
-| `Alt+q` (any) | push-line - park the command, run something else, it pops back |
-| `Ctrl+X b` (any) | copybuffer - current command line → clipboard |
-| `Ctrl+X p` (any) | copypath - cwd → clipboard |
-| `/` (normal) | atuin history search |
-| `Ctrl+R` (any mode) | atuin history search (bound explicitly in vicmd too) |
+| `v` (normal) | Edit the command line in `$EDITOR` (edit-command-line) |
+| `Esc Esc` (any) | Toggle a `sudo` prefix; on an empty line, rerun the last command with sudo |
+| `Alt+q` (any) | Push line: park the command, run another, get it back at the next prompt |
+| `Ctrl+X b` (any) | Copy the command line to the clipboard (copybuffer) |
+| `Ctrl+X p` (any) | Copy the cwd to the clipboard (copypath) |
+| `/` (normal) | Open atuin history search |
+| `Ctrl+R` (any) | Open atuin history search |
 
-## Suggestion acceptance
+## Autosuggestions
 
-zsh-autosuggestions shows inline ghost text. `Alt+f` / `Ctrl+F` accept one word;
-`End` or `Ctrl+E` accept the whole suggestion; `→` accepts one character. These
-are custom `forward-word`-based bindings so they fire in vi mode.
+zsh-autosuggestions shows the suggestion as inline ghost text. `Alt+f` /
+`Ctrl+F` accept one word, `End` / `Ctrl+E` accept the whole suggestion, `→`
+accepts one character. The word bindings use `forward-word` so they work in
+vi mode.
 
 ## fzf
 
 | key | action |
 |---|---|
-| `Tab` | classic completion, with fzf's `**` trigger (`cd **<Tab>`, `kill **<Tab>`) |
-| `Shift+Tab` | fzf-tab's fuzzy menu completion (fzf-tab grabbed Tab, so this moved there) |
-| `Ctrl+T` | fuzzy file picker, bat preview on the right |
-| `Alt+c` | fuzzy cd, eza tree preview |
-| `Ctrl+G f` / `Ctrl+G b` / `Ctrl+G h` | fzf-git.sh: files, branches, commit hashes - inserted into the command line |
-| `Ctrl+G t` / `Ctrl+G r` / `Ctrl+G s` | fzf-git.sh: tags, remotes, stashes (`Ctrl+G ?` lists all of them; Ctrl held on the second key works too) |
+| `Tab` | Classic completion, with fzf's `**` trigger (`cd **<Tab>`, `kill **<Tab>`) |
+| `Shift+Tab` | fzf-tab fuzzy completion menu |
+| `Ctrl+T` | Pick a file (bat preview) and insert its path |
+| `Alt+c` | Fuzzy cd (eza tree preview) |
+| `Ctrl+G f` / `Ctrl+G b` / `Ctrl+G h` | fzf-git: insert files, branches, commit hashes |
+| `Ctrl+G t` / `Ctrl+G r` / `Ctrl+G s` | fzf-git: insert tags, remotes, stashes (`Ctrl+G ?` lists all; holding Ctrl on the second key also works) |
 
-fzf-tab stays active for everything else: case-insensitive, fuzzy matching on
-`-`/`.`/`_`, arrow-key menu, Nord-colored group labels. `cd -<Tab>` completes the
-numbered directory stack (auto_pushd is on; `cd -2` rewinds two dirs).
+Completion is case-insensitive, matches across `-`, `.` and `_`, and has an
+arrow-key menu. fzf-tab group labels use Nord colors. `auto_pushd` is on:
+`cd -<Tab>` completes the directory stack, and `cd -2` goes back two
+directories.
 
 ## atuin
 
-Shell history lives in atuin's synced, encrypted database - not just
-`~/.histfile` (which still feeds autosuggestions). `Ctrl+R` / `/` open the
-full-screen search; type to filter, Enter to run. Config: `~/.config/atuin/config.toml`
-(stock defaults). History is shared across machines via atuin sync.
+atuin stores shell history in an encrypted database synced across machines.
+`~/.histfile` is still written and feeds autosuggestions. `Ctrl+R` or `/` opens
+the full-screen search: type to filter, Enter runs. Config:
+`~/.config/atuin/config.toml` (stock defaults).
 
-## Aliases: the gems
+## Aliases
 
-**Listing & navigation** - `ll`, `la`, `lt` (tree) via lsd · `..`, `...`, `....` ·
-`-` (previous dir) · `mkcd <dir>` · named dirs `~cfg` = `~/nixos_config`,
-`~dev` = `~/dev` (complete too) · `cdpath=(~/dev)` so `cd phi` works from anywhere.
+**Listing and navigation:** `ll`, `la`, `lt` (tree) via lsd · `..`, `...`,
+`....` · `-` (previous directory) · `mkcd <dir>` · named directories
+`~cfg` = `~/nixos_config` and `~dev` = `~/dev` (both complete) ·
+`cdpath=(~/dev)`, so `cd phi` works from any directory.
 
-**Modern defaults**
+**Replacements**
 
-| alias | is |
+| alias | runs |
 |---|---|
-| `cat` | `bat --paging=never` (`\cat` for raw) |
+| `cat` | `bat --paging=never` (`\cat` for the original) |
 | `top` | `btop` |
-| `df` | `duf` (`\df` for GNU) |
+| `df` | `duf` (`\df` for GNU df) |
 | `diff` | `git diff --no-index` |
-| `dus` | `dua` (`dua i` = interactive cleanup) |
-| `v` / `va` / `V` | `nvim-sandbox` / the same plus AI keys / plain `nvim` ([Neovim guide](./neovim.html)) |
+| `dus` | `dua` (`dua i` for interactive cleanup) |
+| `v` / `va` / `V` | `nvim-sandbox` / sandbox with AI keys / plain `nvim` ([Neovim guide](./neovim.html)) |
 | `t` | tmux: attach to `main` or create it |
 | `o` | `xdg-open` |
-| `c` | clear |
+| `c` | `clear` |
 
-**Global aliases** - expand anywhere in a line: `G` `| grep`, `L` `| less -R`,
+**Global aliases** (expand anywhere in a line): `G` `| grep`, `L` `| less -R`,
 `H` `| head`, `T` `| tail`, `C` `| wc -l`, `J` `| jq`, `X` `| xargs`,
 `.F` `| fzf`, `N2` `2>/dev/null`, `DN` `>/dev/null 2>&1`, `Y` `| wl-copy`.
 
-**git** - `g` (git), `gs`/`gss` (status), `gaa`, `gcm` (-m), `gc!` (amend),
-`gp`, `gpsup` (push + upstream), `gl` (graph log), `gd`/`gds` (side-by-side delta),
-`gco`/`gsw`, `gpl` (pull --rebase --autostash), `gundo` (soft reset one),
-`lg` (lazygit), `gcof` (fzf branch picker).
+**git:** `g` (git), `gs`/`gss` (status), `gaa`, `gcm` (commit -m), `gc!`
+(amend), `gp`, `gpsup` (push and set upstream), `gl` (graph log), `gd`/`gds`
+(side-by-side delta), `gco`/`gsw`, `gpl` (pull --rebase --autostash), `gundo`
+(soft reset by one commit), `lg` (lazygit), `gcof` (fzf branch picker).
 
-**NixOS** - `nrs` (`nh os switch`), `nrt` (`nh os test` - activate, boot default
-untouched, the safe one), `nrc` (`nh os boot`), `nclean` (`nh clean all`),
+**NixOS:** `nrs` (`nh os switch`), `nrt` (`nh os test`: activate without
+changing the boot default), `nrc` (`nh os boot`), `nclean` (`nh clean all`),
 `nss` (search nixpkgs), `ns nixpkgs#foo` (ad-hoc shell), `nd` (devshell),
 `gen-diff`, `gen-list`, `j`/`jr` (just / just --list).
 
-**systemd** - `jctl`, `jctlf <unit>` (follow), `jctle` (errors this boot),
+**systemd:** `jctl`, `jctlf <unit>` (follow), `jctle` (errors this boot),
 `sysfailed` (failed units), `scu` (user units), `pgfl`.
 
-**Handy functions** - `bak <file>` (timestamped copy), `tmpd` (cd into fresh
-scratch dir), `ex <archive>` (extract via ouch), `fv` (fzf → sandboxed nvim), `fkill`
-(fzf → kill), `tms` (fzf sessionizer for tmux), `weather`, `myip`,
-`http-serve` (cwd on localhost:8000).
+**Functions:** `bak <file>` (timestamped copy), `tmpd` (cd into a new scratch
+directory), `ex <archive>` (extract via ouch), `fv` (fzf, then open in
+sandboxed nvim), `fkill` (fzf, then kill), `tms` (tmux sessionizer),
+`weather`, `myip`, `http-serve` (serve the cwd on localhost:8000).
 
-## Extras worth knowing
+## Other tools
 
-- **zmv**: `zmv -n '(*).jpeg' '$1.jpg'` - pattern rename, `-n` = dry run.
-- **Long commands notify, on request**: prefix a command with `notify`
-  (`notify nh os switch`) and a swaync toast reports when it finishes, provided
-  it ran 30 s or longer. Wrap pipelines: `notify zsh -c 'make && ./test.sh'`.
-  Plain commands never toast.
-- **carapace** supplies completions for hundreds of CLIs on top of compinit.
-- **nix-your-shell** makes `nix develop`/`nix shell` spawn zsh.
+- **zmv:** `zmv -n '(*).jpeg' '$1.jpg'` renames by pattern; `-n` is a dry run.
+- **notify:** prefix a command with `notify` (`notify nh os switch`) to get a
+  swaync notification when it finishes, if it ran for 30 s or longer. For
+  pipelines: `notify zsh -c 'make && ./test.sh'`. Commands without the prefix
+  never notify.
+- **carapace** adds completions for many CLIs on top of compinit.
+- **nix-your-shell** makes `nix develop` and `nix shell` start zsh.
 
-See also: [terminal](./terminal.html) (ghostty + tmux) ·
-[dev-workflow](./dev-workflow.html) (direnv + devshells) ·
-[maintenance](./maintenance.html) (`nrs`/`j` recipes).
+See also: [terminal](./terminal.html) (ghostty and tmux) ·
+[dev-workflow](./dev-workflow.html) (direnv and devshells) ·
+[maintenance](./maintenance.html) (`nrs` and `j` recipes).

@@ -1,146 +1,141 @@
 ---
 title: "Terminal: ghostty and tmux"
 slug: terminal
-summary: ghostty essentials, the Ctrl+Space prefix, sessions that survive reboots, and the sessionizer.
+summary: ghostty, tmux prefix, persistent sessions, sessionizer
 order: 5
 app: tmux
 verified: 0bd451a
 ignore-keys: Ctrl+Space Ctrl+s, Ctrl+Space Ctrl+r
 ---
 
-Two layers: **ghostty** draws the window, **tmux** owns what runs inside it.
-The full bind tables are on the [ghostty](../apps/ghostty.html) and
-[tmux](../apps/tmux.html) app pages; this guide is the workflow on top.
+**ghostty** is the terminal emulator; **tmux** runs inside it and manages
+sessions, windows and panes. Full binding tables are on the
+[ghostty](../apps/ghostty.html) and [tmux](../apps/tmux.html) app pages.
 
 ## ghostty
 
-`Mod+Return` or `Mod+T` opens a window (both spawn `ghostty`). Terminal apps
-launched from fuzzel (`Mod+D`) run in `ghostty -e`, as do the session menu
-(`Mod+P`) and sysmenu (`Mod+Shift+U`). Config: `~/.config/ghostty/config`
-(yadm-managed).
+`Mod+Return` and `Mod+T` open a ghostty window. Terminal apps launched from
+fuzzel (`Mod+D`), the session menu (`Mod+P`) and sysmenu (`Mod+Shift+U`) run in
+`ghostty -e`. Config: `~/.config/ghostty/config` (yadm).
 
-- Font is **Iosevka Skiouros** at 11 pt, all four styles named explicitly;
-  cells are stretched 5 % in both directions. Theme **Nordfox**, zero window
-  padding, flat Adwaita toolbar.
-- `F11` toggles fullscreen - the one custom bind, added next to stock
-  `Ctrl+Return`.
-- **Shell integration** is on for zsh (`cursor,title,path,ssh-env,ssh-terminfo`):
-  prompts are marked, so `Ctrl+Shift+PageUp` / `Ctrl+Shift+PageDown` jump
-  between previous commands. The ssh helpers install `xterm-ghostty`'s terminfo
-  on a remote host at first connect and fall back to `xterm-256color` when that
-  fails; `ghostty +ssh-cache` lists what has been set up.
-- Closing a surface never asks for confirmation (`confirm-close-surface = false`).
+- Font: Iosevka Skiouros 11 pt, with all four styles set explicitly; cells are
+  stretched 5 % in both directions. Theme Nordfox, no window padding, flat
+  Adwaita toolbar.
+- `F11` toggles fullscreen, in addition to stock `Ctrl+Return`.
+- Shell integration for zsh (`cursor,title,path,ssh-env,ssh-terminfo`) marks
+  prompts, so `Ctrl+Shift+PageUp` / `Ctrl+Shift+PageDown` jump between
+  commands. On the first SSH connection to a host, ghostty installs the
+  `xterm-ghostty` terminfo there and falls back to `xterm-256color` if that
+  fails. `ghostty +ssh-cache` lists the hosts set up so far.
+- Closing a surface does not ask for confirmation (`confirm-close-surface = false`).
 
 | keys | action |
 |---|---|
-| `Ctrl+Shift+C` / `Ctrl+Shift+V` | copy selection / paste clipboard |
-| `Shift+PageUp` / `Shift+PageDown` | scroll the scrollback a page |
-| `Ctrl+Shift+F` | search the scrollback (`Escape` ends it) |
-| `Ctrl+Equal` / `Ctrl+Minus` / `Ctrl+0` | font size up / down / reset |
-| `Ctrl+Shift+P` | command palette (every action, searchable) |
-| `Ctrl+Comma` / `Ctrl+Shift+Comma` | open / reload the config |
-| `Ctrl+Shift+J` | write the pane contents to the clipboard |
+| `Ctrl+Shift+C` / `Ctrl+Shift+V` | Copy selection / paste clipboard |
+| `Shift+PageUp` / `Shift+PageDown` | Scroll one page |
+| `Ctrl+Shift+F` | Search scrollback (`Escape` ends the search) |
+| `Ctrl+Equal` / `Ctrl+Minus` / `Ctrl+0` | Font size up / down / reset |
+| `Ctrl+Shift+P` | Open command palette |
+| `Ctrl+Comma` / `Ctrl+Shift+Comma` | Open / reload config |
+| `Ctrl+Shift+J` | Save screen to a temp file, paste its path |
 
-Tabs (`Ctrl+Shift+T`) and splits (`Ctrl+Shift+O`, `Ctrl+Shift+E`) exist, but
-tmux owns that job here.
+ghostty tabs (`Ctrl+Shift+T`) and splits (`Ctrl+Shift+O`, `Ctrl+Shift+E`)
+work, but tmux handles windows and panes here.
 
-## tmux: prefix and sessions
+## tmux prefix and sessions
 
-The prefix is **Ctrl+Space** (stock `C-b` is unbound). Under keyd that is Caps
-Lock held plus Space, one hand. `Ctrl+Space Ctrl+Space` sends a literal
-Ctrl+Space through to the pane. `Ctrl+Space ?` lists every bind,
-`Ctrl+Space /` then a key tells you what that key does.
+The prefix is Ctrl+Space (Caps Lock held plus Space); stock `C-b` is
+unbound. `Ctrl+Space Ctrl+Space` sends a literal Ctrl+Space to the pane.
+`Ctrl+Space ?` lists all bindings; `Ctrl+Space /` followed by a key shows what
+that key does.
 
 ```bash
-t              # tmux new-session -A -s main: attach "main" or create it
-ta             # attach the most recent session
+t              # tmux new-session -A -s main: attach to "main" or create it
+ta             # attach to the most recent session
 tms            # sessionizer, see below
 ```
 
-Config: `~/.config/tmux/tmux.conf` (yadm). `Ctrl+Space R` reloads it and
-confirms with "Reloaded." in the status line. Windows and panes count from 1,
-windows renumber when one closes, and automatic renaming is off - a window is
-called what you named it (`Ctrl+Space ,`). The status bar sits at the top and
-shows the session name on the right.
+Config: `~/.config/tmux/tmux.conf` (yadm). `Ctrl+Space R` reloads it and shows
+"Reloaded." in the status line. Windows and panes are numbered from 1, windows
+renumber when one closes, and automatic renaming is off: rename a window with
+`Ctrl+Space ,`. The status bar is at the top, with the session name on the
+right.
 
-### Surviving reboots
+### Session persistence
 
-resurrect and continuum come from nixpkgs (`tmuxPlugins.resurrect`,
-`tmuxPlugins.continuum` in the system config) and are loaded by `run-shell`
-at the end of `tmux.conf`.
+The resurrect and continuum plugins come from nixpkgs (`tmuxPlugins.resurrect`,
+`tmuxPlugins.continuum` in the system config) and are loaded by `run-shell` at
+the end of `tmux.conf`.
 
-- **continuum auto-saves every 15 minutes** (plugin default) while a client is
-  attached, into `~/.tmux/resurrect/` as timestamped text files; `last` points
-  at the newest.
-- **Restore is automatic**: `@continuum-restore` is on, so the first tmux
-  server after a boot restores the last save by itself. Run `t` after login
-  and the layout is back.
-- Saved: sessions, windows, panes, layouts, each pane's cwd, and running
+- continuum saves every 15 minutes while a client is attached, to timestamped
+  files in `~/.tmux/resurrect/`; `last` points to the newest.
+- `@continuum-restore` is on: the first tmux server after boot restores the
+  last save. Run `t` after login to get the layout back.
+- A save contains sessions, windows, panes, layouts, each pane's cwd, and
   programs from resurrect's default list (vi/vim/nvim, man, less, tail, top,
-  htop and a few more). Shell history and pane contents are **not** saved;
-  other programs come back as an empty shell in the right directory.
-- Manual: `Ctrl+Space Ctrl+s` saves now, `Ctrl+Space Ctrl+r` restores the
-  last save (plugin defaults; these two are bound by the plugin, so they do not
-  appear in the extracted tables).
+  htop and a few more). Other programs come back as a shell in the same
+  directory. Shell history and pane contents are not saved.
+- `Ctrl+Space Ctrl+s` saves, `Ctrl+Space Ctrl+r` restores the last save. The
+  plugin binds these, so they are missing from the app page tables.
 
-### The sessionizer: `tms`
+### Sessionizer
 
-`tms` (in `~/.zsh_aliases`) pipes zoxide's frecency list through fzf and turns
-the pick into a session named after the directory's basename: outside tmux it
-attaches or creates (`new-session -A`), inside tmux it creates the session if
-needed and `switch-client`s to it. One keystroke sequence from any shell to a
-project session. `Ctrl+Space s` is the stock session browser, `Ctrl+Space d`
-detaches.
+`tms` (in `~/.zsh_aliases`) passes zoxide's directory list through fzf and
+opens a session named after the chosen directory's basename. Outside tmux it
+attaches or creates (`new-session -A`); inside tmux it creates the session if
+needed and switches to it (`switch-client`). `Ctrl+Space s` opens the stock
+session browser, `Ctrl+Space d` detaches.
 
 ## Windows and panes
 
 | keys | action |
 |---|---|
-| `Ctrl+Space c` | new window in the pane's cwd |
-| `Ctrl+Space Space` | flip to the last window and back |
-| `Ctrl+Space 1` … `9`, `Ctrl+Space w` | jump to window N, tree browser |
-| `Ctrl+Space \|` / `Ctrl+Space _` | split side by side / stacked, same cwd |
-| `Alt+h` `Alt+j` `Alt+k` `Alt+l` | jump between panes, **no prefix** |
-| `Ctrl+Space Ctrl+h` … `Ctrl+Space Ctrl+l` | resize by 8, repeatable while held |
-| `Ctrl+Space l` | cycle the preset layouts |
-| `Ctrl+Space z` | zoom one pane to the full window (again to undo) |
-| `Ctrl+Space x` | kill the pane, no confirmation |
-| `Ctrl+Space m` / `` Ctrl+Space ` `` | mark a pane (red border) / jump back to it |
-| `Ctrl+Space j` / `Ctrl+Space J` | pull a pane in from another window, beside / below |
-| `Ctrl+Space g` | lazygit in a 90 % popup at the pane's cwd |
-| `Ctrl+Space h` | scratch notes: nvim `~/scratch/notes.md` in a side split |
+| `Ctrl+Space c` | New window in the pane's cwd |
+| `Ctrl+Space Space` | Switch to last window |
+| `Ctrl+Space 1` … `9`, `Ctrl+Space w` | Go to window N / open tree browser |
+| `Ctrl+Space \|` / `Ctrl+Space _` | Split side by side / stacked, same cwd |
+| `Alt+h` `Alt+j` `Alt+k` `Alt+l` | Focus pane left / down / up / right (no prefix) |
+| `Ctrl+Space Ctrl+h` … `Ctrl+Space Ctrl+l` | Resize pane by 8 (repeatable while Ctrl is held) |
+| `Ctrl+Space l` | Cycle preset layouts |
+| `Ctrl+Space z` | Toggle pane zoom |
+| `Ctrl+Space x` | Kill pane without confirmation |
+| `Ctrl+Space m` / `` Ctrl+Space ` `` | Mark pane (red border) / jump to marked pane |
+| `Ctrl+Space j` / `Ctrl+Space J` | Pull a pane from another window, beside / below |
+| `Ctrl+Space g` | Open lazygit in a 90 % popup at the pane's cwd |
+| `Ctrl+Space h` | Open scratch notes (`~/scratch/notes.md` in nvim) in a side split |
 
-The mouse is on: click focuses a pane, drag selects, the wheel scrolls into
-history (24000 lines per pane). The ghostty window title follows the pane title,
-which the zsh hooks set to the running command, or the cwd when idle.
+The mouse is enabled: click focuses a pane, drag selects, the wheel scrolls
+history (24000 lines per pane). The ghostty window title follows the pane
+title, which zsh sets to the running command, or to the cwd when idle.
 
 ## Copy mode
 
 `Ctrl+Space [` enters copy mode with vi keys; `Ctrl+Space PageUp` enters it
-half a page up. Motions are vim's (`h j k l w b 0 $ gg G`, `/` and `?` search,
-`n` / `N` repeat).
+half a page up. Motions and search are vim's (`h j k l w b 0 $ gg G`, `/`, `?`,
+`n`, `N`).
 
 | keys | action |
 |---|---|
-| `v` | start the selection (stock `Space`) |
-| `r` | toggle rectangle selection |
-| `y` | yank the selection and leave copy mode |
-| `q` | leave without yanking |
-| `Ctrl+Space P` | paste the most recent buffer |
+| `v` | Start selection (stock: `Space`) |
+| `r` | Toggle rectangle selection |
+| `y` | Yank selection and exit copy mode |
+| `q` | Exit without yanking |
+| `Ctrl+Space P` | Paste most recent buffer |
 
-Yanks land in the tmux buffer **and** the Wayland clipboard: `set-clipboard on`
-lets tmux write it through OSC 52, which ghostty forwards (it asks once for
-permission). Mouse drag + release and double / triple click copy the same way.
+Yanks go to the tmux buffer and the Wayland clipboard: with `set-clipboard on`,
+tmux writes the clipboard through OSC 52, which ghostty forwards after asking
+for permission once. Mouse drag-and-release and double or triple click copy the
+same way.
 
-## When it misbehaves
+## Troubleshooting
 
-| symptom | do this |
+| symptom | fix |
 |---|---|
-| config edit not taking effect | `Ctrl+Space R`, or `tmux source ~/.config/tmux/tmux.conf` |
-| a pane border is red | it is marked - `Ctrl+Space m` toggles, `Ctrl+Space M` clears |
-| everything stuck | `tmux kill-server` - the next `t` restores the last continuum save |
-| restore brought back a stale layout | `Ctrl+Space Ctrl+s` after fixing it, so the next save wins |
+| Config edit has no effect | `Ctrl+Space R`, or `tmux source ~/.config/tmux/tmux.conf` |
+| Pane border is red | The pane is marked: `Ctrl+Space m` toggles, `Ctrl+Space M` clears |
+| tmux is unresponsive | `tmux kill-server`; the next `t` restores the last continuum save |
+| Restore brings back a stale layout | Fix the layout, then save with `Ctrl+Space Ctrl+s` |
 
-See also: [shell tricks](./shell-tricks.html) for the zsh side of the prompt ·
-[the keyboard grammar](./keyboard-grammar.html) for why Ctrl is Caps Lock ·
-[niri workflows](./niri-workflows.html) for the terminal binds at the compositor layer.
+See also: [shell tricks](./shell-tricks.html) for zsh ·
+[keyboard conventions](./keyboard-grammar.html) for Caps Lock as Ctrl ·
+[niri workflows](./niri-workflows.html) for the compositor's terminal bindings.

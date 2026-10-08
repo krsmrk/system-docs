@@ -1,119 +1,115 @@
 ---
-title: qutebrowser: daily-driver browser
+title: "qutebrowser: default browser"
 slug: qutebrowser
-summary: The keyboard-driven browser as default: ABP + hostlist blocking, pass-store logins, userscripts, manual sessions.
+summary: modes, ad blocking, pass logins, userscripts, sessions
 order: 8
 app: qutebrowser
 verified: 0bd451a
 ---
 
-Configured in [`nixos_config/modules/home/qutebrowser.nix`](https://github.com/krsmrk/nixos_config/blob/main/modules/home/qutebrowser.nix)
-(home-manager module; userscripts vendored next to it). Launch with **Mod+Q**,
-or any URL handed to `xdg-open` - qutebrowser is the `x-scheme-handler/https`
-default. Firefox stays installed as the fallback for extension-grade blocking
-(uBlock Origin et al.), not for daily use.
+Config: [`nixos_config/modules/home/qutebrowser.nix`](https://github.com/krsmrk/nixos_config/blob/main/modules/home/qutebrowser.nix)
+(home-manager module, with vendored userscripts in the same directory).
+`Mod+Q` launches it, and it is the default `x-scheme-handler/https` handler,
+so `xdg-open` opens URLs in it. Firefox remains installed as a fallback for
+sites that need extension-based blocking such as uBlock Origin.
 
-The full binding reference - custom binds (accent-bordered key chips) plus
-the stock defaults of qutebrowser 3.7.0, per mode, in one thematic table set - is the
-[qutebrowser app page](../apps/qutebrowser.html). This guide covers the
-workflows on top.
+The [qutebrowser app page](../apps/qutebrowser.html) lists all custom bindings
+and the stock bindings of qutebrowser 3.7.0, by mode.
 
-## Modes in 30 seconds
+## Modes
 
-qutebrowser is vim for the web. Normal mode is where you live:
-
-- `o` opens a URL in the statusbar prompt (with search-engine completion),
-  `O` in a new tab, `wo` in a window. With no URL typed, the prompt
-  pre-fills `:open` and you type a search - the default engine is **qwant**,
-  with ddg/ghs/nws/aws/no/hm/w as one-letter engines (see `:set`
-  `url.searchengines`).
-- `f` enters **hint mode**: every clickable element gets a two-letter tag;
-  type it to follow. `F` opens in a new tab, `;y` yanks the URL, `;d`
-  downloads. `Esc` leaves.
-- `:` enters command mode - completion works like fuzzel (`Tab`/`Shift+Tab`
-  to select, `Enter` runs). Everything on the app page is a command.
-- `i` (insert mode) is for typing into web forms; **Ctrl+E** there opens the
-  focused text field in **nvim via ghostty** (the `editor.command` setting).
-  Save and quit to push the text back.
-- `v` is caret mode: vim motions (`h j k l w e b 0 $`) select text
-  keyboard-only; `y` yanks it.
+- **Normal mode:** `o` opens a URL from the status bar prompt, `O` in a new
+  tab, `wo` in a new window. Text that is not a URL is searched with the
+  default engine, qwant. Other engines take a short prefix: ddg, ghs, nws,
+  aws, no, hm, w (see `url.searchengines` in `:set`).
+- **Hint mode:** `f` labels every clickable element; type a label to follow
+  it. `F` opens in a new tab, `;y` yanks the URL, `;d` downloads. `Esc` exits.
+- **Command mode:** `:` opens the command line. `Tab`/`Shift+Tab` select a
+  completion, `Enter` runs the command.
+- **Insert mode:** `i` types into form fields; `Ctrl+E` opens the field in
+  nvim (see below).
+- **Caret mode:** `v` selects text with vim motions (`h j k l w e b 0 $`);
+  `y` yanks it.
 
 ## Quickmarks, bookmarks, sessions
 
-- `m` saves the current page as a **quickmark** under a key; `b`/`B`/`wb`
-  load it in the current tab / a new tab / a new window. Curated set in
-  `url.quickmarks`: `gh` (github), `nw` (nixos wiki), `sd` (system docs),
-  `aw` (aws console), `no` (nixpkgs), `hm` (home-manager options), `qb`
-  (qutebrowser docs). `b` + the key jumps straight there.
-- `M` bookmarks a page (GUI list via `Sb`, searchable).
-- Sessions are **manual** (no state restored at startup - the start page is
-  the system manual):
+- `m` saves the current page as a **quickmark** under a key. `b`, `B` and `wb`
+  open a quickmark in the current tab, a new tab or a new window. Predefined
+  in `url.quickmarks`: `gh` (GitHub), `nw` (NixOS wiki), `sd` (system docs),
+  `aw` (AWS console), `no` (nixpkgs), `hm` (home-manager options), `qb`
+  (qutebrowser docs).
+- `M` adds a bookmark. `Sb` opens the searchable bookmark list.
+- Tabs are not restored at startup; the start page is the system manual. Save
+  and load sessions manually:
 
   ```
-  :session-save work        # snapshot all tabs
-  :session-load work        # restore (lazy: tabs fetch when focused)
+  :session-save work        # save all tabs
+  :session-load work        # restore
   :session-delete work
-  :session-load _autosave   # crash recovery - checkpointed every 15s
+  :session-load _autosave   # crash recovery, saved every 15 s
   ```
 
-  `session.lazy_restore` is on, so a 40-tab session loads instantly and
-  fetches tabs as you focus them.
+  `session.lazy_restore` is on: restored tabs load when first focused.
 
-## Blocking & per-site control
+## Ad blocking and per-site settings
 
-Two engines run side by side: **Brave's ABP engine** (EasyList/EasyPrivacy,
-auto-updated) and a **StevenBlack hosts list** (ads + fakenews + gambling +
-porn + social, ~170k domains, pinned in the store).
+Brave's ABP engine (EasyList and EasyPrivacy, auto-updated) and the StevenBlack
+hosts list (ads, fakenews, gambling, porn, social; pinned in the Nix store) run
+together.
 
-When a site breaks:
+To fix a broken site:
 
-- `,u` toggles **ad blocking** for the current host (and reloads).
-- `;j` toggles **JavaScript** for the current host.
-- The stock `t`-prefixed family toggles JS/plugins/images/cookies for host,
-  host+subdomains or exact URL - `ts` for JavaScript (`tsh` temp,
-  `tSH` host+subdomains, `tsu` exact URL), `tc` for cookies, etc.
+- `,u` toggles ad blocking for the current host and reloads.
+- `;j` toggles JavaScript for the current host.
+- The stock `t` bindings toggle a setting per site. The second letter picks the
+  setting: `s` JavaScript, `p` plugins, `i` images, `c` cookies; lowercase is
+  temporary, uppercase is saved. The third letter picks the scope: `h` host,
+  `H` host and subdomains, `u` exact URL. Example: `tSH` saves JavaScript on
+  for the host and its subdomains.
 
-All per-site toggles land in `autoconfig.yml` - undo one with
-`:config-unset -u *://example.com/* <option>`, or edit that file.
+Saved per-site settings are stored in `autoconfig.yml`. Remove one with
+`:config-unset -u *://example.com/* <option>`, or edit the file.
 
-## Login filling (pass + fuzzel)
+## Logins with pass
 
-`zl` opens **fuzzel** over your pass store and fills username + password.
-`zul`/`zpl` fill a single field, `zol` fills an OTP code (`pass-otp`). The
-site's domain must appear in the pass path - e.g. `web/github.com/stefan`
-is found on github.com. Insert OTP entries with `pass otp insert`. The
-script types into the form directly - nothing lands on the clipboard.
+`zl` opens fuzzel over the pass store and fills username and password.
+`zul` and `zpl` fill only the username or password, `zol` only the OTP code
+(`pass-otp`; add entries with `pass otp insert`). The entry path must contain
+the site's domain: `web/github.com/stefan` matches github.com. The script
+types into the form and does not use the clipboard.
 
 ## Userscripts
 
-Vendored from upstream (GPLv3) in `nixos_config/modules/home/qutebrowser-userscripts/`,
-wrapped with pinned runtime deps:
+Vendored from upstream (GPLv3) in `nixos_config/modules/home/qutebrowser-userscripts/`
+and wrapped with pinned runtime dependencies.
 
-| Bind | Script | What it does |
+| binding | script | action |
 | --- | --- | --- |
-| `,m` | view_in_mpv | Moves the page's videos into **mpv** (yt-dlp backend); the page itself stays usable - placeholders restore on click |
-| `,r` | readability | Reader mode in a new tab, restyled with the Nord palette |
-| `,q` | qr | Renders the current URL as a QR code in a tab - scan it to continue on the phone |
+| `,m` | view_in_mpv | Play the page's videos in mpv (yt-dlp backend); the page stays usable and a click restores the placeholders |
+| `,r` | readability | Open reader mode in a new tab, styled with the Nord palette |
+| `,q` | qr | Show the current URL as a QR code in a new tab |
 
-## Text editing & file pickers
+## Text fields and file pickers
 
-- **Ctrl+E** in any web text field opens it in ghostty + nvim (cursor lands
-  on your position). Save and close to push the text back.
-- Upload forms open **yazi in ghostty** - single/multi-file and folder
-  pickers (`fileselect.*`). Pick files with Space, accept with Enter.
-- Downloads prompt for a location (yazi-based folder completion applies);
-  `Ctrl+p` inside the prompt previews PDFs via PDF.js instead. zathura
-  handles everything you open from the downloads list.
+- `Ctrl+E` in a text field opens it in nvim in a ghostty window
+  (`editor.command`), with the cursor at the same position. Save and quit to
+  send the text back.
+- Upload forms open yazi in ghostty for single-file, multi-file and folder
+  selection (`fileselect.*`). `Space` selects, `Enter` accepts.
+- Downloads prompt for a location, with yazi-based folder completion.
+  `Ctrl+p` in the prompt opens a PDF in PDF.js instead. Files opened from the
+  downloads list go to zathura.
 
-## Nord chrome
+## Appearance
 
-Tabs on top (auto-hidden to one line), statusbar matching waybar, cyan
-hints/completions. `,b` toggles the statusbar when watching something
-fullscreen-ish, `,d` flips the preferred color scheme for sites that only
-ship one.
+Nord colors. The tab bar is on top and hidden when only one tab is open; the
+status bar matches waybar; hints and completions are cyan. `,b` toggles the status
+bar, for example when watching video. `,d` switches the preferred color
+scheme for sites that only support one.
 
-## When Wayland rendering misbehaves
+## Wayland rendering problems
 
-The config pins `qt.force_platform = "wayland"`. On a broken site or after a
-Qt upgrade glitch: `:config-unset qt.force_platform` then `:restart` - falls
-back to XWayland. Put it back with `:config-set qt.force_platform wayland`.
+The config sets `qt.force_platform = "wayland"`. If a site renders badly or a
+Qt upgrade breaks rendering, run `:config-unset qt.force_platform` and then
+`:restart` to fall back to XWayland. Revert with
+`:config-set qt.force_platform wayland`.

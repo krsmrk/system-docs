@@ -623,7 +623,7 @@ function renderIndexBody(data: KeybindsFile, guides: GuideDoc[]): string {
   const genDate = data.meta.generatedAt.slice(0, 10);
   return `<div class="hero">
   <h1>Keybindings and guides for ${esc(data.meta.host)}</h1>
-  <p class="hero-sub">Cheat sheets are generated from the live NixOS configuration. Guides are hand-written and checked against it at build time.</p>
+  <p class="hero-sub">Binding tables are generated from the NixOS configuration. Guides are checked against it at build time.</p>
   <p class="hero-stats">
     <span class="stat"><strong>${totalBindings}</strong> bindings</span>
     <span class="stat"><strong>${data.apps.length}</strong> apps</span>
@@ -633,7 +633,7 @@ function renderIndexBody(data: KeybindsFile, guides: GuideDoc[]): string {
 </div>
 
 <div class="site-search">
-  <input class="kb-search" type="search" placeholder="What does Ctrl+R do? Look up a key or action across every layer… (press /)" aria-label="Search all bindings" autocomplete="off">
+  <input class="kb-search" type="search" placeholder="Search bindings (/)" aria-label="Search all bindings" autocomplete="off">
   <span class="kb-counter" aria-live="polite"></span>
 </div>
 <div class="sr-list" hidden></div>
@@ -697,10 +697,10 @@ function renderAppBody(
   const customCount = countCustom(app);
   const legend =
     customCount === total
-      ? "All binds on this page are custom - bound in this config."
+      ? "All bindings on this page are custom."
       : customCount === 0
-        ? "All binds on this page are stock defaults; none are customized."
-        : "accent-bordered key chips = custom (this config) · plain chips = stock default";
+        ? "All bindings on this page are stock defaults."
+        : "Accent border: custom binding · plain: stock default";
 
   const header = `<div class="app-header">
   <h1><span class="app-icon" aria-hidden="true">${appIcon(app)}</span> ${esc(app.title)}</h1>
@@ -730,7 +730,7 @@ ${g.bindings.map((b, bi) => renderRow(b, rows.rowIds[i][bi], commit)).join("\n")
   return `${header}
 
 <div class="filter-bar">
-  <input class="kb-filter" type="search" placeholder="Filter by key, action or command… (press /)" aria-label="Filter bindings">
+  <input class="kb-filter" type="search" placeholder="Filter bindings (/)" aria-label="Filter bindings">
   <span class="kb-counter">${total} ${total === 1 ? "binding" : "bindings"}</span>
 </div>
 
@@ -908,7 +908,7 @@ async function main(): Promise<void> {
       description,
       body: `<div class="hero">
   <h1>404: page not found</h1>
-  <p>Nothing lives at this URL. Head back to the <a href="${SITE_BASE}index.html">overview</a> or browse the <a href="${SITE_BASE}index.html#guides">guides</a>.</p>
+  <p>Go to the <a href="${SITE_BASE}index.html">overview</a> or the <a href="${SITE_BASE}index.html#guides">guides</a>.</p>
 </div>`,
       footerLeft,
       footerRight,

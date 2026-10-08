@@ -1,79 +1,74 @@
 ---
 title: Troubleshooting
 slug: troubleshooting
-summary: symptom → command → what to check next, for the failures that actually happen.
+summary: symptoms, diagnostic commands, next steps
 order: 12
 ignore-keys: Ctrl+Alt+F2
 verified: 0bd451a
 ---
 
-Every lock/session component here is a systemd **user** unit; system stuff is
-root. Pick **GNOME in GDM** whenever niri misbehaves - it's the configured
-fallback session.
+## niri fails to start
 
-## niri won't start (black screen, session bounces back)
-
-niri runs as a systemd **user** unit launched by GDM (there is no greetd).
+Symptoms: black screen, or GDM returns to the login screen. GDM starts niri as
+a systemd user unit.
 
 ```bash
 journalctl --user -u niri.service -b 0 --no-pager   # compositor log
-systemctl status display-manager.service            # GDM itself (unit is display-manager, PID gdm)
+systemctl status display-manager.service            # GDM (unit display-manager, process gdm)
 journalctl -u display-manager.service -b
 ```
 
-What to check next: a broken `config.kdl` - the file is generated from
-`modules/home/niri.nix`, so fix the module and rebuild; and switch sessions via
-GDM's gear menu (GNOME) to keep working. From a TTY (`Ctrl+Alt+F2`) you can
-rollback (below) or rebuild headlessly.
+The usual cause is a broken `config.kdl`. It is generated from
+`modules/home/niri.nix`; fix the module and rebuild. Meanwhile, choose GNOME
+from GDM's gear menu. From a TTY (`Ctrl+Alt+F2`) you can roll back (see
+[Rollback](#rollback)) or rebuild.
 
-## Locked out / lock screen oddities
+## Lock screen
 
-All lock paths run the `lock` script (`swaylock -f`, `cliphist wipe`, and a
-`wl-copy --clear` of the live clipboard):
-`Ctrl+Alt+L`, `Mod+Escape`, session menu, 15-min idle timeout, before-sleep.
+Every lock path runs the `lock` script (`swaylock -f`, `cliphist wipe`,
+`wl-copy --clear`): `Ctrl+Alt+L`, `Mod+Escape`, the session menu, the 15-minute
+idle timeout, and before-sleep. swaylock authenticates via PAM
+(`security.pam.services.swaylock`).
 
 | symptom | check |
 |---|---|
-| password rejected, red ring | caps lock indicator is on the ring (`show-failed-attempts` is on) - keyd remaps capslock, mind the layout (us vs de, `Mod+Space`) |
-| lock never triggers | `systemctl --user status swayidle.service` - its timeouts are 900 s lock / 1200 s monitors-off |
-| screen stays unlocked after suspend | swayidle's `before-sleep` event runs `lock`; check `journalctl --user -u swayidle.service` |
-| want to lock right now | run `lock` in a terminal, or `Mod+Escape` |
+| Password rejected | The ring turns yellow when Caps Lock is on (under keyd, left Ctrl is Caps Lock). Check the keyboard layout (us or de) |
+| Screen never locks | `systemctl --user status swayidle.service`; timeouts are 900 s lock, 1200 s monitors off |
+| Not locked after suspend | swayidle's `before-sleep` event runs `lock`; check `journalctl --user -u swayidle.service` |
+| Testing the lock | Run `lock` in a terminal, or press `Mod+Escape` |
 
-swaylock authenticates via PAM (`security.pam.services.swaylock`).
+## Screen sharing and portals
 
-## Screen sharing / portals broken
-
-Screencast goes through the **gnome portal** (file chooser: gtk fallback), wired
-by `modules/nixos/niri.nix`.
+Screencasting uses the GNOME portal (file chooser falls back to GTK),
+configured in `modules/nixos/niri.nix`. Portals start with
+`graphical-session.target`.
 
 ```bash
 systemctl --user status xdg-desktop-portal.service
 ```
 
-What to check next: Electron apps run native Wayland via `NIXOS_OZONE_WL=1`:
-if a browser window misbehaves, try its X11/xwayland mode before blaming the
-portal; portals come up with `graphical-session.target`.
+Electron apps run as native Wayland (`NIXOS_OZONE_WL=1`). If a browser window
+misbehaves, try its X11/XWayland mode before suspecting the portal.
 
-## Keyring & SSH agents
+## Keyring and SSH agents
 
-- **SSH keys**: plain `ssh-agent` as a user unit, socket `$XDG_RUNTIME_DIR/ssh-agent`.
-  Passphrase prompts are a Nord fuzzel dialog (`SSH_ASKPASS` in common.nix) that
-  validates the passphrase and caches the key via AddKeysToAgent. `ssh-add -l`
-  lists loaded keys. `gcr-ssh-agent` is deliberately off - don't re-enable it.
-- **gpg**: `gpg-agent` + `pass` (common.nix).
-- **gnome-keyring**: started at login by PAM (it comes with the GNOME module)
-  and owns the session secret service.
+- **ssh-agent**: user unit, socket `$XDG_RUNTIME_DIR/ssh-agent`. Passphrase
+  prompts use a fuzzel dialog (`SSH_ASKPASS` in common.nix) that validates the
+  passphrase and caches the key via AddKeysToAgent. `ssh-add -l` lists loaded
+  keys. Do not re-enable `gcr-ssh-agent`.
+- **gpg-agent**: caches the GPG key that unlocks `pass` (common.nix).
+- **gnome-keyring**: started by PAM at login (part of the GNOME module);
+  provides the Secret Service.
 
-The how-to for all of this is [SSH, secrets and agents](./ssh-secrets.html).
+If ssh keeps prompting: the fuzzel askpass validates only keys in
+`~/.ssh/id_*`. Keys set with `IdentityFile` elsewhere get a generic prompt.
 
-Symptom "ssh prompts forever": the fuzzel askpass only validates keys in
-`~/.ssh/id_*`; keys referenced via `IdentityFile` elsewhere fall back to a
-generic prompt.
+Setup and usage: [SSH, secrets and agents](./ssh-secrets.html).
 
-## Bar or notifications gone
+## Bar or notifications missing
 
-waybar, swaync and swayosd are supervised systemd **user** units, so a crash
-restarts them; if one is stuck, restart it yourself:
+waybar, swaync and swayosd are user units that restart after a crash. If one
+hangs, restart it:
 
 ```bash
 systemctl --user restart waybar.service
@@ -81,7 +76,7 @@ systemctl --user restart swaync.service
 systemctl --user status swayosd.service
 ```
 
-What each module and toast means is in [bar and notifications](./bar-notifications.html).
+Module and toast reference: [bar and notifications](./bar-notifications.html).
 
 ## Audio
 
@@ -90,44 +85,43 @@ wpctl status                        # sinks, sources, per-app streams
 wpctl set-volume @DEFAULT_AUDIO_SINK@ 50%
 ```
 
-XF86 keys call `swayosd-client` (OSD: `systemctl --user status swayosd.service`).
-For routing and per-app mixing use volmenu (`Mod+Shift+A`) - it drives wpctl.
+Hardware keys call `swayosd-client` (`systemctl --user status swayosd.service`).
+For routing and per-app volume use volmenu (`Mod+Shift+A`), which wraps wpctl.
 
 ## Flatpak
 
-Apps are managed declaratively (nix-flatpak): Flathub + the declared package set
-are authoritative, and anything installed imperatively is **removed at the next
-activation** (`uninstallUnmanaged`). Updates run weekly on a timer.
+nix-flatpak manages apps declaratively: Flathub and the declared package set
+are authoritative, and apps installed by hand are removed at the next
+activation (`uninstallUnmanaged`). Updates run weekly on a timer.
 
 | symptom | check |
 |---|---|
-| app disappeared | was it in the declared set? (`flatpak list`) - add it to `modules/nixos/flatpak.nix`/context module, rebuild |
-| permission issue | overrides in `~/.local/share/flatpak/overrides/`; adjust with `flatpak override --user` (see flatpak-override(1)) |
-| stale app after update | `flatpak update` manually; the timer only runs weekly |
+| App disappeared | Is it declared? (`flatpak list`) Add it to `modules/nixos/flatpak.nix` or the context module and rebuild |
+| Permission problem | Overrides are in `~/.local/share/flatpak/overrides/`; adjust with `flatpak override --user` (flatpak-override(1)) |
+| App outdated | Run `flatpak update`; the timer runs only weekly |
 
-## Rollback after a bad update
+## Rollback
 
-Pick the previous generation in the systemd-boot menu (boot-menu editing is
-disabled - select only), or from a session/TTY:
+Select the previous generation in the systemd-boot menu (entries cannot be
+edited), or from a session or TTY:
 
 ```bash
 bootctl list
 just rollback            # nh os rollback
 ```
 
-Rebuilding with `--rollback` (`sudo nixos-rebuild switch --rollback`) also flips
-the live system, not just the next boot.
+`sudo nixos-rebuild switch --rollback` switches the running system as well as
+the boot default.
 
-## Reading the update notifications
+## Update notifications
 
-- Toasts come from `modules/home/update-notify.nix`: a user path unit watches
-  `/nix/var/nix/profiles` (staged generations) and one watches
-  `/var/lib/fwupd/metadata/lvfs` (firmware); a root OnFailure unit toasts
-  auto-upgrade failures into running sessions. Dedupe markers live in
-  `~/.cache/update-notify/` - delete them to re-test.
-- Read the backlog: swaync control center (`Mod+Shift+N`).
-- Follow up: sysmenu (`Mod+Shift+U`) → "Upgrade timer & journal" or
-  "Staged diff (nvd)" - see [maintenance](./maintenance.html).
+- Sources: `modules/home/update-notify.nix`. A user path unit watches
+  `/nix/var/nix/profiles` (staged generations), another watches
+  `/var/lib/fwupd/metadata/lvfs` (firmware). A root OnFailure unit sends
+  auto-upgrade failures to running sessions. Dedupe markers are in
+  `~/.cache/update-notify/`; delete them to test again.
+- Past notifications: control center (`Mod+Shift+N`).
+- Follow-up: sysmenu (`Mod+Shift+U`) → "Upgrade timer & journal" or
+  "Staged diff (nvd)"; see [maintenance](./maintenance.html).
 
-See also: [maintenance](./maintenance.html) · the niri app page
-([../apps/niri.html](../apps/niri.html)).
+See also: [maintenance](./maintenance.html) · [niri bindings](../apps/niri.html).

@@ -1,7 +1,7 @@
 ---
 title: Screenshots & clipboard
 slug: screenshots-clipboard
-summary: two screenshot families, and a clipboard history that only records when you say so.
+summary: screenshots, capture tools, opt-in clipboard history
 order: 4
 app: niri
 verified: 17be888
@@ -9,89 +9,78 @@ verified: 17be888
 
 ## Screenshots
 
-Three homes for screenshots in the niri config (`modules/home/niri.nix`):
-
-| keys | what happens |
-|---|---|
-| `Print` | niri's built-in UI: pick region/window/screen, choose file/clipboard per shot |
-| `Ctrl+Print` | screenshot the focused window (niri UI) |
-| `Shift+Print` | screenshot the whole screen (niri UI) |
-| `Mod+G` / `Mod+Ctrl+G` / `Mod+Shift+G` | same three actions, for boards without a Print key |
-| `Mod+Shift+S` | zero-UI fast lane: `grim -g "$(slurp)"` piped to `wl-copy` - region straight to clipboard, no preview |
-
-The Print and Mod+G families are the same niri actions on two key clusters, so the
-muscle memory works on any board. `grim` + `slurp` back the fast lane.
-
-**Where files land:** niri writes to `~/Pictures/Screenshots/` with timestamped
-names - `Screenshot from %Y-%m-%d %H-%M-%S.png` (created on first shot, so
-history is just the directory listing sorted by name).
-
-## Beyond the screenshot
-
-Four small wrappers (`modules/home/capture.nix`), each bound in niri. Output
-goes to the clipboard first, a file second, and a toast says which.
-
-| keys | what happens |
-|---|---|
-| `Mod+Ctrl+S` | annotate: pick a region, draw arrows/boxes/blur/text in satty; `Enter` copies and saves |
-| `Mod+Shift+T` | OCR: pick a region, the recognised text (English + German) lands in the clipboard |
-| `Mod+Shift+C` | colour picker: click a pixel, `#rrggbb` lands in the clipboard |
-| `Mod+Shift+R` | screen recording: asks region or screen, with or without audio; press again to stop. The file lands in `~/Videos/Recordings` and is copied as a file, so it pastes straight into a chat |
-
-## Clipboard: opt-in recording
-
-Nothing watches your clipboard by default - copied passwords are never silently
-archived. The stack is `cliphist` (store),
-`wl-clip-persist` (keeps the *live* clipboard alive when the source app exits),
-and `cliprec` (the opt-in recorder).
+Bindings are in `modules/home/niri.nix`. The `Print` and `Mod+G` families run
+the same niri actions, for keyboards with and without a Print key.
 
 | keys | action |
 |---|---|
-| `Mod+Ctrl+V` | `cliprec menu` - arm/disarm recording |
-| `Mod+Shift+V` | recall history: `cliphist list` → fuzzel dmenu → `cliphist decode` → `wl-copy` |
+| `Print` | Open niri's screenshot UI: region, window or screen; file or clipboard per shot |
+| `Ctrl+Print` | Screenshot focused window |
+| `Shift+Print` | Screenshot whole screen |
+| `Mod+G` / `Mod+Ctrl+G` / `Mod+Shift+G` | Same three actions |
+| `Mod+Shift+S` | Copy a region to the clipboard, no UI or preview (`grim -g "$(slurp)"` piped to `wl-copy`) |
 
-The cliprec menu (a fuzzel dmenu, prompt shows current status like
-`on (42 min left)`):
+niri saves files to `~/Pictures/Screenshots/` as
+`Screenshot from %Y-%m-%d %H-%M-%S.png`. The directory is created on the first
+shot.
+
+## Capture tools
+
+Wrappers in `modules/home/capture.nix`. Each puts its result on the clipboard
+and confirms with a toast.
+
+| keys | action |
+|---|---|
+| `Mod+Ctrl+S` | Annotate: select a region, draw arrows, boxes, blur or text in satty; `Enter` copies and saves |
+| `Mod+Shift+T` | OCR: select a region; the recognised text (English and German) is copied |
+| `Mod+Shift+C` | Colour picker: click a pixel; `#rrggbb` is copied |
+| `Mod+Shift+R` | Screen recording: choose region or screen, with or without audio; press again to stop. Saved to `~/Videos/Recordings` and copied as a file, so it pastes into chat apps |
+
+## Clipboard history
+
+Clipboard history is off by default, so copied passwords are not archived.
+`cliphist` stores the history, `wl-clip-persist` keeps the current clipboard
+available after the source app exits, and `cliprec` arms and disarms recording.
+
+| keys | action |
+|---|---|
+| `Mod+Ctrl+V` | Arm/disarm recording (`cliprec menu`) |
+| `Mod+Shift+V` | Recall from history: `cliphist list` → fuzzel dmenu → `cliphist decode` → `wl-copy` |
+
+The cliprec menu is a fuzzel dmenu whose prompt shows the current state, e.g.
+`on (42 min left)`. Entries:
 
 - **Record for 15 minutes / 1 hour / 4 hours / until session end**
 - **Stop recording** · **Stop + wipe history** · **Wipe history now**
 
-While armed, two `wl-paste --watch` watchers store text *and* image selections
-into cliphist, capped at 100 items. Recall (`Mod+Shift+V`) only sees what was
-recorded while armed.
+While armed, two `wl-paste --watch` watchers store text and image selections in
+cliphist, up to 100 entries. `Mod+Shift+V` shows only what was recorded while
+armed. Typical use: arm with `Mod+Ctrl+V`, copy, recall with `Mod+Shift+V`.
 
-## Where history dies
+## History wiping
 
-History never outlives the moment it was needed. It is wiped:
+History is wiped:
 
-- at **session start** (`cliphist wipe` in niri's autostart),
-- on **lock** - every lock path goes through the `lock` script
-  (`swaylock -f`, `cliphist wipe`, and `wl-copy --clear` for the live
-  clipboard and primary selection): `Ctrl+Alt+L`, `Mod+Escape`, the session
-  menu, swayidle's 15-min timeout, and suspend (before-sleep event).
+- at session start (`cliphist wipe` in niri's autostart)
+- on lock. Every lock path runs the `lock` script (`swaylock -f`,
+  `cliphist wipe`, and `wl-copy --clear` for the clipboard and primary
+  selection): `Ctrl+Alt+L`, `Mod+Escape`, the session menu, swayidle's 15-minute
+  timeout, and suspend (before-sleep event).
 
-So `Mod+Shift+V` after unlocking shows an empty history. The raw archive lives in
-`~/.local/share/cliphist` only while recording is armed.
+After unlocking, history is empty and nothing copied before the lock can be
+pasted. The archive in `~/.local/share/cliphist` exists only while recording is
+armed.
 
-## Manual control
+## Commands
 
 ```bash
-cliprec status    # on/off + time left
+cliprec status    # on/off and time left
 cliprec stop      # disarm, keep history
-cliphist wipe     # nuke the archive now
+cliphist wipe     # delete the archive now
 ```
 
-Toast confirmations ("Clipboard history ON (15 min)", "…OFF") come through
-swaync, so they land in the control-center history too (`Mod+Shift+N`).
+cliprec's toasts ("Clipboard history ON (15 min)", "…OFF") also stay in the
+control center (`Mod+Shift+N`).
 
-## Lock interplay
-
-Because `lock` wipes the archive, the flow is: arm recording (`Mod+Ctrl+V`) →
-copy what you need → `Mod+Shift+V` recall. Walk away or lock, and it is gone - that is the point. Locking also clears the
-live clipboard and primary selection, so nothing copied before a lock survives
-it. While you are logged in, wl-clip-persist keeps the live clipboard alive
-across app exits; it is just not archived.
-
-See also: the niri app page for the bind table
-([../apps/niri.html](../apps/niri.html)) · [troubleshooting](./troubleshooting.html)
-for lock-screen issues.
+See also: [niri bindings](../apps/niri.html) ·
+[troubleshooting](./troubleshooting.html) for lock-screen issues.

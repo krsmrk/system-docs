@@ -132,7 +132,7 @@ multi-key sequences anyway. Only `<tag>` keys are normalized
 ```html
 <!-- app page -->
 <body data-page="app" data-app="niri">
-  <input class="kb-filter" type="search" placeholder="Filter bindings…" aria-label="Filter bindings">
+  <input class="kb-filter" type="search" placeholder="Filter bindings (/)" aria-label="Filter bindings">
   <div class="kb-keyboard"></div>            <!-- keyboard widget mounts here -->
   <section class="kb-group">
     <h3>Focus & movement <span class="group-count">19</span></h3>

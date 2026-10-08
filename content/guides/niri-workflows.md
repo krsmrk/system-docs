@@ -1,108 +1,111 @@
 ---
 title: niri workflows
 slug: niri-workflows
-summary: columns, workspaces, and the launcher menus that drive box.
+summary: columns, workspaces, launchers and menus
 order: 2
 app: niri
 verified: 17be888
 ---
 
-Source of truth: `~/nixos_config/modules/home/niri.nix` →
-`~/.config/niri/config.kdl` (nix-managed - edit the module, rebuild, don't edit
-the file). Binds are declared **from scratch**, so niri's stock defaults do not
-exist here (no stock `Mod+Shift+/` hotkey overlay - this site is the cheat
-sheet). `niri msg` introspects the running session. The modifier rules behind
-these binds live in [the keyboard grammar](./keyboard-grammar.html).
+`~/nixos_config/modules/home/niri.nix` generates `~/.config/niri/config.kdl`.
+Edit the module and rebuild; do not edit the generated file. Bindings are
+declared from scratch, so niri's stock defaults, including the `Mod+Shift+/`
+hotkey overlay, do not exist. `niri msg` inspects the running session.
+Modifier conventions are in [keyboard conventions](./keyboard-grammar.html).
 
-## Mental model
+## Layout model
 
-Each **workspace** is a horizontal strip of **columns**; windows stack vertically
-inside a column. Workspaces themselves scroll vertically. Workspaces are created
-on demand - config declares three persistent ones named `1`–`3` so the bar always
-shows three. Gaps 8 px, default column width 50%, presets ⅓ / ½ / ⅔.
+Each workspace is a horizontal strip of columns; windows stack vertically
+within a column. Workspaces are stacked vertically and created on demand.
+Workspaces `1`–`3` are persistent, so the bar always shows them. Gaps are 8 px,
+the default column width is 50%, and the width presets are ⅓, ½ and ⅔.
 
-## Focus & movement
+## Focus and movement
 
-Vim keys are primary, arrows mirror them. Horizontal focus/movement **wraps**
-around the column strip; moves do not.
-
-| keys | action |
-|---|---|
-| `Mod+H` / `Mod+L` (or arrows) | focus column left/right, wraps at the edges |
-| `Mod+J` / `Mod+K` (or arrows) | focus window down/up inside the column |
-| `Mod+Shift+H/L/J/K` | move column / window |
-| `Mod+[` / `Mod+]` | focus left/right: next column, or the previous/next monitor at the strip edge |
-| `Mod+Shift+[` / `Mod+Shift+]` | move column to previous/next monitor |
-| `Mod+U` / `Mod+I` | workspace down / up |
-| `Mod+Ctrl+U` / `Mod+Ctrl+I` | move column to workspace down / up |
-| `Mod+1…9` | jump to workspace N |
-| `Mod+Shift+1…9` | move column to workspace N |
-
-## Columns & windows
+Vim keys are primary; arrow keys mirror them. Horizontal focus wraps at the ends
+of the column strip; moving columns does not.
 
 | keys | action |
 |---|---|
-| `Mod+V` | cycle preset widths (⅓ / ½ / ⅔) |
-| `Mod+W` | expand column to available width |
-| `Mod+-` / `Mod+=` | width −10% / +10% |
-| `Mod+Shift+-` / `Mod+Shift+=` | window height −10% / +10% |
-| `Mod+F` | maximize window to screen edges (bar stays, no gaps/ring) |
-| `Mod+Shift+F` | true fullscreen |
-| `Mod+C` | center column |
-| `Mod+O` | toggle overview (all workspaces at a glance) |
-| `Mod+,` / `Mod+.` | pull window into column / expel it out |
-| `Mod+Alt+S` | toggle window floating |
-| `Mod+Shift+Space` | switch focus floating ↔ tiling |
-| `Mod+X` | close window |
-| `Mod+Ctrl+Shift+I` | hand all keys to the focused window (VMs/remote desktop) |
+| `Mod+H` / `Mod+L` (or arrows) | Focus column left/right (wraps) |
+| `Mod+J` / `Mod+K` (or arrows) | Focus window down/up within the column |
+| `Mod+Shift+H/L/J/K` | Move column left/right, window down/up |
+| `Mod+[` / `Mod+]` | Focus column left/right, or the adjacent monitor at the strip edge |
+| `Mod+Shift+[` / `Mod+Shift+]` | Move column to previous/next monitor |
+| `Mod+U` / `Mod+I` | Focus workspace down/up |
+| `Mod+Ctrl+U` / `Mod+Ctrl+I` | Move column to workspace down/up |
+| `Mod+1…9` | Focus workspace N |
+| `Mod+Shift+1…9` | Move column to workspace N |
 
-## Launchers & fold-out menus
+## Columns and windows
 
-`Mod+D` opens **fuzzel** (app launcher). The fold-outs are fuzzel dmenu loops,
-sources in `~/nixos_config/hosts/box/scripts/`:
+| keys | action |
+|---|---|
+| `Mod+V` | Cycle preset widths |
+| `Mod+W` | Expand column to available width |
+| `Mod+-` / `Mod+=` | Column width −10% / +10% |
+| `Mod+Shift+-` / `Mod+Shift+=` | Window height −10% / +10% |
+| `Mod+F` | Maximize window to screen edges (bar stays; no gaps or focus ring) |
+| `Mod+Shift+F` | Fullscreen |
+| `Mod+C` | Center column |
+| `Mod+O` | Toggle overview |
+| `Mod+,` / `Mod+.` | Consume window into column / expel window from column |
+| `Mod+Alt+S` | Toggle window floating |
+| `Mod+Shift+Space` | Switch focus between floating and tiling |
+| `Mod+X` | Close window |
+| `Mod+Ctrl+Shift+I` | Pass all keys to the focused window (VMs, remote desktops) |
+
+## Launchers and menus
 
 | keys | menu | covers |
 |---|---|---|
-| `Mod+Shift+B` | `btmenu` | bluetooth power, scan, pair/trust/connect/disconnect, blueman-manager on demand |
-| `Mod+Shift+W` | `netmenu` | Wi-Fi scan+connect, saved profiles, radio toggle; results toast via swaync |
-| `Mod+Shift+A` | `volmenu` | default sink/source switching, per-app stream volume/mute (wpctl) |
-| `Mod+P` | `session-menu` | Lock / Logout / Suspend / Reboot / Power off (gum TUI in ghostty) |
-| `Mod+Shift+U` | `sysmenu` | staged diff (nvd), upgrade timer & journal, generations, power profile, rebuild switch, rollback, firmware |
+| `Mod+Shift+B` | `btmenu` | Bluetooth power, scan, pair/trust/connect/disconnect, blueman-manager |
+| `Mod+Shift+W` | `netmenu` | Wi-Fi scan and connect, saved profiles, radio toggle; results as toasts |
+| `Mod+Shift+A` | `volmenu` | Default sink/source, per-app stream volume and mute (wpctl) |
+| `Mod+P` | `session-menu` | Lock, log out, suspend, reboot, power off |
+| `Mod+Shift+U` | `sysmenu` | Staged diff (nvd), upgrade timer and journal, generations, power profile, rebuild switch, rollback, firmware |
 | `Mod+Shift+D` | `phonemenu` | KDE Connect (private hosts only): send files/clipboard, browse phone storage, ring, pair |
 
-Two prompt-only pickers share the look: `Mod+Shift+E` is the emoji/Unicode
-picker (the pick is typed into the focused window *and* copied), `Mod+Shift+M`
-a qalc calculator (units, currencies, bases; every result is copied, `Esc`
-closes). Capture tools (`Mod+Shift+T` OCR, `Mod+Shift+C` colour picker,
-`Mod+Shift+R` recording, `Mod+Ctrl+S` annotate) live in
-[screenshots & clipboard](./screenshots-clipboard.html).
+`btmenu`, `netmenu`, `volmenu` and `phonemenu` are fuzzel dmenu loops;
+`session-menu` and `sysmenu` are gum TUIs in ghostty. Most scripts are in
+`~/nixos_config/hosts/box/scripts/`.
 
-Plain app binds: `Mod+Return`/`Mod+T` ghostty · `Mod+D` fuzzel · `Mod+Q`
-qutebrowser · `Mod+B` firefox (fallback) · `Mod+E` nautilus · `Mod+N` toggle
-do-not-disturb · `Mod+Shift+N` swaync control center · `Mod+Ctrl+N` night light
-(wlsunset).
+`Mod+Shift+E` opens the emoji/Unicode picker; the selection is typed into the
+focused window and copied. `Mod+Shift+M` opens a qalc calculator (units,
+currencies, bases); every result is copied, and `Esc` closes it. Capture tools
+(`Mod+Shift+T` OCR, `Mod+Shift+C` colour picker, `Mod+Shift+R` recording,
+`Mod+Ctrl+S` annotate) are in [screenshots & clipboard](./screenshots-clipboard.html).
 
-Hardware keys (volume/brightness/media) show an OSD; mic mute deliberately
-requires unlock. Brightness follows the **focused** output - the built-in panel
-through the kernel backlight, an external monitor through DDC/CI - and
-`Mod+F12` / `Mod+F11` do the same on keyboards without brightness keys.
+| keys | action |
+|---|---|
+| `Mod+Return` / `Mod+T` | ghostty |
+| `Mod+D` | fuzzel (app launcher) |
+| `Mod+Q` | qutebrowser |
+| `Mod+B` | firefox (fallback browser) |
+| `Mod+E` | nautilus |
+| `Mod+N` | Toggle do-not-disturb |
+| `Mod+Shift+N` | Toggle swaync control center |
+| `Mod+Ctrl+N` | Toggle night light (wlsunset) |
+
+Hardware keys (volume, brightness, media) show an OSD. Mic mute works only
+while unlocked. Brightness keys act on the focused output: the built-in panel
+via the kernel backlight, an external monitor via DDC/CI. `Mod+F12` /
+`Mod+F11` do the same on keyboards without brightness keys.
 
 ## Keyboard layout
 
-`us,de` is configured in xkb (plain XKB - no IBus/fcitx5, niri shows an
-indicator). `Mod+Space` switches to the next layout; `us` is the default. The
-layout indicator reacts to capslock remapping done by **keyd** (capslock →
-ctrl/esc), which works in both niri and GNOME sessions.
+Layouts are `us,de` in plain XKB (no IBus or fcitx5); `us` is the default.
+`Mod+Space` switches to the next layout. keyd's Caps Lock remap works in both
+niri and GNOME sessions.
 
 ## Session
 
-`Ctrl+Alt+L` or `Mod+Escape` locks (swaylock + cliphist wipe). `Mod+Shift+P`
-powers off monitors, `Mod+Shift+Q` quits niri. Idle: lock after 15 min, monitors
-off after 20 min (swayidle user unit).
+`Ctrl+Alt+L` or `Mod+Escape` locks the screen (swaylock, clipboard wipe).
+`Mod+Shift+P` turns off the monitors, `Mod+Shift+Q` quits niri. swayidle locks
+after 15 minutes idle and turns the monitors off after 20.
 
-See also: the full bind tables on the niri app page
-([../apps/niri.html](../apps/niri.html)) ·
+See also: [niri bindings](../apps/niri.html) ·
 [screenshots & clipboard](./screenshots-clipboard.html) ·
 [bar & notifications](./bar-notifications.html) ·
 [maintenance](./maintenance.html) ·
-[the keyboard grammar](./keyboard-grammar.html).
+[keyboard conventions](./keyboard-grammar.html).
