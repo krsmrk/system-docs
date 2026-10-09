@@ -85,10 +85,10 @@ socat, alsa-lib) are on its path.
   `just switch` installs the new claude-code. Roll back a bad version with the
   generation ([maintenance](./maintenance.html)).
 - **`~/.claude`** is not managed by home-manager. The module can manage
-  settings, agents, commands, skills and MCP servers, but that makes
-  `settings.json` and the other files read-only store symlinks, which breaks
-  Claude's own writes (theme, `claude config set`, onboarding). Changes made
-  with `claude config` persist.
+  settings, agents, commands, skills and MCP servers. That would replace
+  `settings.json` and the other files with read-only store symlinks, which
+  breaks Claude's own writes (theme, `claude config set`, onboarding).
+  Changes you make with `claude config` persist.
 - **SSH** from the agent uses `agent-ssh`, which requires you to approve and
   enter a passphrase (see [ssh-secrets](./ssh-secrets.html)).
 

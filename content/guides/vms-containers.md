@@ -86,14 +86,14 @@ enabled; point them at it:
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/podman/podman.sock
 ```
 
-### No system Docker socket
+### Docker tooling
 
-There is no `/run/docker.sock`: it would give every process in the session
-access to a root podman API, so any compromised process would gain root. The
-devcontainer CLI was removed along with it. Point anything
-hard-wired to `/var/run/docker.sock` at `DOCKER_HOST` instead. Containers are
-owned by you: files written to bind mounts belong to you, and nothing inside a
-container can become root on the host.
+Since there is no `/run/docker.sock`, no process in your session can reach
+a root podman API, and a compromised process cannot gain root that way.
+The devcontainer CLI was removed along with it. Point anything hard-wired
+to `/var/run/docker.sock` at `DOCKER_HOST`. Containers are owned by you.
+Files written to bind mounts belong to you, and nothing inside a container
+can become root on the host.
 
 ### One-off containers
 

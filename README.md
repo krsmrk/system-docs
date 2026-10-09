@@ -1,9 +1,10 @@
 # system-docs
 
-Web-based documentation for my NixOS system: keybinding cheat sheets
-(auto-generated from the live configuration in
-[`krsmrk/nixos_config`](https://github.com/krsmrk/nixos_config)) plus
-hand-written usage guides. Nord-themed, fully static, zero-dependency output.
+Web-based documentation for my NixOS system. Keybinding cheat sheets are
+auto-generated from the live configuration in
+[`krsmrk/nixos_config`](https://github.com/krsmrk/nixos_config), alongside
+hand-written usage guides. The output is Nord-themed, fully static, and
+requires no dependencies.
 
 Live: <https://krsmrk.github.io/system-docs>
 
@@ -36,12 +37,13 @@ The path check needs a nixos_config checkout (`~/nixos_config`, or set
 
 ## Updating keybinding data
 
-In `nixos_config`: `just update-docs` extracts bindings from the live config
-(`~/.config/niri/config.kdl`, `~/.config/yazi/keymap.toml`, `~/.zshrc`,
-`~/.config/tmux/tmux.conf`, keyd, waybar and qutebrowser modules) plus the
-curated tables (stock defaults, plus the hand-curated Neovim keymap, which is
-drift-checked against `~/.config/nvim`) and the manual layer, and pushes an updated
-`data/keybinds.json` here. `just switch` runs it after every rebuild. When
-only provenance line numbers moved, nothing is written or committed.
+Run `just update-docs` in `nixos_config`. It extracts bindings from the
+live config (`~/.config/niri/config.kdl`, `~/.config/yazi/keymap.toml`,
+`~/.zshrc`, `~/.config/tmux/tmux.conf`, keyd, waybar and qutebrowser
+modules) plus the curated tables (stock defaults and the hand-curated
+Neovim keymap, drift-checked against `~/.config/nvim`) and the manual
+layer. The result is an updated `data/keybinds.json`, pushed to this repo.
+`just switch` runs it after every rebuild. When only provenance line
+numbers moved, nothing is written or committed.
 
 See `SPEC.md` for all contracts.
