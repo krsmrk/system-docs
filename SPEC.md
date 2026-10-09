@@ -58,8 +58,8 @@ runs `just update-docs` (`meta.host`), the guides describe the shared config.
 There is NO custom/stock separation in group names - sections are purely
 thematic. Origin is a row-level fact: binds parsed from the live config
 carry `"custom": true` and render with an accent border on their key chips;
-curated stock rows are plain-bordered;
-unmarked. App pages show an origin legend under the description.
+curated stock rows keep a plain border. App pages show an origin legend under
+the description.
 
 ### Key normalization contract
 

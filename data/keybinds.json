@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-08T09:12:24.211Z",
-    "sourceCommit": "7483563",
+    "generatedAt": "2026-10-09T08:46:59.177Z",
+    "sourceCommit": "b45e1e4",
     "host": "box"
   },
   "apps": [
@@ -67,42 +67,42 @@
               "keys": "Mod+Return",
               "label": "Open ghostty",
               "command": "spawn \"ghostty\"",
-              "source": "config.kdl:101",
+              "source": "config.kdl:100",
               "custom": true
             },
             {
               "keys": "Mod+T",
               "label": "Open ghostty",
               "command": "spawn \"ghostty\"",
-              "source": "config.kdl:102",
+              "source": "config.kdl:101",
               "custom": true
             },
             {
               "keys": "Mod+D",
               "label": "Open fuzzel (app launcher)",
               "command": "spawn \"fuzzel\"",
-              "source": "config.kdl:103",
+              "source": "config.kdl:102",
               "custom": true
             },
             {
               "keys": "Mod+Q",
               "label": "Open qutebrowser (default browser)",
               "command": "spawn \"qutebrowser\"",
-              "source": "config.kdl:108",
+              "source": "config.kdl:107",
               "custom": true
             },
             {
               "keys": "Mod+B",
               "label": "Open Firefox (fallback browser)",
               "command": "spawn \"firefox\"",
-              "source": "config.kdl:104",
+              "source": "config.kdl:103",
               "custom": true
             },
             {
               "keys": "Mod+E",
               "label": "Open nautilus (file manager)",
               "command": "spawn \"nautilus\"",
-              "source": "config.kdl:126",
+              "source": "config.kdl:125",
               "custom": true
             }
           ]
@@ -114,56 +114,56 @@
               "keys": "Mod+Shift+B",
               "label": "Bluetooth menu: power, scan, pair/trust/connect, disconnect",
               "command": "spawn \"btmenu\"",
-              "source": "config.kdl:111",
+              "source": "config.kdl:110",
               "custom": true
             },
             {
               "keys": "Mod+Shift+W",
               "label": "Network menu: Wi-Fi scan and connect, saved profiles, radio toggle",
               "command": "spawn \"netmenu\"",
-              "source": "config.kdl:112",
+              "source": "config.kdl:111",
               "custom": true
             },
             {
               "keys": "Mod+Shift+A",
               "label": "Audio menu: default sink/source, per-app stream volume and mute",
               "command": "spawn \"volmenu\"",
-              "source": "config.kdl:113",
+              "source": "config.kdl:112",
               "custom": true
             },
             {
               "keys": "Mod+P",
               "label": "Session menu: lock, logout, suspend, reboot, power off (gum TUI)",
               "command": "spawn \"ghostty\" \"-e\" \"session-menu\"",
-              "source": "config.kdl:161",
+              "source": "config.kdl:160",
               "custom": true
             },
             {
               "keys": "Mod+Shift+U",
               "label": "System-ops menu: staged diff, upgrade timer, generations, rebuild, rollback, power profile",
               "command": "spawn \"ghostty\" \"-e\" \"sysmenu\"",
-              "source": "config.kdl:162",
+              "source": "config.kdl:161",
               "custom": true
             },
             {
               "keys": "Mod+Shift+D",
               "label": "Phone menu (KDE Connect): send files/clipboard, browse phone storage, ring, pair",
               "command": "spawn \"phonemenu\"",
-              "source": "config.kdl:117",
+              "source": "config.kdl:116",
               "custom": true
             },
             {
               "keys": "Mod+Shift+E",
               "label": "Emoji and Unicode picker: types into the focused window and copies",
               "command": "spawn \"emoji\"",
-              "source": "config.kdl:120",
+              "source": "config.kdl:119",
               "custom": true
             },
             {
               "keys": "Mod+Shift+M",
               "label": "Calculator (qalc): units, currencies, bases; copies the result",
               "command": "spawn \"calc\"",
-              "source": "config.kdl:121",
+              "source": "config.kdl:120",
               "custom": true
             }
           ],
@@ -176,70 +176,70 @@
               "keys": "Mod+H",
               "label": "Focus column left",
               "command": "focus-column-left-or-last",
-              "source": "config.kdl:167",
+              "source": "config.kdl:166",
               "custom": true
             },
             {
               "keys": "Mod+L",
               "label": "Focus column right",
               "command": "focus-column-right-or-first",
-              "source": "config.kdl:168",
+              "source": "config.kdl:167",
               "custom": true
             },
             {
               "keys": "Mod+Left",
               "label": "Focus column left",
               "command": "focus-column-left-or-last",
-              "source": "config.kdl:169",
+              "source": "config.kdl:168",
               "custom": true
             },
             {
               "keys": "Mod+Right",
               "label": "Focus column right",
               "command": "focus-column-right-or-first",
-              "source": "config.kdl:170",
+              "source": "config.kdl:169",
               "custom": true
             },
             {
               "keys": "Mod+J",
               "label": "Focus window below in the column",
               "command": "focus-window-down",
-              "source": "config.kdl:171",
+              "source": "config.kdl:170",
               "custom": true
             },
             {
               "keys": "Mod+K",
               "label": "Focus window above in the column",
               "command": "focus-window-up",
-              "source": "config.kdl:173",
+              "source": "config.kdl:172",
               "custom": true
             },
             {
               "keys": "Mod+Down",
               "label": "Focus window below in the column",
               "command": "focus-window-down",
-              "source": "config.kdl:172",
+              "source": "config.kdl:171",
               "custom": true
             },
             {
               "keys": "Mod+Up",
               "label": "Focus window above in the column",
               "command": "focus-window-up",
-              "source": "config.kdl:174",
+              "source": "config.kdl:173",
               "custom": true
             },
             {
               "keys": "Mod+BracketLeft",
               "label": "Focus previous column, or the last column on the previous monitor",
               "command": "focus-column-or-monitor-left",
-              "source": "config.kdl:175",
+              "source": "config.kdl:174",
               "custom": true
             },
             {
               "keys": "Mod+BracketRight",
               "label": "Focus next column, or the first column on the next monitor",
               "command": "focus-column-or-monitor-right",
-              "source": "config.kdl:176",
+              "source": "config.kdl:175",
               "custom": true
             }
           ],
@@ -252,70 +252,70 @@
               "keys": "Mod+Shift+H",
               "label": "Move column left",
               "command": "move-column-left",
-              "source": "config.kdl:178",
+              "source": "config.kdl:177",
               "custom": true
             },
             {
               "keys": "Mod+Shift+L",
               "label": "Move column right",
               "command": "move-column-right",
-              "source": "config.kdl:179",
+              "source": "config.kdl:178",
               "custom": true
             },
             {
               "keys": "Mod+Shift+Left",
               "label": "Move column left",
               "command": "move-column-left",
-              "source": "config.kdl:182",
+              "source": "config.kdl:181",
               "custom": true
             },
             {
               "keys": "Mod+Shift+Right",
               "label": "Move column right",
               "command": "move-column-right",
-              "source": "config.kdl:183",
+              "source": "config.kdl:182",
               "custom": true
             },
             {
               "keys": "Mod+Shift+J",
               "label": "Move window down in the column",
               "command": "move-window-down",
-              "source": "config.kdl:180",
+              "source": "config.kdl:179",
               "custom": true
             },
             {
               "keys": "Mod+Shift+K",
               "label": "Move window up in the column",
               "command": "move-window-up",
-              "source": "config.kdl:181",
+              "source": "config.kdl:180",
               "custom": true
             },
             {
               "keys": "Mod+Shift+Down",
               "label": "Move window down in the column",
               "command": "move-window-down",
-              "source": "config.kdl:184",
+              "source": "config.kdl:183",
               "custom": true
             },
             {
               "keys": "Mod+Shift+Up",
               "label": "Move window up in the column",
               "command": "move-window-up",
-              "source": "config.kdl:185",
+              "source": "config.kdl:184",
               "custom": true
             },
             {
               "keys": "Mod+Shift+BracketLeft",
               "label": "Move column to the previous monitor",
               "command": "move-column-to-monitor-left",
-              "source": "config.kdl:186",
+              "source": "config.kdl:185",
               "custom": true
             },
             {
               "keys": "Mod+Shift+BracketRight",
               "label": "Move column to the next monitor",
               "command": "move-column-to-monitor-right",
-              "source": "config.kdl:187",
+              "source": "config.kdl:186",
               "custom": true
             }
           ],
@@ -328,77 +328,77 @@
               "keys": "Mod+U",
               "label": "Focus workspace below",
               "command": "focus-workspace-down",
-              "source": "config.kdl:212",
+              "source": "config.kdl:211",
               "custom": true
             },
             {
               "keys": "Mod+I",
               "label": "Focus workspace above",
               "command": "focus-workspace-up",
-              "source": "config.kdl:213",
+              "source": "config.kdl:212",
               "custom": true
             },
             {
               "keys": "Mod+1",
               "label": "Focus workspace 1",
               "command": "focus-workspace 1",
-              "source": "config.kdl:216",
+              "source": "config.kdl:215",
               "custom": true
             },
             {
               "keys": "Mod+2",
               "label": "Focus workspace 2",
               "command": "focus-workspace 2",
-              "source": "config.kdl:217",
+              "source": "config.kdl:216",
               "custom": true
             },
             {
               "keys": "Mod+3",
               "label": "Focus workspace 3",
               "command": "focus-workspace 3",
-              "source": "config.kdl:218",
+              "source": "config.kdl:217",
               "custom": true
             },
             {
               "keys": "Mod+4",
               "label": "Focus workspace 4",
               "command": "focus-workspace 4",
-              "source": "config.kdl:219",
+              "source": "config.kdl:218",
               "custom": true
             },
             {
               "keys": "Mod+5",
               "label": "Focus workspace 5",
               "command": "focus-workspace 5",
-              "source": "config.kdl:220",
+              "source": "config.kdl:219",
               "custom": true
             },
             {
               "keys": "Mod+6",
               "label": "Focus workspace 6",
               "command": "focus-workspace 6",
-              "source": "config.kdl:221",
+              "source": "config.kdl:220",
               "custom": true
             },
             {
               "keys": "Mod+7",
               "label": "Focus workspace 7",
               "command": "focus-workspace 7",
-              "source": "config.kdl:222",
+              "source": "config.kdl:221",
               "custom": true
             },
             {
               "keys": "Mod+8",
               "label": "Focus workspace 8",
               "command": "focus-workspace 8",
-              "source": "config.kdl:223",
+              "source": "config.kdl:222",
               "custom": true
             },
             {
               "keys": "Mod+9",
               "label": "Focus workspace 9",
               "command": "focus-workspace 9",
-              "source": "config.kdl:224",
+              "source": "config.kdl:223",
               "custom": true
             }
           ],
@@ -411,77 +411,77 @@
               "keys": "Mod+Ctrl+U",
               "label": "Move column to workspace below",
               "command": "move-column-to-workspace-down",
-              "source": "config.kdl:214",
+              "source": "config.kdl:213",
               "custom": true
             },
             {
               "keys": "Mod+Ctrl+I",
               "label": "Move column to workspace above",
               "command": "move-column-to-workspace-up",
-              "source": "config.kdl:215",
+              "source": "config.kdl:214",
               "custom": true
             },
             {
               "keys": "Mod+Shift+1",
               "label": "Move column to workspace 1",
               "command": "move-column-to-workspace 1",
-              "source": "config.kdl:225",
+              "source": "config.kdl:224",
               "custom": true
             },
             {
               "keys": "Mod+Shift+2",
               "label": "Move column to workspace 2",
               "command": "move-column-to-workspace 2",
-              "source": "config.kdl:226",
+              "source": "config.kdl:225",
               "custom": true
             },
             {
               "keys": "Mod+Shift+3",
               "label": "Move column to workspace 3",
               "command": "move-column-to-workspace 3",
-              "source": "config.kdl:227",
+              "source": "config.kdl:226",
               "custom": true
             },
             {
               "keys": "Mod+Shift+4",
               "label": "Move column to workspace 4",
               "command": "move-column-to-workspace 4",
-              "source": "config.kdl:228",
+              "source": "config.kdl:227",
               "custom": true
             },
             {
               "keys": "Mod+Shift+5",
               "label": "Move column to workspace 5",
               "command": "move-column-to-workspace 5",
-              "source": "config.kdl:229",
+              "source": "config.kdl:228",
               "custom": true
             },
             {
               "keys": "Mod+Shift+6",
               "label": "Move column to workspace 6",
               "command": "move-column-to-workspace 6",
-              "source": "config.kdl:230",
+              "source": "config.kdl:229",
               "custom": true
             },
             {
               "keys": "Mod+Shift+7",
               "label": "Move column to workspace 7",
               "command": "move-column-to-workspace 7",
-              "source": "config.kdl:231",
+              "source": "config.kdl:230",
               "custom": true
             },
             {
               "keys": "Mod+Shift+8",
               "label": "Move column to workspace 8",
               "command": "move-column-to-workspace 8",
-              "source": "config.kdl:232",
+              "source": "config.kdl:231",
               "custom": true
             },
             {
               "keys": "Mod+Shift+9",
               "label": "Move column to workspace 9",
               "command": "move-column-to-workspace 9",
-              "source": "config.kdl:233",
+              "source": "config.kdl:232",
               "custom": true
             }
           ]
@@ -493,42 +493,42 @@
               "keys": "Mod+V",
               "label": "Cycle column width presets: 1/3, 1/2, 2/3",
               "command": "switch-preset-column-width",
-              "source": "config.kdl:190",
+              "source": "config.kdl:189",
               "custom": true
             },
             {
               "keys": "Mod+W",
               "label": "Expand column to the available width",
               "command": "expand-column-to-available-width",
-              "source": "config.kdl:191",
+              "source": "config.kdl:190",
               "custom": true
             },
             {
               "keys": "Mod+Minus",
               "label": "Shrink column width by 10%",
               "command": "set-column-width \"-10%\"",
-              "source": "config.kdl:198",
+              "source": "config.kdl:197",
               "custom": true
             },
             {
               "keys": "Mod+Equal",
               "label": "Grow column width by 10%",
               "command": "set-column-width \"+10%\"",
-              "source": "config.kdl:199",
+              "source": "config.kdl:198",
               "custom": true
             },
             {
               "keys": "Mod+Shift+Minus",
               "label": "Shrink window height by 10%",
               "command": "set-window-height \"-10%\"",
-              "source": "config.kdl:201",
+              "source": "config.kdl:200",
               "custom": true
             },
             {
               "keys": "Mod+Shift+Equal",
               "label": "Grow window height by 10%",
               "command": "set-window-height \"+10%\"",
-              "source": "config.kdl:202",
+              "source": "config.kdl:201",
               "custom": true
             }
           ]
@@ -540,63 +540,63 @@
               "keys": "Mod+C",
               "label": "Center column",
               "command": "center-column",
-              "source": "config.kdl:197",
+              "source": "config.kdl:196",
               "custom": true
             },
             {
               "keys": "Mod+O",
               "label": "Toggle overview",
               "command": "toggle-overview",
-              "source": "config.kdl:196",
+              "source": "config.kdl:195",
               "custom": true
             },
             {
               "keys": "Mod+Comma",
               "label": "Consume the next window into this column",
               "command": "consume-window-into-column",
-              "source": "config.kdl:203",
+              "source": "config.kdl:202",
               "custom": true
             },
             {
               "keys": "Mod+Period",
               "label": "Expel the bottom window from the column",
               "command": "expel-window-from-column",
-              "source": "config.kdl:204",
+              "source": "config.kdl:203",
               "custom": true
             },
             {
               "keys": "Mod+F",
               "label": "Maximize to the screen edges (bar stays visible)",
               "command": "maximize-window-to-edges",
-              "source": "config.kdl:194",
+              "source": "config.kdl:193",
               "custom": true
             },
             {
               "keys": "Mod+Shift+F",
               "label": "Fullscreen (hides the bar)",
               "command": "fullscreen-window",
-              "source": "config.kdl:195",
+              "source": "config.kdl:194",
               "custom": true
             },
             {
               "keys": "Mod+Alt+S",
               "label": "Toggle floating",
               "command": "toggle-window-floating",
-              "source": "config.kdl:205",
+              "source": "config.kdl:204",
               "custom": true
             },
             {
               "keys": "Mod+Shift+Space",
               "label": "Switch focus between floating and tiled windows",
               "command": "switch-focus-between-floating-and-tiling",
-              "source": "config.kdl:206",
+              "source": "config.kdl:205",
               "custom": true
             },
             {
               "keys": "Mod+X",
               "label": "Close window",
               "command": "close-window",
-              "source": "config.kdl:157",
+              "source": "config.kdl:156",
               "custom": true
             }
           ]
@@ -608,77 +608,77 @@
               "keys": "Print",
               "label": "Screenshot UI: region, window or screen, to clipboard or file",
               "command": "screenshot",
-              "source": "config.kdl:140",
+              "source": "config.kdl:139",
               "custom": true
             },
             {
               "keys": "Ctrl+Print",
               "label": "Screenshot the focused window",
               "command": "screenshot-window",
-              "source": "config.kdl:141",
+              "source": "config.kdl:140",
               "custom": true
             },
             {
               "keys": "Shift+Print",
               "label": "Screenshot the full screen",
               "command": "screenshot-screen",
-              "source": "config.kdl:142",
+              "source": "config.kdl:141",
               "custom": true
             },
             {
               "keys": "Mod+G",
               "label": "Screenshot UI",
               "command": "screenshot",
-              "source": "config.kdl:143",
+              "source": "config.kdl:142",
               "custom": true
             },
             {
               "keys": "Mod+Ctrl+G",
               "label": "Screenshot the focused window",
               "command": "screenshot-window",
-              "source": "config.kdl:144",
+              "source": "config.kdl:143",
               "custom": true
             },
             {
               "keys": "Mod+Shift+G",
               "label": "Screenshot the full screen",
               "command": "screenshot-screen",
-              "source": "config.kdl:145",
+              "source": "config.kdl:144",
               "custom": true
             },
             {
               "keys": "Mod+Shift+S",
               "label": "Capture a region to the clipboard, no UI (slurp + grim)",
               "command": "spawn-sh \"grim -g \\\"$(slurp)\\\" - | wl-copy\"",
-              "source": "config.kdl:146",
+              "source": "config.kdl:145",
               "custom": true
             },
             {
               "keys": "Mod+Ctrl+S",
               "label": "Annotate a region in satty; Enter copies and saves",
               "command": "spawn \"annotate\"",
-              "source": "config.kdl:149",
+              "source": "config.kdl:148",
               "custom": true
             },
             {
               "keys": "Mod+Shift+T",
               "label": "OCR a region to the clipboard (English, German)",
               "command": "spawn \"ocr\"",
-              "source": "config.kdl:150",
+              "source": "config.kdl:149",
               "custom": true
             },
             {
               "keys": "Mod+Shift+C",
               "label": "Pick a colour: click a pixel to copy its #rrggbb",
               "command": "spawn \"colorpick\"",
-              "source": "config.kdl:151",
+              "source": "config.kdl:150",
               "custom": true
             },
             {
               "keys": "Mod+Shift+R",
               "label": "Record a region or the screen, with or without audio; press again to stop and copy the file",
               "command": "spawn \"screenrec\"",
-              "source": "config.kdl:152",
+              "source": "config.kdl:151",
               "custom": true
             }
           ],
@@ -691,14 +691,14 @@
               "keys": "Mod+Shift+V",
               "label": "Pick from clipboard history (cliphist in fuzzel)",
               "command": "spawn-sh \"cliphist list | fuzzel --dmenu | cliphist decode | wl-copy\"",
-              "source": "config.kdl:130",
+              "source": "config.kdl:129",
               "custom": true
             },
             {
               "keys": "Mod+Ctrl+V",
               "label": "Arm or disarm clipboard recording (cliprec menu)",
               "command": "spawn \"cliprec\" \"menu\"",
-              "source": "config.kdl:133",
+              "source": "config.kdl:132",
               "custom": true
             }
           ],
@@ -711,14 +711,14 @@
               "keys": "Mod+N",
               "label": "Toggle do-not-disturb",
               "command": "spawn \"swaync-client\" \"-d\"",
-              "source": "config.kdl:124",
+              "source": "config.kdl:123",
               "custom": true
             },
             {
               "keys": "Mod+Shift+N",
               "label": "Open the control center (history and actions)",
               "command": "spawn \"swaync-client\" \"-t\"",
-              "source": "config.kdl:125",
+              "source": "config.kdl:124",
               "custom": true
             }
           ],
@@ -731,35 +731,35 @@
               "keys": "Ctrl+Alt+L",
               "label": "Lock (swaylock; wipes clipboard history)",
               "command": "spawn \"lock\"",
-              "source": "config.kdl:155",
+              "source": "config.kdl:154",
               "custom": true
             },
             {
               "keys": "Mod+Escape",
               "label": "Lock",
               "command": "spawn \"lock\"",
-              "source": "config.kdl:156",
+              "source": "config.kdl:155",
               "custom": true
             },
             {
               "keys": "Mod+Shift+P",
               "label": "Turn the monitors off",
               "command": "power-off-monitors",
-              "source": "config.kdl:159",
+              "source": "config.kdl:158",
               "custom": true
             },
             {
               "keys": "Mod+Ctrl+N",
               "label": "Toggle night light (wlsunset, warm after sunset)",
               "command": "spawn \"nightlight\"",
-              "source": "config.kdl:160",
+              "source": "config.kdl:159",
               "custom": true
             },
             {
               "keys": "Mod+Shift+Q",
               "label": "Quit niri (end the session)",
               "command": "quit",
-              "source": "config.kdl:158",
+              "source": "config.kdl:157",
               "custom": true
             }
           ],
@@ -772,7 +772,7 @@
               "keys": "Mod+Space",
               "label": "Switch layout (us/de)",
               "command": "switch-layout \"next\"",
-              "source": "config.kdl:209",
+              "source": "config.kdl:208",
               "custom": true
             }
           ],
@@ -785,7 +785,7 @@
               "keys": "Mod+Ctrl+Shift+I",
               "label": "Toggle shortcut inhibition for the focused window",
               "command": "toggle-keyboard-shortcuts-inhibit",
-              "source": "config.kdl:237",
+              "source": "config.kdl:236",
               "custom": true
             }
           ],
@@ -798,77 +798,77 @@
               "keys": "XF86AudioRaiseVolume",
               "label": "Volume up (+5)",
               "command": "spawn \"swayosd-client\" \"--output-volume\" \"+5\"",
-              "source": "config.kdl:242",
+              "source": "config.kdl:241",
               "custom": true
             },
             {
               "keys": "XF86AudioLowerVolume",
               "label": "Volume down (-5)",
               "command": "spawn \"swayosd-client\" \"--output-volume\" \"-5\"",
-              "source": "config.kdl:243",
+              "source": "config.kdl:242",
               "custom": true
             },
             {
               "keys": "XF86AudioMute",
               "label": "Toggle output mute",
               "command": "spawn \"swayosd-client\" \"--output-volume\" \"mute-toggle\"",
-              "source": "config.kdl:244",
+              "source": "config.kdl:243",
               "custom": true
             },
             {
               "keys": "XF86AudioMicMute",
               "label": "Toggle mic mute",
               "command": "spawn \"swayosd-client\" \"--input-volume\" \"mute-toggle\"",
-              "source": "config.kdl:246",
+              "source": "config.kdl:245",
               "custom": true
             },
             {
               "keys": "XF86AudioPlay",
               "label": "Play/pause",
               "command": "spawn \"swayosd-client\" \"--playerctl\" \"play-pause\"",
-              "source": "config.kdl:247",
+              "source": "config.kdl:246",
               "custom": true
             },
             {
               "keys": "XF86AudioNext",
               "label": "Next track",
               "command": "spawn \"swayosd-client\" \"--playerctl\" \"next\"",
-              "source": "config.kdl:248",
+              "source": "config.kdl:247",
               "custom": true
             },
             {
               "keys": "XF86AudioPrev",
               "label": "Previous track",
               "command": "spawn \"swayosd-client\" \"--playerctl\" \"previous\"",
-              "source": "config.kdl:249",
+              "source": "config.kdl:248",
               "custom": true
             },
             {
               "keys": "XF86MonBrightnessUp",
               "label": "Brightness up on the focused screen",
               "command": "spawn \"brightness\" \"up\"",
-              "source": "config.kdl:253",
+              "source": "config.kdl:252",
               "custom": true
             },
             {
               "keys": "XF86MonBrightnessDown",
               "label": "Brightness down on the focused screen",
               "command": "spawn \"brightness\" \"down\"",
-              "source": "config.kdl:254",
+              "source": "config.kdl:253",
               "custom": true
             },
             {
               "keys": "Mod+F12",
               "label": "Brightness up (keyboards without brightness keys)",
               "command": "spawn \"brightness\" \"up\"",
-              "source": "config.kdl:255",
+              "source": "config.kdl:254",
               "custom": true
             },
             {
               "keys": "Mod+F11",
               "label": "Brightness down (keyboards without brightness keys)",
               "command": "spawn \"brightness\" \"down\"",
-              "source": "config.kdl:256",
+              "source": "config.kdl:255",
               "custom": true
             }
           ],
