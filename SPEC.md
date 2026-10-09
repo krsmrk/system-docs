@@ -45,7 +45,7 @@ runs `just update-docs` (`meta.host`), the guides describe the shared config.
               "label": "Focus column left (wraps)",  // human description
               "command": "focus-column-left-or-last", // optional: raw action
               "source": "config.kdl:158",           // optional: provenance
-              "custom": true                         // optional: origin flag —
+              "custom": true                         // optional: origin flag;
             }                                     // true = bound in this config,
           ]                                       // absent = stock default
         }
@@ -95,7 +95,7 @@ Extracted from live config / repo modules: `keyd` (evdev remap layer - defines
 what Ctrl/Esc physically are; parsed from `~/.config/keyd/default.conf`),
 `niri` (binds, media keys),
 `waybar` (click/scroll, module file), `qutebrowser` (custom binds parsed
-from `modules/home/qutebrowser.nix` keyBindings — NOT the generated
+from `modules/home/qutebrowser.nix` keyBindings, NOT the generated
 config.py, which goes stale between a change and the next switch),
 `yazi` (custom keymap), `zsh` (vi-mode bindkeys; the fzf / fzf-git.sh
 integration binds ride a curated `zsh.json` overlay as stock rows), `tmux`
