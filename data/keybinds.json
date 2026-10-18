@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generatedAt": "2026-10-18T12:18:55.805Z",
-    "sourceCommit": "8ef69fe",
+    "generatedAt": "2026-10-18T15:25:25.557Z",
+    "sourceCommit": "b8161d6",
     "host": "box"
   },
   "apps": [
@@ -37,6 +37,33 @@
               "custom": true
             }
           ]
+        },
+        {
+          "name": "Game mode",
+          "bindings": [
+            {
+              "keys": "Ctrl+Alt+G",
+              "label": "Toggle game mode on or off",
+              "command": "toggle(game)",
+              "source": "default.conf:33",
+              "custom": true
+            },
+            {
+              "keys": "CapsLock",
+              "label": "In game mode: plain Ctrl, never Esc",
+              "command": "layer(control)",
+              "source": "default.conf:40",
+              "custom": true
+            },
+            {
+              "keys": "LeftCtrl",
+              "label": "In game mode: plain Ctrl instead of Caps Lock",
+              "command": "layer(control)",
+              "source": "default.conf:41",
+              "custom": true
+            }
+          ],
+          "description": "A toggle layer for games, where Ctrl is a hold key (crouch) and a short press must not send Esc and open the pause menu. There is no indicator; restarting keyd or rebooting turns it off."
         },
         {
           "name": "Global settings",
